@@ -176,7 +176,7 @@ class HomeContainer extends Component {
 			            <div className="col-xs-12 col-sm-12 col-md-10 text-center">
 			                <h2 className="text-center"> Important Safety information</h2>
 
-			                <button className="collapsible"> <span className="read-btn"> Read Now <span className="glyphicon glyphicon-menu-down"></span> </span> <span class="close-btn"> close <span class="glyphicon glyphicon-remove"></span> </span>
+			                <button className="collapsible"> <span className="read-btn"> Read Now <span className="glyphicon glyphicon-menu-down"></span> </span> <span className="close-btn"> close <span className="glyphicon glyphicon-remove"></span> </span>
 			                </button>
 			                <div className="content text-left">
 			                    <h3> IMPORTANT SAFETY INFORMATION</h3>
