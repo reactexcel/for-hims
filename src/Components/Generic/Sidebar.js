@@ -15,9 +15,6 @@ class Sidebar extends Component {
 
 	constructor(props){
     super(props);
-    this.state = {
-    	// sidebarPosition: 'left'
-    }
   }
 
   _renderItem = (param) => {
@@ -48,18 +45,11 @@ class Sidebar extends Component {
   }
 
   render() {
-
-  	console.log('pppp')
-  	console.log( this.props )
-
   	let sidebarPositionClass = this.props.openSidebar == 'left' ? 'sideleft' : 'sideright';
-
-  	console.log(sidebarPositionClass)
-  	console.log(sidebarPositionClass)
-  	console.log(sidebarPositionClass)
+    let closeIconClass = this.props.openSidebar == 'left' ? 'glyphicon glyphicon-menu-left' : 'glyphicon glyphicon-menu-right';
     return (
-    	<div id="mySidenav7" class={sidebarPositionClass} >
-    		<a href="#" class="closebtn" onClick={this.props.closeSidebar}> <span class="glyphicon glyphicon-menu-left"></span> </a>
+    	<div id="mySidenav7" className={sidebarPositionClass} >
+    		<a href="#" className="closebtn" onClick={this.props.closeSidebar}> <span className={closeIconClass}></span> </a>
 			 	{this._renderItem(this.props.content)}
 			</div>
     );

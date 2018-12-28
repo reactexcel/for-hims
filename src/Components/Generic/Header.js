@@ -12,7 +12,6 @@ class Header extends Component {
 	}
 
 	_openSidebar = ( side, content) => {
-
 		this.setState({
 			openSidebar: side,
 			sidebarContent: content
@@ -20,9 +19,6 @@ class Header extends Component {
 	}
 
   render() {
-
-  	console.log( this.state )
-
     return (
     	<>
       	<div className="navbar navbar-default navbar-fixed-top" role="navigation">

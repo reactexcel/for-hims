@@ -3,30 +3,32 @@ import React, { Component } from 'react';
 class Payment extends Component {
   render() {
     return (
-			 <div id="mySidenav6" class="sideright">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav6()"> <span class="glyphicon glyphicon-menu-right"></span> </a>
-  
-    <div class="symbols">  
-   <div class="symbols-title">Payment</div>
-   <ul>
-   <li class="symbols1">  </li>
-   <li class="symbols2">  </li>
-   <li class="symbols3">  </li>
-   <li class="symbols4 active">  </li>
-   <li class="symbols5">  </li>
-   </ul>
-  </div>
-  
-<div class="login_form">
-<div class="register_box"><h3>Payment information</h3><h5>Please enter your paymennt information</h5>
-<form>
-<input type="text" class="card" name="firstName" value="" autocomplete="true" placeholder="Card number"/> 
-<input type="text" class="cvc"  value="" autocomplete="true" placeholder="MM / YY / CVC"/>
- 
-<div class="clearfix"></div>
+			<div id="mySidenav6">
+        <div className="symbols">  
+          <div className="symbols-title">Payment</div>
+          <ul>
+            <li className="symbols1">  </li>
+            <li className="symbols2">  </li>
+            <li className="symbols3">  </li>
+            <li className="symbols4 active">  </li>
+            <li className="symbols5">  </li>
+          </ul>
+        </div> 
 
-<h5> Your order will be processed immediately and products will be shipped after medical review.</h5>
-</form></div></div> <button tabindex="0" type="button" class="login_btn"> Add New Payment Method </button></div>
+        <div className="login_form">
+          <div className="register_box">
+            <h3>Payment information</h3>
+            <h5>Please enter your paymennt information</h5>
+            <form>
+              <input type="text" className="card" name="firstName" value="" autoComplete="true" placeholder="Card number"/> 
+              <input type="text" className="cvc"  value="" autoComplete="true" placeholder="MM / YY / CVC"/>
+              <div className="clearfix"></div>
+              <h5> Your order will be processed immediately and products will be shipped after medical review.</h5>
+            </form>
+          </div>
+        </div> 
+        <button tabIndex="0" type="button" className="login_btn"> Add New Payment Method </button>
+      </div>
     );
   }
 }
