@@ -193,13 +193,13 @@ cursor: pointer;
 
 
 
-.sideleft { height: 100%; width: 0; position: fixed; z-index: 1; top: 0; left: 0; background-color: #fbf8f5; overflow-x: hidden; transition: 0.4s; z-index:99999;}
+.sideleft { height: 100%; width: 45%; position: fixed; z-index: 1; top: 0; left: 0; background-color: #fbf8f5; overflow-x: hidden; transition: 0.4s; z-index:99999;}
 .sideleft a {  text-decoration: none;  transition: 0.3s;}
 .sideleft a:hover { text-decoration:none;}
 .sideleft .closebtn {  position: absolute; top:20px; right:10px;  font-size:13px; z-index:99999;}
 
 
-.sideright { height: 100%; width: 0; position: fixed; z-index: 1; top: 0; right: 0; background-color: #fbf8f5; overflow-x: hidden; transition: 0.4s; z-index:99999;}
+.sideright { height: 100%; width: 45%; position: fixed; z-index: 1; top: 0; right: 0; background-color: #fbf8f5; overflow-x: hidden; transition: 0.4s; z-index:99999;}
 .sideright a {  text-decoration: none;  transition: 0.3s;}
 .sideright a:hover { text-decoration:none;}
 .sideright .closebtn {  position: absolute; top:20px; left:10px;  font-size:13px; z-index:99999;}

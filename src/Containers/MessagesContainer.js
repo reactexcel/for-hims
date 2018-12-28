@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import Header from '../Components/Generic/Header';
 import Footer from '../Components/Generic/Footer';
-import Home from '../Components/Home'
+import Messages from '../Components/Messages';
 
-class HomeContainer extends Component {
+class MessagesContainer extends Component {
   render() {
     return (
       <div>
-        <Header/>
-          <Home/>
+      	<Header/>
+        	<Messages/>
         <Footer/>
       </div>
     );
   }
 }
 
-export default HomeContainer;
+export default MessagesContainer;

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import Header from '../Components/Generic/Header';
 import Footer from '../Components/Generic/Footer';
-import Home from '../Components/Home'
+import MessageYourDoctor from '../Components/MessageYourDoctor';
 
-class HomeContainer extends Component {
+class MessageYourDoctorContainer extends Component {
   render() {
     return (
       <div>
-        <Header/>
-          <Home/>
+      	<Header/>
+        	<MessageYourDoctor/>
         <Footer/>
       </div>
     );
   }
 }
 
-export default HomeContainer;
+export default MessageYourDoctorContainer;

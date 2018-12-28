@@ -1,8 +1,28 @@
 import React, { Component } from 'react';
 import hims_logo from '../../assets/images/hims_logo.png';
+import Sidebar from './Sidebar'
 
 class Header extends Component {
+
+	constructor(props){
+		super(props);
+		this.state = {
+			openSidebar: false
+		}
+	}
+
+	_openSidebar = ( side, content) => {
+
+		this.setState({
+			openSidebar: side,
+			sidebarContent: content
+		})
+	}
+
   render() {
+
+  	console.log( this.state )
+
     return (
     	<>
       	<div className="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -25,25 +45,39 @@ class Header extends Component {
        
 		        <div className="navbar-collapse collapse">
 		          <ul className="nav navbar-nav">
-		            <li onClick="openNav7()"><a> Account </a></li>
-		             <li onClick="openNav8()"><a> Shipping Address </a></li>
-		             <li onClick="openNav9()"><a> Verify address </a></li>
-		             <li onClick="openNav10()"><a> Action Items </a></li> 
-		              <li onClick="openNav11()"><a> Confirm Order </a></li> 
+		            <li onClick={() => this._openSidebar('left','account')}><a> Account </a></li>
+		            <li onClick={() => this._openSidebar('left','shipping_address')}><a> Shipping Address </a></li>
+		            <li onClick={() => this._openSidebar('left','verify_address')}><a> Verify address </a></li>
+		            <li onClick={() => this._openSidebar('left','action_items')}><a> Action Items </a></li> 
+		            <li onClick={() => this._openSidebar('right','confirm_order')}><a> Confirm Order </a></li> 
 		         </ul>		         
 		          <ul className="nav navbar-nav navbar-right">
-		            <li className="mobile_none" onClick="openNav1()"><a>Cart </a></li>
-		            <li onClick="openNav2()"><a>Login </a></li>
-		            <li onClick="openNav3()"><a>Sign up </a></li>
-		            <li onClick="openNav4()"><a>Shop </a></li>
-		            <li onClick="openNav5()"><a>Shipping </a></li>
-		            <li onClick="openNav6()"><a>Payment </a></li>		   
+		            <li className="mobile_none" onClick={() => this._openSidebar('right','cart')}><a>Cart </a></li>
+		            <li onClick={() => this._openSidebar('right','login')}><a>Login </a></li>
+		            <li onClick={() => this._openSidebar('right','sign_up')}><a>Sign up </a></li>
+		            <li onClick={() => this._openSidebar('right','shop')}><a>Shop </a></li>
+		            <li onClick={() => this._openSidebar('right','shipping')}><a>Shipping </a></li>
+		            <li onClick={() => this._openSidebar('right','payment')}><a>Payment </a></li>		   
 		          </ul>		          
 		        </div>
       		</div>
     		</div> 
     		<div className="clearfix"></div>
 
+    		{
+    			this.state.openSidebar != false ?
+    				<Sidebar
+    					openSidebar={this.state.openSidebar}
+    					content={this.state.sidebarContent}
+    					closeSidebar={() => {
+    						console.log('asdasdasdasdasdasdasd')
+    						this.setState({
+    							openSidebar: false
+    						})
+    					}}
+    				/>
+    			: null 
+    		}
     		
 
     	</>

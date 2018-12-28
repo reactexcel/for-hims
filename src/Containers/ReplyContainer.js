@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import Header from '../Components/Generic/Header';
 import Footer from '../Components/Generic/Footer';
-import Home from '../Components/Home'
+import Reply from '../Components/Reply'
 
-class HomeContainer extends Component {
+class ReplyContainer extends Component {
   render() {
     return (
       <div>
         <Header/>
-          <Home/>
+          <Reply/>
         <Footer/>
       </div>
     );
   }
 }
 
-export default HomeContainer;
+export default ReplyContainer;

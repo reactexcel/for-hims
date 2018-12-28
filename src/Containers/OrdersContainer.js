@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import Header from '../Components/Generic/Header';
 import Footer from '../Components/Generic/Footer';
-import Home from '../Components/Home'
+import Orders from '../Components/Orders';
 
-class HomeContainer extends Component {
+class OrdersContainer extends Component {
   render() {
     return (
       <div>
-        <Header/>
-          <Home/>
+      	<Header/>
+        	<Orders/>
         <Footer/>
       </div>
     );
   }
 }
 
-export default HomeContainer;
+export default OrdersContainer;

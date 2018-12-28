@@ -6,6 +6,7 @@ import bbb_logo from '../../assets/images/bbb_logo.png';
 class Footer extends Component {
   render() {
     return (
+    	<>
       <footer className="footer">
 <div className="container">
 <div className="row">
@@ -112,6 +113,10 @@ class Footer extends Component {
 </div> </div></div>
 
 </footer>
+
+<div className="scrollup" href="#"><i className="fa fa-angle-double-up" aria-hidden="true"></i></div>
+
+</>
 
     );
   }
