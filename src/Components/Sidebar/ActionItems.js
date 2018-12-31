@@ -4,7 +4,7 @@ class ActionItems extends Component {
   render() {
     return (
 			 <div id="mySidenav10" class="sideleft">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav10()"> <span class="glyphicon glyphicon-menu-left"></span> </a>
+  <a href="javascript:void(0)" class="closebtn" onClick="closeNav10()"> <span class="glyphicon glyphicon-menu-left"></span> </a>
   
     
   <div class="action-section">

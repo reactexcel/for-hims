@@ -4,7 +4,7 @@ class SignUp extends Component {
   render() {
     return (
 			 <div id="mySidenav3">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()"> <span class="glyphicon glyphicon-menu-right"></span> </a>
+  <a href="javascript:void(0)" class="closebtn" onClick="closeNav3()"> <span class="glyphicon glyphicon-menu-right"></span> </a>
   
     <div class="symbols">  
    <div class="symbols-title">Sign up</div>

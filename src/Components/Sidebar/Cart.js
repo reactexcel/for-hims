@@ -6,7 +6,7 @@ class Cart extends Component {
     return (
 			 <div>
  <div class="cart_section">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav1()"> <span class="glyphicon glyphicon-menu-right"></span> </a>
+  <a href="javascript:void(0)" class="closebtn" onClick="closeNav1()"> <span class="glyphicon glyphicon-menu-right"></span> </a>
  
  <div class="cart_items">
  <div class="header-title">Cart</div>

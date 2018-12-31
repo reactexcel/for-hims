@@ -6,7 +6,7 @@ class ConfirmOrder extends Component {
     return (
 			 <div>
  <div class="cart_section no-items">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav11()"> <span class="glyphicon glyphicon-menu-right"></span> </a>
+  <a href="javascript:void(0)" class="closebtn" onClick="closeNav11()"> <span class="glyphicon glyphicon-menu-right"></span> </a>
   
   <div class="symbols">  
    <div class="symbols-title">Payment</div>

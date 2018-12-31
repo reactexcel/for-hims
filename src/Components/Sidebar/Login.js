@@ -4,7 +4,7 @@ class Login extends Component {
   render() {
     return (
 			  <div id="mySidenav2" class="sideright">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()"> <span class="glyphicon glyphicon-menu-right"></span> </a>
+  <a href="javascript:void(0)" class="closebtn" onClick="closeNav2()"> <span class="glyphicon glyphicon-menu-right"></span> </a>
   <div class="login_form">
 <div class="register_box"><h3>Welcome Back!</h3><h5>Please login to your account</h5>
 <form>
