@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 class Account extends Component {
   render() {
     return (
-    	<div id="mySidenav7">
+    	<>
 				<div className="profile_menu_box">
 				 	<h4> Hi there! </h4>
 					<ul className="profile_menu">
-						<li><a href="profile.html">Profile</a></li>
-						<li><a href="orders.html">Orders</a></li>
-						<li><a href="messages.html">Messages</a></li>
-						<li><a href="#">Logout</a></li>
+						<li><Link to="/profile">Profile</Link></li>
+						<li><Link to="/orders">Orders</Link></li>
+						<li><Link to="/messages">Messages</Link></li>
+						<li><Link to="#">Logout</Link></li>
 					</ul>
 				</div>
-			</div>
+			</>
     );
   }
 }

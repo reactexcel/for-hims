@@ -7,9 +7,7 @@ class InformedConsentContainer extends Component {
   render() {
     return (
       <div>
-      	
-        	<InformedConsent/>
-        
+        	<InformedConsent/>        
       </div>
     );
   }

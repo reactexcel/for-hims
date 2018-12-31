@@ -4,16 +4,16 @@ class InformedConsent extends Component {
   render() {
     return (
       <>
-        <div class="emr_header">
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                <h2 class="black"> Bailey Health of Pennsylvania P.C. </h2>
+        <div className="emr_header">
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12 col-sm-12 col-md-12">
+                <h2 className="black"> Bailey Health of Pennsylvania P.C. </h2>
               </div>
-              <div class="clearfix" />
-              <ul class="tab_header">
-                <li class="active1">
-                  <i class="fa fa-check-circle" />
+              <div className="clearfix" />
+              <ul className="tab_header">
+                <li className="active1">
+                  <i className="fa fa-check-circle" />
                   <Link to="/informed-consent"> Informed Consent </Link>
                 </li>
                 <li>             
@@ -27,10 +27,10 @@ class InformedConsent extends Component {
           </div>
         </div>
 
-        <div class="container">         
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-2"> </div>
-            <div class="col-xs-12 col-sm-12 col-md-8">
+        <div className="container">         
+          <div className="row">
+            <div className="col-xs-12 col-sm-12 col-md-2"> </div>
+            <div className="col-xs-12 col-sm-12 col-md-8">
               <h4>                
                 Bailey Health of Pennsylvania P.C. <br /> INFORMED CONSENT
                 REGARDING USE OF TELEMEDICINE SERVICES
@@ -225,18 +225,18 @@ class InformedConsent extends Component {
                 SHALL CONSTITUTE AND IS MY ELECTRONIC SIGNATURE.
               </p>
               <p>               
-                <Link to="/questions" class="consent_next_btn">                  
+                <Link to="/questions" className="consent_next_btn">                  
                   Consent provided - Next
                 </Link>
               </p>
               <p align="center">
                 Powered by Hims <br />
-                <Link to="#" class="link">
+                <Link to="#" className="link">
                   Terms and Conditions
                 </Link>
               </p>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-2"> </div>
+            <div className="col-xs-12 col-sm-12 col-md-2"> </div>
           </div>
         </div>
       </>

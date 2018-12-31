@@ -5,11 +5,11 @@ class Profile extends Component {
   render() {
     return (
       <>
-        <div class="profile_section">
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="profile_module">
+        <div className="profile_section">
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12 col-sm-12 col-md-6">
+                <div className="profile_module">
                   <h3>Profile</h3>
                   <p>
                     Javed Bloch <br /> d.designing@gmail.com <br /> 234-234-2344{" "}
@@ -18,12 +18,12 @@ class Profile extends Component {
                   <Link to="#">edit</Link>
                 </div>
 
-                <div class="profile_module">
+                <div className="profile_module">
                   <h3>Prescriptions</h3>
                   <p> There are no prescriptions. </p>
                 </div>
 
-                <div class="profile_module">
+                <div className="profile_module">
                   <h3>Password</h3>
                   <form>
                     <input type="password" placeholder="Old Password" />
@@ -37,8 +37,8 @@ class Profile extends Component {
                 </div>
               </div>
 
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="profile_module">
+              <div className="col-xs-12 col-sm-12 col-md-6">
+                <div className="profile_module">
                   <h3>Shipping Addresses</h3>
                   <p>
                     1069 N Bodine St
@@ -49,12 +49,12 @@ class Profile extends Component {
                   <Link to="#">edit</Link>
                 </div>
 
-                <div class="profile_module">
+                <div className="profile_module">
                   <h3>Payment Methods</h3>
                   <form>
                     <input
                       type="text"
-                      class="card"
+                      className="card"
                       name="firstName"
                       value=""
                       autocomplete="true"
@@ -62,7 +62,7 @@ class Profile extends Component {
                     />
                     <input
                       type="text"
-                      class="cvc"
+                      className="cvc"
                       value=""
                       autocomplete="true"
                       placeholder="MM / YY / CVC"
@@ -75,7 +75,7 @@ class Profile extends Component {
             </div>
           </div>
         </div>
-        <div class="clearfix" />
+        <div className="clearfix" />
       </>
     );
   }

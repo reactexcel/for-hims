@@ -3,31 +3,31 @@ import { Link } from "react-router-dom";
 class Gender extends Component {
   render() {
     return (
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-1"> </div>
-          <div class="col-xs-12 col-sm-12 col-md-10">
-            <div class="gender-container">
+      <div className="container">
+        <div className="row">
+          <div className="col-xs-12 col-sm-12 col-md-1"> </div>
+          <div className="col-xs-12 col-sm-12 col-md-10">
+            <div className="gender-container">
               <h2> What is your gender?</h2>
-              <div class="clearfix" />
-              <div class="male_box">
+              <div className="clearfix" />
+              <div className="male_box">
                 <input id="tab1" type="radio" name="tabs" checked />
-                <label for="tab1" class="man-silhouette">
+                <label for="tab1" className="man-silhouette">
                   Male
                 </label>
                 <input id="tab2" type="radio" name="tabs" />
-                <label for="tab2" class="woman-silhouette">
+                <label for="tab2" className="woman-silhouette">
                   Female
                 </label>
               </div>
-              <div class="clearfix" />
-              <div class="back-btn">Close Visit</div>
-              <div class="confirm-gender">
+              <div className="clearfix" />
+              <div className="back-btn">Close Visit</div>
+              <div className="confirm-gender">
                 <Link to="/informed-consent">Confirm</Link>
               </div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-1"> </div>
+          <div className="col-xs-12 col-sm-12 col-md-1"> </div>
         </div>
       </div>
     );

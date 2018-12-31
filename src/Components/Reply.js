@@ -4,7 +4,7 @@ class Reply extends Component {
   render() {
     return (
       <div className="container">
-        <div class="row">
+        <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-2" />
           <div className="col-xs-12 col-sm-12 col-md-8">
             <div className="reply_section">

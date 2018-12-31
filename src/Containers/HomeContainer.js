@@ -6,11 +6,11 @@ import Home from '../Components/Home'
 class HomeContainer extends Component {
   render() {
     return (
-      <div>
+      <>
         <Header/>
           <Home/>
         <Footer/>
-      </div>
+      </>
     );
   }
 }
