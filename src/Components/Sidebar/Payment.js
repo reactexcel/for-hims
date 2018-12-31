@@ -20,8 +20,8 @@ class Payment extends Component {
             <h3>Payment information</h3>
             <h5>Please enter your paymennt information</h5>
             <form>
-              <input type="text" className="card" name="firstName" value="" autoComplete="true" placeholder="Card number"/> 
-              <input type="text" className="cvc"  value="" autoComplete="true" placeholder="MM / YY / CVC"/>
+              <input type="text" className="card" name="firstName" value="" autoComplete="true" placeholder="Card number" onChange={()=>{}}/> 
+              <input type="text" className="cvc"  value="" autoComplete="true" placeholder="MM / YY / CVC" onChange={()=>{}}/>
               <div className="clearfix"></div>
               <h5> Your order will be processed immediately and products will be shipped after medical review.</h5>
             </form>

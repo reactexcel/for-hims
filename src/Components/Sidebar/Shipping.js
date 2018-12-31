@@ -19,15 +19,15 @@ class Shipping extends Component {
             <h3>Shipping Information</h3>
             <h5>Please enter your home shipping address</h5>
             <form>
-              <input type="text" name="firstName" value="" autocomplete="true" placeholder="First Name"/>
-              <input type="text" name="lastName" value="" autocomplete="true"  placeholder="Last Name"/>
-              <input type="text" name="line1" value="" autocomplete="true"  placeholder="Street Address"/>
-              <input type="text" name="line2" value="" autocomplete="true" placeholder="Apt/Suite"/>
-              <input type="text" name="city" value="" autocomplete="true" placeholder="City"/>
-              <input type="text" name="state" value="" autocomplete="true"  placeholder="State"/>
-              <input type="text" name="zip" value="" autocomplete="true"  placeholder="Zip"/>
-              <input type="text" name="united" value="" autocomplete="true"  placeholder="United States"/>
-              <input type="number" name="phone" value="" autocomplete="true"  placeholder="Phone"/> 
+              <input type="text" name="firstName" value="" autoComplete="true" placeholder="First Name" onChange={()=>{}}/>
+              <input type="text" name="lastName" value="" autoComplete="true"  placeholder="Last Name" onChange={()=>{}}/>
+              <input type="text" name="line1" value="" autoComplete="true"  placeholder="Street Address" onChange={()=>{}}/>
+              <input type="text" name="line2" value="" autoComplete="true" placeholder="Apt/Suite" onChange={()=>{}}/>
+              <input type="text" name="city" value="" autoComplete="true" placeholder="City" onChange={()=>{}}/>
+              <input type="text" name="state" value="" autoComplete="true"  placeholder="State" onChange={()=>{}}/>
+              <input type="text" name="zip" value="" autoComplete="true"  placeholder="Zip" onChange={()=>{}}/>
+              <input type="text" name="united" value="" autoComplete="true"  placeholder="United States" onChange={()=>{}}/>
+              <input type="number" name="phone" value="" autoComplete="true"  placeholder="Phone" onChange={()=>{}}/> 
               <div className="switch_title"> 
                 <h4> Send me SMS Delivery Updates </h4> 
                 <label className="switch"> 
