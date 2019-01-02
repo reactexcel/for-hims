@@ -12,10 +12,6 @@ import SignUp from "../Sidebar/SignUp";
 import VerifyAddress from "../Sidebar/VerifyAddress";
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   _renderItem = param => {
     switch (param) {
       case "account":
