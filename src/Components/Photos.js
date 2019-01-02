@@ -51,7 +51,7 @@ class Photos extends Component {
                   <li className="circle_line"> &nbsp; </li>
                   <li className="circle2"> 2 </li>
                 </ul>
-                <button tabindex="0" type="button" className="photo_btn">
+                <button tabIndex="0" type="button" className="photo_btn">
                   Select from Photo Library
                 </button>
                 <div className="camera-container"> </div>

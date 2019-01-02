@@ -58,7 +58,7 @@ class Cart extends Component {
             </div>
           </div>
         </div>
-        <button tabindex="0" type="orange" className="next_btn">
+        <button tabIndex="0" type="orange" className="next_btn">
           Next
         </button>
       </>

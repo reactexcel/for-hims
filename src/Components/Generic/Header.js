@@ -9,8 +9,11 @@ class Header extends Component {
     this.state = {
       openSidebar: false
     };
+    this.headerRef = null;
 
-    // this.setHeaderRef = element =>
+    this.setHeaderRef = element => {
+      this.headerRef = element;
+    };
   }
 
   _openSidebar = (side, content) => {
@@ -20,9 +23,24 @@ class Header extends Component {
     });
   };
 
-  // componentDidMount(){
-
-  // }
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener(this.handleScroll);
+  }
+  handleScroll = e => {
+    if (this.headerRef) {
+      if (
+        this.headerRef.getBoundingClientRect().height <
+        document.documentElement.scrollTop
+      ) {
+        this.headerRef.classList.add("scrolled");
+      } else {
+        this.headerRef.classList.remove("scrolled");
+      }
+    }
+  };
 
   render() {
     return (
@@ -30,6 +48,7 @@ class Header extends Component {
         <div
           className="navbar navbar-default navbar-fixed-top"
           role="navigation"
+          ref={this.setHeaderRef}
         >
           <div className="container">
             <div className="cart_desktop">

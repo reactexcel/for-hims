@@ -26,7 +26,7 @@ class ActionRequired extends Component {
                   Your ID photo didn't meet our criteria. Please take a picture
                   of a government issued license that has your picture.
                 </h4>
-                <button tabindex="0" type="button" className="photo_btn">
+                <button tabIndex="0" type="button" className="photo_btn">
                   Select from Photo Library
                 </button>
                 <div className="camera-container"> </div>

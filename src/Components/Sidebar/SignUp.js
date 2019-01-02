@@ -41,7 +41,7 @@ class SignUp extends Component {
             </form>
           </div>
         </div>{" "}
-        <button tabindex="0" type="button" className="login_btn">
+        <button tabIndex="0" type="button" className="login_btn">
           Login{" "}
         </button>
       </div>

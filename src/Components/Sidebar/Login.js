@@ -4,10 +4,6 @@ class Login extends Component {
   render() {
     return (
       <div id="mySidenav2" className="sideright">
-        <a href="javascript:void(0)" className="closebtn" onClick="closeNav2()">
-          {" "}
-          <span className="glyphicon glyphicon-menu-right" />{" "}
-        </a>
         <div className="login_form">
           <div className="register_box">
             <h3>Welcome Back!</h3>
@@ -33,7 +29,7 @@ class Login extends Component {
             </form>
           </div>
         </div>
-        <button tabindex="0" type="button" className="login_btn">
+        <button tabIndex="0" type="button" className="login_btn">
           Login{" "}
         </button>{" "}
       </div>

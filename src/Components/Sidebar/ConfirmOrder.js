@@ -81,7 +81,7 @@ class ConfirmOrder extends Component {
           </div>{" "}
         </div>{" "}
         <div className="clear" />{" "}
-        <button tabindex="0" type="orange" className="absolute_no">
+        <button tabIndex="0" type="orange" className="absolute_no">
           Confirm & Start Visit
         </button>
       </div>

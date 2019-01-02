@@ -4,6 +4,12 @@ import bbb_logo from "../../assets/images/bbb_logo.png";
 import { Link } from "react-router-dom";
 
 class Footer extends Component {
+  scrollToTop = () => {
+    if (window.pageYOffset) {
+      window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    }
+  };
+
   render() {
     return (
       <>
@@ -140,7 +146,7 @@ class Footer extends Component {
           </div>
         </footer>
 
-        <div className="scrollup" to="#">
+        <div className="scrollup" onClick={this.scrollToTop}>
           <i className="fa fa-angle-double-up" aria-hidden="true" />
         </div>
       </>
