@@ -46,17 +46,26 @@ class Sidebar extends Component {
   };
 
   render() {
-    let sidebarPositionClass =
-      this.props.openSidebar === "left" ? "sideleft" : "sideright";
+    const { openSidebar, side } = this.props;
     let closeIconClass =
-      this.props.openSidebar === "left"
+      side === "left"
         ? "glyphicon glyphicon-menu-left"
         : "glyphicon glyphicon-menu-right";
+    const width = openSidebar ? "45%" : 0;
+
     return (
-      <div id="mySidenav7" className={sidebarPositionClass}>
-        <a href="#" className="closebtn" onClick={this.props.closeSidebar}>
-          <span className={closeIconClass} />
-        </a>
+      <div
+        id="mySidenav7"
+        style={{
+          width: width
+        }}
+        className={`side${side}`}
+      >
+        {openSidebar && (
+          <a href="#" className="closebtn" onClick={this.props.closeSidebar}>
+            <span className={closeIconClass} />
+          </a>
+        )}
         {this._renderItem(this.props.content)}
       </div>
     );

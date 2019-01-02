@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 class ActionItems extends Component {
   render() {
     return (
-      <div id="mySidenav10" className="sideleft">
+      <div id="mySidenav10">
         <div className="action-section">
           <h3>
             Action Items <i className="fa fa-close" />

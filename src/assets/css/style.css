@@ -575,6 +575,17 @@ ul.open_tab_order .small_title {
   text-transform: uppercase;
   cursor: pointer;
 }
+.sidebar{
+  height: 100%;
+  width: 45%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  background-color: #fbf8f5;
+  overflow-x: hidden;
+  transition: 0.4s;
+  z-index: 9999;
+}
 
 .sideleft {
   height: 100%;
@@ -2464,5 +2475,19 @@ ul.viewbox_section li {
   }
   ul.tab_order li.orders4 {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 240px) {
+  .cart-details_product-image {
+    width: 100%;
+    float: none;
+    text-align: center;
+  }
+  .cart-details_product-details {
+    padding: 10px 15px 5px 15px;
+    float: none;
+    width: 100%;
+    height: 100%;
   }
 }

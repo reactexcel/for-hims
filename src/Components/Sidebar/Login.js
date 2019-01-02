@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Login extends Component {
   render() {
     return (
-      <div id="mySidenav2" className="sideright">
+      <div id="mySidenav2">
         <div className="login_form">
           <div className="register_box">
             <h3>Welcome Back!</h3>

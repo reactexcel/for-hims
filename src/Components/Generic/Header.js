@@ -7,7 +7,8 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      openSidebar: false
+      openSidebar: false,
+      side:''
     };
     this.headerRef = null;
 
@@ -18,7 +19,8 @@ class Header extends Component {
 
   _openSidebar = (side, content) => {
     this.setState({
-      openSidebar: side,
+      openSidebar:true,
+      side: side,
       sidebarContent: content
     });
   };
@@ -52,7 +54,9 @@ class Header extends Component {
         >
           <div className="container">
             <div className="cart_desktop">
-              <span onClick={() => this._openSidebar("right", "cart")}>Cart</span>
+              <span onClick={() => this._openSidebar("right", "cart")}>
+                Cart
+              </span>
             </div>
             <div className="header_logo">
               <Link to="/">
@@ -122,18 +126,18 @@ class Header extends Component {
         </div>
         <div className="clearfix" />
 
-        {this.state.openSidebar !== false ? (
+        {/* {this.state.openSidebar !== false ? ( */}
           <Sidebar
             openSidebar={this.state.openSidebar}
+            side={this.state.side}
             content={this.state.sidebarContent}
             closeSidebar={() => {
-              console.log("asdasdasdasdasdasdasd");
               this.setState({
                 openSidebar: false
               });
             }}
           />
-        ) : null}
+        {/* ) : null} */}
       </>
     );
   }
