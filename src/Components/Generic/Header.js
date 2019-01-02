@@ -52,9 +52,7 @@ class Header extends Component {
         >
           <div className="container">
             <div className="cart_desktop">
-              <a href="#" onClick="openNav1()">
-                Cart
-              </a>
+              <span onClick={() => this._openSidebar("right", "cart")}>Cart</span>
             </div>
             <div className="header_logo">
               <Link to="/">
