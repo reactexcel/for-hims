@@ -4,9 +4,7 @@ class Shipping extends Component {
   static defaultProps = {
     renderNext: () => {}
   };
-  componentDidmount(){
-    window.scrollTo(0,0)
-  }
+
   render() {
     return (
       <div id="mySidenav5">
@@ -110,7 +108,7 @@ class Shipping extends Component {
         <button
           tabIndex="0"
           type="button"
-          className="login_btn"
+          className="next_btn"
           onClick={this.props.renderNext}
         >
           Save Shipping Address
