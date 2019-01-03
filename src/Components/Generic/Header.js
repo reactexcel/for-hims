@@ -29,7 +29,7 @@ class Header extends Component {
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount() {
-    window.removeEventListener(this.handleScroll);
+    window.removeEventListener("scroll",this.handleScroll);
   }
   handleScroll = e => {
     if (this.headerRef) {
