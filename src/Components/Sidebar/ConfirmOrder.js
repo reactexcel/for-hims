@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import pro_img1 from "../../assets/images/pro_img1.png";
 
 class ConfirmOrder extends Component {
+  static defaultProps = {
+    renderNext: ()=>{}
+  }
   render() {
     return (
       <div>
         <div className="cart_section no-items">
           <div className="symbols">
-            <div className="symbols-title">Payment</div>
+            <div className="symbols-title">Confirm Order</div>
             <ul>
               <li className="symbols1"> </li>
               <li className="symbols2"> </li>
@@ -81,7 +84,12 @@ class ConfirmOrder extends Component {
           </div>{" "}
         </div>{" "}
         <div className="clear" />{" "}
-        <button tabIndex="0" type="orange" className="absolute_no">
+        <button
+          tabIndex="0"
+          type="orange"
+          className="absolute_no"
+          onClick={this.props.renderNext}
+        >
           Confirm & Start Visit
         </button>
       </div>

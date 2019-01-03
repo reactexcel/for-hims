@@ -8,7 +8,7 @@ class Header extends Component {
     super(props);
     this.state = {
       openSidebar: false,
-      side:''
+      side: ""
     };
     this.headerRef = null;
 
@@ -19,7 +19,7 @@ class Header extends Component {
 
   _openSidebar = (side, content) => {
     this.setState({
-      openSidebar:true,
+      openSidebar: true,
       side: side,
       sidebarContent: content
     });
@@ -43,7 +43,15 @@ class Header extends Component {
       }
     }
   };
-
+  handleMobileNav = () => {
+    let navbar = document.querySelector(".navbar-collapse.collapse");
+    if ([...navbar.classList].includes("in")) {
+      navbar.classList.remove("in");
+    } else {
+      navbar.classList.add("in");
+    }
+    // navbar.attributes('aria-expanded',true);
+  };
   render() {
     return (
       <>
@@ -70,6 +78,7 @@ class Header extends Component {
                 className="navbar-toggle"
                 data-toggle="collapse"
                 data-target=".navbar-collapse"
+                onClick={this.handleMobileNav}
               >
                 <span className="sr-only">Toggle navigation</span>
                 <span className="icon-bar" />
@@ -127,16 +136,16 @@ class Header extends Component {
         <div className="clearfix" />
 
         {/* {this.state.openSidebar !== false ? ( */}
-          <Sidebar
-            openSidebar={this.state.openSidebar}
-            side={this.state.side}
-            content={this.state.sidebarContent}
-            closeSidebar={() => {
-              this.setState({
-                openSidebar: false
-              });
-            }}
-          />
+        <Sidebar
+          openSidebar={this.state.openSidebar}
+          side={this.state.side}
+          content={this.state.sidebarContent}
+          closeSidebar={() => {
+            this.setState({
+              openSidebar: false
+            });
+          }}
+        />
         {/* ) : null} */}
       </>
     );

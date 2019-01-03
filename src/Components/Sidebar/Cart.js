@@ -2,12 +2,25 @@ import React, { Component } from "react";
 import pro_img1 from "../../assets/images/pro_img1.png";
 
 class Cart extends Component {
+  static defaultProps = {
+    renderNext: () => {}
+  };
   render() {
     return (
       <>
         <div className="cart_section">
+          <div className="symbols">
+            <div className="symbols-title">Cart</div>
+            <ul>
+              <li className="symbols1 active"> </li>
+              <li className="symbols2"> </li>
+              <li className="symbols3 "> </li>
+              <li className="symbols4"> </li>
+              <li className="symbols5"> </li>
+            </ul>
+          </div>
           <div className="cart_items">
-            <div className="header-title">Cart</div>
+            {/* <div className="header-title">Cart</div> */}
             <div className="cart-details_product">
               <div className="cart-details_product-image">
                 <img src={pro_img1} />
@@ -58,7 +71,12 @@ class Cart extends Component {
             </div>
           </div>
         </div>
-        <button tabIndex="0" type="orange" className="next_btn">
+        <button
+          tabIndex="0"
+          type="orange"
+          className="next_btn"
+          onClick={this.props.renderNext}
+        >
           Next
         </button>
       </>

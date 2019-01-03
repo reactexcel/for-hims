@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Account from "../Sidebar/Account";
 import ActionItems from "../Sidebar/ActionItems";
 import Cart from "../Sidebar/Cart";
+import FullCart from "../Sidebar/FullCart"
 import ConfirmOrder from "../Sidebar/ConfirmOrder";
 import Login from "../Sidebar/Login";
 import Payment from "../Sidebar/Payment";
@@ -19,7 +20,7 @@ class Sidebar extends Component {
       case "action_items":
         return <ActionItems />;
       case "cart":
-        return <Cart />;
+        return <FullCart />;
       case "confirm_order":
         return <ConfirmOrder />;
       case "login":

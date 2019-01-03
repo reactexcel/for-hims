@@ -1,34 +1,35 @@
 import React, { Component } from "react";
+import validate from "../../utils/validate";
+import ErrorText from "../Generic/ErrorText";
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      checked: false
+      data: { email: "", password: "", checked: false },
+      errors: {}
     };
   }
   handleChange = e => {
-    const { value, name } = e.target;
-    this.setState({ [name]: value });
+    const { target } = e;
+    const { name } = target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const data = { ...this.state.data };
+    data[name] = value;
+    this.setState({ data });
   };
-  handleCheckBoxChange = () =>
-    this.setState(prevState => ({ checked: !prevState.checked }));
+  handleSubmit = () => {
+    const errors = validate(this.state.data);
+    this.setState({ errors });
+  };
+
   render() {
-    const { email, password, checked } = this.state;
+    const {
+      data: { email, password, checked },
+      errors
+    } = this.state;
     return (
       <div id="mySidenav3">
-        <div className="symbols">
-          <div className="symbols-title">Sign up</div>
-          <ul>
-            <li className="symbols1 active"> </li>
-            <li className="symbols2"> </li>
-            <li className="symbols3"> </li>
-            <li className="symbols4"> </li>
-            <li className="symbols5"> </li>
-          </ul>
-        </div>
         <div className="login_form">
           <div className="register_box">
             <h3>Welcome to hims!</h3>
@@ -51,8 +52,9 @@ class SignUp extends Component {
               <div className="account_register">
                 <input
                   type="checkbox"
+                  name="checked"
                   value={checked}
-                  onChange={this.handleCheckBoxChange}
+                  onChange={this.handleChange}
                 />
                 I agree to the
                 <a className="register-link" href="">
@@ -67,8 +69,13 @@ class SignUp extends Component {
             </form>
           </div>
         </div>
-        <button tabIndex="0" type="button" className="login_btn">
-          Login
+        <button
+          tabIndex="0"
+          type="button"
+          className="login_btn"
+          onClick={this.handleSubmit}
+        >
+          Sign Up
         </button>
       </div>
     );
