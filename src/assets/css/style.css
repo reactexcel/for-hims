@@ -512,18 +512,18 @@ ul.open_tab_order .small_title {
   width: 150px;
   font-size: 16px;
 }
-.collapsible.active span.read-btn {
+/* .collapsible.active span.read-btn {
   display: none;
 }
 .collapsible span.close-btn {
   display: none;
-}
+} */
 .active span.close-btn {
   display: inline-block;
 }
 .content {
   padding: 0 18px;
-  display: none;
+  /* display: none; */
   overflow: hidden;
   font-size: 16px;
 }
@@ -929,6 +929,7 @@ a.btn_apply:hover {
 .account_register a {
   color: #d0835c;
   line-height: 34px;
+  cursor: pointer;
 }
 
 .symbols {

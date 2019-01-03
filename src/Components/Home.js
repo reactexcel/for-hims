@@ -8,7 +8,14 @@ import hims_pdp_sildenafil_img5 from "../assets/images/hims_pdp_sildenafil_img5.
 import hims_pdp_sildenafil_img6 from "../assets/images/hims_pdp_sildenafil_img6.jpg";
 
 class HomeContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showInfo: false };
+  }
+  toggleInfo = () =>
+    this.setState(prevState => ({ showInfo: !prevState.showInfo }));
   render() {
+    const { showInfo } = this.state;
     return (
       <>
         <div className="header_menu_bg">
@@ -244,212 +251,224 @@ class HomeContainer extends Component {
               <div className="col-xs-12 col-sm-12 col-md-10 text-center">
                 <h2 className="text-center"> Important Safety information</h2>
 
-                <button className="collapsible">
-                  <span className="read-btn">
-                    Read Now <span className="glyphicon glyphicon-menu-down" />
-                  </span>
-                  <span className="close-btn">
-                    close <span className="glyphicon glyphicon-remove" />
-                  </span>
+                <button className="collapsible" onClick={this.toggleInfo}>
+                  {!showInfo ? (
+                    <span className="read-btn">
+                      Read Now{" "}
+                      <span className="glyphicon glyphicon-menu-down" />
+                    </span>
+                  ) : (
+                    <span className="close-btn">
+                      Close <span className="glyphicon glyphicon-remove" />
+                    </span>
+                  )}
                 </button>
-                <div className="content text-left">
-                  <h3> IMPORTANT SAFETY INFORMATION</h3>
-                  <h4> Do not take Sildenafil (sildenafil citrate) if you:</h4>
-                  <ul>
-                    <li>
-                      take any medicines called nitrates, often prescribed for
-                      chest pain, or guanylate cyclase stimulators like Adempas
-                      (riociguat) for pulmonary hypertension. Your blood
-                      pressure could drop to an unsafe level
-                    </li>
+                {showInfo && (
+                  <div className="content text-left">
+                    <h3> IMPORTANT SAFETY INFORMATION</h3>
+                    <h4>
+                      {" "}
+                      Do not take Sildenafil (sildenafil citrate) if you:
+                    </h4>
+                    <ul>
+                      <li>
+                        take any medicines called nitrates, often prescribed for
+                        chest pain, or guanylate cyclase stimulators like
+                        Adempas (riociguat) for pulmonary hypertension. Your
+                        blood pressure could drop to an unsafe level
+                      </li>
 
-                    <li>
-                      <p>
-                        are allergic to sildenafil, as contained in Sildenafil
-                        and REVATIO, or any of the ingredients in Sildenafil
-                      </p>
+                      <li>
+                        <p>
+                          are allergic to sildenafil, as contained in Sildenafil
+                          and REVATIO, or any of the ingredients in Sildenafil
+                        </p>
 
-                      <p>
-                        Discuss your health with your doctor to ensure that you
-                        are healthy enough for sex. If you experience chest
-                        pain, dizziness, ornausea during sex, seek immediate
-                        medical help
-                      </p>
+                        <p>
+                          Discuss your health with your doctor to ensure that
+                          you are healthy enough for sex. If you experience
+                          chest pain, dizziness, ornausea during sex, seek
+                          immediate medical help
+                        </p>
 
-                      <p>
-                        <strong>
-                          Sildenafil can cause serious side effects. Rarely
-                          reported side effects include:
-                        </strong>
-                      </p>
-                    </li>
+                        <p>
+                          <strong>
+                            Sildenafil can cause serious side effects. Rarely
+                            reported side effects include:
+                          </strong>
+                        </p>
+                      </li>
 
-                    <li>
-                      an erection that will not go away (priapism).&nbsp;If you
-                      have an erection that lasts more than 4 hours, get medical
-                      help right away.If it is not treated right away, priapism
-                      can permanently damage your penis
-                    </li>
+                      <li>
+                        an erection that will not go away (priapism).&nbsp;If
+                        you have an erection that lasts more than 4 hours, get
+                        medical help right away.If it is not treated right away,
+                        priapism can permanently damage your penis
+                      </li>
 
-                    <li>
-                      sudden vision loss in one or both eyes.&nbsp;Sudden vision
-                      loss in one or both eyes can be a sign of a serious eye
-                      problem callednon-arteritic anterior ischemic optic
-                      neuropathy (NAION). Stop taking Sildenafil and call your
-                      healthcare provider right away if youhave any sudden
-                      vision loss
-                    </li>
+                      <li>
+                        sudden vision loss in one or both eyes.&nbsp;Sudden
+                        vision loss in one or both eyes can be a sign of a
+                        serious eye problem callednon-arteritic anterior
+                        ischemic optic neuropathy (NAION). Stop taking
+                        Sildenafil and call your healthcare provider right away
+                        if youhave any sudden vision loss
+                      </li>
 
-                    <li>
-                      <p>
-                        sudden hearing decrease or hearing loss.&nbsp;Some
-                        people may also have ringing in their ears (tinnitus) or
-                        dizziness. If you havethese symptoms, stop taking
-                        Sildenafil and contact a doctor right away
-                      </p>
-                      <p>
-                        <strong>
-                          Before you take Sildenafil, tell your healthcare
-                          provider if you:
-                        </strong>
-                      </p>
-                    </li>
+                      <li>
+                        <p>
+                          sudden hearing decrease or hearing loss.&nbsp;Some
+                          people may also have ringing in their ears (tinnitus)
+                          or dizziness. If you havethese symptoms, stop taking
+                          Sildenafil and contact a doctor right away
+                        </p>
+                        <p>
+                          <strong>
+                            Before you take Sildenafil, tell your healthcare
+                            provider if you:
+                          </strong>
+                        </p>
+                      </li>
 
-                    <li>
-                      have or have had heart problems such as a heart
-                      attack,irregular heartbeat, angina, chest pain, narrowing
-                      of the aortic valve, or heart failure
-                    </li>
+                      <li>
+                        have or have had heart problems such as a heart
+                        attack,irregular heartbeat, angina, chest pain,
+                        narrowing of the aortic valve, or heart failure
+                      </li>
 
-                    <li>have had heart surgery within the last 6 months</li>
-                    <li>have pulmonary hypertension</li>
+                      <li>have had heart surgery within the last 6 months</li>
+                      <li>have pulmonary hypertension</li>
 
-                    <li>have had a stroke</li>
-                    <li>
-                      have low blood pressure, or high blood pressure thatis not
-                      controlled
-                    </li>
+                      <li>have had a stroke</li>
+                      <li>
+                        have low blood pressure, or high blood pressure thatis
+                        not controlled
+                      </li>
 
-                    <li>have a deformed penis shape</li>
-                    <li>
-                      have had an erection that lasted for more than 4 hours
-                    </li>
+                      <li>have a deformed penis shape</li>
+                      <li>
+                        have had an erection that lasted for more than 4 hours
+                      </li>
 
-                    <li>
-                      have problems with your blood cells such as sickle
-                      cellanemia, multiple myeloma, or leukemia
-                    </li>
-                    <li>
-                      have retinitis pigmentosa, a rare genetic (runs in
-                      families)eye disease
-                    </li>
+                      <li>
+                        have problems with your blood cells such as sickle
+                        cellanemia, multiple myeloma, or leukemia
+                      </li>
+                      <li>
+                        have retinitis pigmentosa, a rare genetic (runs in
+                        families)eye disease
+                      </li>
 
-                    <li>
-                      have ever had severe vision loss, including an eye
-                      problemcalled NAION
-                    </li>
-                    <li>have bleeding problems</li>
+                      <li>
+                        have ever had severe vision loss, including an eye
+                        problemcalled NAION
+                      </li>
+                      <li>have bleeding problems</li>
 
-                    <li>have or have had stomach ulcers</li>
+                      <li>have or have had stomach ulcers</li>
 
-                    <li>have liver problems</li>
+                      <li>have liver problems</li>
 
-                    <li>
-                      <p>
-                        have kidney problems or are having kidney dialysis have
-                        any other medical conditions
-                      </p>
+                      <li>
+                        <p>
+                          have kidney problems or are having kidney dialysis
+                          have any other medical conditions
+                        </p>
 
-                      <p>
-                        <strong>
-                          Tell your healthcare provider about all the medicines
-                          you take
-                        </strong>
-                        , including prescription and over-the-counter medicines,
-                        vitamins,and herbal supplements.
-                      </p>
+                        <p>
+                          <strong>
+                            Tell your healthcare provider about all the
+                            medicines you take
+                          </strong>
+                          , including prescription and over-the-counter
+                          medicines, vitamins,and herbal supplements.
+                        </p>
 
-                      <p>
-                        Sildenafil may affect the way other medicines work, and
-                        other medicines may affect the way Sildenafil works,
-                        causing side effects.Especially tell your healthcare
-                        provider if you take any of the following:
-                      </p>
-                    </li>
+                        <p>
+                          Sildenafil may affect the way other medicines work,
+                          and other medicines may affect the way Sildenafil
+                          works, causing side effects.Especially tell your
+                          healthcare provider if you take any of the following:
+                        </p>
+                      </li>
 
-                    <li>medicines called nitrates</li>
+                      <li>medicines called nitrates</li>
 
-                    <li>
-                      medicines called guanylate cyclase stimulators such as
-                      Adempas (riociguat)
-                    </li>
+                      <li>
+                        medicines called guanylate cyclase stimulators such as
+                        Adempas (riociguat)
+                      </li>
 
-                    <li>
-                      medicines called alpha-blockers such as Hytrin
-                      (terazosinHCl), Flomax (tamsulosin HCl), Cardura
-                      (doxazosinmesylate), Minipress (prazosin HCl), Uroxatral
-                      (alfuzosin HCl),Jalyn (dutasteride and tamsulosin HCl), or
-                      Rapaflo (silodosin).Alpha-blockers are sometimes
-                      prescribed for prostateproblems or high blood pressure. In
-                      some patients, the useof Sildenafil with alpha-blockers
-                      can lead to a drop in blood pressure or to fainting
-                    </li>
+                      <li>
+                        medicines called alpha-blockers such as Hytrin
+                        (terazosinHCl), Flomax (tamsulosin HCl), Cardura
+                        (doxazosinmesylate), Minipress (prazosin HCl), Uroxatral
+                        (alfuzosin HCl),Jalyn (dutasteride and tamsulosin HCl),
+                        or Rapaflo (silodosin).Alpha-blockers are sometimes
+                        prescribed for prostateproblems or high blood pressure.
+                        In some patients, the useof Sildenafil with
+                        alpha-blockers can lead to a drop in blood pressure or
+                        to fainting
+                      </li>
 
-                    <li>
-                      medicines called HIV protease inhibitors, such as
-                      ritonavir (Norvir), indinavir sulfate (Crixivan),
-                      saquinavir (Fortovase or Invirase), or atazanavir sulfate
-                      (Reyataz)
-                    </li>
+                      <li>
+                        medicines called HIV protease inhibitors, such as
+                        ritonavir (Norvir), indinavir sulfate (Crixivan),
+                        saquinavir (Fortovase or Invirase), or atazanavir
+                        sulfate (Reyataz)
+                      </li>
 
-                    <li>
-                      some types of oral antifungal medicines, such
-                      asketoconazole (Nizoral) and itraconazole (Sporanox)
-                    </li>
+                      <li>
+                        some types of oral antifungal medicines, such
+                        asketoconazole (Nizoral) and itraconazole (Sporanox)
+                      </li>
 
-                    <li>
-                      some types of antibiotics, such as clarithromycin
-                      (Biaxin),telithromycin (Ketek), or erythromycin
-                    </li>
+                      <li>
+                        some types of antibiotics, such as clarithromycin
+                        (Biaxin),telithromycin (Ketek), or erythromycin
+                      </li>
 
-                    <li>other medicines that treat high blood pressure</li>
+                      <li>other medicines that treat high blood pressure</li>
 
-                    <li>other medicines or treatments for ED</li>
+                      <li>other medicines or treatments for ED</li>
 
-                    <li>
-                      <p>
-                        Sildenafil contains sildenafil, which is the same
-                        medicine foundin another drug called REVATIO. REVATIO is
-                        used to treat arare disease called pulmonary arterial
-                        hypertension (PAH).Sildenafil should not be used with
-                        REVATIO or with other PAHtreatments containing
-                        sildenafil or any other PDE5 inhibitors(such as Adcirca{" "}
-                        <Link to="">tadalafil</Link>)
-                      </p>
+                      <li>
+                        <p>
+                          Sildenafil contains sildenafil, which is the same
+                          medicine foundin another drug called REVATIO. REVATIO
+                          is used to treat arare disease called pulmonary
+                          arterial hypertension (PAH).Sildenafil should not be
+                          used with REVATIO or with other PAHtreatments
+                          containing sildenafil or any other PDE5
+                          inhibitors(such as Adcirca{" "}
+                          <Link to="">tadalafil</Link>)
+                        </p>
 
-                      <p>
-                        Sildenafil does not protect against sexually transmitted
-                        diseases, including HIV.
-                      </p>
-                      <p>
-                        <strong>
-                          The most common side effects of Sildenafil:
-                        </strong>
-                        &nbsp;headache; flushing; upset stomach; abnormal
-                        vision, such as changes in color vision(such as having a
-                        blue color tinge) and blurred vision; stuffy or runny
-                        nose; back pain; muscle pain; nausea; dizziness; rash.
-                      </p>
+                        <p>
+                          Sildenafil does not protect against sexually
+                          transmitted diseases, including HIV.
+                        </p>
+                        <p>
+                          <strong>
+                            The most common side effects of Sildenafil:
+                          </strong>
+                          &nbsp;headache; flushing; upset stomach; abnormal
+                          vision, such as changes in color vision(such as having
+                          a blue color tinge) and blurred vision; stuffy or
+                          runny nose; back pain; muscle pain; nausea; dizziness;
+                          rash.
+                        </p>
 
-                      <h4>H2 INDICATION</h4>
-                      <p>
-                        Sildenafil (sildenafil citrate) is prescription medicine
-                        used to treat erectile dysfunction (ED).
-                      </p>
-                      <p>Sildenafil is not for women or children.</p>
-                    </li>
-                  </ul>
-                </div>
+                        <h4>H2 INDICATION</h4>
+                        <p>
+                          Sildenafil (sildenafil citrate) is prescription
+                          medicine used to treat erectile dysfunction (ED).
+                        </p>
+                        <p>Sildenafil is not for women or children.</p>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
               <div className="col-xs-12 col-sm-12 col-md-1"> </div>
             </div>
