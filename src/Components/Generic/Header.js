@@ -29,7 +29,7 @@ class Header extends Component {
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount() {
-    window.removeEventListener("scroll",this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
   }
   handleScroll = e => {
     if (this.headerRef) {
@@ -89,22 +89,12 @@ class Header extends Component {
 
             <div className="navbar-collapse collapse">
               <ul className="nav navbar-nav">
-                <li onClick={() => this._openSidebar("left", "account")}>
-                  <Link to="#"> Account </Link>
+ 
+                <li onClick={() => this._openSidebar("left", "shop")}>
+                  <Link to="#">Shop</Link>
                 </li>
-                <li
-                  onClick={() => this._openSidebar("left", "shipping_address")}
-                >
-                  <Link to="#"> Shipping Address </Link>
-                </li>
-                <li onClick={() => this._openSidebar("left", "verify_address")}>
-                  <Link to="#"> Verify address </Link>
-                </li>
-                <li onClick={() => this._openSidebar("left", "action_items")}>
-                  <Link to="#"> Action Items </Link>
-                </li>
-                <li onClick={() => this._openSidebar("right", "confirm_order")}>
-                  <Link to="#"> Confirm Order </Link>
+                <li onClick = {() => this._openSidebar("left", "link")}>
+                  <Link to="#">Learn</Link>
                 </li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
@@ -117,17 +107,8 @@ class Header extends Component {
                 <li onClick={() => this._openSidebar("right", "login")}>
                   <Link to="#">Login </Link>
                 </li>
-                <li onClick={() => this._openSidebar("right", "sign_up")}>
-                  <Link to="#">Sign up </Link>
-                </li>
-                <li onClick={() => this._openSidebar("right", "shop")}>
-                  <Link to="#">Shop </Link>
-                </li>
-                <li onClick={() => this._openSidebar("right", "shipping")}>
-                  <Link to="#">Shipping </Link>
-                </li>
-                <li onClick={() => this._openSidebar("right", "payment")}>
-                  <Link to="#">Payment </Link>
+                <li onClick={() => this._openSidebar("left", "account")}>
+                  <Link to="#"> Account </Link>
                 </li>
               </ul>
             </div>
