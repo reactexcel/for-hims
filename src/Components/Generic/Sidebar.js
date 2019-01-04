@@ -1,42 +1,23 @@
 import React, { Component } from "react";
 import Account from "../Sidebar/Account";
-import ActionItems from "../Sidebar/ActionItems";
-import Cart from "../Sidebar/Cart";
-import FullCart from "../Sidebar/FullCart"
-import ConfirmOrder from "../Sidebar/ConfirmOrder";
+import FullCart from "../Sidebar/FullCart";
 import Login from "../Sidebar/Login";
-import Payment from "../Sidebar/Payment";
-import Shipping from "../Sidebar/Shipping";
-import ShippingAddress from "../Sidebar/ShippingAddress";
 import Shop from "../Sidebar/Shop";
-import SignUp from "../Sidebar/SignUp";
-import VerifyAddress from "../Sidebar/VerifyAddress";
+import Learn from "../Sidebar/Learn";
 
 class Sidebar extends Component {
   _renderItem = param => {
     switch (param) {
       case "account":
         return <Account />;
-      case "action_items":
-        return <ActionItems />;
       case "cart":
         return <FullCart />;
-      case "confirm_order":
-        return <ConfirmOrder />;
       case "login":
         return <Login />;
-      case "payment":
-        return <Payment />;
-      case "shipping":
-        return <Shipping />;
-      case "shipping_address":
-        return <ShippingAddress />;
       case "shop":
         return <Shop />;
-      case "sign_up":
-        return <SignUp />;
-      case "verify_address":
-        return <VerifyAddress />;
+      case "learn":
+        return <Learn />;
       default:
         return;
     }

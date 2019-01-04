@@ -50,7 +50,6 @@ class Header extends Component {
     } else {
       navbar.classList.add("in");
     }
-    // navbar.attributes('aria-expanded',true);
   };
   render() {
     return (
@@ -93,7 +92,7 @@ class Header extends Component {
                 <li onClick={() => this._openSidebar("left", "shop")}>
                   <Link to="#">Shop</Link>
                 </li>
-                <li onClick = {() => this._openSidebar("left", "link")}>
+                <li onClick = {() => this._openSidebar("left", "learn")}>
                   <Link to="#">Learn</Link>
                 </li>
               </ul>
@@ -107,7 +106,7 @@ class Header extends Component {
                 <li onClick={() => this._openSidebar("right", "login")}>
                   <Link to="#">Login </Link>
                 </li>
-                <li onClick={() => this._openSidebar("left", "account")}>
+                <li onClick={() => this._openSidebar("right", "account")}>
                   <Link to="#"> Account </Link>
                 </li>
               </ul>

@@ -35,6 +35,7 @@ class Messages extends Component {
                     closeTimeoutMS={400}
                     overlayClassName="ReactModal__Overlay"
                     className="ReactModal__Content"
+                    ariaHideApp={false}
                   >
                     {!sendMessage ? (
                       <>

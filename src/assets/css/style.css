@@ -1794,6 +1794,13 @@ ul.viewbox_section li {
   padding: 0 0 10px;
   text-transform: uppercase;
 }
+
+#required-action{
+  color:#dfb49b;
+}
+#required-action > img{
+  vertical-align: unset
+}
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
