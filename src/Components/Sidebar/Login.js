@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import validate from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
 import SignUp from "./SignUp";
+import ForgotPassword from './ForgotPassword'
 
 class Login extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class Login extends Component {
     this.state = {
       data: { email: "", password: "" },
       errors: {},
-      showRegister: false
+      showRegister: false,
+      showForgotPassword: false
     };
   }
   handleChange = e => {
@@ -23,18 +25,26 @@ class Login extends Component {
     this.setState({ errors });
   };
   toggleRegister = () => {
-    this.setState((prevState)=>({ showRegister: !prevState.showRegister }));
+    this.setState(prevState => ({ showRegister: !prevState.showRegister }));
+  };
+  togglePassword = () => {
+    this.setState(prevState => ({
+      showForgotPassword: !prevState.showForgotPassword
+    }));
   };
   render() {
     const {
       data: { email, password },
       errors,
-      showRegister
+      showRegister,
+      showForgotPassword
     } = this.state;
     return (
       <>
         {showRegister ? (
           <SignUp toggleRegister={this.toggleRegister} />
+        ) : showForgotPassword ? (
+          <ForgotPassword togglePassword={this.togglePassword} />
         ) : (
           <div id="mySidenav2">
             <div className="login_form">
@@ -64,7 +74,10 @@ class Login extends Component {
                       Register
                     </a>
                     <br />
-                    <a className="forgot-password-link" href="">
+                    <a
+                      className="forgot-password-link"
+                      onClick={this.togglePassword}
+                    >
                       forgot password?
                     </a>
                   </div>
