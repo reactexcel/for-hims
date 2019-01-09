@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import hims_logo from "../../assets/images/hims_logo.png";
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Header extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class Header extends Component {
     }
   };
   render() {
+    const { isSuccess: loginSuccess, auth } = this.props.login;
     return (
       <>
         <div
@@ -88,11 +90,10 @@ class Header extends Component {
 
             <div className="navbar-collapse collapse">
               <ul className="nav navbar-nav">
- 
                 <li onClick={() => this._openSidebar("left", "shop")}>
                   <Link to="#">Shop</Link>
                 </li>
-                <li onClick = {() => this._openSidebar("left", "learn")}>
+                <li onClick={() => this._openSidebar("left", "learn")}>
                   <Link to="#">Learn</Link>
                 </li>
               </ul>
@@ -103,12 +104,16 @@ class Header extends Component {
                 >
                   <Link to="#">Cart </Link>
                 </li>
-                <li onClick={() => this._openSidebar("right", "login")}>
-                  <Link to="#">Login </Link>
-                </li>
-                <li onClick={() => this._openSidebar("right", "account")}>
-                  <Link to="#"> Account </Link>
-                </li>
+
+                {loginSuccess && auth ? (
+                  <li onClick={() => this._openSidebar("right", "account")}>
+                    <Link to="#"> Account </Link>
+                  </li>
+                ) : (
+                  <li onClick={() => this._openSidebar("right", "login")}>
+                    <Link to="#">Login </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
@@ -131,5 +136,5 @@ class Header extends Component {
     );
   }
 }
-
-export default Header;
+const mapStateToProps = ({ login }) => ({ login });
+export default connect(mapStateToProps)(Header);

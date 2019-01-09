@@ -7,7 +7,7 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: { email: "", password: "", checked: false },
+      data: { email: "", password: "", termsAndConditions: false },
       errors: {},
       showLogin: false
     };
@@ -55,18 +55,24 @@ class SignUp extends Component {
                     value={email}
                     placeholder="Email"
                     onChange={this.handleChange}
+                    className={errors.email ? "error" : ""}
                   />
+                  {errors.email && <ErrorText text={errors.email} />}
+
                   <input
                     type="password"
                     name="password"
                     value={password}
                     placeholder="Password"
                     onChange={this.handleChange}
+                    className={errors.password ? "error" : ""}
                   />
+                  {errors.password && <ErrorText text={errors.password} />}
+
                   <div className="account_register">
                     <input
                       type="checkbox"
-                      name="checked"
+                      name="termsAndConditions"
                       value={checked}
                       onChange={this.handleChange}
                     />
@@ -88,6 +94,11 @@ class SignUp extends Component {
                       Sign In
                     </a>
                   </div>
+                  {errors.termsAndConditions && (
+                    <div className="error--terms-and-condition">
+                      {errors.termsAndConditions}
+                    </div>
+                  )}
                 </form>
               </div>
             </div>

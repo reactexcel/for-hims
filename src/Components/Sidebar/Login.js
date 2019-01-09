@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import validate from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
 import SignUp from "./SignUp";
-import ForgotPassword from './ForgotPassword'
+import ForgotPassword from "./ForgotPassword";
+import { connect } from "react-redux";
+import { loginRequest } from "../../actions";
+import Account from "./Account";
 
 class Login extends Component {
   constructor(props) {
@@ -23,6 +26,11 @@ class Login extends Component {
   handleSubmit = () => {
     const errors = validate(this.state.data);
     this.setState({ errors });
+    delete errors["termsAndConditions"];
+    if (!Object.keys(errors).length) {
+      console.log("working");
+      this.props.loginRequest();
+    }
   };
   toggleRegister = () => {
     this.setState(prevState => ({ showRegister: !prevState.showRegister }));
@@ -39,9 +47,18 @@ class Login extends Component {
       showRegister,
       showForgotPassword
     } = this.state;
+    const { isSuccess, isLoading } = this.props.login;
+    if (isSuccess) {
+      return <Account />;
+    }
     return (
       <>
-        {showRegister ? (
+        {isLoading ? (
+          <div className="login-loader">
+            <div>Loading your account...</div>
+            <div>Hang tight</div>
+          </div>
+        ) : showRegister ? (
           <SignUp toggleRegister={this.toggleRegister} />
         ) : showForgotPassword ? (
           <ForgotPassword togglePassword={this.togglePassword} />
@@ -58,6 +75,7 @@ class Login extends Component {
                     value={email}
                     placeholder="Email"
                     onChange={this.handleChange}
+                    className={errors.email ? "error" : ""}
                   />
                   {errors.email && <ErrorText text={errors.email} />}
                   <input
@@ -66,6 +84,7 @@ class Login extends Component {
                     value={password}
                     placeholder="Password"
                     onChange={this.handleChange}
+                    className={errors.password ? "error" : ""}
                   />
                   {errors.password && <ErrorText text={errors.password} />}
                   <div className="account_register">
@@ -99,4 +118,9 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = ({ login }) => ({ login });
+
+export default connect(
+  mapStateToProps,
+  { loginRequest }
+)(Login);

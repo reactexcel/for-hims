@@ -1716,10 +1716,21 @@ ul.viewbox_section li {
 .gender-container h2 {
   padding-bottom: 30px;
 }
+/* style for error text */
 .error-text {
   font-size: 12px;
   color: #ff0000;
   text-align: left;
+  padding: 0 8px;
+}
+.error--terms-and-condition {
+  font-size: 1.5rem;
+  color: #ff0000;
+  background: rgba(244, 67, 54, 0.1);
+  border: 2px solid rgba(244, 67, 54, 0.3);
+  line-height: 2rem;
+  padding: 2.5rem;
+  margin-top: 3rem;
 }
 /* Style for Modal */
 .ReactModal__Overlay {
@@ -1752,7 +1763,7 @@ ul.viewbox_section li {
   width: 100%;
 }
 /* Content inside message modal */
- .message-type_block {
+.message-type_block {
   width: 70vw;
   background: white;
   border-radius: 3px;
@@ -1761,31 +1772,31 @@ ul.viewbox_section li {
   margin: 0.5rem 0;
   padding: 2rem;
 }
- .message-type_block > h4 {
+.message-type_block > h4 {
   font-weight: bold;
 }
 
- .message-type_block:hover {
+.message-type_block:hover {
   background-color: #fafafa;
   border: 2px solid #000;
 }
- .message-text-box {
+.message-text-box {
   width: 50vw;
 }
- .message-text-box input[type="text"] {
+.message-text-box input[type="text"] {
   border-bottom: 2px solid #dfb49b;
 }
- .message-text-box .message-text-box--actions {
+.message-text-box .message-text-box--actions {
   display: flex;
   width: 18rem;
   justify-content: space-between;
   margin-top: 2rem;
 }
 
- .message-text-box .message-text-box--actions > div {
+.message-text-box .message-text-box--actions > div {
   cursor: pointer;
 }
- .message-text-box .message-text-box--actions .submit-now {
+.message-text-box .message-text-box--actions .submit-now {
   border-bottom: 2px solid #000;
   color: #000;
   font-size: 11px;
@@ -1795,11 +1806,24 @@ ul.viewbox_section li {
   text-transform: uppercase;
 }
 
-#required-action{
-  color:#dfb49b;
+#required-action {
+  color: #dfb49b;
 }
-#required-action > img{
-  vertical-align: unset
+#required-action > img {
+  vertical-align: unset;
+}
+/* loader screen on login sidebar */
+.login-loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-loader > div:first-child {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
 }
 @media screen and (max-height: 450px) {
   .sidenav {
@@ -1810,6 +1834,13 @@ ul.viewbox_section li {
   }
 }
 
+/* styling for error for input tag*/
+input:not([type="checkbox"]) {
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.register_box input.error {
+  border-bottom-color: red;
+}
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {
   h3,
   .h3 {
@@ -2578,5 +2609,5 @@ ul.viewbox_section li {
   }
   .message-text-box {
     width: 80vw;
-}
+  }
 }
