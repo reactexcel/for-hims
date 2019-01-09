@@ -4,6 +4,7 @@ import baseline from "../../assets/images/baseline-error.svg";
 import ActionItems from "./ActionItems";
 import { connect } from "react-redux";
 import { logoutRequest } from "../../actions";
+import Login from "./Login";
 
 class Account extends Component {
   constructor(props) {
@@ -18,11 +19,14 @@ class Account extends Component {
     }));
   };
   handleLogout = () => {
-    console.log("sda");
     this.props.logoutRequest();
   };
   render() {
     const { showActionRequired } = this.state;
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    if (!auth) {
+      return <Login />;
+    }
     return (
       <>
         {!showActionRequired ? (
@@ -62,8 +66,8 @@ class Account extends Component {
     );
   }
 }
-
+const mapStateToProps = ({ login, signup }) => ({ login, signup });
 export default connect(
-  null,
+  mapStateToProps,
   { logoutRequest }
 )(Account);

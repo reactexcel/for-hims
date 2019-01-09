@@ -29,7 +29,7 @@ class Header extends Component {
   componentDidMount() {
     const auth = JSON.parse(localStorage.getItem("auth"));
     if (auth) {
-      this.props.loginSuccess()
+      this.props.loginSuccess();
     }
     window.addEventListener("scroll", this.handleScroll);
   }
@@ -58,6 +58,7 @@ class Header extends Component {
   };
   render() {
     const { isSuccess: loginSuccess, auth } = this.props.login;
+    const { isSuccess: signupSuccess, auth: signupAuth } = this.props.signup;
     return (
       <>
         <div
@@ -109,7 +110,7 @@ class Header extends Component {
                   <Link to="#">Cart </Link>
                 </li>
 
-                {loginSuccess && auth ? (
+                {(loginSuccess && auth) || (signupSuccess && signupAuth) ? (
                   <li onClick={() => this._openSidebar("right", "account")}>
                     <Link to="#"> Account </Link>
                   </li>
@@ -140,7 +141,7 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ login, signup }) => ({ login, signup });
 export default connect(
   mapStateToProps,
   { loginSuccess }
