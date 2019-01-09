@@ -4,7 +4,7 @@ import signup from "./signup";
 import { LOGOUT_SUCCESS } from "../constants";
 
 const makeRootReducer = asyncReducers => {
-  const appReducer = combineReducers({ login, signup, ...asyncReducers });
+  const appReducer = combineReducers({ login, ...asyncReducers });
   return (state, action) => {
     if (action.type === LOGOUT_SUCCESS) {
       state = undefined;

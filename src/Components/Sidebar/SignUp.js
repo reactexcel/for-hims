@@ -37,7 +37,7 @@ class SignUp extends Component {
       data: { email, password, checked },
       errors
     } = this.state;
-    const { isSuccess, isLoading } = this.props.signup;
+    const { isSuccess, isLoading } = this.props.login;
     if (isSuccess) {
       return <Account />;
     }
@@ -121,7 +121,7 @@ class SignUp extends Component {
     );
   }
 }
-const mapStateToProps = ({ signup }) => ({ signup });
+const mapStateToProps = ({ login }) => ({ login });
 export default connect(
   mapStateToProps,
   { signupRequest }

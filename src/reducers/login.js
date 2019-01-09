@@ -37,7 +37,11 @@ export default handleActions(
   {
     [constants.LOGIN_REQUEST]: loginRequest,
     [constants.LOGIN_SUCCESS]: loginSuccess,
-    [constants.LOGIN_ERROR]: loginError
+    [constants.LOGIN_ERROR]: loginError,
+
+    [constants.SIGNUP_REQUEST]: loginRequest,
+    [constants.SIGNUP_SUCCESS]: loginSuccess,
+    [constants.SIGNUP_ERROR]: loginError
   },
   initialState
 );

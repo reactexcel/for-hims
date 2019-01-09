@@ -23,7 +23,7 @@ class Account extends Component {
   };
   render() {
     const { showActionRequired } = this.state;
-    const auth = JSON.parse(localStorage.getItem("auth"));
+    const { auth } = this.props.login;
     if (!auth) {
       return <Login />;
     }
@@ -66,7 +66,7 @@ class Account extends Component {
     );
   }
 }
-const mapStateToProps = ({ login, signup }) => ({ login, signup });
+const mapStateToProps = ({ login }) => ({ login });
 export default connect(
   mapStateToProps,
   { logoutRequest }

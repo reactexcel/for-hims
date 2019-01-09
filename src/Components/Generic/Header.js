@@ -58,7 +58,6 @@ class Header extends Component {
   };
   render() {
     const { isSuccess: loginSuccess, auth } = this.props.login;
-    const { isSuccess: signupSuccess, auth: signupAuth } = this.props.signup;
     return (
       <>
         <div
@@ -110,7 +109,7 @@ class Header extends Component {
                   <Link to="#">Cart </Link>
                 </li>
 
-                {(loginSuccess && auth) || (signupSuccess && signupAuth) ? (
+                {loginSuccess && auth ? (
                   <li onClick={() => this._openSidebar("right", "account")}>
                     <Link to="#"> Account </Link>
                   </li>
@@ -125,7 +124,6 @@ class Header extends Component {
         </div>
         <div className="clearfix" />
 
-        {/* {this.state.openSidebar !== false ? ( */}
         <Sidebar
           openSidebar={this.state.openSidebar}
           side={this.state.side}
@@ -136,12 +134,11 @@ class Header extends Component {
             });
           }}
         />
-        {/* ) : null} */}
       </>
     );
   }
 }
-const mapStateToProps = ({ login, signup }) => ({ login, signup });
+const mapStateToProps = ({ login }) => ({ login });
 export default connect(
   mapStateToProps,
   { loginSuccess }
