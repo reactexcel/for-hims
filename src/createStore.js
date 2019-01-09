@@ -7,11 +7,6 @@ import createSagaMiddleware from "redux-saga";
 import makeRootReducer from "./reducers/index";
 import rootSaga from "./rootSaga";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { createLogger } from "redux-logger";
-
-const logger = createLogger({
-  collapsed: true
-});
 
 const composeEnhancers = composeWithDevTools({
   // Specify name here, actionsBlacklist, actionsCreators and other options if needed
@@ -22,7 +17,14 @@ const createStore = (initialState = {}) => {
 
   const enhancers = [];
 
-  const middleware = [sagaMiddleware, logger];
+  const middleware = [sagaMiddleware];
+  if (process.env.NODE_ENV === `development`) {
+    const { createLogger } = require(`redux-logger`);
+    const logger = createLogger({
+      collapsed: true
+    });
+    middleware.push(logger);
+  }
   const store = createReduxStore(
     makeRootReducer(),
     initialState,
