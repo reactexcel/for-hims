@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-
+import requireAuth from "./hoc/requireAuth";
 import ActionRequiredContainer from "./Containers/ActionRequiredContainer";
 import BackToInboxContainer from "./Containers/BackToInboxContainer";
 import GenderContainer from "./Containers/GenderContainer";
@@ -29,34 +29,66 @@ class App extends Component {
             <Route
               exact
               path="/action-required"
-              component={ActionRequiredContainer}
+              component={requireAuth(ActionRequiredContainer)}
             />
             <Route
               exact
               path="/back-to-inbox"
-              component={BackToInboxContainer}
+              component={requireAuth(BackToInboxContainer)}
             />
-            <Route exact path="/gender" component={GenderContainer} />
+            <Route
+              exact
+              path="/gender"
+              component={requireAuth(GenderContainer)}
+            />
             <Route
               exact
               path="/informed-consent"
-              component={InformedConsentContainer}
+              component={requireAuth(InformedConsentContainer)}
             />
-            <Route exact path="/messages" component={MessagesContainer} />
+            <Route
+              exact
+              path="/messages"
+              component={requireAuth(MessagesContainer)}
+            />
             <Route
               exact
               path="/message-your-doctor"
-              component={MessageYourDoctorContainer}
+              component={requireAuth(MessageYourDoctorContainer)}
             />
-            <Route exact path="/my-orders" component={MyOrdersContainer} />
-            <Route exact path="/orders" component={OrdersContainer} />
-            <Route exact path="/photos" component={PhotosContainer} />
-            <Route exact path="/profile" component={ProfileContainer} />
-            <Route exact path="/questions" component={QuestionsContainer} />
-            <Route exact path="/reply" component={ReplyContainer} />
+            <Route
+              exact
+              path="/my-orders"
+              component={requireAuth(MyOrdersContainer)}
+            />
+            <Route
+              exact
+              path="/orders"
+              component={requireAuth(OrdersContainer)}
+            />
+            <Route
+              exact
+              path="/photos"
+              component={requireAuth(PhotosContainer)}
+            />
+            <Route
+              exact
+              path="/profile"
+              component={requireAuth(ProfileContainer)}
+            />
+            <Route
+              exact
+              path="/questions"
+              component={requireAuth(QuestionsContainer)}
+            />
+            <Route
+              exact
+              path="/reply"
+              component={requireAuth(ReplyContainer)}
+            />
           </Switch>
         </Router>
-     </Provider>
+      </Provider>
     );
   }
 }
