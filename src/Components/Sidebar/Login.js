@@ -28,7 +28,6 @@ class Login extends Component {
     this.setState({ errors });
     delete errors["termsAndConditions"];
     if (!Object.keys(errors).length) {
-      console.log("working");
       this.props.loginRequest();
     }
   };
@@ -48,6 +47,7 @@ class Login extends Component {
       showForgotPassword
     } = this.state;
     const { isSuccess, isLoading } = this.props.login;
+    console.log(isSuccess)
     if (isSuccess) {
       return <Account />;
     }

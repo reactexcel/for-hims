@@ -3,7 +3,7 @@ import hims_logo from "../../assets/images/hims_logo.png";
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
+import { loginSuccess } from "../../actions";
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +27,10 @@ class Header extends Component {
   };
 
   componentDidMount() {
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    if (auth) {
+      this.props.loginSuccess()
+    }
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount() {
@@ -137,4 +141,7 @@ class Header extends Component {
   }
 }
 const mapStateToProps = ({ login }) => ({ login });
-export default connect(mapStateToProps)(Header);
+export default connect(
+  mapStateToProps,
+  { loginSuccess }
+)(Header);
