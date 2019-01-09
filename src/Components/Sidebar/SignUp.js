@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import validate from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
-import Login from "./Login";
-
+import Account from "./Account";
+import { connect } from "react-redux";
+import { signupRequest } from "../../actions";
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -26,22 +27,27 @@ class SignUp extends Component {
   handleSubmit = () => {
     const errors = validate(this.state.data);
     this.setState({ errors });
-  };
-
-  toggleLogin = () => {
-    this.setState(prevState => ({ showLogin: !prevState.showLogin }));
+    if (!Object.keys(errors).length) {
+      this.props.signupRequest();
+    }
   };
 
   render() {
     const {
       data: { email, password, checked },
-      errors,
-      showLogin
+      errors
     } = this.state;
+    const { isSuccess, isLoading } = this.props.signup;
+    if (isSuccess) {
+      return <Account />;
+    }
     return (
       <>
-        {showLogin ? (
-          <Login />
+        {isLoading ? (
+          <div className="login-loader">
+            <div>Loading your account...</div>
+            <div>Hang tight</div>
+          </div>
         ) : (
           <div id="mySidenav3">
             <div className="login_form">
@@ -88,7 +94,6 @@ class SignUp extends Component {
                     <a
                       onClick={() => {
                         this.props.toggleRegister();
-                        this.toggleLogin();
                       }}
                     >
                       Sign In
@@ -116,5 +121,8 @@ class SignUp extends Component {
     );
   }
 }
-
-export default SignUp;
+const mapStateToProps = ({ signup }) => ({ signup });
+export default connect(
+  mapStateToProps,
+  { signupRequest }
+)(SignUp);

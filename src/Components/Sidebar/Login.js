@@ -47,7 +47,6 @@ class Login extends Component {
       showForgotPassword
     } = this.state;
     const { isSuccess, isLoading } = this.props.login;
-    console.log(isSuccess)
     if (isSuccess) {
       return <Account />;
     }
