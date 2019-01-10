@@ -5,12 +5,7 @@ import ProfileField from "./ProfileField";
 import { usaStates } from "../../constants/profile";
 import ErrorText from "../Generic/ErrorText";
 import { connect } from "react-redux";
-
-const fields = [
-  { name: "street", placeholder: "Street Address" },
-  { name: "apt/suite", placeholder: "Apt/Suite" },
-  { name: "city", placeholder: "City" }
-];
+import { shippingAddressFields as fields } from "../../constants/profile";
 
 class ProfileShippingAddress extends Component {
   constructor(props) {
@@ -48,7 +43,6 @@ class ProfileShippingAddress extends Component {
   );
   render() {
     const { showEditShippingAddress } = this.state;
-    console.log(this.props.profileShippingAddressForm);
     return (
       <div className="profile_module">
         {!showEditShippingAddress ? (

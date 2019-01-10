@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import ProfileField from "./ProfileField";
 import { connect } from "react-redux";
-
-const fields = [
-  { name: "firstName", placeholder: "First Legal Name", type: "text" },
-  { name: "lastName", placeholder: "Last Legal Name", type: "text" },
-  { name: "phone", placeholder: "Phone", type: "phone" }
-];
+import { profileInfoFields as fields } from "../../constants/profile";
 
 class ProfileInfo extends Component {
   constructor(props) {

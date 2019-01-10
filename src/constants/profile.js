@@ -236,3 +236,21 @@ export const usaStates = [
     abbreviation: "WY"
   }
 ];
+
+export const shippingAddressFields = [
+  { name: "street", placeholder: "Street Address" },
+  { name: "apt/suite", placeholder: "Apt/Suite" },
+  { name: "city", placeholder: "City" }
+];
+
+export const profileInfoFields = [
+  { name: "firstName", placeholder: "First Legal Name", type: "text" },
+  { name: "lastName", placeholder: "Last Legal Name", type: "text" },
+  { name: "phone", placeholder: "Phone", type: "phone" }
+];
+
+export const resetPasswordFields = [
+  { name: "oldPassword", placeholder: "Old Password" },
+  { name: "newPassword", placeholder: "New Password" },
+  { name: "confirmPassword", placeholder: "Re-enter new password" }
+];

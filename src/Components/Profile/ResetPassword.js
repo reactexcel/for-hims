@@ -1,12 +1,8 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import ProfileField from "./ProfileField";
+import { resetPasswordFields as fields } from "../../constants/profile";
 
-const fields = [
-  { name: "oldPassword", placeholder: "Old Password" },
-  { name: "newPassword", placeholder: "New Password" },
-  { name: "confirmPassword", placeholder: "Re-enter new password" }
-];
 function ResetPassword(props) {
   const renderFields = () =>
     fields.map(({ name, placeholder }) => (
