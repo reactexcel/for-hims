@@ -1111,7 +1111,9 @@ input[type="email"],
 input[type="text"],
 input[type="number"],
 input[type="password"],
-textarea {
+input[type="phone"],
+textarea,
+select {
   padding: 8px;
   font-size: 18px;
   line-height: 27px;
@@ -1838,9 +1840,29 @@ ul.viewbox_section li {
 input:not([type="checkbox"]) {
   transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.register_box input.error {
+.register_box input.error,
+.profile_module input.error {
   border-bottom-color: red;
 }
+/* forms in profile page */
+.profile_module form.profile_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profile_module form.profile_form .error-text {
+  align-self: flex-start;
+}
+.profile_module form.profile_form input[disabled] {
+  cursor: not-allowed;
+  border-bottom: 2px dotted #eee2d7
+}
+.profile_module form.profile_form input,
+.profile_module form.profile_form select {
+  color: #000000de;
+}
+
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {
   h3,
   .h3 {
