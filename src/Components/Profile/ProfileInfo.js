@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import ProfileField from "./ProfileField";
+import { connect } from "react-redux";
 
 const fields = [
   { name: "firstName", placeholder: "First Legal Name", type: "text" },
@@ -20,6 +21,10 @@ class ProfileInfo extends Component {
     this.setState(prevState => ({
       showEditProfile: !prevState.showEditProfile
     }));
+  cancelEditProfile = () => {
+    this.props.reset();
+    this.toggleEditProfile();
+  };
   renderFields = () =>
     fields.map(({ name, placeholder, type }) => (
       <Field
@@ -32,13 +37,22 @@ class ProfileInfo extends Component {
     ));
   render() {
     const { showEditProfile } = this.state;
+
     return (
       <div className="profile_module">
         {!showEditProfile ? (
           <>
             <h3>Profile</h3>
             <p>
-              Javed Bloch <br /> d.designing@gmail.com <br /> 234-234-2344{" "}
+              {this.props.profileInfoForm && this.props.profileInfoForm.values
+                ? `${this.props.profileInfoForm.values.firstName} ${
+                    this.props.profileInfoForm.values.lastName
+                  }`
+                : "Javed Bloch"}{" "}
+              <br /> d.designing@gmail.com <br />{" "}
+              {this.props.profileInfoForm && this.props.profileInfoForm.values
+                ? this.props.profileInfoForm.values.phone
+                : "234-234-2344"}{" "}
               <br /> 03-28-1985
             </p>
             <Link to="#" onClick={this.toggleEditProfile}>
@@ -48,8 +62,8 @@ class ProfileInfo extends Component {
         ) : (
           <form className="profile_form">
             {this.renderFields()}
-            <button>Save Changes</button>
-            <Link to="#" onClick={this.toggleEditProfile}>
+            <button onClick={this.toggleEditProfile}>Save Changes</button>
+            <Link to="#" onClick={this.cancelEditProfile}>
               Cancel
             </Link>
           </form>
@@ -69,4 +83,10 @@ const validate = values => {
   return error;
 };
 
-export default reduxForm({ form: "profileInfoForm", validate })(ProfileInfo);
+const mapStateToProps = ({ form: { profileInfoForm } }) => ({
+  profileInfoForm
+});
+
+export default reduxForm({ form: "profileInfoForm", validate })(
+  connect(mapStateToProps)(ProfileInfo)
+);
