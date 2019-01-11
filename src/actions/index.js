@@ -14,3 +14,6 @@ export const loginError = createAction(constants.LOGIN_ERROR);
 //actions for user logout
 export const logoutRequest = createAction(constants.LOGOUT_REQUEST);
 export const logoutSuccess = createAction(constants.LOGOUT_SUCCESS);
+
+//actions for dummy data load
+export const load = data => ({ type: constants.LOAD, data });

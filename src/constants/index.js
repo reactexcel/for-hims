@@ -9,3 +9,5 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 //constants for logout
 export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+//constants for load
+export const LOAD = "LOAD";
