@@ -82,6 +82,12 @@ const mapStateToProps = ({ form: { profileInfoForm } }) => ({
   profileInfoForm
 });
 
-export default reduxForm({ form: "profileInfoForm", validate })(
-  connect(mapStateToProps)(ProfileInfo)
-);
+export default reduxForm({
+  form: "profileInfoForm",
+  validate,
+  initialValues: {
+    firstName: "Javed",
+    lastName: "Bloch",
+    phone: "234-234-2344"
+  }
+})(connect(mapStateToProps)(ProfileInfo));

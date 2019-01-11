@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import pro_img1 from "../../assets/images/pro_img1.png";
+import emptycart from "../../assets/images/empty_cart.png";
 
 class Cart extends Component {
   static defaultProps = {
@@ -21,6 +22,17 @@ class Cart extends Component {
           </div>
           <div className="cart_items">
             {/* <div className="header-title">Cart</div> */}
+            <div>
+              {" "}
+              <div>
+                <h3>Your cart is empty!</h3>
+                <h5>Please enter your home shipping address</h5>
+                <img src={emptycart} />{" "}
+              </div>{" "}
+              <button tabindex="0" type="button" class="login_btn">
+                Shop All{" "}
+              </button>{" "}
+            </div>
             <div className="cart-details_product">
               <div className="cart-details_product-image">
                 <img src={pro_img1} />

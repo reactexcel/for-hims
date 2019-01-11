@@ -128,6 +128,12 @@ const mapStateToProps = ({ form: { profileShippingAddressForm } }) => ({
   profileShippingAddressForm
 });
 
-export default reduxForm({ form: "profileShippingAddressForm", validate })(
-  connect(mapStateToProps)(ProfileShippingAddress)
-);
+export default reduxForm({
+  form: "profileShippingAddressForm",
+  validate,
+  initialValues: {
+    street: "1069 N Bodine St",
+    states: "Philadelphia, PA",
+    zipcode: "19123"
+  }
+})(connect(mapStateToProps)(ProfileShippingAddress));
