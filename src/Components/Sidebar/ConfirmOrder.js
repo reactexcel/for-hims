@@ -3,8 +3,8 @@ import pro_img1 from "../../assets/images/pro_img1.png";
 
 class ConfirmOrder extends Component {
   static defaultProps = {
-    renderNext: ()=>{}
-  }
+    renderNext: () => {}
+  };
   render() {
     return (
       <div>
@@ -26,12 +26,13 @@ class ConfirmOrder extends Component {
                 <img src={pro_img1} />
               </div>
               <div className="cart-details_product-details">
-                <h4> Complete Hair Kit </h4>
+                <h4> Sildenafil </h4>
                 <h4 className="description">
                   {" "}
-                  Monthly subscription to save your hair{" "}
+                  10 x 20 mg pills or as prescribed by the doctor. Billed
+                  monthly{" "}
                 </h4>
-                <h4> $44.00 </h4>
+                <h4> $30.00 </h4>
                 <div className="renewal-icon">
                   {" "}
                   <span className="glyphicon glyphicon-refresh" />{" "}
@@ -41,29 +42,27 @@ class ConfirmOrder extends Component {
                   <span className="glyphicon glyphicon-remove" />{" "}
                 </div>
               </div>
-            </div>{" "}
+            </div>
             <div className="clearfix" />
             <div className="cart_numbers">
               <ul>
                 <li>
-                  {" "}
-                  Order Sub-total * <span> $34.00 </span>
+                  Order Sub-total * <span> $20.00 </span>
                 </li>
                 <li>
-                  {" "}
                   Membership <span> $10.00 </span>
                 </li>
                 <li>
-                  {" "}
                   Medical Fee <span> $5.00 </span>
                 </li>
                 <li>
-                  {" "}
-                  Promo Discount <span> $0.00 </span>
+                  Promo Discount <span> -$30.00 </span>
                 </li>
                 <li className="total">
-                  {" "}
-                  Grand Total <span> $49.00 </span>
+                  Grand Total <span> $5.00 </span>
+                </li>
+                <li className="promo_code_btn">
+                  You save $30.00 with this promo code!
                 </li>
 
                 <li className="includes"> * Includes pharmacy & drug fees </li>

@@ -15,5 +15,18 @@ export const loginError = createAction(constants.LOGIN_ERROR);
 export const logoutRequest = createAction(constants.LOGOUT_REQUEST);
 export const logoutSuccess = createAction(constants.LOGOUT_SUCCESS);
 
-//actions for dummy data load
-export const load = data => ({ type: constants.LOAD, data });
+//actions for add to cart
+export const addToCartRequest = createAction(constants.ADD_TO_CART_REQUEST);
+export const addToCartSuccess = createAction(constants.ADD_TO_CART_SUCCESS);
+export const addToCartError = createAction(constants.ADD_TO_CART_ERROR);
+
+//export const remove from cart
+export const removeFromCartRequest = createAction(
+  constants.REMOVE_FROM_CART_REQUEST
+);
+export const removeFromCartSuccess = createAction(
+  constants.REMOVE_FROM_CART_SUCCESS
+);
+export const removeFromCartError = createAction(
+  constants.REMOVE_FROM_CART_ERROR
+);

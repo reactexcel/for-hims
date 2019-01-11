@@ -651,12 +651,27 @@ ul.open_tab_order .small_title {
 .cart_section {
   position: relative;
   height: 100%;
+  width: 100%;
   display: inline-block;
 }
 .cart_items {
   width: 70%;
   margin: 0px auto;
   padding: 20px 10px 50px 10px;
+}
+
+.cart_items .empty_cart {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cart_items .empty_cart +  button.login_btn{
+  background-color: black
+}
+.cart_items .empty_cart +  button.login_btn:hover{
+  background-color: #666666
 }
 .cart_items .header-title {
   font-size: 20px;
@@ -1856,7 +1871,7 @@ input:not([type="checkbox"]) {
 }
 .profile_module form.profile_form input[disabled] {
   cursor: not-allowed;
-  border-bottom: 2px dotted #eee2d7
+  border-bottom: 2px dotted #eee2d7;
 }
 .profile_module form.profile_form input,
 .profile_module form.profile_form select {

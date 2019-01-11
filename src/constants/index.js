@@ -11,3 +11,13 @@ export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 //constants for load
 export const LOAD = "LOAD";
+
+//constants for add to cart
+export const ADD_TO_CART_REQUEST = "ADD_TO_CART_REQUEST";
+export const ADD_TO_CART_SUCCESS = "ADD_TO_CART_SUCCES";
+export const ADD_TO_CART_ERROR = "ADD_TO_CART_ERROR";
+
+//constants for remove from cart
+export const REMOVE_FROM_CART_REQUEST = "REMOVE_FROM_CART_REQUEST";
+export const REMOVE_FROM_CART_SUCCESS = "REMOVE_FROM_CART_SUCCESS";
+export const REMOVE_FROM_CART_ERROR = "REMOVE_FROM_CART_ERROR";
