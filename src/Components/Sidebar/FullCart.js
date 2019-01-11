@@ -15,7 +15,7 @@ export default class FullCart extends Component {
   _renderItem = () => {
     switch (this.state.next) {
       case 1:
-        return <Cart renderNext={this.renderNext}/>;
+        return <Cart closeSidebar={this.props.closeSidebar} renderNext={this.renderNext}/>;
       case 2:
         return <Shipping renderNext={this.renderNext}/>;
       case 3:

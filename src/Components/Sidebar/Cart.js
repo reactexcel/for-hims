@@ -32,7 +32,11 @@ class Cart extends Component {
                   <h5>Please enter your home shipping address</h5>
                   <img src={emptycart} />
                 </div>
-                <button type="button" className="login_btn">
+                <button
+                  type="button"
+                  className="login_btn"
+                  onClick={this.props.closeSidebar}
+                >
                   Shop All
                 </button>
               </>
@@ -93,14 +97,16 @@ class Cart extends Component {
             )}
           </div>
         </div>
-        <button
-          tabIndex="0"
-          type="orange"
-          className="next_btn"
-          onClick={this.props.renderNext}
-        >
-          Next
-        </button>
+        {addToCart && (
+          <button
+            tabIndex="0"
+            type="orange"
+            className="next_btn"
+            onClick={this.props.renderNext}
+          >
+            Next
+          </button>
+        )}
       </>
     );
   }

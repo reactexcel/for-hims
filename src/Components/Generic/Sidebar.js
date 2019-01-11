@@ -11,7 +11,7 @@ class Sidebar extends Component {
       case "account":
         return <Account />;
       case "cart":
-        return <FullCart />;
+        return <FullCart closeSidebar={this.props.closeSidebar} />;
       case "login":
         return <Login />;
       case "shop":

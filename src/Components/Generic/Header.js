@@ -57,7 +57,10 @@ class Header extends Component {
     }
   };
   render() {
-    const { isSuccess: loginSuccess, auth } = this.props.login;
+    const {
+      login: { isSuccess: loginSuccess, auth },
+      addcart: { addToCart }
+    } = this.props;
     return (
       <>
         <div
@@ -106,7 +109,7 @@ class Header extends Component {
                   className="mobile_none"
                   onClick={() => this._openSidebar("right", "cart")}
                 >
-                  <Link to="#">Cart </Link>
+                  <Link to="#">Cart{addToCart && "(1)"  } </Link>
                 </li>
 
                 {loginSuccess && auth ? (
@@ -138,7 +141,7 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ login, addcart }) => ({ login, addcart });
 export default connect(
   mapStateToProps,
   { loginSuccess }
