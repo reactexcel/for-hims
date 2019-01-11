@@ -407,13 +407,14 @@ ul.copyright_section li:first-child {
 .my-orders-section {
   font-family: "sofia_prosemibold";
 }
-.my-orders-section .collapsible:hover {
+/* .my-orders-section .Collapsible ,
+.my-orders-section .content:hover {
   background: #eeeeee;
-}
+} */
 .my-orders-section .content {
-  background: #eeeeee;
+  background: white;
 }
-.my-orders-section .collapsible {
+.my-orders-section .Collapsible button {
   color: #000;
   background: #fff;
   cursor: pointer;
@@ -427,9 +428,11 @@ ul.copyright_section li:first-child {
   text-transform: inherit;
   outline: none;
   width: 100%;
-  border-bottom: 1px solid #eee2d7;
   font-size: 16px;
   font-family: "sofia_prosemibold";
+}
+.my-orders-section .Collapsible .Collapsible__trigger.is-closed  button {
+  border-bottom: 1px solid #eee2d7;
 }
 ul.tab_order {
   margin: 0px !important;
@@ -667,11 +670,11 @@ ul.open_tab_order .small_title {
   justify-content: center;
   align-items: center;
 }
-.cart_items .empty_cart +  button.login_btn{
-  background-color: black
+.cart_items .empty_cart + button.login_btn {
+  background-color: black;
 }
-.cart_items .empty_cart +  button.login_btn:hover{
-  background-color: #666666
+.cart_items .empty_cart + button.login_btn:hover {
+  background-color: #666666;
 }
 .cart_items .header-title {
   font-size: 20px;
