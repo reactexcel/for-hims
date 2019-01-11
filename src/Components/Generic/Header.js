@@ -40,7 +40,7 @@ class Header extends Component {
     if (this.headerRef) {
       if (
         this.headerRef.getBoundingClientRect().height <
-        document.documentElement.scrollTop
+        document.documentElement.scrollTop || document.body.scrollTop
       ) {
         this.headerRef.classList.add("scrolled");
       } else {

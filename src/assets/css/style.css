@@ -413,6 +413,7 @@ ul.copyright_section li:first-child {
 } */
 .my-orders-section .content {
   background: white;
+  /* border-bottom: 1px solid #eee2d7; */
 }
 .my-orders-section .Collapsible button {
   color: #000;
@@ -431,7 +432,7 @@ ul.copyright_section li:first-child {
   font-size: 16px;
   font-family: "sofia_prosemibold";
 }
-.my-orders-section .Collapsible .Collapsible__trigger.is-closed  button {
+.my-orders-section .Collapsible .Collapsible__trigger.is-closed button {
   border-bottom: 1px solid #eee2d7;
 }
 ul.tab_order {
