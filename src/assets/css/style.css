@@ -1652,6 +1652,9 @@ ul.viewbox_section li {
   padding: 18px 0px 15px 10px;
   text-transform: uppercase;
 }
+.back-btn > a{
+  all:unset
+}
 .confirm-gender {
   width: 50%;
   float: left;
@@ -2336,6 +2339,7 @@ input:not([type="checkbox"]) {
   .back-btn {
     width: 100%;
   }
+
   .confirm-gender {
     width: 100%;
   }

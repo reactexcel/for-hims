@@ -39,7 +39,10 @@ class Messages extends Component {
                   >
                     {!sendMessage ? (
                       <>
-                        <div className="message-type_block">
+                        <div
+                          className="message-type_block"
+                          onClick={this.closeMessageModal}
+                        >
                           <h4>Contact Support</h4>
                           <div>
                             For all order and account related questions, contact

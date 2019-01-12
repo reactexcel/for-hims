@@ -9,7 +9,7 @@ class BackToInbox extends Component {
           <div className="col-xs-12 col-sm-12 col-md-12">
             <div className="action_required_section">
               <Link to="/reply" className="new-massage_btn">
-                New Massage
+                New Message
               </Link>
               <div className="messages_new_box">
                 <i className="fa fa-envelope-o" />

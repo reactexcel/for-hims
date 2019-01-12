@@ -37,7 +37,6 @@ class Photos extends Component {
   };
   render() {
     const { file } = this.state;
-    console.log(file);
     return (
       <>
         <div className="emr_header">
@@ -86,19 +85,23 @@ class Photos extends Component {
                   <li className="circle_line"> &nbsp; </li>
                   <li className="circle2"> 2 </li>
                 </ul>
-               {file.length > 0? false :true && <button tabIndex="0" className="photo_btn">
-                  Select from Photo Library
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="file_btn"
-                    title=""
-                    ref={this.setFileRef}
-                    onChange={this.handleFileChange}
-                  />
-                </button>}
+                {file.length > 0
+                  ? false
+                  : true && (
+                      <button tabIndex="0" className="photo_btn">
+                        Select from Photo Library
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="file_btn"
+                          title=""
+                          ref={this.setFileRef}
+                          onChange={this.handleFileChange}
+                        />
+                      </button>
+                    )}
                 <div className="camera-container">
-                  <img src={this.state.imageUrl}  />
+                  <img src={this.state.imageUrl} />
                 </div>
                 {file.length ? (
                   <div className="retake-use_container">

@@ -16,16 +16,17 @@ class ActionItems extends Component {
               consultation
             </div>
           </Link>
-
-          <div className="action-items_record">
-            <h4>
-              <Link to="action-required.html"> Action Required </Link>
-            </h4>
-            <Link to="action-required.html">
-              Your photo didn't meet our criteria. Please upload the appropriate
-              photo.
-            </Link>
-          </div>
+          <Link to="/action-required">
+            <div className="action-items_record">
+              <h4>
+                <Link to="/action-required"> Action Required </Link>
+              </h4>
+              <Link to="/action-required">
+                Your photo didn't meet our criteria. Please upload the
+                appropriate photo.
+              </Link>
+            </div>
+          </Link>
         </div>
       </div>
     );
