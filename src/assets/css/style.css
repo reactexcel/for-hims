@@ -852,6 +852,9 @@ a.btn_apply:hover {
   display: inline-block;
   text-align: center;
 }
+button.absolute_no > a {
+  all: unset;
+}
 .next_btn {
   padding: 15px 55px 15px 55px !important;
   background: #cc835c;
@@ -1846,6 +1849,66 @@ ul.viewbox_section li {
   font-size: 2.4rem;
   margin-bottom: 1rem;
 }
+
+/* choose file button style on photos page */
+.photo_btn {
+  position: relative;
+  transition: 0.2s;
+}
+.photo_btn .file_btn,
+.retake_btn .file_btn {
+  position: absolute;
+  z-index: 1000;
+  opacity: 0;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  height: 100%;
+  font-size: 24px;
+  width: 100%;
+}
+.camera-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.camera-container > img {
+  max-height: 100%;
+}
+
+.photos_taken .retake-use_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.retake_btn {
+  all: unset;
+  position: relative;
+  background: transparent;
+  color: black;
+  border: 2px solid black;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.retake_btn:hover {
+  background: #0000001f;
+}
+.use-photo_btn {
+  all: unset;
+  background: black;
+  color: white;
+  background: black;
+  padding: calc(1rem + 2px) 3rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.use-photo_btn:hover {
+  background: #00000099;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;

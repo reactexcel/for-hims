@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import pro_img1 from "../../assets/images/pro_img1.png";
-
+import { Link } from "react-router-dom";
 class ConfirmOrder extends Component {
   static defaultProps = {
     renderNext: () => {}
@@ -89,7 +89,7 @@ class ConfirmOrder extends Component {
           className="absolute_no"
           onClick={this.props.renderNext}
         >
-          Confirm & Start Visit
+          <Link to="/gender">Confirm & Start Visit</Link>
         </button>
       </div>
     );

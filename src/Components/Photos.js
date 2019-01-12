@@ -2,7 +2,42 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class Photos extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: [],
+      imageUrl: ""
+    };
+    this.fileRef = null;
+    this.setFileRef = element => {
+      this.fileRef = element;
+    };
+  }
+
+  handleFileChange = e => {
+    this.setState({ file: Array.from(e.target.files) });
+    const file = this.fileRef.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      this.setState({
+        imageUrl: reader.result
+      });
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+      this.setState({
+        imageUrl: reader.result
+      });
+    } else {
+      this.setState({
+        imageUrl: ""
+      });
+    }
+  };
   render() {
+    const { file } = this.state;
+    console.log(file);
     return (
       <>
         <div className="emr_header">
@@ -51,13 +86,40 @@ class Photos extends Component {
                   <li className="circle_line"> &nbsp; </li>
                   <li className="circle2"> 2 </li>
                 </ul>
-                <button tabIndex="0" type="button" className="photo_btn">
+               {file.length > 0? false :true && <button tabIndex="0" className="photo_btn">
                   Select from Photo Library
-                </button>
-                <div className="camera-container"> </div>
-                <div className="camera_icons">
-                  <i className="fa fa-camera" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="file_btn"
+                    title=""
+                    ref={this.setFileRef}
+                    onChange={this.handleFileChange}
+                  />
+                </button>}
+                <div className="camera-container">
+                  <img src={this.state.imageUrl}  />
                 </div>
+                {file.length ? (
+                  <div className="retake-use_container">
+                    <button tabIndex="0" className="retake_btn">
+                      Retake
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="file_btn"
+                        title=""
+                        ref={this.setFileRef}
+                        onChange={this.handleFileChange}
+                      />
+                    </button>
+                    <button className="use-photo_btn">Use Photo</button>
+                  </div>
+                ) : (
+                  <div className="camera_icons">
+                    <i className="fa fa-camera" />
+                  </div>
+                )}
               </div>
               <p align="center">
                 Powered by Hims <br />

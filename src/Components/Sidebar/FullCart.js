@@ -6,6 +6,7 @@ import Payment from "./Payment";
 import VerifyAddress from "./VerifyAddress";
 import Login from "./Login";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class FullCart extends Component {
   state = {
@@ -19,12 +20,16 @@ class FullCart extends Component {
       this.setState(prevState => ({ next: prevState.next + 1 }));
     }
   };
+  onPressShopAll = () => {
+    this.props.closeSidebar();
+    this.props.history.push("/");
+  };
   _renderItem = () => {
     switch (this.state.next) {
       case 1:
         return (
           <Cart
-            closeSidebar={this.props.closeSidebar}
+            onPressShopAll={this.onPressShopAll}
             renderNext={this.renderNext}
           />
         );
@@ -43,10 +48,9 @@ class FullCart extends Component {
     }
   };
   render() {
-    console.log(this.state.next);
     return <>{this._renderItem()}</>;
   }
 }
 const mapStateToProps = ({ login }) => ({ login });
 
-export default connect(mapStateToProps)(FullCart);
+export default connect(mapStateToProps)(withRouter(FullCart));

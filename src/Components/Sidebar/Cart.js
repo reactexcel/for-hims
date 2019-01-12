@@ -35,7 +35,7 @@ class Cart extends Component {
                 <button
                   type="button"
                   className="login_btn"
-                  onClick={this.props.closeSidebar}
+                  onClick={this.props.onPressShopAll}
                 >
                   Shop All
                 </button>
