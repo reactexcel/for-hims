@@ -1911,6 +1911,13 @@ ul.viewbox_section li {
 .use-photo_btn:hover {
   background: #00000099;
 }
+/* end of file button style on photos page */
+
+/* selected answer style on question page */
+.selected-answer{
+ background: #0000001f;
+ color : #D37E52
+}
 
 @media screen and (max-height: 450px) {
   .sidenav {
