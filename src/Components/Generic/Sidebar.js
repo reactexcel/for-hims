@@ -6,6 +6,32 @@ import Shop from "../Sidebar/Shop";
 import Learn from "../Sidebar/Learn";
 
 class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.sideBarRef = null;
+
+    this.setSideBarRef = element => {
+      this.sideBarRef = element;
+    };
+  }
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+
+  handleClickOutside = event => {
+    if (
+      this.sideBarRef &&
+      !this.sideBarRef.contains(event.target)
+    ) {
+      this.props.closeSidebar()
+    }
+  }
+
   _renderItem = param => {
     switch (param) {
       case "account":
@@ -33,6 +59,7 @@ class Sidebar extends Component {
 
     return (
       <div
+        ref={this.setSideBarRef}
         id="mySidenav7"
         style={{
           width: width
