@@ -7,7 +7,7 @@ function ProfilePayment() {
     <div className="profile_module">
       <h3>Payment Methods</h3>
       <form>
-        <input
+        {/* <input
           type="text"
           className="card"
           name="firstName"
@@ -21,8 +21,8 @@ function ProfilePayment() {
           value=""
           autoComplete="true"
           placeholder="MM / YY / CVC"
-         />
-        {/* <CardElement /> */}
+         /> */}
+        <CardElement />
         <button type="button">Add New Payment Method</button>
       </form>
       <Link to="#">Cancel</Link>
@@ -30,4 +30,4 @@ function ProfilePayment() {
   );
 }
 
-export default ProfilePayment;
+export default injectStripe(ProfilePayment);

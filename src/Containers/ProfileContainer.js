@@ -5,7 +5,7 @@ import ProfileInfo from "../Components/Profile/ProfileInfo";
 import Prescriptions from "../Components/Profile/Prescriptions";
 import ResetPassword from "../Components/Profile/ResetPassword";
 import ProfileShippingAddress from "../Components/Profile/ProfileShippingAddress";
-import ProfilePayment from "../Components/Profile/ProfilePayment";
+import PaymentContainer from "../Components/Profile/PaymentContainer";
 
 class ProfileContainer extends Component {
   render() {
@@ -22,7 +22,7 @@ class ProfileContainer extends Component {
               </div>
               <div className="col-xs-12 col-sm-12 col-md-6">
                 <ProfileShippingAddress />
-                <ProfilePayment />
+                <PaymentContainer />
               </div>
             </div>
           </div>

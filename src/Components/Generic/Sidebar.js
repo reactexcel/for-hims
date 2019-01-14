@@ -24,13 +24,10 @@ class Sidebar extends Component {
   }
 
   handleClickOutside = event => {
-    if (
-      this.sideBarRef &&
-      !this.sideBarRef.contains(event.target)
-    ) {
-      this.props.closeSidebar()
+    if (this.sideBarRef && !this.sideBarRef.contains(event.target)) {
+      this.props.closeSidebar();
     }
-  }
+  };
 
   _renderItem = param => {
     switch (param) {
