@@ -49,6 +49,7 @@ class Photos extends Component {
 
   render() {
     const { file, openCamera, imageUrl } = this.state;
+    console.log(!file.length, !imageUrl,'sadf',(!file.length || !imageUrl),'adsds',file)
     return (
       <>
         <div className="emr_header">
@@ -97,7 +98,7 @@ class Photos extends Component {
                   <li className="circle_line"> &nbsp; </li>
                   <li className="circle2"> 2 </li>
                 </ul>
-                {(!file.length || !imageUrl) && (
+                { !imageUrl && (
                   <button tabIndex="0" className="photo_btn">
                     Select from Photo Library
                     <input
@@ -120,7 +121,7 @@ class Photos extends Component {
                       className="retake_btn"
                       onClick={this.clearImage}
                     >
-                      Retakez
+                      Retake
                     </button>
                     <button className="use-photo_btn">Use Photo</button>
                   </div>
