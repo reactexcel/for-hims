@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
-
+import WebCamera from "./Generic/WebCamera";
 class ActionRequired extends Component {
   constructor(props) {
     super(props);
@@ -9,14 +9,15 @@ class ActionRequired extends Component {
       file: [],
       imageUrl: "",
       openMessageModal: false,
-      sendMessage: false
+      sendMessage: false,
+      openCamera: false
     };
     this.fileRef = null;
     this.setFileRef = element => {
       this.fileRef = element;
     };
   }
-  
+
   openMessageModal = () =>
     this.setState({ sendMessage: false, openMessageModal: true });
 
@@ -46,8 +47,15 @@ class ActionRequired extends Component {
       });
     }
   };
+  setImageFromCamera = imageUrl => {
+    this.setState({ imageUrl });
+  };
+  clearImage = () => this.setState({ imageUrl: "", file: [] });
+
+  toggleCamera = () =>
+    this.setState(prevState => ({ openCamera: !prevState.openCamera }));
   render() {
-    const { file, openMessageModal, sendMessage } = this.state;
+    const { openCamera, openMessageModal, sendMessage, imageUrl } = this.state;
 
     return (
       <div className="container">
@@ -120,42 +128,53 @@ class ActionRequired extends Component {
                   Your ID photo didn't meet our criteria. Please take a picture
                   of a government issued license that has your picture.
                 </h4>
-                {file.length > 0
-                  ? false
-                  : true && (
-                      <button tabIndex="0" className="photo_btn">
-                        Select from Photo Library
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className="file_btn"
-                          title=""
-                          ref={this.setFileRef}
-                          onChange={this.handleFileChange}
-                        />
-                      </button>
-                    )}
+                {!imageUrl && (
+                  <button tabIndex="0" className="photo_btn">
+                    Select from Photo Library
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="file_btn"
+                      title=""
+                      ref={this.setFileRef}
+                      onChange={this.handleFileChange}
+                    />
+                  </button>
+                )}
                 <div className="camera-container">
                   <img src={this.state.imageUrl} />
                 </div>
-                {file.length ? (
+                {imageUrl ? (
                   <div className="retake-use_container">
-                    <button tabIndex="0" className="retake_btn">
+                    <button
+                      tabIndex="0"
+                      className="retake_btn"
+                      onClick={this.clearImage}
+                    >
                       Retake
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="file_btn"
-                        title=""
-                        ref={this.setFileRef}
-                        onChange={this.handleFileChange}
-                      />
                     </button>
                     <button className="use-photo_btn">Use Photo</button>
                   </div>
                 ) : (
                   <div className="camera_icons">
-                    <i className="fa fa-camera" />
+                    <i className="fa fa-camera" onClick={this.toggleCamera} />
+                    <ReactModal
+                      isOpen={openCamera}
+                      contentLabel="CameraModal"
+                      closeTimeoutMS={400}
+                      overlayClassName="ReactModal__Overlay"
+                      className="ReactModal__Content"
+                      ariaHideApp={false}
+                    >
+                      <i
+                        className="fa fa-close close-camera_modal"
+                        onClick={this.toggleCamera}
+                      />
+                      <WebCamera
+                        setImageFromCamera={this.setImageFromCamera}
+                        closeCameraModal={this.toggleCamera}
+                      />
+                    </ReactModal>
                   </div>
                 )}
               </div>
