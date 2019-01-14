@@ -1373,6 +1373,7 @@ button.photo_btn:hover {
   text-align: center;
   line-height: 43px;
   border: 3px solid #cccccc;
+  cursor: pointer;
 }
 
 .messages_new_box {
@@ -1853,13 +1854,13 @@ ul.viewbox_section li {
   margin-bottom: 1rem;
 }
 .login-loader .loader {
-  margin-top:2rem;
+  margin-top: 2rem;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   border: 4px solid #dfb49b;
   border-top: 4px solid transparent;
-  animation: loader 2s linear infinite;
+  animation: loader 1s linear infinite;
 }
 
 @keyframes loader {
@@ -1936,6 +1937,37 @@ ul.viewbox_section li {
   background: #0000001f;
   color: #d37e52;
 }
+
+/* close camera modal icon */
+.close-camera_modal {
+  font-size: 3rem;
+  color: #dfb49b;
+  position: relative;
+  left: 40%;
+  bottom: 10%;
+  cursor: pointer;
+}
+
+/* camera button container camera modal */
+.camera-btn_container {
+  display: flex;
+  width: 32rem;
+  display: -webkit-flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.camera-btn_container .capture_btn,
+.camera-btn_container .capture-close_btn {
+  all: unset;
+  background: black;
+  color: white;
+  background: black;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
 
 @media screen and (max-height: 450px) {
   .sidenav {

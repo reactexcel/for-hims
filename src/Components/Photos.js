@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ReactModal from "react-modal";
+import WebCamera from "./Generic/WebCamera";
 
 class Photos extends Component {
   constructor(props) {
     super(props);
     this.state = {
       file: [],
-      imageUrl: ""
+      imageUrl: "",
+      openCamera: false
     };
     this.fileRef = null;
     this.setFileRef = element => {
@@ -35,8 +38,17 @@ class Photos extends Component {
       });
     }
   };
+
+  setImageFromCamera = imageUrl => {
+    this.setState({ imageUrl });
+  };
+  clearImage = () => this.setState({ imageUrl: "", file: [] });
+
+  toggleCamera = () =>
+    this.setState(prevState => ({ openCamera: !prevState.openCamera }));
+
   render() {
-    const { file } = this.state;
+    const { file, openCamera, imageUrl } = this.state;
     return (
       <>
         <div className="emr_header">
@@ -85,42 +97,53 @@ class Photos extends Component {
                   <li className="circle_line"> &nbsp; </li>
                   <li className="circle2"> 2 </li>
                 </ul>
-                {file.length > 0
-                  ? false
-                  : true && (
-                      <button tabIndex="0" className="photo_btn">
-                        Select from Photo Library
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className="file_btn"
-                          title=""
-                          ref={this.setFileRef}
-                          onChange={this.handleFileChange}
-                        />
-                      </button>
-                    )}
+                {(!file.length || !imageUrl) && (
+                  <button tabIndex="0" className="photo_btn">
+                    Select from Photo Library
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="file_btn"
+                      title=""
+                      ref={this.setFileRef}
+                      onChange={this.handleFileChange}
+                    />
+                  </button>
+                )}
                 <div className="camera-container">
                   <img src={this.state.imageUrl} />
                 </div>
-                {file.length ? (
+                {imageUrl ? (
                   <div className="retake-use_container">
-                    <button tabIndex="0" className="retake_btn">
-                      Retake
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="file_btn"
-                        title=""
-                        ref={this.setFileRef}
-                        onChange={this.handleFileChange}
-                      />
+                    <button
+                      tabIndex="0"
+                      className="retake_btn"
+                      onClick={this.clearImage}
+                    >
+                      Retakez
                     </button>
                     <button className="use-photo_btn">Use Photo</button>
                   </div>
                 ) : (
                   <div className="camera_icons">
-                    <i className="fa fa-camera" />
+                    <i className="fa fa-camera" onClick={this.toggleCamera} />
+                    <ReactModal
+                      isOpen={openCamera}
+                      contentLabel="CameraModal"
+                      closeTimeoutMS={400}
+                      overlayClassName="ReactModal__Overlay"
+                      className="ReactModal__Content"
+                      ariaHideApp={false}
+                    >
+                      <i
+                        className="fa fa-close close-camera_modal"
+                        onClick={this.toggleCamera}
+                      />
+                      <WebCamera
+                        setImageFromCamera={this.setImageFromCamera}
+                        closeCameraModal={this.toggleCamera}
+                      />
+                    </ReactModal>
                   </div>
                 )}
               </div>

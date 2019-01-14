@@ -1,6 +1,8 @@
 import React from "react";
-import {Link} from 'react-router-dom';
-export default function ProfilePayment() {
+import { Link } from "react-router-dom";
+import { CardElement, injectStripe } from "react-stripe-elements";
+
+function ProfilePayment() {
   return (
     <div className="profile_module">
       <h3>Payment Methods</h3>
@@ -19,10 +21,13 @@ export default function ProfilePayment() {
           value=""
           autoComplete="true"
           placeholder="MM / YY / CVC"
-        />
+         />
+        {/* <CardElement /> */}
         <button type="button">Add New Payment Method</button>
       </form>
       <Link to="#">Cancel</Link>
     </div>
   );
 }
+
+export default ProfilePayment;
