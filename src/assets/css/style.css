@@ -1652,8 +1652,8 @@ ul.viewbox_section li {
   padding: 18px 0px 15px 10px;
   text-transform: uppercase;
 }
-.back-btn > a{
-  all:unset
+.back-btn > a {
+  all: unset;
 }
 .confirm-gender {
   width: 50%;
@@ -1852,6 +1852,24 @@ ul.viewbox_section li {
   font-size: 2.4rem;
   margin-bottom: 1rem;
 }
+.login-loader .loader {
+  margin-top:2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid #dfb49b;
+  border-top: 4px solid transparent;
+  animation: loader 2s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* choose file button style on photos page */
 .photo_btn {
@@ -1914,9 +1932,9 @@ ul.viewbox_section li {
 /* end of file button style on photos page */
 
 /* selected answer style on question page */
-.selected-answer{
- background: #0000001f;
- color : #D37E52
+.selected-answer {
+  background: #0000001f;
+  color: #d37e52;
 }
 
 @media screen and (max-height: 450px) {

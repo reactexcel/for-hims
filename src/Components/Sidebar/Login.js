@@ -56,6 +56,7 @@ class Login extends Component {
           <div className="login-loader">
             <div>Loading your account...</div>
             <div>Hang tight</div>
+            <div className ="loader"></div>
           </div>
         ) : showRegister ? (
           <SignUp toggleRegister={this.toggleRegister} />
