@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import ErrorText from "../Generic/ErrorText";
+// var stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 class ProfilePayment extends Component {
   constructor(props) {
@@ -11,9 +12,12 @@ class ProfilePayment extends Component {
     };
   }
   submit = async e => {
-    console.log(e, "evevwefv");
+    console.log(e.target, "evevwefv");
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     console.log(token);
+    if (token) {
+      this.stripeRef.clear();
+    }
   };
   validateCard = e => {
     const errors = {};
@@ -25,9 +29,7 @@ class ProfilePayment extends Component {
     }
   };
   render() {
-    const {
-      errors
-    } = this.state;
+    const { errors } = this.state;
     return (
       <div className="profile_module">
         <h3>Payment Methods</h3>
@@ -47,8 +49,11 @@ class ProfilePayment extends Component {
           autoComplete="true"
           placeholder="MM / YY / CVC"
          /> */}
-          <CardElement onChange={this.validateCard} />
-          { errors.message && <ErrorText text={errors.message} />}
+          <CardElement
+            onChange={this.validateCard}
+            onReady={element => (this.stripeRef = element)}
+          />
+          {errors.message && <ErrorText text={errors.message} />}
           <button type="button" onClick={this.submit}>
             Add New Payment Method
           </button>
