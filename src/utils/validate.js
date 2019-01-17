@@ -7,6 +7,8 @@ export default data => {
   }
   if (!data.password) {
     error.password = "Required Field";
+  }else if(data.password.length < 6){
+    error.password = "Password length must be greater than 6"
   }
   if (!data.termsAndConditions) {
     error.termsAndConditions =

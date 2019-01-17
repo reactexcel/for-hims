@@ -1,11 +1,17 @@
-import { delay } from "redux-saga";
-import { call, put } from "redux-saga/effects";
+import { put } from "redux-saga/effects";
 import * as actions from "./index";
+import { firebase } from "../Firebase";
 
 export function* loginRequest(action) {
-  yield call(delay, 2000);
-  localStorage.setItem("auth", "true");
-  yield put(actions.loginSuccess());
+  const { email, password } = action.payload;
+  try {
+    const response = yield firebase.userSignIn(email, password);
+    console.log(response, "response");
+    yield put(actions.loginSuccess(response));
+  } catch (e) {
+    console.log(e, "error");
+    yield put(actions.loginError(e));
+  }
 }
 
 export function* logout(action) {

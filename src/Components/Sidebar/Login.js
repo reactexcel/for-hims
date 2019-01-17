@@ -28,7 +28,7 @@ class Login extends Component {
     this.setState({ errors });
     delete errors["termsAndConditions"];
     if (!Object.keys(errors).length) {
-      this.props.loginRequest();
+      this.props.loginRequest({ ...this.state.data });
     }
   };
   toggleRegister = () => {
@@ -56,7 +56,7 @@ class Login extends Component {
           <div className="login-loader">
             <div>Loading your account...</div>
             <div>Hang tight</div>
-            <div className ="loader"></div>
+            <div className="loader" />
           </div>
         ) : showRegister ? (
           <SignUp toggleRegister={this.toggleRegister} />

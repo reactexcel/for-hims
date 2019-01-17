@@ -28,7 +28,7 @@ class SignUp extends Component {
     const errors = validate(this.state.data);
     this.setState({ errors });
     if (!Object.keys(errors).length) {
-      this.props.signupRequest();
+      this.props.signupRequest({ ...this.state.data });
     }
   };
 
