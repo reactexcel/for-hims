@@ -16,6 +16,7 @@ class HomeContainer extends Component {
     this.setState(prevState => ({ showInfo: !prevState.showInfo }));
   render() {
     const { showInfo } = this.state;
+    const { onAddProduct } = this.props;
     return (
       <>
         <div className="header_menu_bg">
@@ -64,7 +65,7 @@ class HomeContainer extends Component {
                       improves blood flow to your penis to allow for a harder
                       and longer-lasting erection.
                     </h4>
-                    <Link to="#" className="btn1">
+                    <Link to="#" className="btn1" onClick={onAddProduct}>
                       Try Today - $30.00 per month
                     </Link>
                     <div className="baseball-card__legal">

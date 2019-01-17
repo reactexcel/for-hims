@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import UploadPhoto from "./Generic/UploadPhoto";
 
 class Photos extends Component {
   render() {
@@ -51,13 +52,7 @@ class Photos extends Component {
                   <li className="circle_line"> &nbsp; </li>
                   <li className="circle2"> 2 </li>
                 </ul>
-                <button tabIndex="0" type="button" className="photo_btn">
-                  Select from Photo Library
-                </button>
-                <div className="camera-container"> </div>
-                <div className="camera_icons">
-                  <i className="fa fa-camera" />
-                </div>
+                <UploadPhoto />
               </div>
               <p align="center">
                 Powered by Hims <br />

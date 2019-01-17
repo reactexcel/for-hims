@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import validate from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
-import Login from "./Login";
-
+import Account from "./Account";
+import { connect } from "react-redux";
+import { signupRequest } from "../../actions";
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: { email: "", password: "", checked: false },
+      data: { email: "", password: "", termsAndConditions: false },
       errors: {},
       showLogin: false
     };
@@ -26,22 +27,27 @@ class SignUp extends Component {
   handleSubmit = () => {
     const errors = validate(this.state.data);
     this.setState({ errors });
-  };
-
-  toggleLogin = () => {
-    this.setState(prevState => ({ showLogin: !prevState.showLogin }));
+    if (!Object.keys(errors).length) {
+      this.props.signupRequest();
+    }
   };
 
   render() {
     const {
       data: { email, password, checked },
-      errors,
-      showLogin
+      errors
     } = this.state;
+    const { isSuccess, isLoading } = this.props.login;
+    if (isSuccess) {
+      return <Account />;
+    }
     return (
       <>
-        {showLogin ? (
-          <Login />
+        {isLoading ? (
+          <div className="login-loader">
+            <div>Loading your account...</div>
+            <div>Hang tight</div>
+          </div>
         ) : (
           <div id="mySidenav3">
             <div className="login_form">
@@ -55,18 +61,24 @@ class SignUp extends Component {
                     value={email}
                     placeholder="Email"
                     onChange={this.handleChange}
+                    className={errors.email ? "error" : ""}
                   />
+                  {errors.email && <ErrorText text={errors.email} />}
+
                   <input
                     type="password"
                     name="password"
                     value={password}
                     placeholder="Password"
                     onChange={this.handleChange}
+                    className={errors.password ? "error" : ""}
                   />
+                  {errors.password && <ErrorText text={errors.password} />}
+
                   <div className="account_register">
                     <input
                       type="checkbox"
-                      name="checked"
+                      name="termsAndConditions"
                       value={checked}
                       onChange={this.handleChange}
                     />
@@ -82,12 +94,16 @@ class SignUp extends Component {
                     <a
                       onClick={() => {
                         this.props.toggleRegister();
-                        this.toggleLogin();
                       }}
                     >
                       Sign In
                     </a>
                   </div>
+                  {errors.termsAndConditions && (
+                    <div className="error--terms-and-condition">
+                      {errors.termsAndConditions}
+                    </div>
+                  )}
                 </form>
               </div>
             </div>
@@ -105,5 +121,8 @@ class SignUp extends Component {
     );
   }
 }
-
-export default SignUp;
+const mapStateToProps = ({ login }) => ({ login });
+export default connect(
+  mapStateToProps,
+  { signupRequest }
+)(SignUp);

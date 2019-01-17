@@ -9,7 +9,7 @@ const initialState = {
   isLoading: false
 };
 
-const loginRequest = (state, action) =>
+const signupRequest = (state, action) =>
   update(state, {
     auth: { $set: false },
     isLoading: { $set: true },
@@ -17,7 +17,7 @@ const loginRequest = (state, action) =>
     isError: { $set: false }
   });
 
-const loginSuccess = (state, action) =>
+const signupSuccess = (state, action) =>
   update(state, {
     auth: { $set: true },
     isLoading: { $set: false },
@@ -25,7 +25,7 @@ const loginSuccess = (state, action) =>
     isError: { $set: false }
   });
 
-const loginError = (state, action) =>
+const signupError = (state, action) =>
   update(state, {
     auth: { $set: false },
     isLoading: { $set: false },
@@ -35,13 +35,9 @@ const loginError = (state, action) =>
 
 export default handleActions(
   {
-    [constants.LOGIN_REQUEST]: loginRequest,
-    [constants.LOGIN_SUCCESS]: loginSuccess,
-    [constants.LOGIN_ERROR]: loginError,
-
-    [constants.SIGNUP_REQUEST]: loginRequest,
-    [constants.SIGNUP_SUCCESS]: loginSuccess,
-    [constants.SIGNUP_ERROR]: loginError
+    [constants.SIGNUP_REQUEST]: signupRequest,
+    [constants.SIGNUP_SUCCESS]: signupSuccess,
+    [constants.SIGNUP_ERROR]: signupError
   },
   initialState
 );

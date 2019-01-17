@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import baseline from "../../assets/images/baseline-error.svg";
 import ActionItems from "./ActionItems";
+import { connect } from "react-redux";
+import { logoutRequest } from "../../actions";
+import Login from "./Login";
 
 class Account extends Component {
   constructor(props) {
@@ -15,8 +18,15 @@ class Account extends Component {
       showActionRequired: !prevState.showActionRequired
     }));
   };
+  handleLogout = () => {
+    this.props.logoutRequest();
+  };
   render() {
     const { showActionRequired } = this.state;
+    const { auth } = this.props.login;
+    if (!auth) {
+      return <Login />;
+    }
     return (
       <>
         {!showActionRequired ? (
@@ -43,16 +53,21 @@ class Account extends Component {
                 <Link to="/messages">Messages</Link>
               </li>
               <li>
-                <Link to="#">Logout</Link>
+                <Link to="" onClick={this.handleLogout}>
+                  Logout
+                </Link>
               </li>
             </ul>
           </div>
         ) : (
-          <ActionItems closeActionItems = {this.toggleActionRequired}/>
+          <ActionItems closeActionItems={this.toggleActionRequired} />
         )}
       </>
     );
   }
 }
-
-export default Account;
+const mapStateToProps = ({ login }) => ({ login });
+export default connect(
+  mapStateToProps,
+  { logoutRequest }
+)(Account);

@@ -21,7 +21,9 @@ class Gender extends Component {
                 </label>
               </div>
               <div className="clearfix" />
-              <div className="back-btn">Close Visit</div>
+              <div className="back-btn">
+                <Link to="/">Close Visit</Link>
+              </div>
               <div className="confirm-gender">
                 <Link to="/informed-consent">Confirm</Link>
               </div>

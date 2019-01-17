@@ -407,13 +407,15 @@ ul.copyright_section li:first-child {
 .my-orders-section {
   font-family: "sofia_prosemibold";
 }
-.my-orders-section .collapsible:hover {
+/* .my-orders-section .Collapsible ,
+.my-orders-section .content:hover {
   background: #eeeeee;
-}
+} */
 .my-orders-section .content {
-  background: #eeeeee;
+  background: white;
+  /* border-bottom: 1px solid #eee2d7; */
 }
-.my-orders-section .collapsible {
+.my-orders-section .Collapsible button {
   color: #000;
   background: #fff;
   cursor: pointer;
@@ -427,9 +429,11 @@ ul.copyright_section li:first-child {
   text-transform: inherit;
   outline: none;
   width: 100%;
-  border-bottom: 1px solid #eee2d7;
   font-size: 16px;
   font-family: "sofia_prosemibold";
+}
+.my-orders-section .Collapsible .Collapsible__trigger.is-closed button {
+  border-bottom: 1px solid #eee2d7;
 }
 ul.tab_order {
   margin: 0px !important;
@@ -651,12 +655,27 @@ ul.open_tab_order .small_title {
 .cart_section {
   position: relative;
   height: 100%;
+  width: 100%;
   display: inline-block;
 }
 .cart_items {
   width: 70%;
   margin: 0px auto;
   padding: 20px 10px 50px 10px;
+}
+
+.cart_items .empty_cart {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cart_items .empty_cart + button.login_btn {
+  background-color: black;
+}
+.cart_items .empty_cart + button.login_btn:hover {
+  background-color: #666666;
 }
 .cart_items .header-title {
   font-size: 20px;
@@ -832,6 +851,9 @@ a.btn_apply:hover {
   width: 100%;
   display: inline-block;
   text-align: center;
+}
+button.absolute_no > a {
+  all: unset;
 }
 .next_btn {
   padding: 15px 55px 15px 55px !important;
@@ -1111,7 +1133,9 @@ input[type="email"],
 input[type="text"],
 input[type="number"],
 input[type="password"],
-textarea {
+input[type="phone"],
+textarea,
+select {
   padding: 8px;
   font-size: 18px;
   line-height: 27px;
@@ -1349,6 +1373,7 @@ button.photo_btn:hover {
   text-align: center;
   line-height: 43px;
   border: 3px solid #cccccc;
+  cursor: pointer;
 }
 
 .messages_new_box {
@@ -1628,6 +1653,9 @@ ul.viewbox_section li {
   padding: 18px 0px 15px 10px;
   text-transform: uppercase;
 }
+.back-btn > a {
+  all: unset;
+}
 .confirm-gender {
   width: 50%;
   float: left;
@@ -1716,10 +1744,21 @@ ul.viewbox_section li {
 .gender-container h2 {
   padding-bottom: 30px;
 }
+/* style for error text */
 .error-text {
   font-size: 12px;
   color: #ff0000;
   text-align: left;
+  padding: 0 8px;
+}
+.error--terms-and-condition {
+  font-size: 1.5rem;
+  color: #ff0000;
+  background: rgba(244, 67, 54, 0.1);
+  border: 2px solid rgba(244, 67, 54, 0.3);
+  line-height: 2rem;
+  padding: 2.5rem;
+  margin-top: 3rem;
 }
 /* Style for Modal */
 .ReactModal__Overlay {
@@ -1752,7 +1791,7 @@ ul.viewbox_section li {
   width: 100%;
 }
 /* Content inside message modal */
- .message-type_block {
+.message-type_block {
   width: 70vw;
   background: white;
   border-radius: 3px;
@@ -1761,31 +1800,31 @@ ul.viewbox_section li {
   margin: 0.5rem 0;
   padding: 2rem;
 }
- .message-type_block > h4 {
+.message-type_block > h4 {
   font-weight: bold;
 }
 
- .message-type_block:hover {
+.message-type_block:hover {
   background-color: #fafafa;
   border: 2px solid #000;
 }
- .message-text-box {
+.message-text-box {
   width: 50vw;
 }
- .message-text-box input[type="text"] {
+.message-text-box input[type="text"] {
   border-bottom: 2px solid #dfb49b;
 }
- .message-text-box .message-text-box--actions {
+.message-text-box .message-text-box--actions {
   display: flex;
   width: 18rem;
   justify-content: space-between;
   margin-top: 2rem;
 }
 
- .message-text-box .message-text-box--actions > div {
+.message-text-box .message-text-box--actions > div {
   cursor: pointer;
 }
- .message-text-box .message-text-box--actions .submit-now {
+.message-text-box .message-text-box--actions .submit-now {
   border-bottom: 2px solid #000;
   color: #000;
   font-size: 11px;
@@ -1795,12 +1834,181 @@ ul.viewbox_section li {
   text-transform: uppercase;
 }
 
-#required-action{
-  color:#dfb49b;
+#required-action {
+  color: #dfb49b;
 }
-#required-action > img{
-  vertical-align: unset
+#required-action > img {
+  vertical-align: unset;
 }
+/* loader screen on login sidebar */
+.login-loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-loader > div:first-child {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+.login-loader .loader {
+  margin-top: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid #dfb49b;
+  border-top: 4px solid transparent;
+  animation: loader 1s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* choose file button style on photos page */
+.photo_btn {
+  position: relative;
+  transition: 0.2s;
+}
+.photo_btn .file_btn,
+.retake_btn .file_btn {
+  position: absolute;
+  z-index: 1000;
+  opacity: 0;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  height: 100%;
+  font-size: 24px;
+  width: 100%;
+}
+.camera-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.camera-container > img {
+  max-height: 100%;
+}
+
+.photos_taken .retake-use_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.retake_btn {
+  all: unset;
+  position: relative;
+  background: transparent;
+  color: black;
+  border: 2px solid black;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.retake_btn:hover {
+  background: #0000001f;
+}
+.use-photo_btn {
+  all: unset;
+  background: black;
+  color: white;
+  background: black;
+  padding: calc(1rem + 2px) 3rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.use-photo_btn:hover {
+  background: #00000099;
+}
+/* end of file button style on photos page */
+
+/* selected answer style on question page */
+.selected-answer {
+  background: #0000001f;
+  color: #d37e52;
+}
+
+/* close camera modal icon */
+.close-camera_modal {
+  font-size: 3rem;
+  color: #dfb49b;
+  position: relative;
+  left: 40%;
+  bottom: 10%;
+  cursor: pointer;
+}
+
+/* camera button container camera modal */
+.camera-btn_container {
+  display: flex;
+  width: 32rem;
+  display: -webkit-flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.camera-btn_container .capture_btn,
+.camera-btn_container .capture-close_btn {
+  all: unset;
+  background: black;
+  color: white;
+  background: black;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* design for stripe element */
+.StripeElement {
+  background-color: white;
+  height: 40px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent; 
+   box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+  /* padding: 8px;
+  font-size: 18px;
+  line-height: 27px;
+  color: #666;
+  background-color: transparent;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 50px;
+  width: 100%;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 2px solid #eee2d7;
+  */
+  margin-bottom: 15px;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
@@ -1808,6 +2016,33 @@ ul.viewbox_section li {
   .sidenav a {
     font-size: 18px;
   }
+}
+
+/* styling for error for input tag*/
+input:not([type="checkbox"]) {
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.register_box input.error,
+.profile_module input.error {
+  border-bottom-color: red;
+}
+/* forms in profile page */
+.profile_module form.profile_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profile_module form.profile_form .error-text {
+  align-self: flex-start;
+}
+.profile_module form.profile_form input[disabled] {
+  cursor: not-allowed;
+  border-bottom: 2px dotted #eee2d7;
+}
+.profile_module form.profile_form input,
+.profile_module form.profile_form select {
+  color: #000000de;
 }
 
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {
@@ -2201,6 +2436,7 @@ ul.viewbox_section li {
   .back-btn {
     width: 100%;
   }
+
   .confirm-gender {
     width: 100%;
   }
@@ -2578,5 +2814,5 @@ ul.viewbox_section li {
   }
   .message-text-box {
     width: 80vw;
-}
+  }
 }
