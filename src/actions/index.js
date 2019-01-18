@@ -25,6 +25,10 @@ export const forgotPasswordSuccess = createAction(
 export const forgotPasswordError = createAction(
   constants.FORGOT_PASSWORD_ERROR
 );
+export const forgotPasswordResetRequest = createAction(
+  constants.FORGOT_PASSWORD_RESET_REQUEST
+);
+export const forgotPasswordResetSuccess = createAction(constants.FORGOT_PASSWORD_RESET_SUCCESS)
 
 //actions for add to cart
 export const addToCartRequest = createAction(constants.ADD_TO_CART_REQUEST);

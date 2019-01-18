@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import validate from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
-import { forgotPasswordRequest } from "../../actions";
+import {
+  forgotPasswordRequest,
+  forgotPasswordResetRequest
+} from "../../actions";
 import { connect } from "react-redux";
 
 class ForgotPassword extends Component {
@@ -28,13 +31,15 @@ class ForgotPassword extends Component {
       this.props.forgotPasswordRequest({ ...this.state.data });
     }
   };
+  componentWillUnmount() {
+    this.props.forgotPasswordResetRequest();
+  }
 
   render() {
     const {
       data: { email },
       errors
     } = this.state;
-    console.log(this.props.forgotpsw, "asd");
     const { isLoading, isError, isSuccess, message } = this.props.forgotpsw;
     return (
       <>
@@ -43,6 +48,12 @@ class ForgotPassword extends Component {
             <div>Loading...</div>
             <div>Hang tight</div>
             <div className="loader" />
+          </div>
+        ) : isSuccess ? (
+          <div className="forgot-psw_next-steps">
+            <div className="forgot-psw_next">NEXT STEP</div>
+            <div>Please Check your email for next steps</div>
+            <div className="forgot-psw_login" onClick={this.props.togglePassword}>LOGIN</div>
           </div>
         ) : (
           <div id="mySidenav2">
@@ -94,5 +105,5 @@ const mapStateToProps = ({ forgotpsw }) => ({ forgotpsw });
 
 export default connect(
   mapStateToProps,
-  { forgotPasswordRequest }
+  { forgotPasswordRequest, forgotPasswordResetRequest }
 )(ForgotPassword);

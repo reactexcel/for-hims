@@ -2,7 +2,7 @@ import { takeLatest } from "redux-saga/effects";
 import * as constants from "./constants";
 import { loginRequest, logout } from "./actions/login";
 import { signupRequest } from "./actions/signup";
-import { forgotpswRequest } from "./actions/forgotpsw";
+import { forgotpswRequest, forgotpswReset } from "./actions/forgotpsw";
 import {
   addToCartRequest,
   removeFromCartRequest
@@ -15,6 +15,7 @@ function* watchActions() {
   yield takeLatest(constants.ADD_TO_CART_REQUEST, addToCartRequest);
   yield takeLatest(constants.REMOVE_FROM_CART_REQUEST, removeFromCartRequest);
   yield takeLatest(constants.FORGOT_PASSWORD_REQUEST, forgotpswRequest);
+  yield takeLatest(constants.FORGOT_PASSWORD_RESET_REQUEST, forgotpswReset);
 }
 export default function* rootSaga() {
   yield [watchActions()];

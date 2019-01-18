@@ -11,3 +11,7 @@ export function* forgotpswRequest(action) {
     yield put(actions.forgotPasswordError(e));
   }
 }
+
+export function* forgotpswReset(action) {
+  yield put(actions.forgotPasswordResetSuccess());
+}

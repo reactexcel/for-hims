@@ -31,11 +31,20 @@ const forgotpswError = (state, action) =>
     message: { $set: action.payload.message }
   });
 
+const forgotpswReset = (state, action) =>
+  update(state, {
+    isLoading: { $set: false },
+    isSuccess: { $set: false },
+    isError: { $set: false },
+    message: { $set: "" }
+  });
+
 export default handleActions(
   {
     [constants.FORGOT_PASSWORD_REQUEST]: forgotpswRequest,
     [constants.FORGOT_PASSWORD_SUCCESS]: forgotpswSuccess,
-    [constants.FORGOT_PASSWORD_ERROR]: forgotpswError
+    [constants.FORGOT_PASSWORD_ERROR]: forgotpswError,
+    [constants.FORGOT_PASSWORD_RESET_SUCCESS]: forgotpswReset
   },
   initialState
 );
