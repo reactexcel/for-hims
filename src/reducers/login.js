@@ -6,7 +6,8 @@ const initialState = {
   auth: false,
   isError: false,
   isSuccess: false,
-  isLoading: false
+  isLoading: false,
+  message: ""
 };
 
 const loginRequest = (state, action) =>
@@ -30,7 +31,8 @@ const loginError = (state, action) =>
     auth: { $set: false },
     isLoading: { $set: false },
     isSuccess: { $set: false },
-    isError: { $set: true }
+    isError: { $set: true },
+    message: { $set: action.payload.message }
   });
 
 export default handleActions(

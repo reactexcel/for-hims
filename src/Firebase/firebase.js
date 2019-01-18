@@ -17,9 +17,9 @@ class Firebase {
     this.auth = app.auth();
   }
 
-  //   Authentication API
+  //Authentication API
 
-  //   creating user with email and password
+  //creating user with email and password
   createUser = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
@@ -30,7 +30,12 @@ class Firebase {
   //user sign out
   userSignOut = () => this.auth.signOut();
 
-  //user
+  //user forgot password
+  userForgotPassword = email => this.auth.sendPasswordResetEmail(email);
+
+  //user update password
+  userUpdatePassword = password =>
+    this.auth.currentUser.updatePassword(password);
 }
 
 export default Firebase;

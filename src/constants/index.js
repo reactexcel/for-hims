@@ -9,9 +9,10 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 //constants for logout
 export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-//constants for load
-export const LOAD = "LOAD";
-
+//constants for forgot password
+export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
+export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
+export const FORGOT_PASSWORD_ERROR = "FORGOT_PASSWORD_ERROR";
 //constants for add to cart
 export const ADD_TO_CART_REQUEST = "ADD_TO_CART_REQUEST";
 export const ADD_TO_CART_SUCCESS = "ADD_TO_CART_SUCCES";

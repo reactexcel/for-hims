@@ -24,6 +24,7 @@ class Account extends Component {
   render() {
     const { showActionRequired } = this.state;
     const { auth } = this.props.login;
+    console.log(auth,'sad')
     if (!auth) {
       return <Login />;
     }

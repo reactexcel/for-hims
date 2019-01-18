@@ -1751,7 +1751,8 @@ ul.viewbox_section li {
   text-align: left;
   padding: 0 8px;
 }
-.error--terms-and-condition {
+.error--terms-and-condition,
+.server_error {
   font-size: 1.5rem;
   color: #ff0000;
   background: rgba(244, 67, 54, 0.1);

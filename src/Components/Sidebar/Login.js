@@ -46,7 +46,7 @@ class Login extends Component {
       showRegister,
       showForgotPassword
     } = this.state;
-    const { isSuccess, isLoading } = this.props.login;
+    const { isSuccess, isLoading, isError, message } = this.props.login;
     if (isSuccess) {
       return <Account />;
     }
@@ -100,6 +100,9 @@ class Login extends Component {
                       forgot password?
                     </a>
                   </div>
+                  {isError && message && (
+                    <div className="server_error">{message}</div>
+                  )}
                 </form>
               </div>
             </div>

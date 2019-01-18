@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { firebase } from "../Firebase";
+import { loginSuccess } from "../actions";
 
 export default WrappedComponent => {
   class Authentication extends Component {
+    state = { authUser: null };
     componentDidMount() {
       this.checkAuthentication();
     }
@@ -10,10 +13,15 @@ export default WrappedComponent => {
       this.checkAuthentication();
     }
     checkAuthentication = () => {
-      const auth = JSON.parse(localStorage.getItem("auth"));
-      if (!this.props.login.auth && !auth) {
-        this.props.history.push("/");
-      }
+      firebase.auth.onAuthStateChanged(authUser => {
+        if (!this.props.login.auth && !authUser) {
+          this.props.history.push("/");
+        } else {
+          if (!this.props.login.auth) {
+            this.props.loginSuccess();
+          }
+        }
+      });
     };
     render() {
       return <WrappedComponent {...this.props} />;
@@ -21,5 +29,8 @@ export default WrappedComponent => {
   }
   const mapStateToProps = ({ login }) => ({ login });
 
-  return connect(mapStateToProps)(Authentication);
+  return connect(
+    mapStateToProps,
+    { loginSuccess }
+  )(Authentication);
 };

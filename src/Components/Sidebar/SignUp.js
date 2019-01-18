@@ -37,7 +37,7 @@ class SignUp extends Component {
       data: { email, password, checked },
       errors
     } = this.state;
-    const { isSuccess, isLoading } = this.props.login;
+    const { isSuccess, isLoading, isError, message } = this.props.login;
     if (isSuccess) {
       return <Account />;
     }
@@ -103,6 +103,9 @@ class SignUp extends Component {
                     <div className="error--terms-and-condition">
                       {errors.termsAndConditions}
                     </div>
+                  )}
+                  {isError && message && (
+                    <div className="server_error">{message}</div>
                   )}
                 </form>
               </div>
