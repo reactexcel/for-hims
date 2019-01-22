@@ -16,16 +16,20 @@ function ResetPassword(props) {
     ));
   const handleSubmit = values => {
     console.log(values);
+    props.onResetPassword(values);
   };
+  const { isError, isSuccess, isLoading, message } = props.resetPassword;
   return (
     <div className="profile_module">
       <h3>Password</h3>
-      <form>
+      <form className="profile_form">
         {renderFields()}
-        <button onClick={props.handleSubmit(handleSubmit)}>
-          Reset Password
+        <button onClick={props.handleSubmit(handleSubmit)} disabled={isLoading}>
+          {isLoading ? "Resetting Password" : "Reset Password"}
         </button>
+        {isSuccess && message && <div className="primary-text">{message}</div>}
       </form>
+      {isError && message && <div className="server_error">{message}</div>}
     </div>
   );
 }
@@ -42,4 +46,16 @@ const validate = values => {
   return error;
 };
 
-export default reduxForm({ form: "resetPassword", validate })(ResetPassword);
+// const asyncValidate = values => {
+//   firebase
+//     .validateOldPassword(values)
+//     .then(res => console.log(res))
+//     .catch(err => console.log(err));
+// };
+
+export default reduxForm({
+  form: "resetPassword",
+  validate
+  // asyncValidate,
+  // asyncBlurFields: ["oldPassword"]
+})(ResetPassword);

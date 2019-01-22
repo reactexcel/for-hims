@@ -56,7 +56,7 @@ class Header extends Component {
   };
   render() {
     const {
-      login: { isSuccess: loginSuccess, auth },
+      user: { isSuccess: loginSuccess, auth },
       addcart: { addToCart }
     } = this.props;
     return (
@@ -139,5 +139,5 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = ({ login, addcart }) => ({ login, addcart });
+const mapStateToProps = ({ user, addcart }) => ({ user, addcart });
 export default connect(mapStateToProps)(withRouter(requireAuth(Header)));

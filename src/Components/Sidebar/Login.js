@@ -46,7 +46,7 @@ class Login extends Component {
       showRegister,
       showForgotPassword
     } = this.state;
-    const { isSuccess, isLoading, isError, message } = this.props.login;
+    const { isSuccess, isLoading, isError, message } = this.props.user;
     if (isSuccess) {
       return <Account />;
     }
@@ -121,7 +121,7 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(
   mapStateToProps,

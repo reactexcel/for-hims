@@ -14,11 +14,17 @@ export default WrappedComponent => {
     }
     checkAuthentication = () => {
       firebase.auth.onAuthStateChanged(authUser => {
-        if (!this.props.login.auth && !authUser) {
+        if (!this.props.user.auth && !authUser) {
           this.props.history.push("/");
         } else {
-          if (!this.props.login.auth) {
-            this.props.loginSuccess();
+          if (!this.props.user.auth) {
+            const data = {
+              displayName: authUser.displayName,
+              email: authUser.email,
+              phoneNumber: authUser.phoneNumber,
+              uid: authUser.uid
+            };
+            this.props.loginSuccess(data);
           }
         }
       });
@@ -27,7 +33,7 @@ export default WrappedComponent => {
       return <WrappedComponent {...this.props} />;
     }
   }
-  const mapStateToProps = ({ login }) => ({ login });
+  const mapStateToProps = ({ user }) => ({ user });
 
   return connect(
     mapStateToProps,

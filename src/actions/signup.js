@@ -7,10 +7,13 @@ export function* signupRequest(action) {
 
   try {
     const response = yield firebase.createUser(email, password);
-    // if (response.keys.length) {
-    console.log(response, "response");
-    yield put(actions.signupSuccess(response));
-    // }
+    const data = {
+      displayName: response.user.displayName,
+      email: response.user.email,
+      phoneNumber: response.user.phoneNumber,
+      uid: response.user.uid
+    };
+    yield put(actions.signupSuccess(data));
   } catch (e) {
     console.log(e, "error");
     yield put(actions.signupError(e));

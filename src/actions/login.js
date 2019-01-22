@@ -6,7 +6,13 @@ export function* loginRequest(action) {
   const { email, password } = action.payload;
   try {
     const response = yield firebase.userSignIn(email, password);
-    yield put(actions.loginSuccess(response));
+    const data = {
+      displayName: response.user.displayName,
+      email: response.user.email,
+      phoneNumber: response.user.phoneNumber,
+      uid: response.user.uid
+    };
+    yield put(actions.loginSuccess(data));
   } catch (e) {
     yield put(actions.loginError(e));
   }

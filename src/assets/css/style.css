@@ -46,7 +46,8 @@ a {
 .grew {
   color: #94999d;
 }
-.link {
+.link,
+.primary-text {
   color: #cc835c;
 }
 p {
@@ -2043,6 +2044,10 @@ input:not([type="checkbox"]) {
 .profile_module form.profile_form input,
 .profile_module form.profile_form select {
   color: #000000de;
+}
+
+form.profile_form button:disabled {
+  background-color: #cfd7df;
 }
 
 /* forgot password next steps */

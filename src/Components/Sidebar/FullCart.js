@@ -14,7 +14,7 @@ class FullCart extends Component {
   };
   renderNext = () => {
     const auth = JSON.parse(localStorage.getItem("auth"));
-    if (!this.props.login.auth && !auth) {
+    if (!this.props.user.auth && !auth) {
       this.setState({ next: 10 });
     } else if (this.state.next < 6) {
       this.setState(prevState => ({ next: prevState.next + 1 }));
@@ -51,6 +51,6 @@ class FullCart extends Component {
     return <>{this._renderItem()}</>;
   }
 }
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(mapStateToProps)(withRouter(FullCart));

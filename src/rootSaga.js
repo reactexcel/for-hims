@@ -7,6 +7,7 @@ import {
   addToCartRequest,
   removeFromCartRequest
 } from "./actions/addremoveCart";
+import { resetPasswordRequest } from "./actions/profile";
 
 function* watchActions() {
   yield takeLatest(constants.LOGIN_REQUEST, loginRequest);
@@ -16,6 +17,7 @@ function* watchActions() {
   yield takeLatest(constants.REMOVE_FROM_CART_REQUEST, removeFromCartRequest);
   yield takeLatest(constants.FORGOT_PASSWORD_REQUEST, forgotpswRequest);
   yield takeLatest(constants.FORGOT_PASSWORD_RESET_REQUEST, forgotpswReset);
+  yield takeLatest(constants.RESET_PASSWORD_REQUEST,resetPasswordRequest)
 }
 export default function* rootSaga() {
   yield [watchActions()];

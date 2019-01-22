@@ -1,14 +1,16 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-import login from "./login";
+import user from "./user";
 import addcart from "./addremovecart";
 import forgotpsw from "./forgotpsw";
+import profile from "./profile";
 import { LOGOUT_SUCCESS } from "../constants";
 
 const makeRootReducer = asyncReducers => {
   const appReducer = combineReducers({
-    login,
+    user,
     forgotpsw,
+    profile: profile,
     form: formReducer,
     addcart,
     ...asyncReducers

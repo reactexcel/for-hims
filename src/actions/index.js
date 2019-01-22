@@ -28,14 +28,16 @@ export const forgotPasswordError = createAction(
 export const forgotPasswordResetRequest = createAction(
   constants.FORGOT_PASSWORD_RESET_REQUEST
 );
-export const forgotPasswordResetSuccess = createAction(constants.FORGOT_PASSWORD_RESET_SUCCESS)
+export const forgotPasswordResetSuccess = createAction(
+  constants.FORGOT_PASSWORD_RESET_SUCCESS
+);
 
 //actions for add to cart
 export const addToCartRequest = createAction(constants.ADD_TO_CART_REQUEST);
 export const addToCartSuccess = createAction(constants.ADD_TO_CART_SUCCESS);
 export const addToCartError = createAction(constants.ADD_TO_CART_ERROR);
 
-//export const remove from cart
+//actions for remove from cart
 export const removeFromCartRequest = createAction(
   constants.REMOVE_FROM_CART_REQUEST
 );
@@ -45,3 +47,13 @@ export const removeFromCartSuccess = createAction(
 export const removeFromCartError = createAction(
   constants.REMOVE_FROM_CART_ERROR
 );
+
+//actions for reset password
+export const resetPasswordRequest = createAction(
+  constants.RESET_PASSWORD_REQUEST
+);
+export const resetPasswordSuccess = createAction(
+  constants.RESET_PASSWORD_SUCCESS
+);
+export const resetPasswordError = createAction(constants.RESET_PASSWORD_ERROR);
+

@@ -32,24 +32,18 @@ class ProfileInfo extends Component {
     ));
   render() {
     const { showEditProfile } = this.state;
-
+    const {
+      userInfo: { email, displayName, phoneNumber }
+    } = this.props;
     return (
       <div className="profile_module">
         {!showEditProfile ? (
           <>
             <h3>Profile</h3>
-            <p>
-              {this.props.profileInfoForm && this.props.profileInfoForm.values
-                ? `${this.props.profileInfoForm.values.firstName} ${
-                    this.props.profileInfoForm.values.lastName
-                  }`
-                : "Javed Bloch"}{" "}
-              <br /> d.designing@gmail.com <br />{" "}
-              {this.props.profileInfoForm && this.props.profileInfoForm.values
-                ? this.props.profileInfoForm.values.phone
-                : "234-234-2344"}{" "}
-              <br /> 03-28-1985
-            </p>
+            {displayName && <p>{displayName}</p>}
+            <p>{email}</p>
+            {phoneNumber && <p>{phoneNumber}</p>}
+            <p>03-28-1985</p>
             <Link to="#" onClick={this.toggleEditProfile}>
               edit
             </Link>
@@ -84,10 +78,5 @@ const mapStateToProps = ({ form: { profileInfoForm } }) => ({
 
 export default reduxForm({
   form: "profileInfoForm",
-  validate,
-  initialValues: {
-    firstName: "Javed",
-    lastName: "Bloch",
-    phone: "234-234-2344"
-  }
+  validate
 })(connect(mapStateToProps)(ProfileInfo));

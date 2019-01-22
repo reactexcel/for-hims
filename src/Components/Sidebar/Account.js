@@ -23,7 +23,7 @@ class Account extends Component {
   };
   render() {
     const { showActionRequired } = this.state;
-    const { auth } = this.props.login;
+    const { auth } = this.props.user;
     console.log(auth,'sad')
     if (!auth) {
       return <Login />;
@@ -34,7 +34,7 @@ class Account extends Component {
           <div className="profile_menu_box">
             <h4> Hi there! </h4>
             <ul className="profile_menu">
-              <li>
+              {/* <li>
                 <Link
                   to=""
                   id="required-action"
@@ -43,7 +43,7 @@ class Account extends Component {
                   <img src={baseline} alt="error" />
                   Required Action
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/profile">Profile</Link>
               </li>
@@ -67,7 +67,7 @@ class Account extends Component {
     );
   }
 }
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ user }) => ({ user });
 export default connect(
   mapStateToProps,
   { logoutRequest }
