@@ -57,3 +57,22 @@ export const resetPasswordSuccess = createAction(
 );
 export const resetPasswordError = createAction(constants.RESET_PASSWORD_ERROR);
 
+//actions for get profile info
+export const getProfileInfoRequest = createAction(
+  constants.GET_PROFILE_INFO_REQUEST
+);
+export const getProfileInfoSuccess = createAction(
+  constants.GET_PROFILE_INFO_SUCCESS
+);
+export const getProfileInfoError = createAction(
+  constants.GET_PROFILE_INFO_ERROR
+);
+
+//actions for update profile
+export const updateProfileRequest = createAction(
+  constants.UPDATE_PROFILE_REQUEST
+);
+export const updateProfileSuccess = createAction(
+  constants.UPDATE_PROFILE_SUCCESS
+);
+export const updateProfileError = createAction(constants.UPDATE_PROFILE_ERROR);

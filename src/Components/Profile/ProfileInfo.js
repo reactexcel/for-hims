@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import ProfileField from "./ProfileField";
-import { connect } from "react-redux";
 import { profileInfoFields as fields } from "../../constants/profile";
 
 class ProfileInfo extends Component {
@@ -12,14 +11,34 @@ class ProfileInfo extends Component {
       showEditProfile: false
     };
   }
-  toggleEditProfile = () =>
-    this.setState(prevState => ({
-      showEditProfile: !prevState.showEditProfile
-    }));
-  cancelEditProfile = () => {
-    this.props.reset();
-    this.toggleEditProfile();
+
+  handleSaveProfile = values => {
+    const { uid } = this.props.userInfo;
+    this.props.onUpdateProfileRequest({ ...values, uid });
   };
+
+  openEditProfile = () => this.setState({ showEditProfile: true });
+
+  cancelEditProfile = () => {
+    this.setState({ showEditProfile: false });
+  };
+  componentDidMount() {
+    this.props.initialize({ ...this.props.userProfile.data });
+  }
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.userProfile.isSuccess &&
+      prevProps.userProfile.isSuccess !== this.props.userProfile.isSuccess
+    ) {
+      this.cancelEditProfile();
+    }
+    if (
+      prevProps.userProfile.data.firstName !==
+      this.props.userProfile.data.firstName
+    ) {
+      this.props.initialize({ ...this.props.userProfile.data });
+    }
+  }
   renderFields = () =>
     fields.map(({ name, placeholder, type }) => (
       <Field
@@ -33,29 +52,45 @@ class ProfileInfo extends Component {
   render() {
     const { showEditProfile } = this.state;
     const {
-      userInfo: { email, displayName, phoneNumber }
+      userInfo: { email },
+      userProfile: {
+        data: { firstName, lastName, phone },
+        isLoading,
+        isError,
+        message
+      }
     } = this.props;
     return (
       <div className="profile_module">
         {!showEditProfile ? (
           <>
             <h3>Profile</h3>
-            {displayName && <p>{displayName}</p>}
+            {firstName && <p>{`${firstName} ${lastName}`}</p>}
             <p>{email}</p>
-            {phoneNumber && <p>{phoneNumber}</p>}
-            <p>03-28-1985</p>
-            <Link to="#" onClick={this.toggleEditProfile}>
+            {phone && <p>{phone}</p>}
+            {/* <p>03-28-1985</p> */}
+            <Link to="#" onClick={this.openEditProfile}>
               edit
             </Link>
           </>
         ) : (
-          <form className="profile_form">
-            {this.renderFields()}
-            <button onClick={this.toggleEditProfile}>Save Changes</button>
-            <Link to="#" onClick={this.cancelEditProfile}>
-              Cancel
-            </Link>
-          </form>
+          <>
+            <form className="profile_form">
+              {this.renderFields()}
+              <button
+                onClick={this.props.handleSubmit(this.handleSaveProfile)}
+                disabled={isLoading}
+              >
+                {isLoading ? "Saving..." : "Save Changes"}
+              </button>
+              <Link to="#" onClick={this.cancelEditProfile}>
+                Cancel
+              </Link>
+            </form>
+            {isError && message && (
+              <div className="server_error">{message}</div>
+            )}
+          </>
         )}
       </div>
     );
@@ -72,11 +107,9 @@ const validate = values => {
   return error;
 };
 
-const mapStateToProps = ({ form: { profileInfoForm } }) => ({
-  profileInfoForm
-});
-
 export default reduxForm({
   form: "profileInfoForm",
-  validate
-})(connect(mapStateToProps)(ProfileInfo));
+  validate,
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true
+})(ProfileInfo);

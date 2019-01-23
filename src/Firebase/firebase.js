@@ -1,6 +1,6 @@
 import app from "firebase/app";
 import "firebase/auth";
-import "firebase/database";
+import "firebase/firestore";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,12 +11,15 @@ const config = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID
 };
 
+const settings = { timestampsInSnapshots: true };
+
 class Firebase {
   constructor() {
     app.initializeApp(config);
 
     this.auth = app.auth();
-    this.db = app.database();
+    this.db = app.firestore();
+    this.db.settings(settings);
   }
 
   //Authentication API
@@ -48,9 +51,9 @@ class Firebase {
 
   // *** User API ***
 
-  user = uid => this.db.ref(`users/${uid}`);
+  user = uid => this.db.collection('users').doc(uid);
 
-  users = () => this.db.ref("users");
+  // users = () => this.db.ref("users");
 }
 
 export default Firebase;

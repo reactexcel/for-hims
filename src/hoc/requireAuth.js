@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { firebase } from "../Firebase";
-import { loginSuccess } from "../actions";
+import { loginSuccess, getProfileInfoRequest } from "../actions";
 
 export default WrappedComponent => {
   class Authentication extends Component {
@@ -26,6 +26,11 @@ export default WrappedComponent => {
             };
             this.props.loginSuccess(data);
           }
+          // getting user detail to do if user is authenticated
+          // and stoping unneccessary api calls
+          if (this.props.userProfile.data.firstName === undefined) {
+            this.props.getProfileInfoRequest({ uid: this.props.user.data.uid });
+          }
         }
       });
     };
@@ -33,10 +38,13 @@ export default WrappedComponent => {
       return <WrappedComponent {...this.props} />;
     }
   }
-  const mapStateToProps = ({ user }) => ({ user });
+  const mapStateToProps = ({ user, profile: { userProfile } }) => ({
+    user,
+    userProfile
+  });
 
   return connect(
     mapStateToProps,
-    { loginSuccess }
+    { loginSuccess, getProfileInfoRequest }
   )(Authentication);
 };
