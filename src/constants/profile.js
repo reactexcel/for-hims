@@ -254,3 +254,9 @@ export const resetPasswordFields = [
   { name: "newPassword", placeholder: "New Password" },
   { name: "confirmPassword", placeholder: "Re-enter new password" }
 ];
+
+export const dateOfBirthFields = [
+  { name: "month", placeholder: "MM" },
+  { name: "day", placeholder: "DD" },
+  { name: "year", placeholder: "YY" }
+];

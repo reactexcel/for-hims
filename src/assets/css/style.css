@@ -1980,21 +1980,6 @@ ul.viewbox_section li {
   box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
-  /* padding: 8px;
-  font-size: 18px;
-  line-height: 27px;
-  color: #666;
-  background-color: transparent;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  height: 50px;
-  width: 100%;
-  border-top: 0px;
-  border-right: 0px;
-  border-left: 0px;
-  border-bottom: 2px solid #eee2d7;
-  */
   margin-bottom: 15px;
 }
 
@@ -2024,7 +2009,8 @@ input:not([type="checkbox"]) {
   transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .register_box input.error,
-.profile_module input.error {
+.profile_module input.error,
+.dob_form input.error {
   border-bottom-color: red;
 }
 /* forms in profile page */
@@ -2071,6 +2057,51 @@ form.profile_form button:disabled {
   padding-bottom: 1.2rem;
   margin-top: 3rem;
 }
+
+/* styles for date of birth section */
+.cart-dob_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10rem;
+}
+.cart-dob_section .dob_title {
+  font-size: 2.4rem;
+  font-weight: 400;
+}
+.dob_form {
+  margin-top: 2.4rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.dob_form .dob_fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dob_form input {
+  padding: 8px;
+  font-size: 18px;
+  line-height: 27px;
+  color: #666;
+  background-color: transparent;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 50px;
+  width: 100px;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 2px solid #eee2d7;
+  margin-bottom: 15px;
+  text-align: center;
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* end of styles for date of birth section */
 
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {
   h3,

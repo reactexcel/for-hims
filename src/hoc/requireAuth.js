@@ -26,7 +26,7 @@ export default WrappedComponent => {
             };
             this.props.loginSuccess(data);
           }
-          // getting user detail to do if user is authenticated
+          // getting user detail if user is authenticated
           // and stoping unneccessary api calls
           if (this.props.userProfile.data.firstName === undefined) {
             this.props.getProfileInfoRequest({ uid: this.props.user.data.uid });

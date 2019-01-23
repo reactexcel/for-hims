@@ -24,6 +24,9 @@ class Account extends Component {
   render() {
     const { showActionRequired } = this.state;
     const { auth } = this.props.user;
+    const {
+      data: { firstName }
+    } = this.props.userProfile;
     if (!auth) {
       return <Login />;
     }
@@ -31,7 +34,7 @@ class Account extends Component {
       <>
         {!showActionRequired ? (
           <div className="profile_menu_box">
-            <h4> Hi there! </h4>
+            <h4> Hi {firstName ? firstName : "there"}! </h4>
             <ul className="profile_menu">
               {/* <li>
                 <Link
@@ -66,7 +69,10 @@ class Account extends Component {
     );
   }
 }
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user, profile: { userProfile } }) => ({
+  user,
+  userProfile
+});
 export default connect(
   mapStateToProps,
   { logoutRequest }

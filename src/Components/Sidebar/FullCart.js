@@ -7,6 +7,7 @@ import VerifyAddress from "./VerifyAddress";
 import Login from "./Login";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import DateOfBirth from "./DateOfBirth";
 
 class FullCart extends Component {
   state = {
@@ -34,7 +35,8 @@ class FullCart extends Component {
           />
         );
       case 2:
-        return <Shipping renderNext={this.renderNext} />;
+        // return <Shipping renderNext={this.renderNext} />;
+        return <DateOfBirth />
       case 3:
         return <VerifyAddress renderNext={this.renderNext} />;
       case 4:
