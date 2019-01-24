@@ -10,7 +10,9 @@ import {
 import {
   resetPasswordRequest,
   updateProfileRequest,
-  getProfileInfoRequest
+  getProfileInfoRequest,
+  addDateOfBirthRequest,
+  addShipingAddressRequest
 } from "./actions/profile";
 
 function* watchActions() {
@@ -24,6 +26,11 @@ function* watchActions() {
   yield takeLatest(constants.RESET_PASSWORD_REQUEST, resetPasswordRequest);
   yield takeLatest(constants.UPDATE_PROFILE_REQUEST, updateProfileRequest);
   yield takeLatest(constants.GET_PROFILE_INFO_REQUEST, getProfileInfoRequest);
+  yield takeLatest(constants.ADD_DATE_OF_BIRTH_REQUEST, addDateOfBirthRequest);
+  yield takeLatest(
+    constants.ADD_SHIPPING_ADDRESS_REQUEST,
+    addShipingAddressRequest
+  );
 }
 export default function* rootSaga() {
   yield [watchActions()];

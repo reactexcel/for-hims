@@ -4,6 +4,7 @@ import FullCart from "../Sidebar/FullCart";
 import Login from "../Sidebar/Login";
 import Shop from "../Sidebar/Shop";
 import Learn from "../Sidebar/Learn";
+import isMobile from "../../hoc/isMobile";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -47,12 +48,13 @@ class Sidebar extends Component {
   };
 
   render() {
-    const { openSidebar, side } = this.props;
+    const { openSidebar, side, isMobile } = this.props;
+    
     let closeIconClass =
       side === "left"
         ? "glyphicon glyphicon-menu-left"
         : "glyphicon glyphicon-menu-right";
-    const width = openSidebar ? "45%" : 0;
+    const width = openSidebar ? (isMobile ? "100%" : "45%") : 0;
 
     return (
       <div
@@ -74,4 +76,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+export default isMobile(Sidebar);

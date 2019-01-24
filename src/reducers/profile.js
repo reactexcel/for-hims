@@ -15,6 +15,12 @@ const initialState = {
     isLoading: false,
     data: {},
     message: ""
+  },
+  additionalInfo: {
+    isError: false,
+    isSuccess: false,
+    isLoading: false,
+    message: ""
   }
 };
 
@@ -79,6 +85,36 @@ const updateProfileError = (state, action) =>
     }
   });
 
+// for additional info
+const additionalInfoRequest = (state, action) =>
+  update(state, {
+    additionalInfo: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false }
+    }
+  });
+
+const additionalInfoSuccess = (state, action) =>
+  update(state, {
+    additionalInfo: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false },
+      message: { $set: action.payload }
+    }
+  });
+
+const additionalInfoError = (state, action) =>
+  update(state, {
+    additionalInfo: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload }
+    }
+  });
+
 export default handleActions(
   {
     [constants.RESET_PASSWORD_REQUEST]: resetpswRequest,
@@ -93,6 +129,9 @@ export default handleActions(
     [constants.GET_PROFILE_INFO_SUCCESS]: updateProfileSuccess,
     [constants.GET_PROFILE_INFO_ERROR]: updateProfileError,
 
+    [constants.ADD_DATE_OF_BIRTH_REQUEST]: additionalInfoRequest,
+    [constants.ADD_DATE_OF_BIRTH_SUCCESS]: additionalInfoSuccess,
+    [constants.ADD_DATE_OF_BIRTH_ERROR]: additionalInfoError
   },
   initialState
 );

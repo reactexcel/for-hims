@@ -41,7 +41,7 @@ class ProfileContainer extends Component {
                 />
               </div>
               <div className="col-xs-12 col-sm-12 col-md-6">
-                <ProfileShippingAddress />
+                <ProfileShippingAddress userProfile={userProfile} />
                 <PaymentContainer />
               </div>
             </div>

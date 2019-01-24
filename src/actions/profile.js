@@ -17,12 +17,14 @@ export function* updateProfileRequest(action) {
   try {
     const response = yield firebase.user(uid).get();
 
-    if (response.exists) {
+    if (response.exists && response.data().firstName) {
       yield firebase.user(uid).update({ firstName, lastName, phone });
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
     } else {
-      yield firebase.user(uid).set({ firstName, lastName, phone });
+      yield firebase
+        .user(uid)
+        .set({ firstName, lastName, phone }, { merge: true });
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
     }
@@ -44,5 +46,31 @@ export function* getProfileInfoRequest(action) {
     }
   } catch (e) {
     yield put(actions.getProfileInfoError(e.message));
+  }
+}
+
+export function* addDateOfBirthRequest(action) {
+  const { dateOfBirth, uid } = action.payload;
+  try {
+    yield firebase.user(uid).set({ dateOfBirth }, { merge: true });
+    const userData = yield firebase.user(uid).get();
+    yield put(actions.updateProfileSuccess(userData.data()));
+    yield put(actions.addDateOfBirthSuccess());
+  } catch (e) {
+    yield put(actions.addDateOfBirthError(e.message));
+    yield put(actions.updateProfileError(e.message));
+  }
+}
+
+export function* addShipingAddressRequest(action) {
+  const { shippingAddress, uid } = action.payload;
+  try {
+    yield firebase.user(uid).set({ shippingAddress }, { merge: true });
+    const userData = yield firebase.user(uid).get();
+    yield put(actions.updateProfileSuccess(userData.data()));
+    yield put(actions.addShippingAddressSuccess());
+  } catch (e) {
+    yield put(actions.updateProfileError(e.message));
+    yield put(actions.addShippingAddressError(e.message));
   }
 }

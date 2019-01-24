@@ -1,9 +1,40 @@
 import React, { Component } from "react";
+import { Field, reduxForm } from "redux-form";
+import { shippingAddressFields as fields } from "../../constants/profile";
+import ProfileField from "../Profile/ProfileField";
+import ErrorText from "../Generic/ErrorText";
+import { usaStates } from "../../constants/profile";
+import { addShippingAddressRequest } from "../../actions";
+import { connect } from "react-redux";
 
 class Shipping extends Component {
   static defaultProps = {
     renderNext: () => {}
   };
+
+  handleSaveAddress = values => {
+    this.props.addShippingAddressRequest({
+      shippingAddress: values,
+      uid: this.props.user.data.uid
+    });
+  };
+
+  renderFields = () =>
+    fields.map(({ name, placeholder }) => (
+      <Field
+        component={ProfileField}
+        name={name}
+        label={placeholder}
+        type={"text"}
+        key={name}
+      />
+    ));
+  renderZipCode = ({ label, input, meta: { touched, error } }) => (
+    <>
+      <input {...input} type="text" maxLength={5} placeholder={label} />
+      {touched && error && <ErrorText text={error} />}
+    </>
+  );
 
   render() {
     return (
@@ -23,77 +54,25 @@ class Shipping extends Component {
             <h3>Shipping Information</h3>
             <h5>Please enter your home shipping address</h5>
             <form>
-              <input
-                type="text"
-                name="firstName"
-                value=""
-                autoComplete="true"
-                placeholder="First Name"
-                onChange={() => {}}
+              {this.renderFields()}
+              <Field component="select" name="states">
+                {usaStates.map(({ name, abbreviation }) => (
+                  <option value={`${name}, ${abbreviation}`} key={name}>
+                    {name}
+                  </option>
+                ))}
+              </Field>
+              <Field
+                component={this.renderZipCode}
+                name="zipcode"
+                label="Zip"
               />
               <input
                 type="text"
-                name="lastName"
-                value=""
-                autoComplete="true"
-                placeholder="Last Name"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="line1"
-                value=""
-                autoComplete="true"
-                placeholder="Street Address"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="line2"
-                value=""
-                autoComplete="true"
-                placeholder="Apt/Suite"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="city"
-                value=""
-                autoComplete="true"
-                placeholder="City"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="state"
-                value=""
-                autoComplete="true"
-                placeholder="State"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="zip"
-                value=""
-                autoComplete="true"
-                placeholder="Zip"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="united"
-                value=""
-                autoComplete="true"
-                placeholder="United States"
-                onChange={() => {}}
-              />
-              <input
-                type="number"
-                name="phone"
-                value=""
-                autoComplete="true"
-                placeholder="Phone"
-                onChange={() => {}}
+                disabled
+                name="country"
+                value="United States"
+                readOnly
               />
               <div className="switch_title">
                 <h4> Send me SMS Delivery Updates </h4>
@@ -109,7 +88,7 @@ class Shipping extends Component {
           tabIndex="0"
           type="button"
           className="next_btn"
-          onClick={this.props.renderNext}
+          onClick={this.props.handleSubmit(this.handleSaveAddress)}
         >
           Save Shipping Address
         </button>
@@ -117,5 +96,36 @@ class Shipping extends Component {
     );
   }
 }
+const validate = values => {
+  const error = {};
+  const regex = /(\d{5}([\-]\d{4})?)/;
 
-export default Shipping;
+  if (!regex.test(values.zipcode)) {
+    error.zipcode = "Invalid ZIP code";
+  }
+
+  for (let value of fields) {
+    if (!values[value.name]) {
+      error[value.name] = "Required Field";
+    }
+  }
+  if (!values.zipcode) {
+    error.zipcode = "Required Field";
+  }
+  return error;
+};
+
+const mapStateToProps = ({ user, profile: { userProfile } }) => ({
+  user,
+  userProfile
+});
+
+export default reduxForm({
+  form: "shippingForm",
+  validate
+})(
+  connect(
+    mapStateToProps,
+    { addShippingAddressRequest }
+  )(Shipping)
+);

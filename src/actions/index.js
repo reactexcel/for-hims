@@ -76,3 +76,25 @@ export const updateProfileSuccess = createAction(
   constants.UPDATE_PROFILE_SUCCESS
 );
 export const updateProfileError = createAction(constants.UPDATE_PROFILE_ERROR);
+
+//actions for adding date of birth
+export const addDateOfBirthRequest = createAction(
+  constants.ADD_DATE_OF_BIRTH_REQUEST
+);
+export const addDateOfBirthSuccess = createAction(
+  constants.ADD_DATE_OF_BIRTH_SUCCESS
+);
+export const addDateOfBirthError = createAction(
+  constants.ADD_DATE_OF_BIRTH_ERROR
+);
+
+//actions for shipping address
+export const addShippingAddressRequest = createAction(
+  constants.ADD_SHIPPING_ADDRESS_REQUEST
+);
+export const addShippingAddressSuccess = createAction(
+  constants.ADD_SHIPPING_ADDRESS_SUCCESS
+);
+export const addShippingAddressError = createAction(
+  constants.ADD_SHIPPING_ADDRESS_ERROR
+);

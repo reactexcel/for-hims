@@ -2071,6 +2071,9 @@ form.profile_form button:disabled {
   font-size: 2.4rem;
   font-weight: 400;
 }
+.cart-dob_section .next_btn{
+  position: absolute;
+}
 .dob_form {
   margin-top: 2.4rem;
   width: 100%;

@@ -54,7 +54,7 @@ class ProfileInfo extends Component {
     const {
       userInfo: { email },
       userProfile: {
-        data: { firstName, lastName, phone },
+        data: { firstName, lastName, phone ,dateOfBirth},
         isLoading,
         isError,
         message
@@ -68,7 +68,7 @@ class ProfileInfo extends Component {
             {firstName && <p>{`${firstName} ${lastName}`}</p>}
             <p>{email}</p>
             {phone && <p>{phone}</p>}
-            {/* <p>03-28-1985</p> */}
+            <p>{dateOfBirth && new Date(dateOfBirth.seconds).toLocaleDateString()}</p>
             <Link to="#" onClick={this.openEditProfile}>
               edit
             </Link>

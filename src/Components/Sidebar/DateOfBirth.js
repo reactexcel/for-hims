@@ -2,18 +2,29 @@ import React, { Component } from "react";
 import { dateOfBirthFields as fields } from "../../constants/profile";
 import { Field, reduxForm } from "redux-form";
 import DateFormField from "../Generic/DateFormField";
+import { connect } from "react-redux";
+import { addDateOfBirthRequest } from "../../actions";
 
 class DateOfBirth extends Component {
   renderFields = () =>
     fields.map(({ name, placeholder }) => (
       <Field
-      parse={value => isNaN(parseInt(value, 10)) ? null : parseInt(value, 10)}
+        parse={value =>
+          isNaN(parseInt(value, 10)) ? null : parseInt(value, 10)
+        }
         component={DateFormField}
         name={name}
         label={placeholder}
         key={name}
       />
     ));
+  handleSubmitDate = values => {
+    const dateOfBirth = new Date(
+      `${values.month}-${values.day}-${values.year}`
+    );
+    const { uid } = this.props.user.data;
+    this.props.addDateOfBirthRequest({ uid, dateOfBirth });
+  };
   render() {
     return (
       <>
@@ -32,6 +43,13 @@ class DateOfBirth extends Component {
             <div className="dob_title">Date of Birth</div>
             <div>What is your date of birth?</div>
             <form className="dob_form">{this.renderFields()}</form>
+            <button
+              type="orange"
+              className="next_btn"
+              onClick={this.props.handleSubmit(this.handleSubmitDate)}
+            >
+              Submit Date
+            </button>
           </div>
         </div>
       </>
@@ -47,6 +65,9 @@ const validate = values => {
   if (values.day < 0 || values.day > 31) {
     error.day = "Invalid Day";
   }
+  if (values.year > new Date().getFullYear() - 18) {
+    error.year = "Invalid Year";
+  }
   for (let value of fields) {
     if (!values[value.name]) {
       error[value.name] = "Required Field";
@@ -54,7 +75,13 @@ const validate = values => {
   }
   return error;
 };
+const mapStateToProps = ({ user }) => ({ user });
 export default reduxForm({
   form: "dateForm",
   validate
-})(DateOfBirth);
+})(
+  connect(
+    mapStateToProps,
+    { addDateOfBirthRequest }
+  )(DateOfBirth)
+);

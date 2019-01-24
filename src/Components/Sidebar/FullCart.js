@@ -17,7 +17,7 @@ class FullCart extends Component {
     const auth = JSON.parse(localStorage.getItem("auth"));
     if (!this.props.user.auth && !auth) {
       this.setState({ next: 10 });
-    } else if (this.state.next < 6) {
+    } else if (this.state.next < 5) {
       this.setState(prevState => ({ next: prevState.next + 1 }));
     }
   };
@@ -35,13 +35,19 @@ class FullCart extends Component {
           />
         );
       case 2:
-        // return <Shipping renderNext={this.renderNext} />;
-        return <DateOfBirth />
+        return this.props.userProfile.data.dateOfBirth ? (
+          this.props.userProfile.data.shippingAddress ? (
+            <VerifyAddress renderNext={this.renderNext} />
+          ) : (
+            <Shipping renderNext={this.renderNext} />
+          )
+        ) : (
+          <DateOfBirth />
+        );
+
       case 3:
-        return <VerifyAddress renderNext={this.renderNext} />;
-      case 4:
         return <Payment renderNext={this.renderNext} />;
-      case 5:
+      case 4:
         return <ConfirmOrder />;
       case 10:
         return <Login />;
@@ -53,6 +59,9 @@ class FullCart extends Component {
     return <>{this._renderItem()}</>;
   }
 }
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user, profile: { userProfile } }) => ({
+  user,
+  userProfile
+});
 
 export default connect(mapStateToProps)(withRouter(FullCart));

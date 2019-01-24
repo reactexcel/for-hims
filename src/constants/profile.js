@@ -239,7 +239,7 @@ export const usaStates = [
 
 export const shippingAddressFields = [
   { name: "street", placeholder: "Street Address" },
-  { name: "apt/suite", placeholder: "Apt/Suite" },
+  { name: "type", placeholder: "Apt/Suite" },
   { name: "city", placeholder: "City" }
 ];
 
