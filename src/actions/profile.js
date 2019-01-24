@@ -55,7 +55,7 @@ export function* addDateOfBirthRequest(action) {
     yield firebase.user(uid).set({ dateOfBirth }, { merge: true });
     const userData = yield firebase.user(uid).get();
     yield put(actions.updateProfileSuccess(userData.data()));
-    yield put(actions.addDateOfBirthSuccess());
+    yield put(actions.addDateOfBirthSuccess("Your date has been added"));
   } catch (e) {
     yield put(actions.addDateOfBirthError(e.message));
     yield put(actions.updateProfileError(e.message));
@@ -68,7 +68,7 @@ export function* addShipingAddressRequest(action) {
     yield firebase.user(uid).set({ shippingAddress }, { merge: true });
     const userData = yield firebase.user(uid).get();
     yield put(actions.updateProfileSuccess(userData.data()));
-    yield put(actions.addShippingAddressSuccess());
+    yield put(actions.addShippingAddressSuccess("Your address has been saved"));
   } catch (e) {
     yield put(actions.updateProfileError(e.message));
     yield put(actions.addShippingAddressError(e.message));

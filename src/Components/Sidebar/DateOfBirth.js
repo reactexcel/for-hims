@@ -26,6 +26,9 @@ class DateOfBirth extends Component {
     this.props.addDateOfBirthRequest({ uid, dateOfBirth });
   };
   render() {
+    const {
+      additionalInfo: { isLoading }
+    } = this.props;
     return (
       <>
         <div className="cart_section">
@@ -46,9 +49,10 @@ class DateOfBirth extends Component {
             <button
               type="orange"
               className="next_btn"
+              disabled={isLoading}
               onClick={this.props.handleSubmit(this.handleSubmitDate)}
             >
-              Submit Date
+              {isLoading ? "Saving" : "Submit Date"}
             </button>
           </div>
         </div>
@@ -75,7 +79,9 @@ const validate = values => {
   }
   return error;
 };
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ profile: { additionalInfo } }) => ({
+  additionalInfo
+});
 export default reduxForm({
   form: "dateForm",
   validate
@@ -83,5 +89,5 @@ export default reduxForm({
   connect(
     mapStateToProps,
     { addDateOfBirthRequest }
-  )(DateOfBirth)
+  )(connect(mapStateToProps)(DateOfBirth))
 );

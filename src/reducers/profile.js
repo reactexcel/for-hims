@@ -131,7 +131,11 @@ export default handleActions(
 
     [constants.ADD_DATE_OF_BIRTH_REQUEST]: additionalInfoRequest,
     [constants.ADD_DATE_OF_BIRTH_SUCCESS]: additionalInfoSuccess,
-    [constants.ADD_DATE_OF_BIRTH_ERROR]: additionalInfoError
+    [constants.ADD_DATE_OF_BIRTH_ERROR]: additionalInfoError,
+
+    [constants.ADD_SHIPPING_ADDRESS_REQUEST]: additionalInfoRequest,
+    [constants.ADD_SHIPPING_ADDRESS_SUCCESS]: additionalInfoSuccess,
+    [constants.ADD_SHIPPING_ADDRESS_ERROR]: additionalInfoError
   },
   initialState
 );
