@@ -7,7 +7,11 @@ import ResetPassword from "../Components/Profile/ResetPassword";
 import ProfileShippingAddress from "../Components/Profile/ProfileShippingAddress";
 import PaymentContainer from "../Components/Profile/PaymentContainer";
 import { connect } from "react-redux";
-import { resetPasswordRequest, updateProfileRequest } from "../actions";
+import {
+  resetPasswordRequest,
+  updateProfileRequest,
+  addShippingAddressRequest
+} from "../actions";
 
 class ProfileContainer extends Component {
   onResetPassword = data => {
@@ -17,10 +21,15 @@ class ProfileContainer extends Component {
     this.props.updateProfileRequest({ ...data });
   };
 
+  onUpdateShippingAddress = data => {
+    const { uid } = this.props.user.data;
+    this.props.addShippingAddressRequest({ ...data, uid });
+  };
+
   render() {
     const {
       user: { data },
-      profile: { resetpsw, userProfile }
+      profile: { resetpsw, userProfile, additionalInfo }
     } = this.props;
     return (
       <div>
@@ -41,7 +50,11 @@ class ProfileContainer extends Component {
                 />
               </div>
               <div className="col-xs-12 col-sm-12 col-md-6">
-                <ProfileShippingAddress userProfile={userProfile} />
+                <ProfileShippingAddress
+                  userProfile={userProfile}
+                  additionalInfo={additionalInfo}
+                  onUpdateShippingAddress={this.onUpdateShippingAddress}
+                />
                 <PaymentContainer />
               </div>
             </div>
@@ -58,5 +71,5 @@ const mapStateToProps = ({ user, profile }) => ({ user, profile });
 
 export default connect(
   mapStateToProps,
-  { resetPasswordRequest, updateProfileRequest }
+  { resetPasswordRequest, updateProfileRequest, addShippingAddressRequest }
 )(ProfileContainer);

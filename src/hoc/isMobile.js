@@ -8,12 +8,13 @@ export default WrappedComponent => {
       this.state = {
         width: window.innerWidth
       };
+      this.debouncedHandleResize = debounce(this.handleResize, 1500);
     }
     componentDidMount() {
-      window.addEventListener("resize", debounce(this.handleResize,1500));
+      window.addEventListener("resize", this.debouncedHandleResize);
     }
     componentWillUnmount() {
-      window.removeEventListener("resize", this.handleResize);
+      window.removeEventListener("resize", this.debouncedHandleResize);
     }
     handleResize = () => this.setState({ width: window.innerWidth });
     render() {

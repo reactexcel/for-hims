@@ -27,35 +27,45 @@ class DateOfBirth extends Component {
   };
   render() {
     const {
-      additionalInfo: { isLoading }
+      additionalInfo: { isLoading, isError, message }
     } = this.props;
     return (
       <>
-        <div className="cart_section">
-          <div className="symbols">
-            <div className="symbols-title">Cart</div>
-            <ul>
-              <li className="symbols1 active"> </li>
-              <li className="symbols2"> </li>
-              <li className="symbols3 "> </li>
-              <li className="symbols4"> </li>
-              <li className="symbols5"> </li>
-            </ul>
+        {isLoading ? (
+          <div className="login-loader">
+            <div>Loading your account...</div>
+            <div>Hang tight</div>
+            <div className="loader" />
           </div>
-          <div className="cart-dob_section">
-            <div className="dob_title">Date of Birth</div>
-            <div>What is your date of birth?</div>
-            <form className="dob_form">{this.renderFields()}</form>
-            <button
-              type="orange"
-              className="next_btn"
-              disabled={isLoading}
-              onClick={this.props.handleSubmit(this.handleSubmitDate)}
-            >
-              {isLoading ? "Saving" : "Submit Date"}
-            </button>
+        ) : (
+          <div className="cart_section">
+            <div className="symbols">
+              <div className="symbols-title">Cart</div>
+              <ul>
+                <li className="symbols1 active"> </li>
+                <li className="symbols2"> </li>
+                <li className="symbols3 "> </li>
+                <li className="symbols4"> </li>
+                <li className="symbols5"> </li>
+              </ul>
+            </div>
+            <div className="cart-dob_section">
+              <div className="dob_title">Date of Birth</div>
+              <div>What is your date of birth?</div>
+              <form className="dob_form">{this.renderFields()}</form>
+              <button
+                type="orange"
+                className="next_btn"
+                onClick={this.props.handleSubmit(this.handleSubmitDate)}
+              >
+                Submit Date
+              </button>
+              {isError && message && (
+                <div className="server_error">{message}</div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </>
     );
   }

@@ -23,23 +23,30 @@ class ProfileShippingAddress extends Component {
     this.setState({ showEditShippingAddress: false });
   };
   componentDidMount() {
-    this.props.initialize({ ...this.props.userProfile.data });
+    this.props.initialize({ ...this.props.userProfile.data.shippingAddress });
   }
   componentDidUpdate(prevProps) {
     if (
-      this.props.userProfile.isSuccess &&
-      prevProps.userProfile.isSuccess !== this.props.userProfile.isSuccess
+      this.props.additionalInfo.isSuccess &&
+      prevProps.additionalInfo.isSuccess !== this.props.additionalInfo.isSuccess
     ) {
       this.cancelEditShippingAddress();
     }
-    // if (
-    //   this.props.userProfile.data.shippingAddress &&
-    //   prevProps.userProfile.data.shippingAddress.street !==
-    //     this.props.userProfile.data.shippingAddress.street
-    // ) {
-    //   this.props.initialize({ ...this.props.userProfile.data });
-    // }
+
+    if (
+      this.props.userProfile.data.shippingAddress &&
+      prevProps.userProfile.data.shippingAddress !==
+        this.props.userProfile.data.shippingAddress
+    ) {
+      this.props.initialize({ ...this.props.userProfile.data.shippingAddress });
+    }
   }
+
+  handleUpdateShippingAddress = values => {
+    this.props.onUpdateShippingAddress({
+      shippingAddress: values
+    });
+  };
 
   renderFields = () =>
     fields.map(({ name, placeholder }) => (
@@ -60,6 +67,7 @@ class ProfileShippingAddress extends Component {
   );
   render() {
     const { showEditShippingAddress } = this.state;
+    const { isLoading, isError, message } = this.props.additionalInfo;
     const { shippingAddress } = this.props.userProfile.data;
     return (
       <div className="profile_module">
@@ -100,13 +108,21 @@ class ProfileShippingAddress extends Component {
                   value="United States"
                   readOnly
                 />
-                <button onClick={this.toggleEditShippingAddress}>
-                  Save Changes
+                <button
+                  onClick={this.props.handleSubmit(
+                    this.handleUpdateShippingAddress
+                  )}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Saving..." : "Save Changes"}
                 </button>
                 <Link to="#" onClick={this.cancelEditShippingAddress}>
                   Cancel
                 </Link>
               </form>
+              {isError && message && (
+                <div className="server_error">{message}</div>
+              )}
             </>
           )
         ) : (
@@ -138,16 +154,9 @@ const validate = values => {
   return error;
 };
 
-const mapStateToProps = ({ form: { profileShippingAddressForm } }) => ({
-  profileShippingAddressForm
-});
-
 export default reduxForm({
   form: "profileShippingAddressForm",
   validate,
-  initialValues: {
-    street: "1069 N Bodine St",
-    states: "Philadelphia, PA",
-    zipcode: "19123"
-  }
-})(connect(mapStateToProps)(ProfileShippingAddress));
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true
+})(ProfileShippingAddress);
