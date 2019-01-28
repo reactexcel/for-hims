@@ -51,9 +51,13 @@ class Firebase {
 
   // *** User API ***
 
-  user = uid => this.db.collection('users').doc(uid);
+  user = uid => this.db.collection("users").doc(uid);
 
-  // users = () => this.db.ref("users");
+  userMessages = uid =>
+    this.db
+      .collection("users")
+      .doc(uid)
+      .collection("messages");
 }
 
 export default Firebase;

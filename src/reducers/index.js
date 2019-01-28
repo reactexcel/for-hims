@@ -4,13 +4,15 @@ import user from "./user";
 import addcart from "./addremovecart";
 import forgotpsw from "./forgotpsw";
 import profile from "./profile";
+import message from "./message";
 import { LOGOUT_SUCCESS } from "../constants";
 
 const makeRootReducer = asyncReducers => {
   const appReducer = combineReducers({
     user,
     forgotpsw,
-    profile: profile,
+    profile,
+    message,
     form: formReducer,
     addcart,
     ...asyncReducers

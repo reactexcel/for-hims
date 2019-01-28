@@ -39,7 +39,8 @@ export default WrappedComponent => {
       });
     };
     render() {
-      return <WrappedComponent {...this.props} />;
+      const { uid } = this.props.user.data;
+      return <WrappedComponent {...this.props} uid={uid} />;
     }
   }
   const mapStateToProps = ({ user, profile: { userProfile } }) => ({

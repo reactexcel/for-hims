@@ -89,7 +89,8 @@ const validate = values => {
   }
   return error;
 };
-const mapStateToProps = ({ profile: { additionalInfo } }) => ({
+const mapStateToProps = ({ user, profile: { additionalInfo } }) => ({
+  user,
   additionalInfo
 });
 export default reduxForm({

@@ -98,3 +98,19 @@ export const addShippingAddressSuccess = createAction(
 export const addShippingAddressError = createAction(
   constants.ADD_SHIPPING_ADDRESS_ERROR
 );
+
+//actions for sending messages
+export const sendMessageRequest = createAction(constants.SEND_MESSAGES_REQUEST);
+export const sendMessageSuccess = createAction(constants.SEND_MESSAGES_SUCCESS);
+export const sendMessageError = createAction(constants.SEND_MESSAGES_ERROR);
+
+//actions for getting all message
+export const getAllMessageRequest = createAction(
+  constants.GET_ALL_MESSAGES_REQUEST
+);
+export const getAllMessageSuccess = createAction(
+  constants.GET_ALL_MESSAGES_SUCCESS
+);
+export const getAllMessageError = createAction(
+  constants.GET_ALL_MESSAGES_ERROR
+);

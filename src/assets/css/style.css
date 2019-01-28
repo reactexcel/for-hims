@@ -2010,7 +2010,8 @@ input:not([type="checkbox"]) {
 }
 .register_box input.error,
 .profile_module input.error,
-.dob_form input.error {
+.dob_form input.error,
+.message-text-box input.error {
   border-bottom-color: red;
 }
 /* forms in profile page */

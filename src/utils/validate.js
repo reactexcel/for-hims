@@ -21,3 +21,11 @@ const validateEmail = email => {
   const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   return regex.test(email);
 };
+
+export const validateMessage = (message) => {
+  const error = {}
+  if(!message.trim()){
+    error.message = "Required Field"
+  }
+  return error;
+}

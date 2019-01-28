@@ -14,6 +14,7 @@ import {
   addDateOfBirthRequest,
   addShipingAddressRequest
 } from "./actions/profile";
+import { sendMessageRequest, getAllMessageRequest } from "./actions/message";
 
 function* watchActions() {
   yield takeLatest(constants.LOGIN_REQUEST, loginRequest);
@@ -31,6 +32,8 @@ function* watchActions() {
     constants.ADD_SHIPPING_ADDRESS_REQUEST,
     addShipingAddressRequest
   );
+  yield takeLatest(constants.SEND_MESSAGES_REQUEST, sendMessageRequest);
+  yield takeLatest(constants.GET_ALL_MESSAGES_REQUEST, getAllMessageRequest);
 }
 export default function* rootSaga() {
   yield [watchActions()];

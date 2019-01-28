@@ -1,14 +1,28 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
+import { validateMessage } from "../utils/validate";
+import ErrorText from "./Generic/ErrorText";
 
 class Messages extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openMessageModal: false,
-      sendMessage: false
+      sendMessage: false,
+      message: "",
+      error: {}
     };
   }
+  handleChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  handleSubmit = e => {
+    const error = validateMessage(this.state.message);
+    this.setState({ error });
+    if (!Object.keys(error).length) {
+      this.props.onSendMessage(this.state.message);
+    }
+  };
+
   openMessageModal = () =>
     this.setState({ sendMessage: false, openMessageModal: true });
   closeMessageModal = () => this.setState({ openMessageModal: false });
@@ -16,7 +30,8 @@ class Messages extends Component {
   toggleTextMessageBox = () =>
     this.setState(prevState => ({ sendMessage: !prevState.sendMessage }));
   render() {
-    const { openMessageModal, sendMessage } = this.state;
+    const { openMessageModal, sendMessage, message, error } = this.state;
+    const { isLoading, isError, isSuccess } = this.props.message;
     return (
       <>
         <div className="orders_section">
@@ -67,12 +82,19 @@ class Messages extends Component {
                           <input
                             type="text"
                             name="message"
-                            // value={email}
+                            value={message}
                             placeholder="Enter your message here..."
+                            className={error.message ? "error" : ""}
                             onChange={this.handleChange}
                           />
+                          {error.message && <ErrorText text={error.message} />}
                           <div className="message-text-box--actions">
-                            <div className="submit-now">Submit Now</div>
+                            <div
+                              className="submit-now"
+                              onClick={this.handleSubmit}
+                            >
+                              Submit Now
+                            </div>
                             <div onClick={this.closeMessageModal}>Cancel</div>
                           </div>
                         </div>
