@@ -16,7 +16,7 @@ import QuestionsContainer from "./Containers/QuestionsContainer";
 import ReplyContainer from "./Containers/ReplyContainer";
 import { Provider } from "react-redux";
 import createStore from "./createStore";
-
+import ScrollToTop from "./Components/Generic/ScrollToTop";
 const store = createStore();
 
 class App extends Component {
@@ -24,69 +24,71 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <Switch>
-            <Route exact path="/" component={HomeContainer} />
-            <Route
-              exact
-              path="/action-required"
-              component={requireAuth(ActionRequiredContainer)}
-            />
-            <Route
-              exact
-              path="/back-to-inbox"
-              component={requireAuth(BackToInboxContainer)}
-            />
-            <Route
-              exact
-              path="/gender"
-              component={requireAuth(GenderContainer)}
-            />
-            <Route
-              exact
-              path="/informed-consent"
-              component={requireAuth(InformedConsentContainer)}
-            />
-            <Route
-              exact
-              path="/messages"
-              component={requireAuth(MessagesContainer)}
-            />
-            <Route
-              exact
-              path="/message-your-doctor"
-              component={requireAuth(MessageYourDoctorContainer)}
-            />
-            <Route
-              exact
-              path="/my-orders"
-              component={requireAuth(MyOrdersContainer)}
-            />
-            <Route
-              exact
-              path="/orders"
-              component={requireAuth(OrdersContainer)}
-            />
-            <Route
-              exact
-              path="/photos"
-              component={requireAuth(PhotosContainer)}
-            />
-            <Route
-              exact
-              path="/profile"
-              component={requireAuth(ProfileContainer)}
-            />
-            <Route
-              exact
-              path="/questions"
-              component={requireAuth(QuestionsContainer)}
-            />
-            <Route
-              exact
-              path="/messages/:id"
-              component={requireAuth(ReplyContainer)}
-            />
-          </Switch>
+          <ScrollToTop>
+            <Switch>
+              <Route exact path="/" component={HomeContainer} />
+              <Route
+                exact
+                path="/action-required"
+                component={requireAuth(ActionRequiredContainer)}
+              />
+              <Route
+                exact
+                path="/back-to-inbox"
+                component={requireAuth(BackToInboxContainer)}
+              />
+              <Route
+                exact
+                path="/gender"
+                component={requireAuth(GenderContainer)}
+              />
+              <Route
+                exact
+                path="/informed-consent"
+                component={requireAuth(InformedConsentContainer)}
+              />
+              <Route
+                exact
+                path="/messages"
+                component={requireAuth(MessagesContainer)}
+              />
+              <Route
+                exact
+                path="/message-your-doctor"
+                component={requireAuth(MessageYourDoctorContainer)}
+              />
+              <Route
+                exact
+                path="/my-orders"
+                component={requireAuth(MyOrdersContainer)}
+              />
+              <Route
+                exact
+                path="/orders"
+                component={requireAuth(OrdersContainer)}
+              />
+              <Route
+                exact
+                path="/photos"
+                component={requireAuth(PhotosContainer)}
+              />
+              <Route
+                exact
+                path="/profile"
+                component={requireAuth(ProfileContainer)}
+              />
+              <Route
+                exact
+                path="/questions"
+                component={requireAuth(QuestionsContainer)}
+              />
+              <Route
+                exact
+                path="/messages/:id"
+                component={requireAuth(ReplyContainer)}
+              />
+            </Switch>
+          </ScrollToTop>
         </Router>
       </Provider>
     );

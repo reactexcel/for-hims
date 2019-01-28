@@ -20,6 +20,7 @@ class Messages extends Component {
     if (!Object.keys(error).length) {
       this.props.onSendMessage(this.state.message);
     }
+    this.setState({message:''})
   };
 
   render() {
