@@ -32,7 +32,7 @@ class VerifyAddress extends Component {
           <blockquote className="select_yes">
             <input type="radio" checked /> <strong>Suggested address:</strong>
             <br /> {shippingAddress.street} <br /> {shippingAddress.states}{" "}
-            <br /> {shippingAddress.zipcode} <br />
+            <br /> {shippingAddress.zipcode}   <br />
             USA
           </blockquote>
           <a href="#" className="read">
