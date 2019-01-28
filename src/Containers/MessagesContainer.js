@@ -2,11 +2,44 @@ import React, { Component } from "react";
 import Header from "../Components/Generic/Header";
 import Footer from "../Components/Generic/Footer";
 import Messages from "../Components/Messages";
-import { sendMessageRequest } from "../actions";
+import { sendMessageRequest, getAllMessageRequest } from "../actions";
 import { connect } from "react-redux";
-import { map } from "@firebase/util";
+import BackToInbox from "../Components/BackToInbox";
 
 class MessagesContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      openMessageModal: false,
+      sendMessage: false
+    };
+  }
+
+  openMessageModal = () =>
+    this.setState({ sendMessage: false, openMessageModal: true });
+
+  closeMessageModal = () => this.setState({ openMessageModal: false });
+
+  toggleTextMessageBox = () =>
+    this.setState(prevState => ({ sendMessage: !prevState.sendMessage }));
+
+  componentDidMount() {
+    const { uid } = this.props;
+    this.props.getAllMessageRequest({ uid });
+  }
+  componentDidUpdate(prevProps) {
+    const { uid } = this.props;
+    if (prevProps.uid !== this.props.uid) {
+      this.props.getAllMessageRequest({ uid });
+    }
+
+    if (
+      this.props.message.isSuccess &&
+      prevProps.message.isSuccess !== this.props.message.isSuccess
+    ) {
+      this.closeMessageModal();
+    }
+  }
   onSendMessage = message => {
     const { uid } = this.props;
     this.props.sendMessageRequest({ uid, message });
@@ -17,7 +50,15 @@ class MessagesContainer extends Component {
     return (
       <div>
         <Header />
-        <Messages onSendMessage={this.onSendMessage} message={message} />
+        <Messages
+          onSendMessage={this.onSendMessage}
+          message={message}
+          onOpenMessageModal={this.openMessageModal}
+          closeMessageModal={this.closeMessageModal}
+          toggleTextMessageBox={this.toggleTextMessageBox}
+          openMessageModal={this.state.openMessageModal}
+          sendMessage={this.state.sendMessage}
+        />
         <Footer />
       </div>
     );
@@ -28,5 +69,5 @@ const mapStateToProps = ({ message }) => ({ message });
 
 export default connect(
   mapStateToProps,
-  { sendMessageRequest }
+  { sendMessageRequest, getAllMessageRequest }
 )(MessagesContainer);

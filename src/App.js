@@ -83,7 +83,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/reply"
+              path="/messages/:id"
               component={requireAuth(ReplyContainer)}
             />
           </Switch>

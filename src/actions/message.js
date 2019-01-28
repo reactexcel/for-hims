@@ -6,14 +6,10 @@ export function* sendMessageRequest(action) {
   const { uid, message } = action.payload;
 
   try {
-    const response = yield firebase
-      .userMessages(uid)
-      .add({ message, timestamp: new Date() });
+    yield firebase.userMessages(uid).add({ message, timestamp: new Date() });
     const resp = yield firebase.userMessages(uid).get();
-    console.log(response, resp, "======", resp.docs[0].data());
-    yield put(actions.sendMessageSuccess());
+    yield put(actions.sendMessageSuccess(resp.docs));
   } catch (e) {
-    console.log(e.message, "====");
     yield put(actions.sendMessageError(e.message));
   }
 }
@@ -22,8 +18,7 @@ export function* getAllMessageRequest(action) {
   const { uid } = action.payload;
   try {
     const response = yield firebase.userMessages(uid).get();
-    console.log(response.docs);
-    yield put(actions.getAllMessageSuccess());
+    yield put(actions.getAllMessageSuccess(response.docs));
   } catch (e) {
     yield put(actions.getAllMessageError(e.message));
   }

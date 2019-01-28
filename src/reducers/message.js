@@ -7,14 +7,15 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
-  data: {}
+  data: []
 };
 
 const messageRequest = (state, action) =>
   update(state, {
     isLoading: { $set: true },
     isSuccess: { $set: false },
-    isError: { $set: false }
+    isError: { $set: false },
+    message: { $set: "" }
   });
 
 const messageSuccess = (state, action) =>
@@ -22,7 +23,8 @@ const messageSuccess = (state, action) =>
     isLoading: { $set: false },
     isSuccess: { $set: true },
     isError: { $set: false },
-    data: { $set: action.payload }
+    data: { $set: action.payload },
+    message: { $set: "" }
   });
 
 const messageError = (state, action) =>

@@ -1289,6 +1289,7 @@ div.read:hover,
 
 .action_required_section {
   padding: 100px 0px 50px 0px;
+  cursor: pointer;
 }
 a.new-massage_btn {
   font-size: 18px;
@@ -2072,7 +2073,7 @@ form.profile_form button:disabled {
   font-size: 2.4rem;
   font-weight: 400;
 }
-.cart-dob_section .next_btn{
+.cart-dob_section .next_btn {
   position: absolute;
 }
 .dob_form {
@@ -2432,9 +2433,6 @@ form.profile_form button:disabled {
 
   .message_viewer_outer {
     padding: 40px 20px 20px 20px;
-  }
-  .action_required_section {
-    padding: 50px 0px 50px 0px;
   }
 
   ul.tab_header {
@@ -2876,5 +2874,8 @@ form.profile_form button:disabled {
   }
   .message-text-box {
     width: 80vw;
+  }
+  .action_required_section {
+    padding: 140px 0px 50px 0px;
   }
 }
