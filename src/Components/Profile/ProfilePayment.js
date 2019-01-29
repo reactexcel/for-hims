@@ -12,7 +12,6 @@ class ProfilePayment extends Component {
     };
   }
   submit = async e => {
-    console.log(e.target, "evevwefv");
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     console.log(token);
     if (token) {

@@ -28,7 +28,7 @@ class SignUp extends Component {
     const errors = validate(this.state.data);
     this.setState({ errors });
     if (!Object.keys(errors).length) {
-      this.props.signupRequest();
+      this.props.signupRequest({ ...this.state.data });
     }
   };
 
@@ -37,7 +37,7 @@ class SignUp extends Component {
       data: { email, password, checked },
       errors
     } = this.state;
-    const { isSuccess, isLoading } = this.props.login;
+    const { isSuccess, isLoading, isError, message } = this.props.user;
     if (isSuccess) {
       return <Account />;
     }
@@ -104,6 +104,9 @@ class SignUp extends Component {
                       {errors.termsAndConditions}
                     </div>
                   )}
+                  {isError && message && (
+                    <div className="server_error">{message}</div>
+                  )}
                 </form>
               </div>
             </div>
@@ -121,7 +124,7 @@ class SignUp extends Component {
     );
   }
 }
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ user }) => ({ user });
 export default connect(
   mapStateToProps,
   { signupRequest }

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class VerifyAddress extends Component {
-	static defaultProps = {
+  static defaultProps = {
     renderNext: () => {}
   };
   render() {
+    const {
+      data: { shippingAddress }
+    } = this.props.userProfile;
     return (
       <div id="mySidenav9">
         <div className="symbols">
@@ -21,11 +25,14 @@ class VerifyAddress extends Component {
           <h3> Verify your address </h3>
           <blockquote className="select_no">
             <input type="radio" /> <strong>Original address:</strong> <br />
-            1069 N, Bodine st <br /> Philadelphia, PA <br /> 19123 <br /> USA
+            {shippingAddress.street} <br /> {shippingAddress.states} <br />
+            {shippingAddress.zipcode}
+            <br /> USA
           </blockquote>
           <blockquote className="select_yes">
             <input type="radio" checked /> <strong>Suggested address:</strong>
-            <br /> 1069 N, Bodine st <br /> Philadelphia, PA <br /> 19123 <br />
+            <br /> {shippingAddress.street} <br /> {shippingAddress.states}{" "}
+            <br /> {shippingAddress.zipcode}   <br />
             USA
           </blockquote>
           <a href="#" className="read">
@@ -44,5 +51,5 @@ class VerifyAddress extends Component {
     );
   }
 }
-
-export default VerifyAddress;
+const mapStateToProps = ({ profile: { userProfile } }) => ({ userProfile });
+export default connect(mapStateToProps)(VerifyAddress);

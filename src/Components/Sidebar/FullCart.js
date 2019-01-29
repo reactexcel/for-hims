@@ -7,6 +7,7 @@ import VerifyAddress from "./VerifyAddress";
 import Login from "./Login";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import DateOfBirth from "./DateOfBirth";
 
 class FullCart extends Component {
   state = {
@@ -14,9 +15,9 @@ class FullCart extends Component {
   };
   renderNext = () => {
     const auth = JSON.parse(localStorage.getItem("auth"));
-    if (!this.props.login.auth && !auth) {
+    if (!this.props.user.auth && !auth) {
       this.setState({ next: 10 });
-    } else if (this.state.next < 6) {
+    } else if (this.state.next < 5) {
       this.setState(prevState => ({ next: prevState.next + 1 }));
     }
   };
@@ -34,12 +35,19 @@ class FullCart extends Component {
           />
         );
       case 2:
-        return <Shipping renderNext={this.renderNext} />;
+        return this.props.userProfile.data.dateOfBirth ? (
+          this.props.userProfile.data.shippingAddress ? (
+            <VerifyAddress renderNext={this.renderNext} />
+          ) : (
+            <Shipping renderNext={this.renderNext} />
+          )
+        ) : (
+          <DateOfBirth />
+        );
+
       case 3:
-        return <VerifyAddress renderNext={this.renderNext} />;
-      case 4:
         return <Payment renderNext={this.renderNext} />;
-      case 5:
+      case 4:
         return <ConfirmOrder />;
       case 10:
         return <Login />;
@@ -51,6 +59,9 @@ class FullCart extends Component {
     return <>{this._renderItem()}</>;
   }
 }
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ user, profile: { userProfile } }) => ({
+  user,
+  userProfile
+});
 
 export default connect(mapStateToProps)(withRouter(FullCart));

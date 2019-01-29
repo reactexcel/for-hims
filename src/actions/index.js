@@ -15,12 +15,29 @@ export const loginError = createAction(constants.LOGIN_ERROR);
 export const logoutRequest = createAction(constants.LOGOUT_REQUEST);
 export const logoutSuccess = createAction(constants.LOGOUT_SUCCESS);
 
+//actions for forgot password
+export const forgotPasswordRequest = createAction(
+  constants.FORGOT_PASSWORD_REQUEST
+);
+export const forgotPasswordSuccess = createAction(
+  constants.FORGOT_PASSWORD_SUCCESS
+);
+export const forgotPasswordError = createAction(
+  constants.FORGOT_PASSWORD_ERROR
+);
+export const forgotPasswordResetRequest = createAction(
+  constants.FORGOT_PASSWORD_RESET_REQUEST
+);
+export const forgotPasswordResetSuccess = createAction(
+  constants.FORGOT_PASSWORD_RESET_SUCCESS
+);
+
 //actions for add to cart
 export const addToCartRequest = createAction(constants.ADD_TO_CART_REQUEST);
 export const addToCartSuccess = createAction(constants.ADD_TO_CART_SUCCESS);
 export const addToCartError = createAction(constants.ADD_TO_CART_ERROR);
 
-//export const remove from cart
+//actions for remove from cart
 export const removeFromCartRequest = createAction(
   constants.REMOVE_FROM_CART_REQUEST
 );
@@ -29,4 +46,71 @@ export const removeFromCartSuccess = createAction(
 );
 export const removeFromCartError = createAction(
   constants.REMOVE_FROM_CART_ERROR
+);
+
+//actions for reset password
+export const resetPasswordRequest = createAction(
+  constants.RESET_PASSWORD_REQUEST
+);
+export const resetPasswordSuccess = createAction(
+  constants.RESET_PASSWORD_SUCCESS
+);
+export const resetPasswordError = createAction(constants.RESET_PASSWORD_ERROR);
+
+//actions for get profile info
+export const getProfileInfoRequest = createAction(
+  constants.GET_PROFILE_INFO_REQUEST
+);
+export const getProfileInfoSuccess = createAction(
+  constants.GET_PROFILE_INFO_SUCCESS
+);
+export const getProfileInfoError = createAction(
+  constants.GET_PROFILE_INFO_ERROR
+);
+
+//actions for update profile
+export const updateProfileRequest = createAction(
+  constants.UPDATE_PROFILE_REQUEST
+);
+export const updateProfileSuccess = createAction(
+  constants.UPDATE_PROFILE_SUCCESS
+);
+export const updateProfileError = createAction(constants.UPDATE_PROFILE_ERROR);
+
+//actions for adding date of birth
+export const addDateOfBirthRequest = createAction(
+  constants.ADD_DATE_OF_BIRTH_REQUEST
+);
+export const addDateOfBirthSuccess = createAction(
+  constants.ADD_DATE_OF_BIRTH_SUCCESS
+);
+export const addDateOfBirthError = createAction(
+  constants.ADD_DATE_OF_BIRTH_ERROR
+);
+
+//actions for shipping address
+export const addShippingAddressRequest = createAction(
+  constants.ADD_SHIPPING_ADDRESS_REQUEST
+);
+export const addShippingAddressSuccess = createAction(
+  constants.ADD_SHIPPING_ADDRESS_SUCCESS
+);
+export const addShippingAddressError = createAction(
+  constants.ADD_SHIPPING_ADDRESS_ERROR
+);
+
+//actions for sending messages
+export const sendMessageRequest = createAction(constants.SEND_MESSAGES_REQUEST);
+export const sendMessageSuccess = createAction(constants.SEND_MESSAGES_SUCCESS);
+export const sendMessageError = createAction(constants.SEND_MESSAGES_ERROR);
+
+//actions for getting all message
+export const getAllMessageRequest = createAction(
+  constants.GET_ALL_MESSAGES_REQUEST
+);
+export const getAllMessageSuccess = createAction(
+  constants.GET_ALL_MESSAGES_SUCCESS
+);
+export const getAllMessageError = createAction(
+  constants.GET_ALL_MESSAGES_ERROR
 );

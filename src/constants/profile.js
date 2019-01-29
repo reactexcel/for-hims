@@ -239,7 +239,7 @@ export const usaStates = [
 
 export const shippingAddressFields = [
   { name: "street", placeholder: "Street Address" },
-  { name: "apt/suite", placeholder: "Apt/Suite" },
+  { name: "type", placeholder: "Apt/Suite" },
   { name: "city", placeholder: "City" }
 ];
 
@@ -253,4 +253,10 @@ export const resetPasswordFields = [
   { name: "oldPassword", placeholder: "Old Password" },
   { name: "newPassword", placeholder: "New Password" },
   { name: "confirmPassword", placeholder: "Re-enter new password" }
+];
+
+export const dateOfBirthFields = [
+  { name: "month", placeholder: "MM" },
+  { name: "day", placeholder: "DD" },
+  { name: "year", placeholder: "YY" }
 ];

@@ -46,7 +46,8 @@ a {
 .grew {
   color: #94999d;
 }
-.link {
+.link,
+.primary-text {
   color: #cc835c;
 }
 p {
@@ -1288,6 +1289,7 @@ div.read:hover,
 
 .action_required_section {
   padding: 100px 0px 50px 0px;
+  cursor: pointer;
 }
 a.new-massage_btn {
   font-size: 18px;
@@ -1751,7 +1753,8 @@ ul.viewbox_section li {
   text-align: left;
   padding: 0 8px;
 }
-.error--terms-and-condition {
+.error--terms-and-condition,
+.server_error {
   font-size: 1.5rem;
   color: #ff0000;
   background: rgba(244, 67, 54, 0.1);
@@ -1974,25 +1977,10 @@ ul.viewbox_section li {
   height: 40px;
   padding: 10px 12px;
   border-radius: 4px;
-  border: 1px solid transparent; 
-   box-shadow: 0 1px 3px 0 #e6ebf1;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
-  /* padding: 8px;
-  font-size: 18px;
-  line-height: 27px;
-  color: #666;
-  background-color: transparent;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  height: 50px;
-  width: 100%;
-  border-top: 0px;
-  border-right: 0px;
-  border-left: 0px;
-  border-bottom: 2px solid #eee2d7;
-  */
   margin-bottom: 15px;
 }
 
@@ -2008,7 +1996,6 @@ ul.viewbox_section li {
   background-color: #fefde5 !important;
 }
 
-
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
@@ -2023,7 +2010,9 @@ input:not([type="checkbox"]) {
   transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .register_box input.error,
-.profile_module input.error {
+.profile_module input.error,
+.dob_form input.error,
+.message-text-box input.error {
   border-bottom-color: red;
 }
 /* forms in profile page */
@@ -2044,6 +2033,80 @@ input:not([type="checkbox"]) {
 .profile_module form.profile_form select {
   color: #000000de;
 }
+
+form.profile_form button:disabled {
+  background-color: #cfd7df;
+}
+
+/* forgot password next steps */
+.forgot-psw_next-steps {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.forgot-psw_next-steps > div:first-child {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+.forgot-psw_next-steps .forgot-psw_login {
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-bottom: 2px solid black;
+  padding-bottom: 1.2rem;
+  margin-top: 3rem;
+}
+
+/* styles for date of birth section */
+.cart-dob_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10rem;
+}
+.cart-dob_section .dob_title {
+  font-size: 2.4rem;
+  font-weight: 400;
+}
+.cart-dob_section .next_btn {
+  position: absolute;
+}
+.dob_form {
+  margin-top: 2.4rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.dob_form .dob_fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dob_form input {
+  padding: 8px;
+  font-size: 18px;
+  line-height: 27px;
+  color: #666;
+  background-color: transparent;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 50px;
+  width: 100px;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 2px solid #eee2d7;
+  margin-bottom: 15px;
+  text-align: center;
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* end of styles for date of birth section */
 
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {
   h3,
@@ -2370,9 +2433,6 @@ input:not([type="checkbox"]) {
 
   .message_viewer_outer {
     padding: 40px 20px 20px 20px;
-  }
-  .action_required_section {
-    padding: 50px 0px 50px 0px;
   }
 
   ul.tab_header {
@@ -2814,5 +2874,8 @@ input:not([type="checkbox"]) {
   }
   .message-text-box {
     width: 80vw;
+  }
+  .action_required_section {
+    padding: 140px 0px 50px 0px;
   }
 }

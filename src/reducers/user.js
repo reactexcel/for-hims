@@ -6,7 +6,9 @@ const initialState = {
   auth: false,
   isError: false,
   isSuccess: false,
-  isLoading: false
+  isLoading: false,
+  message: "",
+  data: {}
 };
 
 const loginRequest = (state, action) =>
@@ -22,7 +24,8 @@ const loginSuccess = (state, action) =>
     auth: { $set: true },
     isLoading: { $set: false },
     isSuccess: { $set: true },
-    isError: { $set: false }
+    isError: { $set: false },
+    data: { $set: action.payload }
   });
 
 const loginError = (state, action) =>
@@ -30,7 +33,9 @@ const loginError = (state, action) =>
     auth: { $set: false },
     isLoading: { $set: false },
     isSuccess: { $set: false },
-    isError: { $set: true }
+    isError: { $set: true },
+    message: { $set: action.payload.message },
+    data: { $set: {} }
   });
 
 export default handleActions(

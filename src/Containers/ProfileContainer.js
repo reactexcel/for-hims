@@ -6,9 +6,31 @@ import Prescriptions from "../Components/Profile/Prescriptions";
 import ResetPassword from "../Components/Profile/ResetPassword";
 import ProfileShippingAddress from "../Components/Profile/ProfileShippingAddress";
 import PaymentContainer from "../Components/Profile/PaymentContainer";
+import { connect } from "react-redux";
+import {
+  resetPasswordRequest,
+  updateProfileRequest,
+  addShippingAddressRequest
+} from "../actions";
 
 class ProfileContainer extends Component {
+  onResetPassword = data => {
+    this.props.resetPasswordRequest({ ...data });
+  };
+  onUpdateProfileRequest = data => {
+    this.props.updateProfileRequest({ ...data });
+  };
+
+  onUpdateShippingAddress = data => {
+    const { uid } = this.props.user.data;
+    this.props.addShippingAddressRequest({ ...data, uid });
+  };
+
   render() {
+    const {
+      user: { data },
+      profile: { resetpsw, userProfile, additionalInfo }
+    } = this.props;
     return (
       <div>
         <Header />
@@ -16,12 +38,23 @@ class ProfileContainer extends Component {
           <div className="container">
             <div className="row">
               <div className="col-xs-12 col-sm-12 col-md-6">
-                <ProfileInfo />
+                <ProfileInfo
+                  userInfo={data}
+                  userProfile={userProfile}
+                  onUpdateProfileRequest={this.onUpdateProfileRequest}
+                />
                 <Prescriptions />
-                <ResetPassword />
+                <ResetPassword
+                  onResetPassword={this.onResetPassword}
+                  resetPassword={resetpsw}
+                />
               </div>
               <div className="col-xs-12 col-sm-12 col-md-6">
-                <ProfileShippingAddress />
+                <ProfileShippingAddress
+                  userProfile={userProfile}
+                  additionalInfo={additionalInfo}
+                  onUpdateShippingAddress={this.onUpdateShippingAddress}
+                />
                 <PaymentContainer />
               </div>
             </div>
@@ -34,4 +67,9 @@ class ProfileContainer extends Component {
   }
 }
 
-export default ProfileContainer;
+const mapStateToProps = ({ user, profile }) => ({ user, profile });
+
+export default connect(
+  mapStateToProps,
+  { resetPasswordRequest, updateProfileRequest, addShippingAddressRequest }
+)(ProfileContainer);

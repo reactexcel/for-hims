@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import hims_logo from "../../assets/images/hims_logo.png";
 import Sidebar from "./Sidebar";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { loginSuccess } from "../../actions";
+import requireAuth from "../../hoc/requireAuth";
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -27,10 +28,6 @@ class Header extends Component {
   };
 
   componentDidMount() {
-    const auth = JSON.parse(localStorage.getItem("auth"));
-    if (auth) {
-      this.props.loginSuccess();
-    }
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount() {
@@ -40,7 +37,8 @@ class Header extends Component {
     if (this.headerRef) {
       if (
         this.headerRef.getBoundingClientRect().height <
-        document.documentElement.scrollTop || document.body.scrollTop
+          document.documentElement.scrollTop ||
+        document.body.scrollTop
       ) {
         this.headerRef.classList.add("scrolled");
       } else {
@@ -58,7 +56,7 @@ class Header extends Component {
   };
   render() {
     const {
-      login: { isSuccess: loginSuccess, auth },
+      user: { isSuccess: loginSuccess, auth },
       addcart: { addToCart }
     } = this.props;
     return (
@@ -109,7 +107,7 @@ class Header extends Component {
                   className="mobile_none"
                   onClick={() => this._openSidebar("right", "cart")}
                 >
-                  <Link to="#">Cart{addToCart && "(1)"  } </Link>
+                  <Link to="#">Cart{addToCart && "(1)"} </Link>
                 </li>
 
                 {loginSuccess && auth ? (
@@ -141,8 +139,5 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = ({ login, addcart }) => ({ login, addcart });
-export default connect(
-  mapStateToProps,
-  { loginSuccess }
-)(Header);
+const mapStateToProps = ({ user, addcart }) => ({ user, addcart });
+export default connect(mapStateToProps)(withRouter(requireAuth(Header)));
