@@ -8,32 +8,30 @@ const stripe = require("stripe")(functions.config().stripe.token);
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-function charge(req, res) {
+async function charge(req, res) {
   const body = JSON.parse(req.body);
   const token = body.token.id;
   const amount = body.charge.amount;
   const currency = body.charge.currency;
 
   // Charge card
-  stripe.charges
-    .create({
+  try {
+    const charge = await stripe.charges.create({
       amount,
       currency,
       description: "Charges for noledreum",
       source: token
-    })
-    .then(charge => {
-      send(res, 200, {
-        message: "Success",
-        charge
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      send(res, 500, {
-        error: err.message
-      });
     });
+    send(res, 200, {
+      message: "Success",
+      charge
+    });
+  } catch (err) {
+    console.log(err);
+    send(res, 500, {
+      error: err.message
+    });
+  }
 }
 
 function send(res, code, body) {
