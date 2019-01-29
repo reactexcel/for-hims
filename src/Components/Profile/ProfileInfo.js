@@ -13,8 +13,8 @@ class ProfileInfo extends Component {
   }
 
   handleSaveProfile = values => {
-    const { uid } = this.props.userInfo;
-    this.props.onUpdateProfileRequest({ ...values, uid });
+    const { uid, email } = this.props.userInfo;
+    this.props.onUpdateProfileRequest({ ...values, email, uid });
   };
 
   openEditProfile = () => this.setState({ showEditProfile: true });

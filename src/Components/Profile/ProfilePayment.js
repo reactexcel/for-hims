@@ -18,7 +18,7 @@ class ProfilePayment extends Component {
     if (token) {
       try {
         const res = await axios.post(
-          "https://us-central1-for-hims-dev.cloudfunctions.net/charge",
+          "https://us-central1-for-hims-dev.cloudfunctions.net/charge/",
           {
             token,
             charge: {
@@ -27,8 +27,7 @@ class ProfilePayment extends Component {
             }
           }
         );
-        const resp = await res.json();
-        console.log(resp);
+        console.log(res, "+++++");
         this.stripeRef.clear();
       } catch (e) {
         console.log(e, "ytfgyhuj");

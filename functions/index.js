@@ -9,11 +9,15 @@ const stripe = require("stripe")(functions.config().stripe.token);
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 async function charge(req, res) {
-  const body = JSON.parse(req.body);
+  console.log(
+    req.body,
+    "==========================================================="
+  );
+  const body = req.body;
   const token = body.token.id;
   const amount = body.charge.amount;
   const currency = body.charge.currency;
-  
+
   // Charge card
   try {
     const charge = await stripe.charges.create({
@@ -55,8 +59,30 @@ app.post("/", (req, res) => {
   }
 });
 
+async function payment(userId, stripeToken) {
+  try {
+    let data = await db.cleaner.findOne({ _id: userId });
+    data = JSON.parse(JSON.stringify(data));
+
+    if (!data.stripeId) {
+      const customer = await stripe.customers.create({
+        source: stripeToken.id,
+        email: data.email
+      });
+    }
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+export default {
+  payment,
+  cancelSubscription
+};
+
 exports.charge = functions.https.onRequest(app);
 
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //   response.send("Hello from Firebase!");
 // });
+

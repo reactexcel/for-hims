@@ -13,7 +13,7 @@ export function* resetPasswordRequest(action) {
 }
 
 export function* updateProfileRequest(action) {
-  const { uid, firstName, lastName, phone } = action.payload;
+  const { uid, firstName, lastName, phone, email } = action.payload;
   try {
     const response = yield firebase.user(uid).get();
 
@@ -24,7 +24,7 @@ export function* updateProfileRequest(action) {
     } else {
       yield firebase
         .user(uid)
-        .set({ firstName, lastName, phone }, { merge: true });
+        .set({ firstName, lastName, phone, email }, { merge: true });
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
     }
