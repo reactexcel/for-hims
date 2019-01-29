@@ -4,7 +4,6 @@ import Footer from "../Components/Generic/Footer";
 import Messages from "../Components/Messages";
 import { sendMessageRequest, getAllMessageRequest } from "../actions";
 import { connect } from "react-redux";
-import BackToInbox from "../Components/BackToInbox";
 
 class MessagesContainer extends Component {
   constructor(props) {
