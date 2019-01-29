@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import ErrorText from "../Generic/ErrorText";
 // var stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+import axios from "axios";
 
 class ProfilePayment extends Component {
   constructor(props) {
@@ -15,7 +16,23 @@ class ProfilePayment extends Component {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     console.log(token);
     if (token) {
-      this.stripeRef.clear();
+      try {
+        const res = await axios.post(
+          "https://us-central1-for-hims-dev.cloudfunctions.net/charge",
+          {
+            token,
+            charge: {
+              amount: 30,
+              currency: "USD"
+            }
+          }
+        );
+        const resp = await res.json();
+        console.log(resp);
+        this.stripeRef.clear();
+      } catch (e) {
+        console.log(e, "ytfgyhuj");
+      }
     }
   };
   validateCard = e => {

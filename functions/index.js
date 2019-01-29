@@ -13,7 +13,7 @@ async function charge(req, res) {
   const token = body.token.id;
   const amount = body.charge.amount;
   const currency = body.charge.currency;
-
+  
   // Charge card
   try {
     const charge = await stripe.charges.create({

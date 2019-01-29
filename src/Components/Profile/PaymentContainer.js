@@ -4,7 +4,7 @@ import ProfilePayment from "./ProfilePayment";
 export default class PaymentContainer extends Component {
   render() {
     return (
-      <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
+      <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}>
         <Elements>
             <ProfilePayment />
         </Elements>
