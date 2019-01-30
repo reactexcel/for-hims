@@ -14,7 +14,6 @@ async function charge(req, res) {
   const token = body.token.id;
   const amount = body.charge.amount;
   const currency = body.charge.currency;
-  console.log(body, "===========");
   // Charge card
   try {
     const response = await admin
