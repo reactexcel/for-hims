@@ -14,6 +14,8 @@ class ProfilePayment extends Component {
   }
   submit = async e => {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
+    const { uid, email } = this.props.userInfo;
+    console.log(uid, email, "sad");
     console.log(token);
     if (token) {
       try {
@@ -21,6 +23,8 @@ class ProfilePayment extends Component {
           "https://us-central1-for-hims-dev.cloudfunctions.net/charge/",
           {
             token,
+            userId: uid,
+            email,
             charge: {
               amount: 30,
               currency: "USD"

@@ -55,7 +55,7 @@ class ProfileContainer extends Component {
                   additionalInfo={additionalInfo}
                   onUpdateShippingAddress={this.onUpdateShippingAddress}
                 />
-                <PaymentContainer />
+                <PaymentContainer userInfo={data} />
               </div>
             </div>
           </div>

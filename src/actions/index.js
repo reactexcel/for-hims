@@ -114,3 +114,14 @@ export const getAllMessageSuccess = createAction(
 export const getAllMessageError = createAction(
   constants.GET_ALL_MESSAGES_ERROR
 );
+
+//actions for adding new payment method
+export const addNewPaymentRequest = createAction(
+  constants.ADDING_PAYMENT_METHOD_REQUEST
+);
+export const addNewPaymentSuccess = createAction(
+  constants.ADDING_PAYMENT_METHOD_SUCCESS
+);
+export const addNewPaymentError = createAction(
+  constants.ADDING_PAYMENT_METHOD_ERROR
+);
