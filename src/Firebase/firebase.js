@@ -57,7 +57,8 @@ class Firebase {
     this.db
       .collection("users")
       .doc(uid)
-      .collection("messages");
+      .collection("messages")
+      .orderBy("timestamp", "desc");
 }
 
 export default Firebase;
