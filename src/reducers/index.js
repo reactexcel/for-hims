@@ -5,6 +5,7 @@ import addcart from "./addremovecart";
 import forgotpsw from "./forgotpsw";
 import profile from "./profile";
 import message from "./message";
+import orders from "./orders";
 import { LOGOUT_SUCCESS } from "../constants";
 
 const makeRootReducer = asyncReducers => {
@@ -15,6 +16,7 @@ const makeRootReducer = asyncReducers => {
     message,
     form: formReducer,
     addcart,
+    orders,
     ...asyncReducers
   });
   return (state, action) => {

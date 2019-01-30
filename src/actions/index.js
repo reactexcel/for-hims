@@ -125,3 +125,12 @@ export const addNewPaymentSuccess = createAction(
 export const addNewPaymentError = createAction(
   constants.ADDING_PAYMENT_METHOD_ERROR
 );
+
+//actions for getting all orders
+export const getAllOrdersRequest = createAction(
+  constants.GET_ALL_ORDERS_REQUEST
+);
+export const getAllOrdersSuccess = createAction(
+  constants.GET_ALL_ORDERS_SUCCESS
+);
+export const getAllOrdersError = createAction(constants.GET_ALL_ORDERS_ERROR);
