@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import ProfileField from "./ProfileField";
 import { resetPasswordFields as fields } from "../../constants/profile";
 
-function ResetPassword(props) {
-  const renderFields = () =>
+class ResetPassword extends Component {
+  renderFields = () =>
     fields.map(({ name, placeholder }) => (
       <Field
         component={ProfileField}
@@ -14,24 +14,38 @@ function ResetPassword(props) {
         key={name}
       />
     ));
-  const handleSubmit = values => {
-    console.log(values);
-    props.onResetPassword(values);
+  handleSubmit = values => {
+    this.props.onResetPassword(values);
   };
-  const { isError, isSuccess, isLoading, message } = props.resetPassword;
-  return (
-    <div className="profile_module">
-      <h3>Password</h3>
-      <form className="profile_form">
-        {renderFields()}
-        <button onClick={props.handleSubmit(handleSubmit)} disabled={isLoading}>
-          {isLoading ? "Resetting Password" : "Reset Password"}
-        </button>
-        {isSuccess && message && <div className="primary-text">{message}</div>}
-      </form>
-      {isError && message && <div className="server_error">{message}</div>}
-    </div>
-  );
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.resetPassword.isSuccess &&
+      prevProps.resetPassword.isSuccess !== this.props.resetPassword.isSuccess
+    ) {
+      this.props.reset();
+    }
+  }
+  render() {
+    const { isError, isSuccess, isLoading, message } = this.props.resetPassword;
+    return (
+      <div className="profile_module">
+        <h3>Password</h3>
+        <form className="profile_form">
+          {this.renderFields()}
+          <button
+            onClick={this.props.handleSubmit(this.handleSubmit)}
+            disabled={isLoading}
+          >
+            {isLoading ? "Resetting Password" : "Reset Password"}
+          </button>
+          {isSuccess && message && (
+            <div className="primary-text">{message}</div>
+          )}
+        </form>
+        {isError && message && <div className="server_error">{message}</div>}
+      </div>
+    );
+  }
 }
 const validate = values => {
   const error = {};
@@ -46,16 +60,7 @@ const validate = values => {
   return error;
 };
 
-// const asyncValidate = values => {
-//   firebase
-//     .validateOldPassword(values)
-//     .then(res => console.log(res))
-//     .catch(err => console.log(err));
-// };
-
 export default reduxForm({
   form: "resetPassword",
   validate
-  // asyncValidate,
-  // asyncBlurFields: ["oldPassword"]
 })(ResetPassword);

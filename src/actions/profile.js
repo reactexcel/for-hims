@@ -6,7 +6,7 @@ export function* resetPasswordRequest(action) {
   const { newPassword: password } = action.payload;
   try {
     yield firebase.userUpdatePassword(password);
-    yield put(actions.resetPasswordSuccess("Your Password is resetted"));
+    yield put(actions.resetPasswordSuccess("Your Password has been changed"));
   } catch (e) {
     yield put(actions.resetPasswordError(e.message));
   }
