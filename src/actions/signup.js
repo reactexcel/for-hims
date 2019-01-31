@@ -1,4 +1,5 @@
 import { put } from "redux-saga/effects";
+import { delay } from "redux-saga";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
 
@@ -15,7 +16,8 @@ export function* signupRequest(action) {
     };
     yield put(actions.signupSuccess(data));
   } catch (e) {
-    console.log(e, "error");
     yield put(actions.signupError(e));
+    yield delay(3500);
+    yield put(actions.resetAuthMessage());
   }
 }

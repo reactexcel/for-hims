@@ -6,6 +6,8 @@ export const SIGNUP_ERROR = "SIGNUP_ERROR";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
+// constants for reset login and signup
+export const RESET_AUTH_MESSAGE = "RESET_AUTH_MESSAGE";
 //constants for logout
 export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";

@@ -10,7 +10,8 @@ export const signupError = createAction(constants.SIGNUP_ERROR);
 export const loginRequest = createAction(constants.LOGIN_REQUEST);
 export const loginSuccess = createAction(constants.LOGIN_SUCCESS);
 export const loginError = createAction(constants.LOGIN_ERROR);
-
+//action for reset mesage auth
+export const resetAuthMessage = createAction(constants.RESET_AUTH_MESSAGE);
 //actions for user logout
 export const logoutRequest = createAction(constants.LOGOUT_REQUEST);
 export const logoutSuccess = createAction(constants.LOGOUT_SUCCESS);

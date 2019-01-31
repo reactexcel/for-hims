@@ -38,6 +38,9 @@ const loginError = (state, action) =>
     data: { $set: {} }
   });
 
+const resetMessage = (state, action) =>
+  update(state, { message: { $set: "" } });
+
 export default handleActions(
   {
     [constants.LOGIN_REQUEST]: loginRequest,
@@ -46,7 +49,9 @@ export default handleActions(
 
     [constants.SIGNUP_REQUEST]: loginRequest,
     [constants.SIGNUP_SUCCESS]: loginSuccess,
-    [constants.SIGNUP_ERROR]: loginError
+    [constants.SIGNUP_ERROR]: loginError,
+
+    [constants.RESET_AUTH_MESSAGE]: resetMessage
   },
   initialState
 );

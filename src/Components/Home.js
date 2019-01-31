@@ -19,7 +19,7 @@ class HomeContainer extends Component {
     const { onAddProduct } = this.props;
     return (
       <>
-        <div className="header_menu_bg">
+        {/* <div className="header_menu_bg">
           <div className="container-fluid">
             <div className="row">
               <div className="col-xs-12 col-sm-12 col-md-12">
@@ -38,7 +38,7 @@ class HomeContainer extends Component {
             </div>
           </div>
         </div>
-        <div className="clearfix" />
+        <div className="clearfix" /> */}
 
         <div className="header_slider">
           <div className="container-fluid">

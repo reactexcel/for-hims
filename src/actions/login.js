@@ -1,4 +1,5 @@
 import { put } from "redux-saga/effects";
+import { delay } from "redux-saga";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
 
@@ -15,6 +16,8 @@ export function* loginRequest(action) {
     yield put(actions.loginSuccess(data));
   } catch (e) {
     yield put(actions.loginError(e));
+    yield delay(3500)
+    yield put(actions.resetAuthMessage());
   }
 }
 
