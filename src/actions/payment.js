@@ -10,11 +10,11 @@ function customerApi(data) {
 }
 
 export function* addNewPaymentRequest(action) {
-  const { userId, token, email, charge } = action.payload;
+  const { uid, token, email, charge } = action.payload;
 
   try {
     const response = yield call(customerApi, {
-      userId,
+      uid,
       token,
       email,
       charge

@@ -10,7 +10,7 @@ const stripe = require("stripe")(functions.config().stripe.token);
 //
 async function charge(req, res) {
   const body = req.body;
-  const userId = body.userId;
+  const uid = body.uid;
   const token = body.token.id;
   const amount = body.charge.amount;
   const currency = body.charge.currency;
@@ -19,7 +19,7 @@ async function charge(req, res) {
     const response = await admin
       .firestore()
       .collection("users")
-      .doc(userId)
+      .doc(uid)
       .get();
     const userData = response.data();
     if (!userData.customerId) {
@@ -30,7 +30,7 @@ async function charge(req, res) {
       admin
         .firestore()
         .collection("users")
-        .doc(userId)
+        .doc(uid)
         .set({ customerId: customer.id }, { merge: true });
 
       const charge = await stripe.charges.create({

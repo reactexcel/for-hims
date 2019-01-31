@@ -10,31 +10,24 @@ class ProfilePayment extends Component {
     super(props);
     this.state = {
       errors: {},
-      loading:false
+      loading: false
     };
   }
   submit = async e => {
-    this.setState({loading:true})
+    this.setState({ loading: true });
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    const { uid, email } = this.props.userInfo;
     if (token) {
-      try {
-        this.setState({loading:false})
-        this.props.onAddNewPayment({
-          token,
-          userId: uid,
-          email,
-          charge: {
-            amount: 30,
-            currency: "USD"
-          }
-        });
-        this.stripeRef.clear();
-      } catch (e) {
-        this.setState({loading:false})
-        console.log(e, "ytfgyhuj");
-      }
+      this.props.onAddNewPayment({
+        token,
+        charge: {
+          amount: 30,
+          currency: "USD"
+        }
+      });
+      this.setState({ loading: false });
+      this.stripeRef.clear();
     }
+    this.setState({ loading: false });
   };
   validateCard = e => {
     const errors = {};
@@ -72,11 +65,15 @@ class ProfilePayment extends Component {
             onReady={element => (this.stripeRef = element)}
           />
           {errors.message && <ErrorText text={errors.message} />}
-          <button type="button" onClick={this.submit} disabled={loading || isLoading}>
+          {isError && message && <div className="server_error">{message}</div>}
+          <button
+            type="button"
+            onClick={this.submit}
+            disabled={loading || isLoading}
+          >
             Add New Payment Method
           </button>
         </form>
-        {isError && message && <div className="server_error">{message}</div>}
         <Link to="#">Cancel</Link>
       </div>
     );
