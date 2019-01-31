@@ -6,7 +6,11 @@ export default class PaymentContainer extends Component {
     return (
       <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}>
         <Elements>
-          <ProfilePayment userInfo={this.props.userInfo} />
+          <ProfilePayment
+            userInfo={this.props.userInfo}
+            onAddNewPayment={this.props.onAddNewPayment}
+            payment={this.props.payment}
+          />
         </Elements>
       </StripeProvider>
     );

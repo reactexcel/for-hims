@@ -22,7 +22,6 @@ class ActionRequired extends Component {
 
   render() {
     const { openMessageModal, sendMessage } = this.state;
-
     return (
       <div className="container">
         <div className="row">

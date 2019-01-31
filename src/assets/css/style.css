@@ -2034,7 +2034,8 @@ input:not([type="checkbox"]) {
   color: #000000de;
 }
 
-form.profile_form button:disabled {
+form.profile_form button:disabled,
+.payment_form button:disabled {
   background-color: #cfd7df;
 }
 

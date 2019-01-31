@@ -10,7 +10,8 @@ import { connect } from "react-redux";
 import {
   resetPasswordRequest,
   updateProfileRequest,
-  addShippingAddressRequest
+  addShippingAddressRequest,
+  addNewPaymentRequest
 } from "../actions";
 
 class ProfileContainer extends Component {
@@ -26,10 +27,16 @@ class ProfileContainer extends Component {
     this.props.addShippingAddressRequest({ ...data, uid });
   };
 
+  onAddNewPayment = data => {
+    // const /
+    this.props.addNewPaymentRequest(data);
+  };
+
   render() {
     const {
       user: { data },
-      profile: { resetpsw, userProfile, additionalInfo }
+      profile: { resetpsw, userProfile, additionalInfo },
+      payment
     } = this.props;
     return (
       <div>
@@ -55,7 +62,11 @@ class ProfileContainer extends Component {
                   additionalInfo={additionalInfo}
                   onUpdateShippingAddress={this.onUpdateShippingAddress}
                 />
-                <PaymentContainer userInfo={data} />
+                <PaymentContainer
+                  userInfo={data}
+                  onAddNewPayment={this.onAddNewPayment}
+                  payment={payment}
+                />
               </div>
             </div>
           </div>
@@ -67,9 +78,18 @@ class ProfileContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ user, profile }) => ({ user, profile });
+const mapStateToProps = ({ user, profile, payment }) => ({
+  user,
+  profile,
+  payment
+});
 
 export default connect(
   mapStateToProps,
-  { resetPasswordRequest, updateProfileRequest, addShippingAddressRequest }
+  {
+    resetPasswordRequest,
+    updateProfileRequest,
+    addShippingAddressRequest,
+    addNewPaymentRequest
+  }
 )(ProfileContainer);

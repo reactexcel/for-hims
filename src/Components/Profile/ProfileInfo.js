@@ -78,7 +78,7 @@ class ProfileInfo extends Component {
           </>
         ) : (
           <>
-            <form className="profile_form">
+            <form>
               {this.renderFields()}
               <button
                 onClick={this.props.handleSubmit(this.handleSaveProfile)}

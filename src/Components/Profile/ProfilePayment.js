@@ -9,31 +9,29 @@ class ProfilePayment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      errors: {}
+      errors: {},
+      loading:false
     };
   }
   submit = async e => {
+    this.setState({loading:true})
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     const { uid, email } = this.props.userInfo;
-    console.log(uid, email, "sad");
-    console.log(token);
     if (token) {
       try {
-        const res = await axios.post(
-          "https://us-central1-for-hims-dev.cloudfunctions.net/charge/",
-          {
-            token,
-            userId: uid,
-            email,
-            charge: {
-              amount: 30,
-              currency: "USD"
-            }
+        this.setState({loading:false})
+        this.props.onAddNewPayment({
+          token,
+          userId: uid,
+          email,
+          charge: {
+            amount: 30,
+            currency: "USD"
           }
-        );
-        console.log(res, "+++++");
+        });
         this.stripeRef.clear();
       } catch (e) {
+        this.setState({loading:false})
         console.log(e, "ytfgyhuj");
       }
     }
@@ -48,11 +46,12 @@ class ProfilePayment extends Component {
     }
   };
   render() {
-    const { errors } = this.state;
+    const { errors, loading } = this.state;
+    const { data, isError, isLoading, isSuccess, message } = this.props.payment;
     return (
       <div className="profile_module">
         <h3>Payment Methods</h3>
-        <form>
+        <form className="payment_form">
           {/* <input
           type="text"
           className="card"
@@ -73,10 +72,11 @@ class ProfilePayment extends Component {
             onReady={element => (this.stripeRef = element)}
           />
           {errors.message && <ErrorText text={errors.message} />}
-          <button type="button" onClick={this.submit}>
+          <button type="button" onClick={this.submit} disabled={loading || isLoading}>
             Add New Payment Method
           </button>
         </form>
+        {isError && message && <div className="server_error">{message}</div>}
         <Link to="#">Cancel</Link>
       </div>
     );
