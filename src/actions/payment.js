@@ -4,7 +4,7 @@ import axios from "axios";
 
 function customerApi(data) {
   return axios.post(
-    "https://us-central1-for-hims-dev.cloudfunctions.net/charge/",
+    "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/charge",
     data
   );
 }
