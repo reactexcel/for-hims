@@ -16,7 +16,7 @@ export function* loginRequest(action) {
     yield put(actions.loginSuccess(data));
   } catch (e) {
     yield put(actions.loginError(e));
-    yield delay(3500)
+    yield delay(5000)
     yield put(actions.resetAuthMessage());
   }
 }

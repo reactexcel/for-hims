@@ -17,7 +17,7 @@ export function* signupRequest(action) {
     yield put(actions.signupSuccess(data));
   } catch (e) {
     yield put(actions.signupError(e));
-    yield delay(3500);
+    yield delay(5000);
     yield put(actions.resetAuthMessage());
   }
 }
