@@ -3,8 +3,9 @@ import * as actions from "./index";
 import axios from "axios";
 
 function customerApi(data) {
+  // "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/charge/"
   return axios.post(
-    "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/charge",
+    "https://us-central1-for-hims-dev.cloudfunctions.net/charge/",
     data
   );
 }

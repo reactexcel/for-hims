@@ -57,6 +57,7 @@ class MessagesContainer extends Component {
           toggleTextMessageBox={this.toggleTextMessageBox}
           openMessageModal={this.state.openMessageModal}
           sendMessage={this.state.sendMessage}
+          history={this.props.history}
         />
         <Footer />
       </div>

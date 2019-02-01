@@ -31,7 +31,8 @@ class Messages extends Component {
       sendMessage,
       onOpenMessageModal,
       closeMessageModal,
-      toggleTextMessageBox
+      toggleTextMessageBox,
+      history
     } = this.props;
     const {
       isLoading,
@@ -54,21 +55,20 @@ class Messages extends Component {
                     New Message
                   </Link>
                   {data.map(message => (
-                    <div className="messages_new_box" key={message.id}>
+                    <div
+                      className="messages_new_box"
+                      key={message.id}
+                      onClick={() =>
+                        history.push({
+                          pathname: `messages/${message.id}`,
+                          state: {
+                            data: message.data()
+                          }
+                        })
+                      }
+                    >
                       <i className="fa fa-envelope-o" />
-                      <h4>
-                        <Link
-                          to={{
-                            pathname: `messages/${message.id}`,
-                            state: {
-                              data: message.data()
-                            }
-                          }}
-                          className="black"
-                        >
-                          {message.data().message}
-                        </Link>
-                      </h4>
+                      <h4>{message.data().message}</h4>
                       <h5 className="grew">
                         {moment(message.data().timestamp.seconds * 1000).format(
                           "LLL"
