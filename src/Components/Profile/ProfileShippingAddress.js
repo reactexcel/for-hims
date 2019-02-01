@@ -4,7 +4,6 @@ import { Field, reduxForm } from "redux-form";
 import ProfileField from "./ProfileField";
 import { usaStates } from "../../constants/profile";
 import ErrorText from "../Generic/ErrorText";
-import { connect } from "react-redux";
 import { shippingAddressFields as fields } from "../../constants/profile";
 
 class ProfileShippingAddress extends Component {

@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import ErrorText from "../Generic/ErrorText";
-// var stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
-import axios from "axios";
 
 class ProfilePayment extends Component {
   constructor(props) {
@@ -40,7 +38,7 @@ class ProfilePayment extends Component {
   };
   render() {
     const { errors, loading } = this.state;
-    const { data, isError, isLoading, isSuccess, message } = this.props.payment;
+    const { isError, isLoading, message } = this.props.payment;
     return (
       <div className="profile_module">
         <h3>Payment Methods</h3>
