@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "noleuderm-d2b6a"
+    "default": "noleuderm-d2b6a",
+    "test": "for-hims-dev"
   }
 }

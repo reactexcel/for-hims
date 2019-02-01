@@ -23,6 +23,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
+        <div className="free_shipping_promo">free shipping on all orders</div>
         <Router>
           <ScrollToTop>
             <Switch>

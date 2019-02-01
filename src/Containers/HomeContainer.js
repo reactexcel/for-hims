@@ -16,7 +16,6 @@ class HomeContainer extends Component {
   render() {
     return (
       <>
-        <div className="free_shipping_promo">free shipping on all orders</div>
         <div className="blank_space" />
         <Header />
         <Home onAddProduct={this.onAddProduct} />
