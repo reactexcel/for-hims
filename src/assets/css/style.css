@@ -1384,6 +1384,7 @@ button.photo_btn:hover {
   padding: 20px 25px 20px 70px;
   margin-top: 10px;
   position: relative;
+  overflow-wrap: break-word;
 }
 .messages_new_box:hover {
   background: #fbf8f5;
@@ -1762,6 +1763,7 @@ ul.viewbox_section li {
   line-height: 2rem;
   padding: 2.5rem;
   margin-top: 3rem;
+  overflow-wrap: break-word;
 }
 /* Style for Modal */
 .ReactModal__Overlay {

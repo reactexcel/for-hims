@@ -57,8 +57,7 @@ class Firebase {
     this.db
       .collection("users")
       .doc(uid)
-      .collection("messages")
-      .orderBy("timestamp", "desc");
+      .collection("messages");
 
   userOrders = uid =>
     this.db

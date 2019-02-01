@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 import { validateMessage } from "../utils/validate";
 import ErrorText from "./Generic/ErrorText";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 class Messages extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Messages extends Component {
     if (!Object.keys(error).length) {
       this.props.onSendMessage(this.state.message);
     }
-    this.setState({message:''})
+    this.setState({ message: "" });
   };
 
   render() {
@@ -69,9 +70,9 @@ class Messages extends Component {
                         </Link>
                       </h4>
                       <h5 className="grew">
-                        {new Date(message.data().timestamp.seconds * 1000)
-                          .toUTCString()
-                          .slice(4, -4)}
+                        {moment(message.data().timestamp.seconds * 1000).format(
+                          "LLL"
+                        )}
                       </h5>
                     </div>
                   ))}
