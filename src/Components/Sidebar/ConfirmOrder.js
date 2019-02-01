@@ -7,7 +7,7 @@ class ConfirmOrder extends Component {
   };
   render() {
     return (
-      <div>
+      <>
         <div className="cart_section no-items">
           <div className="symbols">
             <div className="symbols-title">Confirm Order</div>
@@ -91,7 +91,7 @@ class ConfirmOrder extends Component {
         >
           <Link to="/gender">Confirm & Start Visit</Link>
         </button>
-      </div>
+      </>
     );
   }
 }
