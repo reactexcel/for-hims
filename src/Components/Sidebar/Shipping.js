@@ -13,7 +13,6 @@ class Shipping extends Component {
   };
 
   handleSaveAddress = values => {
-    const { uid } = this.props.userInfo;
     this.props.addShippingAddressRequest({
       shippingAddress: values,
       uid: this.props.user.data.uid

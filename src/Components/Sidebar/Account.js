@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import baseline from "../../assets/images/baseline-error.svg";
 import ActionItems from "./ActionItems";
 import { connect } from "react-redux";
 import { logoutRequest } from "../../actions";

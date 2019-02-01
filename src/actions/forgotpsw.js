@@ -5,7 +5,7 @@ import { firebase } from "../Firebase";
 export function* forgotpswRequest(action) {
   const { email } = action.payload;
   try {
-    const response = yield firebase.userForgotPassword(email);
+    yield firebase.userForgotPassword(email);
     yield put(actions.forgotPasswordSuccess());
   } catch (e) {
     yield put(actions.forgotPasswordError(e));
