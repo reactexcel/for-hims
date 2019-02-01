@@ -19,7 +19,6 @@ class OrdersContainer extends Component {
   }
   render() {
     const { data } = this.props.orders;
-    console.log(data,'asd')
     return (
       <div>
         <Header />

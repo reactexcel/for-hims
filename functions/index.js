@@ -1,8 +1,8 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp(functions.config().firebase);
-const settings = { timestampsInSnapshots: true };
-admin.firestore(settings);
+// const settings = { timestampsInSnapshots: true };
+// // admin.firestore(settings);
 const express = require("express");
 const cors = require("cors")({ origin: true });
 const app = express();

@@ -63,7 +63,7 @@ export default class UploadPhoto extends Component {
           </button>
         )}
         <div className="camera-container">
-          <img src={this.state.imageUrl} />
+          <img src={this.state.imageUrl} alt="" />
         </div>
         {imageUrl ? (
           <div className="retake-use_container">

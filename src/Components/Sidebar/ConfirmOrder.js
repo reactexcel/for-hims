@@ -22,24 +22,20 @@ class ConfirmOrder extends Component {
           <div className="cart_items ">
             <div className="cart-details_product">
               <div className="cart-details_product-image">
-                {" "}
-                <img src={pro_img1} />
+                <img src={pro_img1} alt="" />
               </div>
               <div className="cart-details_product-details">
                 <h4> Sildenafil </h4>
                 <h4 className="description">
-                  {" "}
                   10 x 20 mg pills or as prescribed by the doctor. Billed
-                  monthly{" "}
+                  monthly
                 </h4>
                 <h4> $30.00 </h4>
                 <div className="renewal-icon">
-                  {" "}
-                  <span className="glyphicon glyphicon-refresh" />{" "}
+                  <span className="glyphicon glyphicon-refresh" />
                 </div>
                 <div className="icon_close">
-                  {" "}
-                  <span className="glyphicon glyphicon-remove" />{" "}
+                  <span className="glyphicon glyphicon-remove" />
                 </div>
               </div>
             </div>
@@ -68,9 +64,8 @@ class ConfirmOrder extends Component {
                 <li className="includes"> * Includes pharmacy & drug fees </li>
                 <li className="shipping-add"> Shipping Address </li>
                 <li>
-                  {" "}
-                  1031 n 3rd st., 101 <br /> philadelphia , PA <br /> 19123{" "}
-                  <br /> USA{" "}
+                  1031 n 3rd st., 101 <br /> philadelphia , PA <br /> 19123
+                  <br /> USA
                 </li>
                 <li className="billing"> Billing Information </li>
                 <li> Master Card •••• •••• •••• 2122 </li>
@@ -78,11 +73,11 @@ class ConfirmOrder extends Component {
                 <div className="checkout_recurring-charge">
                   Your membership renews automatically. You can cancel any time.
                 </div>
-              </ul>{" "}
+              </ul>
             </div>
-          </div>{" "}
-        </div>{" "}
-        <div className="clear" />{" "}
+          </div>
+        </div>
+        <div className="clear" />
         <button
           tabIndex="0"
           type="orange"

@@ -13,6 +13,7 @@ class MyOrders extends Component {
                   <h3 align="center"> My Orders</h3>
                   {orders.map(order => (
                     <Collapsible
+                      key={order.id}
                       trigger={
                         <button type="button">
                           <ul className="tab_order">

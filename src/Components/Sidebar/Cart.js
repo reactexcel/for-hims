@@ -30,7 +30,7 @@ class Cart extends Component {
                 <div className="empty_cart">
                   <h3>Your cart is empty!</h3>
                   <h5>Please enter your home shipping address</h5>
-                  <img src={emptycart} />
+                  <img src={emptycart} alt="" />
                 </div>
                 <button
                   type="button"
@@ -44,7 +44,7 @@ class Cart extends Component {
               <>
                 <div className="cart-details_product">
                   <div className="cart-details_product-image">
-                    <img src={pro_img1} />
+                    <img src={pro_img1} alt="" />
                   </div>
                   <div className="cart-details_product-details">
                     <h4> Sildenafil </h4>

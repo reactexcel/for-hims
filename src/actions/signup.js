@@ -4,7 +4,7 @@ import * as actions from "./index";
 import { firebase } from "../Firebase";
 
 export function* signupRequest(action) {
-  const { email, password, termsAndConditions } = action.payload;
+  const { email, password } = action.payload;
 
   try {
     const response = yield firebase.createUser(email, password);
