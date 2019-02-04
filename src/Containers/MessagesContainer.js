@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import Header from "../Components/Generic/Header";
 import Footer from "../Components/Generic/Footer";
 import Messages from "../Components/Messages";
-import { sendMessageRequest, getAllMessageRequest } from "../actions";
+import {
+  sendMessageRequest,
+  getAllMessageRequest,
+  messageReadStatusRequest
+} from "../actions";
 import { connect } from "react-redux";
 
 class MessagesContainer extends Component {
@@ -44,6 +48,11 @@ class MessagesContainer extends Component {
     this.props.sendMessageRequest({ uid, message });
   };
 
+  onMessageRead = messageId => {
+    const { uid } = this.props;
+    this.props.messageReadStatusRequest({ uid, messageId });
+  };
+
   render() {
     const { message } = this.props;
     return (
@@ -58,6 +67,7 @@ class MessagesContainer extends Component {
           openMessageModal={this.state.openMessageModal}
           sendMessage={this.state.sendMessage}
           history={this.props.history}
+          onMessageRead={this.onMessageRead}
         />
         <Footer />
       </div>
@@ -69,5 +79,5 @@ const mapStateToProps = ({ message }) => ({ message });
 
 export default connect(
   mapStateToProps,
-  { sendMessageRequest, getAllMessageRequest }
+  { sendMessageRequest, getAllMessageRequest, messageReadStatusRequest }
 )(MessagesContainer);

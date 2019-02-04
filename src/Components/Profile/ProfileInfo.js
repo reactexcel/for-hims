@@ -21,6 +21,7 @@ class ProfileInfo extends Component {
 
   cancelEditProfile = () => {
     this.setState({ showEditProfile: false });
+    this.props.reset();
   };
   componentDidMount() {
     this.props.initialize({ ...this.props.userProfile.data });
@@ -47,6 +48,9 @@ class ProfileInfo extends Component {
         label={placeholder}
         type={type}
         key={name}
+        parse={value =>
+          name === "phone" && isNaN(parseInt(value, 10)) ? null : parseInt(value, 10)
+        }
       />
     ));
   render() {

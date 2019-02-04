@@ -20,6 +20,7 @@ class ProfileShippingAddress extends Component {
 
   cancelEditShippingAddress = () => {
     this.setState({ showEditShippingAddress: false });
+    this.props.reset();
   };
   componentDidMount() {
     this.props.initialize({ ...this.props.userProfile.data.shippingAddress });

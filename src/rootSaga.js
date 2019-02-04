@@ -14,7 +14,11 @@ import {
   addDateOfBirthRequest,
   addShipingAddressRequest
 } from "./actions/profile";
-import { sendMessageRequest, getAllMessageRequest } from "./actions/message";
+import {
+  sendMessageRequest,
+  getAllMessageRequest,
+  messageReadStatusRequest
+} from "./actions/message";
 import { getAllOrdersRequest } from "./actions/orders";
 import { addNewPaymentRequest } from "./actions/payment";
 
@@ -36,8 +40,15 @@ function* watchActions() {
   );
   yield takeLatest(constants.SEND_MESSAGES_REQUEST, sendMessageRequest);
   yield takeLatest(constants.GET_ALL_MESSAGES_REQUEST, getAllMessageRequest);
-  yield takeLatest(constants.GET_ALL_ORDERS_REQUEST, getAllOrdersRequest  );
-  yield takeLatest(constants.ADDING_PAYMENT_METHOD_REQUEST,addNewPaymentRequest);
+  yield takeLatest(
+    constants.MESSAGE_READ_STATUS_REQUEST,
+    messageReadStatusRequest
+  );
+  yield takeLatest(constants.GET_ALL_ORDERS_REQUEST, getAllOrdersRequest);
+  yield takeLatest(
+    constants.ADDING_PAYMENT_METHOD_REQUEST,
+    addNewPaymentRequest
+  );
 }
 export default function* rootSaga() {
   yield [watchActions()];

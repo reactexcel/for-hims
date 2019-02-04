@@ -12,7 +12,7 @@ class Orders extends Component {
                 <div className="orders_box">
                   <h3>You don't have any orders yet!</h3>
                   <Link to="#" className="read">
-                    Go to store
+                    Go to Home
                   </Link>
                 </div>
               </div>

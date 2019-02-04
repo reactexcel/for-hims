@@ -135,3 +135,14 @@ export const getAllOrdersSuccess = createAction(
   constants.GET_ALL_ORDERS_SUCCESS
 );
 export const getAllOrdersError = createAction(constants.GET_ALL_ORDERS_ERROR);
+
+//actions for changing status of messages
+export const messageReadStatusRequest = createAction(
+  constants.MESSAGE_READ_STATUS_REQUEST
+);
+export const messageReadStatusSuccess = createAction(
+  constants.MESSAGE_READ_STATUS_SUCCESS
+);
+export const messageReadStatusError = createAction(
+  constants.MESSAGE_READ_STATUS_ERROR
+);

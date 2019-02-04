@@ -6,7 +6,9 @@ export function* sendMessageRequest(action) {
   const { uid, message } = action.payload;
 
   try {
-    yield firebase.userMessages(uid).add({ message, timestamp: new Date() });
+    yield firebase
+      .userMessages(uid)
+      .add({ message, timestamp: new Date(), read: false });
     const resp = yield firebase
       .userMessages(uid)
       .orderBy("timestamp", "desc")
@@ -27,5 +29,23 @@ export function* getAllMessageRequest(action) {
     yield put(actions.getAllMessageSuccess(response.docs));
   } catch (e) {
     yield put(actions.getAllMessageError(e.message));
+  }
+}
+
+export function* messageReadStatusRequest(action) {
+  const { uid, messageId } = action.payload;
+  try {
+    yield firebase
+      .userMessages(uid)
+      .doc(messageId)
+      .update({ read: true });
+    yield put(actions.messageReadStatusSuccess());
+    const response = yield firebase
+      .userMessages(uid)
+      .orderBy("timestamp", "desc")
+      .get();
+    yield put(actions.getAllMessageSuccess(response.docs));
+  } catch (e) {
+    yield put(actions.messageReadStatusError(e.message));
   }
 }

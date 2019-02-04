@@ -58,16 +58,23 @@ class Messages extends Component {
                     <div
                       className="messages_new_box"
                       key={message.id}
-                      onClick={() =>
+                      onClick={() => {
                         history.push({
                           pathname: `messages/${message.id}`,
                           state: {
                             data: message.data()
                           }
-                        })
-                      }
+                        });
+                        if (!message.data().read) {
+                          this.props.onMessageRead(message.id);
+                        }
+                      }}
                     >
-                      <i className="fa fa-envelope-o" />
+                      {message.data().read ? (
+                        <i className="fa fa-envelope-o" />
+                      ) : (
+                        <i className="fa fa-envelope" />
+                      )}
                       <h4>{message.data().message}</h4>
                       <h5 className="grew">
                         {moment(message.data().timestamp.seconds * 1000).format(

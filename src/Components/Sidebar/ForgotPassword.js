@@ -26,7 +26,6 @@ class ForgotPassword extends Component {
     this.setState({ errors });
     delete errors["password"];
     delete errors["termsAndConditions"];
-    console.log(errors);
     if (!Object.keys(errors).length) {
       this.props.forgotPasswordRequest({ ...this.state.data });
     }

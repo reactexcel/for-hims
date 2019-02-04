@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import ProfileField from "./ProfileField";
 import { resetPasswordFields as fields } from "../../constants/profile";
+import { firebase } from "../../Firebase";
 
 class ResetPassword extends Component {
   renderFields = () =>
@@ -60,7 +61,22 @@ const validate = values => {
   return error;
 };
 
+const asyncValidate = async (values, ownProps) => {
+  // return new Promise(async (resolve, reject) => {
+  // (async function getUserEmail() {
+  return fetch(firebase.validateOldPassword(values.oldPassword))
+    .then(res => {
+      console.log(res);
+    })
+    .catch(e => {
+      console.log(e, "eeeeeeeeee");
+    });
+};
+// };
+
 export default reduxForm({
   form: "resetPassword",
-  validate
+  validate,
+  asyncValidate,
+  asyncBlurFields: ["oldPassword"]
 })(ResetPassword);

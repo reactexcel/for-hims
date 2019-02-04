@@ -18,6 +18,7 @@ class Firebase {
     app.initializeApp(config);
 
     this.auth = app.auth();
+    this.EmailAuthProvider = app.auth.EmailAuthProvider;
     this.db = app.firestore();
     this.db.settings(settings);
   }
@@ -42,12 +43,12 @@ class Firebase {
   userUpdatePassword = password =>
     this.auth.currentUser.updatePassword(password);
 
-  //validate old password
-  // validateOldPassword = password =>
-  //   this.auth.currentUser.reauthenticateWithCredential(
-  //     this.auth.currentUser.email,
-  //     password
-  //   );
+  // validate old password
+  validateOldPassword = password => {
+    this.auth.currentUser.reauthenticateAndRetrieveDataWithCredential(
+      this.EmailAuthProvider.credential(this.auth.currentUser.email, password)
+    );
+  };
 
   // *** User API ***
 
