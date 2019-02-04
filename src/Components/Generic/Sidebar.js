@@ -66,9 +66,9 @@ class Sidebar extends Component {
         className={`side${side}`}
       >
         {openSidebar && (
-          <a href="#" className="closebtn" onClick={this.props.closeSidebar}>
+          <button className="closebtn" onClick={this.props.closeSidebar}>
             <span className={closeIconClass} />
-          </a>
+          </button>
         )}
         {this._renderItem(this.props.content)}
       </div>

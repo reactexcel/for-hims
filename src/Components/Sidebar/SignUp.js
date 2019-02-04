@@ -85,8 +85,8 @@ class SignUp extends Component {
                     I agree to the
                     <a className="register-link" href="">
                       Terms and Conditions
-                    </a>
-                    and
+                    </a>{" "}
+                    and{" "}
                     <a className="forgot-password-link" href="">
                       Privacy Policy
                     </a>
