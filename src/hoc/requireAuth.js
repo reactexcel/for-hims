@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { firebase } from "../Firebase";
-import { loginSuccess, getProfileInfoRequest } from "../actions";
+import {
+  loginSuccess,
+  getProfileInfoRequest,
+  getAllCardsRequest
+} from "../actions";
 
 export default WrappedComponent => {
   class Authentication extends Component {
@@ -35,6 +39,10 @@ export default WrappedComponent => {
           ) {
             this.props.getProfileInfoRequest({ uid: this.props.user.data.uid });
           }
+          //getting all cards if user is authenticated
+          if (this.props.payment.data.fetchCards === undefined) {
+            this.props.getAllCardsRequest({ uid: this.props.user.data.uid });
+          }
         }
       });
     };
@@ -43,13 +51,14 @@ export default WrappedComponent => {
       return <WrappedComponent {...this.props} uid={uid} />;
     }
   }
-  const mapStateToProps = ({ user, profile: { userProfile } }) => ({
+  const mapStateToProps = ({ user, profile: { userProfile }, payment }) => ({
     user,
-    userProfile
+    userProfile,
+    payment
   });
 
   return connect(
     mapStateToProps,
-    { loginSuccess, getProfileInfoRequest }
+    { loginSuccess, getProfileInfoRequest, getAllCardsRequest }
   )(Authentication);
 };

@@ -127,6 +127,11 @@ export const addNewPaymentError = createAction(
   constants.ADDING_PAYMENT_METHOD_ERROR
 );
 
+//actions for getting all cards
+export const getAllCardsRequest = createAction(constants.GET_ALL_CARDS_REQUEST);
+export const getAllCardsSuccess = createAction(constants.GET_ALL_CARDS_SUCCESS);
+export const getAllCardsError = createAction(constants.GET_ALL_CARDS_ERROR);
+
 //actions for getting all orders
 export const getAllOrdersRequest = createAction(
   constants.GET_ALL_ORDERS_REQUEST

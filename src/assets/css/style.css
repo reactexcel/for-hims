@@ -2051,6 +2051,20 @@ form.profile_form button:disabled,
   background-color: #cfd7df;
 }
 
+/* payment_form */
+.payment_form .card-details{
+  border: 1px solid #c49875;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+/* .payment_form .card-details .add-payment{
+background: black
+} */
+/* payment_form */
+
 /* forgot password next steps */
 .forgot-psw_next-steps {
   height: 100%;

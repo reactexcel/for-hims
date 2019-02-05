@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import ErrorText from "../Generic/ErrorText";
@@ -8,7 +8,8 @@ class ProfilePayment extends Component {
     super(props);
     this.state = {
       errors: {},
-      loading: false
+      loading: false,
+      showAddPayment: false
     };
   }
   submit = async e => {
@@ -16,11 +17,7 @@ class ProfilePayment extends Component {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     if (token) {
       this.props.onAddNewPayment({
-        token,
-        charge: {
-          amount: 30,
-          currency: "USD"
-        }
+        token
       });
       this.setState({ loading: false });
       this.stripeRef.clear();
@@ -36,43 +33,80 @@ class ProfilePayment extends Component {
       this.setState({ errors: {} });
     }
   };
+  onOpenAddPayment = () => this.setState({ showAddPayment: true });
+  onCloseAddPayment = () => this.setState({ showAddPayment: false });
+
   render() {
-    const { errors, loading } = this.state;
-    const { isError, isLoading, message } = this.props.payment;
+    const { errors, loading, showAddPayment } = this.state;
+    const { isError, isLoading, message, data } = this.props.payment;
+    const {
+      data: { customerId }
+    } = this.props.userProfile;
     return (
       <div className="profile_module">
         <h3>Payment Methods</h3>
         <form className="payment_form">
-          {/* <input
-          type="text"
-          className="card"
-          name="firstName"
-          value=""
-          autoComplete="true"
-          placeholder="Card number"
-        />
-        <input
-          type="text"
-          className="cvc"
-          value=""
-          autoComplete="true"
-          placeholder="MM / YY / CVC"
-         /> */}
-          <CardElement
-            onChange={this.validateCard}
-            onReady={element => (this.stripeRef = element)}
-          />
-          {errors.message && <ErrorText text={errors.message} />}
-          {isError && message && <div className="server_error">{message}</div>}
-          <button
-            type="button"
-            onClick={this.submit}
-            disabled={loading || isLoading}
-          >
-            Add New Payment Method
-          </button>
+          {customerId || (data.cardList && data.cardList.length) ? (
+            !showAddPayment ? (
+              <>
+                <div className="card-details">
+                  {data.cardList &&
+                    data.cardList.map(card => (
+                      <Fragment key={card.id}>
+                        <div>{card.brand}</div>
+                        <div> •••• •••• •••• {card.last4}</div>
+                      </Fragment>
+                    ))}
+                </div>
+                <button className="add-payment" onClick={this.onOpenAddPayment}>
+                  Add New Payment Method
+                </button>
+              </>
+            ) : (
+              <>
+                <CardElement
+                  onChange={this.validateCard}
+                  onReady={element => (this.stripeRef = element)}
+                />
+                {errors.message && <ErrorText text={errors.message} />}
+                {isError && message && (
+                  <div className="server_error">{message}</div>
+                )}
+                <button
+                  type="button"
+                  onClick={this.submit}
+                  disabled={loading || isLoading}
+                >
+                  {loading || isLoading
+                    ? "Adding New Payment Method..."
+                    : "Add New Payment Method"}
+                </button>
+                <button onClick={this.onCloseAddPayment}>Cancel</button>
+              </>
+            )
+          ) : (
+            <>
+              <CardElement
+                onChange={this.validateCard}
+                onReady={element => (this.stripeRef = element)}
+              />
+              {errors.message && <ErrorText text={errors.message} />}
+              {isError && message && (
+                <div className="server_error">{message}</div>
+              )}
+              <button
+                type="button"
+                onClick={this.submit}
+                disabled={loading || isLoading}
+              >
+                {loading || isLoading
+                  ? "Adding New Payment Method..."
+                  : "Add New Payment Method"}
+              </button>
+            </>
+          )}
         </form>
-        <Link to="#">Cancel</Link>
+        {/* {customerId && <Link to="#">Cancel</Link>} */}
       </div>
     );
   }

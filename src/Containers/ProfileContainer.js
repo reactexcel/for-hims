@@ -11,7 +11,8 @@ import {
   resetPasswordRequest,
   updateProfileRequest,
   addShippingAddressRequest,
-  addNewPaymentRequest
+  addNewPaymentRequest,
+  getAllCardsRequest
 } from "../actions";
 
 class ProfileContainer extends Component {
@@ -28,8 +29,8 @@ class ProfileContainer extends Component {
   };
 
   onAddNewPayment = data => {
-    const { uid, email } = this.props.user.data;
-    this.props.addNewPaymentRequest({ uid, email, ...data });
+    const { uid } = this.props.user.data;
+    this.props.addNewPaymentRequest({ uid, ...data });
   };
 
   render() {
@@ -63,7 +64,7 @@ class ProfileContainer extends Component {
                   onUpdateShippingAddress={this.onUpdateShippingAddress}
                 />
                 <PaymentContainer
-                  userInfo={data}
+                  userProfile={userProfile}
                   onAddNewPayment={this.onAddNewPayment}
                   payment={payment}
                 />
@@ -90,6 +91,7 @@ export default connect(
     resetPasswordRequest,
     updateProfileRequest,
     addShippingAddressRequest,
-    addNewPaymentRequest
+    addNewPaymentRequest,
+    getAllCardsRequest
   }
 )(ProfileContainer);

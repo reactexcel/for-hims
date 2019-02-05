@@ -39,7 +39,11 @@ export default handleActions(
   {
     [constants.ADDING_PAYMENT_METHOD_REQUEST]: paymentRequest,
     [constants.ADDING_PAYMENT_METHOD_SUCCESS]: paymentSuccess,
-    [constants.ADDING_PAYMENT_METHOD_ERROR]: paymentError
+    [constants.ADDING_PAYMENT_METHOD_ERROR]: paymentError,
+
+    [constants.GET_ALL_CARDS_REQUEST]: paymentRequest,
+    [constants.GET_ALL_CARDS_SUCCESS]: paymentSuccess,
+    [constants.GET_ALL_CARDS_ERROR]: paymentError
   },
   initialState
 );

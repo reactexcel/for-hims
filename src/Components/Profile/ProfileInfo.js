@@ -48,9 +48,9 @@ class ProfileInfo extends Component {
         label={placeholder}
         type={type}
         key={name}
-        parse={value =>
-          name === "phone" && isNaN(parseInt(value, 10)) ? null : parseInt(value, 10)
-        }
+        // parse={value =>
+        //   name === "phone" ? isNaN(parseInt(value, 10)) ? null : parseInt(value, 10) : ''
+        // }
       />
     ));
   render() {

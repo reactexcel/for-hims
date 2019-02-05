@@ -10,12 +10,11 @@ const stripe = require("stripe")(functions.config().stripe.token);
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-async function charge(req, res) {
+async function payment(req, res) {
   const body = req.body;
   const uid = body.uid;
   const token = body.token.id;
-  const amount = body.charge.amount;
-  const currency = body.charge.currency;
+  console.log(uid, token, "");
   // Charge card
   try {
     const response = await admin
@@ -26,30 +25,65 @@ async function charge(req, res) {
     const userData = response.data();
     if (!userData.customerId) {
       const customer = await stripe.customers.create({
-        source: token.id,
+        source: token,
         email: userData.email
       });
+
       admin
         .firestore()
         .collection("users")
         .doc(uid)
         .set({ customerId: customer.id }, { merge: true });
 
-      const charge = await stripe.charges.create({
-        amount,
-        currency,
-        description: "Charges for noledreum",
-        customer: customer.id
-      });
+      const cardList = await stripe.customers.listCards(customer.id);
       send(res, 200, {
         message: "Success",
-        charge
+        cardList: cardList.data
+      });
+    } else {
+      const charge = await stripe.customers.createSource(userData.customerId, {
+        source: token
+      });
+      const cardList = await stripe.customers.listCards(customer.id);
+
+      send(res, 200, {
+        message: "Success",
+        cardList: cardList.data
       });
     }
   } catch (err) {
     console.log(err);
     send(res, 500, {
       error: err.message
+    });
+  }
+}
+
+async function getAllCards(req, res) {
+  const body = req.body;
+  const uid = body.uid;
+
+  try {
+    const response = await admin
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .get();
+    const userData = response.data();
+    if (!userData.customerId) {
+      send(res, 404, {
+        error: "No Cards found"
+      });
+    } else {
+      const cardList = await stripe.customers.listCards(userData.customerId);
+      send(res, 200, {
+        message: "Success",
+        cardList: cardList.data
+      });
+    }
+  } catch (e) {
+    send(res, 500, {
+      error: e.message
     });
   }
 }
@@ -63,10 +97,10 @@ function send(res, code, body) {
 }
 
 app.use(cors);
-app.post("/", (req, res) => {
+app.post("/addNew", (req, res) => {
   // Catch any unexpected errors to prevent crashing
   try {
-    charge(req, res);
+    payment(req, res);
   } catch (e) {
     console.log(e);
     send(res, 500, {
@@ -75,8 +109,15 @@ app.post("/", (req, res) => {
   }
 });
 
-exports.charge = functions.https.onRequest(app);
+app.post("/getAllCards", (req, res) => {
+  try {
+    getAllCards(req, res);
+  } catch (e) {
+    console.log(e);
+    send(res, 500, {
+      error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`
+    });
+  }
+});
 
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   response.send("Hello from Firebase!");
-// });
+exports.payment = functions.https.onRequest(app);
