@@ -12,6 +12,15 @@ class Account extends Component {
       showActionRequired: false
     };
   }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.user.isSuccess &&
+      prevProps.user.isSuccess !== this.props.user.isSuccess
+    ) {
+      this.props.closeSidebar();
+    }
+  }
   toggleActionRequired = () => {
     this.setState(prevState => ({
       showActionRequired: !prevState.showActionRequired

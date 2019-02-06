@@ -33,7 +33,7 @@ class Sidebar extends Component {
   _renderItem = param => {
     switch (param) {
       case "account":
-        return <Account />;
+        return <Account closeSidebar={this.props.closeSidebar}/>;
       case "cart":
         return <FullCart closeSidebar={this.props.closeSidebar} />;
       case "login":

@@ -17,6 +17,7 @@ class Login extends Component {
       showForgotPassword: false
     };
   }
+
   handleChange = e => {
     const { value, name } = e.target;
     const data = { ...this.state.data };
