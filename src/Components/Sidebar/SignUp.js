@@ -16,6 +16,14 @@ class SignUp extends Component {
   static defaultProps = {
     toggleRegister: () => {}
   };
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.user.isSuccess &&
+      prevProps.user.isSuccess !== this.props.user.isSuccess
+    ) {
+      this.props.closeSidebar();
+    }
+  }
   handleChange = e => {
     const { target } = e;
     const { name } = target;

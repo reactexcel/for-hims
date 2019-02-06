@@ -17,7 +17,14 @@ class Login extends Component {
       showForgotPassword: false
     };
   }
-
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.user.isSuccess &&
+      prevProps.user.isSuccess !== this.props.user.isSuccess
+    ) {
+      this.props.closeSidebar();
+    }
+  }
   handleChange = e => {
     const { value, name } = e.target;
     const data = { ...this.state.data };
@@ -60,7 +67,10 @@ class Login extends Component {
             <div className="loader" />
           </div>
         ) : showRegister ? (
-          <SignUp toggleRegister={this.toggleRegister} />
+          <SignUp
+            closeSidebar={this.props.closeSidebar}
+            toggleRegister={this.toggleRegister}
+          />
         ) : showForgotPassword ? (
           <ForgotPassword togglePassword={this.togglePassword} />
         ) : (

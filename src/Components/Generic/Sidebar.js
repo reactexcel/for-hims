@@ -37,7 +37,7 @@ class Sidebar extends Component {
       case "cart":
         return <FullCart closeSidebar={this.props.closeSidebar} />;
       case "login":
-        return <Login />;
+        return <Login closeSidebar={this.props.closeSidebar} />;
       case "shop":
         return <Shop />;
       case "learn":
@@ -49,7 +49,7 @@ class Sidebar extends Component {
 
   render() {
     const { openSidebar, side, isMobile } = this.props;
-    
+
     let closeIconClass =
       side === "left"
         ? "glyphicon glyphicon-menu-left"
