@@ -50,14 +50,11 @@ class ProfilePayment extends Component {
   render() {
     const { errors, loading, showAddPayment } = this.state;
     const { isError, isLoading, message, data } = this.props.payment;
-    const {
-      data: { customerId }
-    } = this.props.userProfile;
     return (
       <div className="profile_module">
         <h3>Payment Methods</h3>
         <form className="payment_form">
-          {customerId || (data.cardList && data.cardList.length) ? (
+          {(data.cardList && data.cardList.length) ? (
             !showAddPayment ? (
               <>
                 <div className="card_details-block">

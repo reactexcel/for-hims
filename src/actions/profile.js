@@ -3,10 +3,16 @@ import * as actions from "./index";
 import { firebase } from "../Firebase";
 
 export function* resetPasswordRequest(action) {
-  const { newPassword: password } = action.payload;
+  const { newPassword: password, oldPassword } = action.payload;
   try {
-    yield firebase.userUpdatePassword(password);
-    yield put(actions.resetPasswordSuccess("Your Password has been changed"));
+    const res = yield firebase.userSignIn(
+      firebase.auth.currentUser.email,
+      oldPassword
+    );
+    if (res) {
+      yield firebase.userUpdatePassword(password);
+      yield put(actions.resetPasswordSuccess("Your Password has been changed"));
+    }
   } catch (e) {
     yield put(actions.resetPasswordError(e.message));
   }
@@ -86,5 +92,15 @@ export function* addShipingAddressRequest(action) {
   } catch (e) {
     yield put(actions.updateProfileError(e.message));
     yield put(actions.addShippingAddressError(e.message));
+  }
+}
+
+export function* validateOldPasswordRequest(action) {
+  const { password } = action.payload;
+  try {
+    const response = yield firebase.validateOldPassword(password);
+    console.log(response);
+  } catch (e) {
+    console.log(e, "err");
   }
 }
