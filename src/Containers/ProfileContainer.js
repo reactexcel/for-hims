@@ -29,13 +29,30 @@ class ProfileContainer extends Component {
   };
 
   onAddNewPayment = data => {
-    const { uid } = this.props.user.data;
-    this.props.addNewPaymentRequest({ uid, ...data });
+    const { uid, email } = this.props.user.data;
+    this.props.addNewPaymentRequest({ uid, email, ...data });
   };
+
+  componentDidMount() {
+    const { uid } = this.props;
+    const {
+      userProfile: {
+        data: { customerId }
+      }
+    } = this.props.profile;
+    if (uid && customerId) {
+      this.props.getAllCardsRequest({ uid });
+    }
+  }
 
   componentDidUpdate(prevProps) {
     const { uid } = this.props;
-    if (prevProps.uid !== this.props.uid) {
+
+    if (
+      this.props.userProfile.data.customerId &&
+      prevProps.userProfile.data.customerId !==
+        this.props.userProfile.data.customerId
+    ) {
       this.props.getAllCardsRequest({ uid });
     }
   }

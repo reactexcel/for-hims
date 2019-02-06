@@ -14,7 +14,7 @@ async function payment(req, res) {
   const body = req.body;
   const uid = body.uid;
   const token = body.token.id;
-  console.log(uid, token, "");
+  const email = body.email;
   // Charge card
   try {
     const response = await admin
@@ -22,11 +22,43 @@ async function payment(req, res) {
       .collection("users")
       .doc(uid)
       .get();
-    const userData = response.data();
-    if (!userData.customerId) {
+    if (response.exists) {
+      const userData = response.data();
+      if (!userData.customerId) {
+        const customer = await stripe.customers.create({
+          source: token,
+          email: userData.email
+        });
+
+        admin
+          .firestore()
+          .collection("users")
+          .doc(uid)
+          .set({ customerId: customer.id }, { merge: true });
+
+        const cardList = await stripe.customers.listCards(customer.id);
+        send(res, 200, {
+          message: "Success",
+          cardList: cardList.data
+        });
+      } else {
+        const charge = await stripe.customers.createSource(
+          userData.customerId,
+          {
+            source: token
+          }
+        );
+        const cardList = await stripe.customers.listCards(userData.customerId);
+
+        send(res, 200, {
+          message: "Success",
+          cardList: cardList.data
+        });
+      }
+    } else {
       const customer = await stripe.customers.create({
         source: token,
-        email: userData.email
+        email: email
       });
 
       admin
@@ -36,18 +68,6 @@ async function payment(req, res) {
         .set({ customerId: customer.id }, { merge: true });
 
       const cardList = await stripe.customers.listCards(customer.id);
-      send(res, 200, {
-        message: "Success",
-        cardList: cardList.data
-      });
-    } else {
-      const charge = await stripe.customers.createSource(userData.customerId, {
-        source: token
-      });
-      console.log(charge,'++++++++++')
-      const cardList = await stripe.customers.listCards(userData.customerId);
-      console.log(cardList,'+++++++')
-
       send(res, 200, {
         message: "Success",
         cardList: cardList.data

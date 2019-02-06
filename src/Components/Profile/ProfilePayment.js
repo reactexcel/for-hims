@@ -50,26 +50,60 @@ class ProfilePayment extends Component {
   render() {
     const { errors, loading, showAddPayment } = this.state;
     const { isError, isLoading, message, data } = this.props.payment;
+    const {
+      data: { customerId }
+    } = this.props.userProfile;
     return (
       <div className="profile_module">
         <h3>Payment Methods</h3>
-        <form className="payment_form">
-          {(data.cardList && data.cardList.length) ? (
-            !showAddPayment ? (
-              <>
-                <div className="card_details-block">
-                  {data.cardList &&
-                    data.cardList.map(card => (
-                      <div className="card_detail" key={card.id}>
-                        <div>{card.brand}</div>
-                        <div> •••• •••• •••• {card.last4}</div>
-                      </div>
-                    ))}
-                </div>
-                <button className="add-payment" onClick={this.onOpenAddPayment}>
-                  Add New Payment Method
-                </button>
-              </>
+        {
+          <form className="payment_form">
+            {data.cardList && data.cardList.length ? (
+              !showAddPayment ? (
+                <>
+                  <div className="card_details-block">
+                    {data.cardList &&
+                      data.cardList.map(card => (
+                        <div className="card_detail" key={card.id}>
+                          <div>{card.brand}</div>
+                          <div> •••• •••• •••• {card.last4}</div>
+                        </div>
+                      ))}
+                  </div>
+                  <button
+                    className="add-payment"
+                    onClick={this.onOpenAddPayment}
+                  >
+                    Add New Payment Method
+                  </button>
+                </>
+              ) : (
+                <>
+                  <CardElement
+                    onChange={this.validateCard}
+                    onReady={element => (this.stripeRef = element)}
+                  />
+                  {errors.message && <ErrorText text={errors.message} />}
+                  {isError && message && (
+                    <div className="server_error">{message}</div>
+                  )}
+                  <button
+                    type="button"
+                    onClick={this.submit}
+                    disabled={loading || isLoading}
+                  >
+                    {loading || isLoading
+                      ? "Adding New Payment Method..."
+                      : "Add New Payment Method"}
+                  </button>
+                  <button
+                    className="payment-cancel"
+                    onClick={this.onCloseAddPayment}
+                  >
+                    Cancel
+                  </button>
+                </>
+              )
             ) : (
               <>
                 <CardElement
@@ -89,36 +123,10 @@ class ProfilePayment extends Component {
                     ? "Adding New Payment Method..."
                     : "Add New Payment Method"}
                 </button>
-                <button
-                  className="payment-cancel"
-                  onClick={this.onCloseAddPayment}
-                >
-                  Cancel
-                </button>
               </>
-            )
-          ) : (
-            <>
-              <CardElement
-                onChange={this.validateCard}
-                onReady={element => (this.stripeRef = element)}
-              />
-              {errors.message && <ErrorText text={errors.message} />}
-              {isError && message && (
-                <div className="server_error">{message}</div>
-              )}
-              <button
-                type="button"
-                onClick={this.submit}
-                disabled={loading || isLoading}
-              >
-                {loading || isLoading
-                  ? "Adding New Payment Method..."
-                  : "Add New Payment Method"}
-              </button>
-            </>
-          )}
-        </form>
+            )}
+          </form>
+        }
       </div>
     );
   }

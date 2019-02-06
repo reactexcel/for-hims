@@ -18,12 +18,12 @@ function getAllCardsApi(data) {
 }
 
 export function* addNewPaymentRequest(action) {
-  const { uid, token } = action.payload;
-
+  const { uid, token,email } = action.payload;
   try {
     const response = yield call(addnewPaymentApi, {
       uid,
-      token
+      token,
+      email
     });
     if (response.data.statusCode === 200) {
       yield put(actions.addNewPaymentSuccess(JSON.parse(response.data.body)));
@@ -49,12 +49,12 @@ export function* getAllCardsRequest(action) {
     if (response.data.statusCode === 200) {
       yield put(
         actions.getAllCardsSuccess({
-          ...JSON.parse(response.data.body),
-          fetchCards: true
+          ...JSON.parse(response.data.body)
         })
       );
-    } else if (response.data.statusCode === 404) {
-      yield put(actions.getAllCardsSuccess({ fetchCards: false }));
+    } else {
+      const error = JSON.parse(response.data.body).error;
+      yield put(actions.getAllCardsError(error));
     }
   } catch (e) {
     yield put(actions.getAllCardsError(e.message));
