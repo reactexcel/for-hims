@@ -2066,7 +2066,9 @@ form.profile_form button:disabled,
 
 .card_details-block .card_detail{
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  flex-wrap: wrap;
+
 }
 
 .payment_form .add-payment,
