@@ -12,6 +12,15 @@ class ProfilePayment extends Component {
       showAddPayment: false
     };
   }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.payment.isSuccess &&
+      prevProps.payment.isSuccess !== this.props.payment.isSuccess
+    ) {
+      this.onCloseAddPayment();
+    }
+  }
   submit = async e => {
     this.setState({ loading: true });
     let { token } = await this.props.stripe.createToken({ name: "Name" });
@@ -24,6 +33,7 @@ class ProfilePayment extends Component {
     }
     this.setState({ loading: false });
   };
+
   validateCard = e => {
     const errors = {};
     if (e.elementType === "card" && e.error !== undefined) {
@@ -33,6 +43,7 @@ class ProfilePayment extends Component {
       this.setState({ errors: {} });
     }
   };
+
   onOpenAddPayment = () => this.setState({ showAddPayment: true });
   onCloseAddPayment = () => this.setState({ showAddPayment: false });
 
@@ -81,7 +92,12 @@ class ProfilePayment extends Component {
                     ? "Adding New Payment Method..."
                     : "Add New Payment Method"}
                 </button>
-                <button className="payment-cancel" onClick={this.onCloseAddPayment}>Cancel</button>
+                <button
+                  className="payment-cancel"
+                  onClick={this.onCloseAddPayment}
+                >
+                  Cancel
+                </button>
               </>
             )
           ) : (
