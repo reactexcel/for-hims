@@ -2052,17 +2052,36 @@ form.profile_form button:disabled,
 }
 
 /* payment_form */
-.payment_form .card-details{
+.payment_form{
+  display: flex;
+  flex-direction: column;
+}
+.payment_form .card_details-block{
   border: 1px solid #c49875;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   padding: 2rem;
 }
 
-/* .payment_form .card-details .add-payment{
-background: black
-} */
+.card_details-block .card_detail{
+  display: flex;
+  justify-content: space-between
+}
+
+.payment_form .add-payment,
+.payment_form .payment-cancel
+{
+  all:unset;
+  text-transform: uppercase;
+  align-self: center;
+  margin-top:1rem;
+  border-bottom: 2px solid;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin: 1.2rem 0;
+  padding-bottom: 4px; 
+}
 /* payment_form */
 
 /* forgot password next steps */

@@ -44,7 +44,9 @@ async function payment(req, res) {
       const charge = await stripe.customers.createSource(userData.customerId, {
         source: token
       });
-      const cardList = await stripe.customers.listCards(customer.id);
+      console.log(charge,'++++++++++')
+      const cardList = await stripe.customers.listCards(userData.customerId);
+      console.log(cardList,'+++++++')
 
       send(res, 200, {
         message: "Success",

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import ErrorText from "../Generic/ErrorText";
@@ -49,13 +49,13 @@ class ProfilePayment extends Component {
           {customerId || (data.cardList && data.cardList.length) ? (
             !showAddPayment ? (
               <>
-                <div className="card-details">
+                <div className="card_details-block">
                   {data.cardList &&
                     data.cardList.map(card => (
-                      <Fragment key={card.id}>
+                      <div className="card_detail" key={card.id}>
                         <div>{card.brand}</div>
                         <div> •••• •••• •••• {card.last4}</div>
-                      </Fragment>
+                      </div>
                     ))}
                 </div>
                 <button className="add-payment" onClick={this.onOpenAddPayment}>
@@ -81,7 +81,7 @@ class ProfilePayment extends Component {
                     ? "Adding New Payment Method..."
                     : "Add New Payment Method"}
                 </button>
-                <button onClick={this.onCloseAddPayment}>Cancel</button>
+                <button className="payment-cancel" onClick={this.onCloseAddPayment}>Cancel</button>
               </>
             )
           ) : (
@@ -106,7 +106,6 @@ class ProfilePayment extends Component {
             </>
           )}
         </form>
-        {/* {customerId && <Link to="#">Cancel</Link>} */}
       </div>
     );
   }

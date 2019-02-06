@@ -33,6 +33,13 @@ class ProfileContainer extends Component {
     this.props.addNewPaymentRequest({ uid, ...data });
   };
 
+  componentDidUpdate(prevProps) {
+    const { uid } = this.props;
+    if (prevProps.uid !== this.props.uid) {
+      this.props.getAllCardsRequest({ uid });
+    }
+  }
+
   render() {
     const {
       user: { data },
