@@ -14,8 +14,7 @@ class FullCart extends Component {
     next: 1
   };
   renderNext = () => {
-    const auth = JSON.parse(localStorage.getItem("auth"));
-    if (!this.props.user.auth && !auth) {
+    if (!this.props.user.auth) {
       this.setState({ next: 10 });
     } else if (this.state.next < 5) {
       this.setState(prevState => ({ next: prevState.next + 1 }));
@@ -50,7 +49,7 @@ class FullCart extends Component {
       case 4:
         return <ConfirmOrder />;
       case 10:
-        return <Login />;
+        return <Login closeSidebar={this.props.closeSidebar} />;
       default:
         return;
     }
