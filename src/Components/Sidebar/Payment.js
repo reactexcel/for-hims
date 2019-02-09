@@ -1,10 +1,22 @@
 import React, { Component } from "react";
 
 class Payment extends Component {
+  state={
+    cardNumber:"",
+    cvc:"" 
+  }
   static defaultProps = {
     renderNext: () => {}
   };
-  render() {
+
+  handleChange = e => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
+      [name]: value
+    });
+  };
+  render() {    
     return (
       <div id="mySidenav6">
         <div className="symbols">
@@ -26,19 +38,20 @@ class Payment extends Component {
               <input
                 type="text"
                 className="card"
-                name="firstName"
-                value=""
+                name="cardNumber"
+                value={this.state.cardNumber}
                 autoComplete="true"
                 placeholder="Card number"
-                onChange={() => {}}
+                onChange={this.handleChange}
               />
               <input
                 type="text"
                 className="cvc"
-                value=""
+                name="cvc"
+                value={this.state.cvc}
                 autoComplete="true"
                 placeholder="MM / YY / CVC"
-                onChange={() => {}}
+                onChange={this.handleChange}
               />
               <div className="clearfix" />
               <h5>
