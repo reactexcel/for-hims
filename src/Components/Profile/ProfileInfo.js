@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import ProfileField from "./ProfileField";
 import { profileInfoFields as fields } from "../../constants/profile";
+import { validatePhone } from "../../utils/validate";
 
 class ProfileInfo extends Component {
   constructor(props) {
@@ -107,7 +108,6 @@ class ProfileInfo extends Component {
 }
 const validate = values => {
   const error = {};
-
   for (let value of fields) {
     if (!values[value.name]) {
       error[value.name] = "Required Field";
