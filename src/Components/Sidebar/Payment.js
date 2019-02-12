@@ -1,13 +1,29 @@
 import React, { Component } from "react";
+import StripeContainer from "../Generic/StripeContainer";
+import { CardElement, injectStripe } from "react-stripe-elements";
+import ErrorText from "../Generic/ErrorText";
 
 class Payment extends Component {
-  state={
-    cardNumber:"",
-    cvc:"" 
+  constructor(props) {
+    super(props);
+    this.state = {
+      errors: {},
+      loading: false,
+      showAddPayment: false
+    };
   }
   static defaultProps = {
     renderNext: () => {}
   };
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.payment.isSuccess &&
+      prevProps.payment.isSuccess !== this.props.payment.isSuccess
+    ) {
+      this.props.renderNext();
+    }
+  }
 
   handleChange = e => {
     const name = e.target.name;
@@ -16,63 +32,89 @@ class Payment extends Component {
       [name]: value
     });
   };
-  render() {    
-    return (
-      <div id="mySidenav6">
-        <div className="symbols">
-          <div className="symbols-title">Payment</div>
-          <ul>
-            <li className="symbols1"> </li>
-            <li className="symbols2"> </li>
-            <li className="symbols3"> </li>
-            <li className="symbols4 active"> </li>
-            <li className="symbols5"> </li>
-          </ul>
-        </div>
 
-        <div className="login_form">
-          <div className="register_box">
-            <h3>Payment information</h3>
-            <h5>Please enter your paymennt information</h5>
-            <form>
-              <input
-                type="text"
-                className="card"
-                name="cardNumber"
-                value={this.state.cardNumber}
-                autoComplete="true"
-                placeholder="Card number"
-                onChange={this.handleChange}
-              />
-              <input
-                type="text"
-                className="cvc"
-                name="cvc"
-                value={this.state.cvc}
-                autoComplete="true"
-                placeholder="MM / YY / CVC"
-                onChange={this.handleChange}
-              />
-              <div className="clearfix" />
-              <h5>
-                {" "}
-                Your order will be processed immediately and products will be
-                shipped after medical review.
-              </h5>
-            </form>
+  submit = async e => {
+    this.setState({ loading: true });
+    let { token } = await this.props.stripe.createToken({ name: "Name" });
+    if (token) {
+      this.props.onAddNewPayment({
+        token
+      });
+      this.setState({ loading: false });
+      this.stripeRef.clear();
+    }
+    this.setState({ loading: false });
+  };
+
+  validateCard = e => {
+    const errors = {};
+    if (e.elementType === "card" && e.error !== undefined) {
+      errors.message = e.error.message;
+      this.setState({ errors });
+    } else if (e.error === undefined) {
+      this.setState({ errors: {} });
+    }
+  };
+  render() {
+    console.log(this.props);
+    const { errors } = this.state;
+    const { isError, message, isLoading, isSuccess } = this.props.payment;
+    return (
+      <>
+        {isLoading ? (
+          <div className="login-loader">
+            <div>Saving Payment Information...</div>
+            <div>Hang tight</div>
+            <div className="loader" />
           </div>
-        </div>
-        <button
-          tabIndex="0"
-          type="button"
-          className="login_btn"
-          onClick={this.props.renderNext}
-        >
-          Add New Payment Method
-        </button>
-      </div>
+        ) : (
+          <div id="mySidenav6">
+            <div className="symbols">
+              <div className="symbols-title">Payment</div>
+              <ul>
+                <li className="symbols1"> </li>
+                <li className="symbols2"> </li>
+                <li className="symbols3"> </li>
+                <li className="symbols4 active"> </li>
+                <li className="symbols5"> </li>
+              </ul>
+            </div>
+            <div className="login_form">
+              <div className="register_box">
+                <h3>Payment information</h3>
+                <h5>Please enter your paymennt information</h5>
+                <form>
+                  <CardElement
+                    onChange={this.validateCard}
+                    onReady={element => (this.stripeRef = element)}
+                  />
+                  {errors.message && <ErrorText text={errors.message} />}
+                  {isError && message && (
+                    <div className="server_error">{message}</div>
+                  )}
+
+                  <div className="clearfix" />
+                  <h5>
+                    {" "}
+                    Your order will be processed immediately and products will
+                    be shipped after medical review.
+                  </h5>
+                </form>
+              </div>
+            </div>
+            <button
+              tabIndex="0"
+              type="button"
+              className="login_btn"
+              onClick={this.submit}
+            >
+              Add New Payment Method
+            </button>
+          </div>
+        )}
+      </>
     );
   }
 }
 
-export default Payment;
+export default injectStripe(Payment);

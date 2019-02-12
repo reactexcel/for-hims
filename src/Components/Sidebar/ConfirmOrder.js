@@ -5,7 +5,20 @@ class ConfirmOrder extends Component {
   static defaultProps = {
     renderNext: () => {}
   };
+  shouldComponentUpdate(nextProps) {
+    if (
+      nextProps.payment.data.cardList.length ===
+      this.props.payment.data.cardList.length
+    ) {
+      return false;
+    }
+    return true;
+  }
   render() {
+    const {
+      userProfile,
+      payment: { data }
+    } = this.props;
     return (
       <>
         <div className="cart_section no-items">
@@ -68,7 +81,10 @@ class ConfirmOrder extends Component {
                   <br /> USA
                 </li>
                 <li className="billing"> Billing Information </li>
-                <li> Master Card •••• •••• •••• 2122 </li>
+                <li>
+                  {data.cardList[0].brand}
+                  •••• •••• •••• {data.cardList[0].last4}
+                </li>
 
                 <div className="checkout_recurring-charge">
                   Your membership renews automatically. You can cancel any time.

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import StripeContainer from "../Generic/StripeContainer";
-import ProfilePayment from "./ProfilePayment";
+import Payment from "./Payment";
 export default class PaymentContainer extends Component {
   render() {
     return (
       <StripeContainer>
-        <ProfilePayment {...this.props} />
+        <Payment {...this.props} />
       </StripeContainer>
     );
   }
