@@ -5,15 +5,15 @@ class ConfirmOrder extends Component {
   static defaultProps = {
     renderNext: () => {}
   };
-  shouldComponentUpdate(nextProps) {
-    if (
-      nextProps.payment.data.cardList.length ===
-      this.props.payment.data.cardList.length
-    ) {
-      return false;
-    }
-    return true;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   if (
+  //     nextProps.payment.data.cardList.length ===
+  //     this.props.payment.data.cardList.length
+  //   ) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
   render() {
     const {
       userProfile,
