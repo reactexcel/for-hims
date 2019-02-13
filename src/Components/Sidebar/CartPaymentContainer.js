@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import StripeContainer from "../Generic/StripeContainer";
 import Payment from "./Payment";
-export default class PaymentContainer extends Component {
+export default class CartPaymentContainer extends Component {
   render() {
     return (
       <StripeContainer>

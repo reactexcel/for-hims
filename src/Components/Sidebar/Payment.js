@@ -56,9 +56,8 @@ class Payment extends Component {
     }
   };
   render() {
-    console.log(this.props);
-    const { errors } = this.state;
-    const { isError, message, isLoading, isSuccess } = this.props.payment;
+    const { errors, showAddPayment } = this.state;
+    const { isError, message, isLoading, isSuccess, data } = this.props.payment;
     return (
       <>
         {isLoading ? (
@@ -82,23 +81,47 @@ class Payment extends Component {
             <div className="login_form">
               <div className="register_box">
                 <h3>Payment information</h3>
-                <h5>Please enter your paymennt information</h5>
-                <form>
-                  <CardElement
-                    onChange={this.validateCard}
-                    onReady={element => (this.stripeRef = element)}
-                  />
-                  {errors.message && <ErrorText text={errors.message} />}
-                  {isError && message && (
-                    <div className="server_error">{message}</div>
-                  )}
-
-                  <div className="clearfix" />
-                  <h5>
-                    {" "}
-                    Your order will be processed immediately and products will
-                    be shipped after medical review.
-                  </h5>
+                <h5>Please enter your payment information</h5>
+                <form className="payment_form">
+                  <>
+                    {data.cardList && data.cardList.length ? (
+                      <>
+                        <div className="card_details-block">
+                          {data.cardList &&
+                            data.cardList.map(card => (
+                              <div className="card_detail" key={card.id}>
+                                <div>{card.brand}</div>
+                                <div> •••• •••• •••• {card.last4}</div>
+                              </div>
+                            ))}
+                        </div>
+                        <button
+                          className="add-payment"
+                          onClick={this.onOpenAddPayment}
+                        >
+                          Add New Payment Method
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        {" "}
+                        <CardElement
+                          onChange={this.validateCard}
+                          onReady={element => (this.stripeRef = element)}
+                        />
+                        {errors.message && <ErrorText text={errors.message} />}
+                        {isError && message && (
+                          <div className="server_error">{message}</div>
+                        )}
+                        <div className="clearfix" />
+                        <h5>
+                          {" "}
+                          Your order will be processed immediately and products
+                          will be shipped after medical review.
+                        </h5>
+                      </>
+                    )}
+                  </>
                 </form>
               </div>
             </div>

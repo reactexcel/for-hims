@@ -26,16 +26,17 @@ class VerifyAddress extends Component {
             <h3> Verify your address </h3>
             <blockquote className="select_no">
               <input type="radio" readOnly /> <strong>Original address:</strong>{" "}
+              <br /> {shippingAddress[0].street} <br />{" "}
+              {shippingAddress[0].states} <br /> {shippingAddress[0].zipcode}{" "}
               <br />
-              {shippingAddress.street} <br /> {shippingAddress.states} <br />
-              {shippingAddress.zipcode}
-              <br /> USA
+              USA
             </blockquote>
             <blockquote className="select_yes">
               <input type="radio" checked readOnly />{" "}
               <strong>Suggested address:</strong>
-              <br /> {shippingAddress.street} <br /> {shippingAddress.states}{" "}
-              <br /> {shippingAddress.zipcode} <br />
+              <br /> {shippingAddress[1].street} <br />{" "}
+              {shippingAddress[1].states} <br /> {shippingAddress[1].zipcode}{" "}
+              <br />
               USA
             </blockquote>
             <a href="#" className="read">

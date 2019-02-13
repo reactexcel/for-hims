@@ -45,7 +45,7 @@ class FullCart extends Component {
   renderNext = () => {
     if (!this.props.user.auth) {
       this.setState({ next: 10 });
-    } else if (this.state.next < 4) {
+    } else if (this.state.next < 3) {
       this.setState(prevState => ({ next: prevState.next + 1 }));
     }
   };
@@ -65,7 +65,17 @@ class FullCart extends Component {
       case 2:
         return this.props.userProfile.data.dateOfBirth ? (
           this.props.userProfile.data.shippingAddress ? (
-            <VerifyAddress renderNext={this.renderNext} />
+            this.props.payment.data.cardList.length ? (
+              <ConfirmOrder payment = {this.props.payment} 
+                userProfile = {this.props.userProfile}
+              />
+            ) : (
+              <CartPaymentContainer
+                onAddNewPayment={this.onAddNewPayment}
+                renderNext={this.renderNext}
+                payment={this.props.payment}
+              />
+            )
           ) : (
             <Shipping renderNext={this.renderNext} />
           )
@@ -73,18 +83,18 @@ class FullCart extends Component {
           <DateOfBirth />
         );
 
-      case 3:
-        return this.props.payment.data.cardList.length ? (
-          <ConfirmOrder payment = {this.props.payment} 
-            userProfile = {this.props.userProfile}
-          />
-        ) : (
-          <CartPaymentContainer
-            onAddNewPayment={this.onAddNewPayment}
-            renderNext={this.renderNext}
-            payment={this.props.payment}
-          />
-        );
+      // case 3:
+      //   return this.props.payment.data.cardList.length ? (
+      //     <ConfirmOrder payment = {this.props.payment} 
+      //       userProfile = {this.props.userProfile}
+      //     />
+      //   ) : (
+      //     <CartPaymentContainer
+      //       onAddNewPayment={this.onAddNewPayment}
+      //       renderNext={this.renderNext}
+      //       payment={this.props.payment}
+      //     />
+      //   );
 
       case 10:
         return <Login closeSidebar={this.props.closeSidebar} />;
