@@ -22,7 +22,7 @@ class FullCart extends Component {
         data: { customerId }
       }
     } = this.props;
-    if (uid && customerId) {
+    if (!this.props.payment.isSuccess && uid && customerId) {
       this.props.getAllCardsRequest({ uid });
     }
   }

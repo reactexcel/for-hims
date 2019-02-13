@@ -40,7 +40,7 @@ class ProfileContainer extends Component {
         data: { customerId }
       }
     } = this.props.profile;
-    if (uid && customerId) {
+    if (!this.props.payment.isSuccess && uid && customerId) {
       this.props.getAllCardsRequest({ uid });
     }
   }
