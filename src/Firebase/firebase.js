@@ -53,13 +53,19 @@ class Firebase {
   // *** User API ***
 
   user = uid => this.db.collection("users").doc(uid);
-
+  //message api
   userMessages = uid =>
     this.db
       .collection("users")
       .doc(uid)
       .collection("messages");
-
+  //address api
+  userAddress = uid =>
+    this.db
+      .collection("users")
+      .doc(uid)
+      .collection("shippingAddress");
+  //orders api
   userOrders = uid =>
     this.db
       .collection("users")

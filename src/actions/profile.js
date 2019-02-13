@@ -73,23 +73,22 @@ export function* addShipingAddressRequest(action) {
   const { shippingAddress, uid } = action.payload;
   try {
     const response = yield firebase.user(uid).get();
-
     if (response.exists && response.data().shippingAddress) {
-      yield firebase.user(uid).update({ shippingAddress });
+      yield firebase.user(uid).update({ shippingAddress:[...shippingAddress] });
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
       yield put(
         actions.addShippingAddressSuccess("Your address has been updated")
       );
     } else {
-      yield firebase.user(uid).set({ shippingAddress }, { merge: true });
+      yield firebase.user(uid).set({ shippingAddress:[shippingAddress] }, { merge: true });
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
       yield put(
         actions.addShippingAddressSuccess("Your address has been saved")
       );
     }
-  } catch (e) {
+  } catch (e) {   
     yield put(actions.updateProfileError(e.message));
     yield put(actions.addShippingAddressError(e.message));
   }

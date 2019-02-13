@@ -10,13 +10,20 @@ class ProfileShippingAddress extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showEditShippingAddress: false
+      showEditShippingAddress: false,
+      index: 0
     };
   }
-  openEditShippingAddress = () =>
-    this.setState({
-      showEditShippingAddress: true
+  openEditShippingAddress = index => {
+    console.log(index, "asddsa");
+    this.props.initialize({
+      ...this.props.userProfile.data.shippingAddress[index]
     });
+    this.setState({
+      showEditShippingAddress: true,
+      index
+    });
+  };
 
   cancelEditShippingAddress = () => {
     this.setState({ showEditShippingAddress: false });
@@ -33,18 +40,23 @@ class ProfileShippingAddress extends Component {
       this.cancelEditShippingAddress();
     }
 
-    if (
-      this.props.userProfile.data.shippingAddress &&
-      prevProps.userProfile.data.shippingAddress !==
-        this.props.userProfile.data.shippingAddress
-    ) {
-      this.props.initialize({ ...this.props.userProfile.data.shippingAddress });
-    }
+    // if (
+    //   this.props.userProfile.data.shippingAddress &&
+    //   prevProps.userProfile.data.shippingAddress !==
+    //     this.props.userProfile.data.shippingAddress
+    // ) {
+    //   this.props.initialize({
+    //     ...this.props.userProfile.data.shippingAddress[0]
+    //   });
+    // }
   }
 
   handleUpdateShippingAddress = values => {
+    const { index } = this.state;
+    let shippingAddress = [...this.props.userProfile.data.shippingAddress];
+    shippingAddress.splice(index, 1, values);
     this.props.onUpdateShippingAddress({
-      shippingAddress: values
+      shippingAddress
     });
   };
 
@@ -75,15 +87,22 @@ class ProfileShippingAddress extends Component {
           !showEditShippingAddress ? (
             <>
               <h3>Shipping Addresses</h3>
-              <p>
-                {shippingAddress.street}
-                <br /> {shippingAddress.states}
-                <br /> {shippingAddress.zipcode}
-                <br /> USA
-              </p>
-              <Link to="#" onClick={this.openEditShippingAddress}>
-                edit
-              </Link>
+              {shippingAddress.map((add, index) => (
+                <React.Fragment key={index}>
+                  <p>
+                    {add.street}
+                    <br /> {add.states}
+                    <br /> {add.zipcode}
+                    <br /> USA
+                  </p>
+                  <Link
+                    to="#"
+                    onClick={() => this.openEditShippingAddress(index)}
+                  >
+                    edit
+                  </Link>
+                </React.Fragment>
+              ))}
             </>
           ) : (
             <>

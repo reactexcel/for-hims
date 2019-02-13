@@ -82,7 +82,7 @@ class ConfirmOrder extends Component {
                 </li>
                 <li className="billing"> Billing Information </li>
                 <li>
-                  {data.cardList[0].brand}
+                  {data.cardList[0].brand}{" "}
                   •••• •••• •••• {data.cardList[0].last4}
                 </li>
 
