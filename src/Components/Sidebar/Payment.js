@@ -55,6 +55,9 @@ class Payment extends Component {
       this.setState({ errors: {} });
     }
   };
+  onOpenAddPayment = () => this.setState({ showAddPayment: true });
+  onCloseAddPayment = () => this.setState({ showAddPayment: false });
+
   render() {
     const { errors, showAddPayment } = this.state;
     const { isError, message, isLoading, isSuccess, data } = this.props.payment;
@@ -116,19 +119,10 @@ class Payment extends Component {
                             <div className="server_error">{message}</div>
                           )}
                           <button
-                            type="button"
-                            onClick={this.submit}
-                            disabled={ isLoading}
-                          >
-                            { isLoading
-                              ? "Adding New Payment Method..."
-                              : "Add New Payment Method"}
-                          </button>
-                          <button
                             className="payment-cancel"
                             onClick={this.onCloseAddPayment}
                           >
-                            Cancel
+                            Select an Existing Payment
                           </button>
                         </>
                       )
@@ -159,9 +153,15 @@ class Payment extends Component {
               tabIndex="0"
               type="button"
               className="login_btn"
-              onClick={this.submit}
+              onClick={
+                data.cardList && data.cardList.length
+                  ? this.props.closePayment
+                  : this.submit
+              }
             >
-              Add New Payment Method
+              {data.cardList && data.cardList.length
+                ? "Next"
+                : "Add New Payment Method"}
             </button>
           </div>
         )}

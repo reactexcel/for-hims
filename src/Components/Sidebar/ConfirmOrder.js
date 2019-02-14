@@ -21,6 +21,7 @@ class ConfirmOrder extends Component {
   //   return true;
   // }
   open = state => this.setState({ [state]: true });
+  close = state => this.setState({ [state]: false });
   render() {
     const {
       userProfile: {
@@ -33,7 +34,10 @@ class ConfirmOrder extends Component {
     return (
       <>
         {showPayment ? (
-          <CartPaymentContainer payment={payment} />
+          <CartPaymentContainer
+            payment={payment}
+            closePayment={() => this.close("showPayment")}
+          />
         ) : showAddress ? (
           <ShippingAddress shippingAddress={shippingAddress} />
         ) : (
