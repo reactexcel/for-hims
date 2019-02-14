@@ -2155,6 +2155,26 @@ form.profile_form button:disabled,
   transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 /* end of styles for date of birth section */
+/* css for general underline button */
+button.underline_button {
+  all: unset;
+  text-transform: uppercase;
+  align-self: center;
+  margin-top: 1rem;
+  border-bottom: 2px solid;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin: 1.2rem 0;
+  padding-bottom: 4px;
+}
+/* end of underline button */
+/* css for shipping form */
+form.shipping_form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom:3rem;
+}
+/* end shipping form */
 
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {
   h3,

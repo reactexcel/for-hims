@@ -38,50 +38,58 @@ class Shipping extends Component {
 
   render() {
     return (
-      <div id="mySidenav5">
-        <div className="symbols">
-          <div className="symbols-title">Shipping</div>
-          <ul>
-            <li className="symbols1"> </li>
-            <li className="symbols2"> </li>
-            <li className="symbols3 active"> </li>
-            <li className="symbols4"> </li>
-            <li className="symbols5"> </li>
-          </ul>
-        </div>
-        <div className="login_form">
-          <div className="register_box">
-            <h3>Shipping Information</h3>
-            <h5>Please enter your home shipping address</h5>
-            <form>
-              {this.renderFields()}
-              <Field component="select" name="states">
-                {usaStates.map(({ name, abbreviation }) => (
-                  <option value={`${name}, ${abbreviation}`} key={name}>
-                    {name}
-                  </option>
-                ))}
-              </Field>
-              <Field
-                component={this.renderZipCode}
-                name="zipcode"
-                label="Zip"
-              />
-              <input
-                type="text"
-                disabled
-                name="country"
-                value="United States"
-                readOnly
-              />
-              <div className="switch_title">
-                <h4> Send me SMS Delivery Updates </h4>
-                <label className="switch">
-                  <input type="checkbox" />
-                  <span className="slid round" />
-                </label>
-              </div>
-            </form>
+      <>
+        <div className="cart_section">
+          <div className="symbols">
+            <div className="symbols-title">Shipping</div>
+            <ul>
+              <li className="symbols1"> </li>
+              <li className="symbols2"> </li>
+              <li className="symbols3 active"> </li>
+              <li className="symbols4"> </li>
+              <li className="symbols5"> </li>
+            </ul>
+          </div>
+          <div className="login_form">
+            <div className="register_box">
+              <h3>Shipping Information</h3>
+              <h5>Please enter your home shipping address</h5>
+              <form className="shipping_form">
+                {this.renderFields()}
+                <Field component="select" name="states">
+                  {usaStates.map(({ name, abbreviation }) => (
+                    <option value={`${name}, ${abbreviation}`} key={name}>
+                      {name}
+                    </option>
+                  ))}
+                </Field>
+                <Field
+                  component={this.renderZipCode}
+                  name="zipcode"
+                  label="Zip"
+                />
+                <input
+                  type="text"
+                  disabled
+                  name="country"
+                  value="United States"
+                  readOnly
+                />
+                <div className="switch_title">
+                  <h4> Send me SMS Delivery Updates </h4>
+                  <label className="switch">
+                    <input type="checkbox" />
+                    <span className="slid round" />
+                  </label>
+                </div>
+                <button
+                  className="underline_button"
+                  onClick={this.props.toggleAddAddress}
+                >
+                  Cancel
+                </button>
+              </form>
+            </div>
           </div>
         </div>
         <button
@@ -92,7 +100,7 @@ class Shipping extends Component {
         >
           Save Shipping Address
         </button>
-      </div>
+      </>
     );
   }
 }
