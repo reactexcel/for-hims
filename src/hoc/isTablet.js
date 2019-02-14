@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { debounce } from "../utils/helper";
 
 export default WrappedComponent => {
-  class isMobile extends Component {
+  class isTablet extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -19,9 +19,9 @@ export default WrappedComponent => {
     handleResize = () => this.setState({ width: window.innerWidth });
     render() {
       const { width } = this.state;
-      const isMobile = width <= 500;
-      return <WrappedComponent {...this.props} isMobile={isMobile} />;
+      const isTablet = width <= 768;
+      return <WrappedComponent {...this.props} isTablet={isTablet} />;
     }
   }
-  return isMobile;
+  return isTablet;
 };

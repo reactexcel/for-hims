@@ -9,12 +9,16 @@ import { connect } from "react-redux";
 
 class Shipping extends Component {
   static defaultProps = {
-    renderNext: () => {}
+    renderNext: () => {},
+    addNew: false
   };
 
   handleSaveAddress = values => {
+    const shippingAddress = this.props.addNew
+      ? [...this.props.shippingAddress, values]
+      : values;
     this.props.addShippingAddressRequest({
-      shippingAddress: values,
+      shippingAddress,
       uid: this.props.user.data.uid
     });
   };
@@ -37,6 +41,7 @@ class Shipping extends Component {
   );
 
   render() {
+    const { addNew } = this.props;
     return (
       <>
         <div className="cart_section">
@@ -82,12 +87,14 @@ class Shipping extends Component {
                     <span className="slid round" />
                   </label>
                 </div>
-                <button
-                  className="underline_button"
-                  onClick={this.props.toggleAddAddress}
-                >
-                  Cancel
-                </button>
+                {addNew && (
+                  <button
+                    className="underline_button"
+                    onClick={this.props.toggleAddAddress}
+                  >
+                    Cancel
+                  </button>
+                )}
               </form>
             </div>
           </div>

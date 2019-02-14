@@ -4,7 +4,7 @@ import FullCart from "../Sidebar/FullCart";
 import Login from "../Sidebar/Login";
 import Shop from "../Sidebar/Shop";
 import Learn from "../Sidebar/Learn";
-import isMobile from "../../hoc/isMobile";
+import isTablet from "../../hoc/isTablet";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class Sidebar extends Component {
   _renderItem = param => {
     switch (param) {
       case "account":
-        return <Account closeSidebar={this.props.closeSidebar}/>;
+        return <Account closeSidebar={this.props.closeSidebar} />;
       case "cart":
         return <FullCart closeSidebar={this.props.closeSidebar} />;
       case "login":
@@ -48,13 +48,13 @@ class Sidebar extends Component {
   };
 
   render() {
-    const { openSidebar, side, isMobile } = this.props;
+    const { openSidebar, side, isTablet } = this.props;
 
     let closeIconClass =
       side === "left"
         ? "glyphicon glyphicon-menu-left"
         : "glyphicon glyphicon-menu-right";
-    const width = openSidebar ? (isMobile ? "100%" : "45%") : 0;
+    const width = openSidebar ? (isTablet ? "100%" : "45%") : 0;
 
     return (
       <div
@@ -76,4 +76,4 @@ class Sidebar extends Component {
   }
 }
 
-export default isMobile(Sidebar);
+export default isTablet(Sidebar);

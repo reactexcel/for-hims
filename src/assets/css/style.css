@@ -1099,7 +1099,7 @@ input:checked + .slid:before {
 }
 #mySidenav6 .register_box {
   width: 72%;
-  padding: 140px 10px 10px 10px;
+  padding: 0;
 }
 #mySidenav6 h5 {
   color: #000;
@@ -1227,7 +1227,7 @@ div.read:hover,
 
 .shipping_address_box {
   text-align: center;
-  /* padding: 100px 0px 50px 0px; */
+  padding-bottom: 5rem;
 }
 .shipping_address_box h4 {
   padding-bottom: 10px;
@@ -2481,7 +2481,7 @@ form.shipping_form {
 
   #mySidenav6 .register_box {
     width: 80%;
-    padding: 80px 10px 40px 10px;
+    padding:0px;
   }
   #mySidenav5 .register_box {
     width: 80%;
