@@ -22,7 +22,12 @@ class ConfirmOrder extends Component {
   // }
   open = state => this.setState({ [state]: true });
   render() {
-    const { userProfile, payment } = this.props;
+    const {
+      userProfile: {
+        data: { shippingAddress }
+      },
+      payment
+    } = this.props;
     const { data } = payment;
     const { showPayment, showAddress } = this.state;
     return (
@@ -30,7 +35,7 @@ class ConfirmOrder extends Component {
         {showPayment ? (
           <CartPaymentContainer payment={payment} />
         ) : showAddress ? (
-          <ShippingAddress />
+          <ShippingAddress shippingAddress={shippingAddress} />
         ) : (
           <>
             <div className="cart_section no-items">
