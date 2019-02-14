@@ -141,7 +141,7 @@ class ConfirmOrder extends Component {
               className="absolute_no"
               // onClick={this.props.renderNext}
             >
-              <Link to="/gender">Confirm & Start Visit</Link>
+              Confirm & Start Visit
             </button>
           </>
         )}

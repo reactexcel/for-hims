@@ -110,6 +110,41 @@ async function getAllCards(req, res) {
   }
 }
 
+async function charge(req, res) {
+  const body = req.body;
+  const uid = body.uid;
+
+  try {
+    const response = await admin
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .get();
+    if (response.exists) {
+      const customerData = response.data();
+      if (customerData.customerId) {
+        const charge = await stripe.charges.create({
+          amount: 30000,
+          currency: "usd",
+          customer: customerData.customerId
+        });
+      } else {
+        send(res, 404, {
+          error: "User is not a customer yet"
+        });
+      }
+    } else {
+      send(res, 404, {
+        error: "No User found"
+      });
+    }
+  } catch (e) {
+    send(res, 500, {
+      error: e.message
+    });
+  }
+}
+
 function send(res, code, body) {
   res.send({
     statusCode: code,
@@ -132,6 +167,17 @@ app.post("/addNew", (req, res) => {
 });
 
 app.post("/getAllCards", (req, res) => {
+  try {
+    getAllCards(req, res);
+  } catch (e) {
+    console.log(e);
+    send(res, 500, {
+      error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`
+    });
+  }
+});
+
+app.post("/chargeCustomer", (req, res) => {
   try {
     getAllCards(req, res);
   } catch (e) {
