@@ -1250,11 +1250,17 @@ div.read:hover,
 .shipping_address_box blockquote {
   background: #fff;
   padding: 30px 20px 30px 20px;
-  border: 2px solid #c49875;
+  border: 2px solid #eee;
+  color:#999;
   text-align: left;
   width: 80%;
   margin: 0px auto;
   margin-bottom: 20px;
+  cursor: pointer;
+}
+.shipping_address_box blockquote.active-address {
+  border: 2px solid #c49875;
+  color: #000;
 }
 
 .verify_address_box {

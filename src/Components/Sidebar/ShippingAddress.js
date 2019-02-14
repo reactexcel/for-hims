@@ -11,7 +11,7 @@ class ShippingAddress extends Component {
   toggleAddAddress = () =>
     this.setState(prevState => ({ addShipping: !prevState.addShipping }));
   render() {
-    const { shippingAddress } = this.props;
+    const { shippingAddress, addressIndex } = this.props;
     const { addShipping } = this.state;
     return (
       <>
@@ -42,7 +42,11 @@ class ShippingAddress extends Component {
                 </h4>
                 {shippingAddress &&
                   shippingAddress.map((address, index) => (
-                    <blockquote key={index}>
+                    <blockquote
+                      key={index}
+                      onClick={() => this.props.selectAddress(index)}
+                      className={index === addressIndex ? "active-address" : ""}
+                    >
                       {" "}
                       {address.street}, {address.city} <br /> {address.states}{" "}
                       <br />
@@ -58,7 +62,12 @@ class ShippingAddress extends Component {
                 </button>
               </div>
             </div>
-            <button tabIndex="0" type="button" className="login_btn">
+            <button
+              tabIndex="0"
+              type="button"
+              className="login_btn"
+              onClick={this.props.saveAddress}
+            >
               {" "}
               Save Shipping Address{" "}
             </button>

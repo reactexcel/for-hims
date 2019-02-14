@@ -6,7 +6,8 @@ import ShippingAddress from "./ShippingAddress";
 class ConfirmOrder extends Component {
   state = {
     showPayment: false,
-    showAddress: false
+    showAddress: false,
+    index: 0
   };
   static defaultProps = {
     renderNext: () => {}
@@ -14,6 +15,8 @@ class ConfirmOrder extends Component {
 
   open = state => this.setState({ [state]: true });
   close = state => this.setState({ [state]: false });
+
+  selectAddress = index => this.setState({ index });
   render() {
     const {
       userProfile: {
@@ -22,17 +25,22 @@ class ConfirmOrder extends Component {
       payment
     } = this.props;
     const { data } = payment;
-    const { showPayment, showAddress } = this.state;
+    const { showPayment, showAddress, index } = this.state;
     return (
       <>
         {showPayment ? (
           <CartPaymentContainer
             payment={payment}
             closePayment={() => this.close("showPayment")}
-            onAddNewPayment = {this.props.onAddNewPayment}
+            onAddNewPayment={this.props.onAddNewPayment}
           />
         ) : showAddress ? (
-          <ShippingAddress shippingAddress={shippingAddress} />
+          <ShippingAddress
+            shippingAddress={shippingAddress}
+            selectAddress={this.selectAddress}
+            addressIndex={index}
+            saveAddress={() => this.close("showAddress")}
+          />
         ) : (
           <>
             <div className="cart_section no-items">
@@ -100,9 +108,10 @@ class ConfirmOrder extends Component {
                       />
                     </li>
                     <li>
-                      {shippingAddress[0].street}, {shippingAddress[0].city}{" "}
-                      <br /> {shippingAddress[0].states} <br />{" "}
-                      {shippingAddress[0].zipcode}
+                      {shippingAddress[index].street},{" "}
+                      {shippingAddress[index].city} <br />{" "}
+                      {shippingAddress[index].states} <br />{" "}
+                      {shippingAddress[index].zipcode}
                       <br /> USA
                     </li>
                     <li className="billing">
