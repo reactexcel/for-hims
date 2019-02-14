@@ -17,10 +17,13 @@ class Payment extends Component {
   };
 
   componentDidUpdate(prevProps) {
+    const { data } = this.props.payment;
     if (
       this.props.payment.isSuccess &&
       prevProps.payment.isSuccess !== this.props.payment.isSuccess
     ) {
+      if (data.cardList && data.cardList.length) this.props.closePayment();
+    } else {
       this.props.renderNext();
     }
   }
@@ -154,12 +157,12 @@ class Payment extends Component {
               type="button"
               className="login_btn"
               onClick={
-                data.cardList && data.cardList.length
+                data.cardList && data.cardList.length && !showAddPayment
                   ? this.props.closePayment
                   : this.submit
               }
             >
-              {data.cardList && data.cardList.length
+              {data.cardList && data.cardList.length && !showAddPayment
                 ? "Next"
                 : "Add New Payment Method"}
             </button>

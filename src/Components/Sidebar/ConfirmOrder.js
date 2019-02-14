@@ -11,15 +11,7 @@ class ConfirmOrder extends Component {
   static defaultProps = {
     renderNext: () => {}
   };
-  // shouldComponentUpdate(nextProps) {
-  //   if (
-  //     nextProps.payment.data.cardList.length ===
-  //     this.props.payment.data.cardList.length
-  //   ) {
-  //     return false;
-  //   }
-  //   return true;
-  // }
+
   open = state => this.setState({ [state]: true });
   close = state => this.setState({ [state]: false });
   render() {
@@ -37,6 +29,7 @@ class ConfirmOrder extends Component {
           <CartPaymentContainer
             payment={payment}
             closePayment={() => this.close("showPayment")}
+            onAddNewPayment = {this.props.onAddNewPayment}
           />
         ) : showAddress ? (
           <ShippingAddress shippingAddress={shippingAddress} />
@@ -99,23 +92,25 @@ class ConfirmOrder extends Component {
                       {" "}
                       * Includes pharmacy & drug fees{" "}
                     </li>
-                    <li
-                      className="shipping-add"
-                      onClick={() => this.open("showAddress")}
-                    >
-                      {" "}
-                      Shipping Address{" "}
+                    <li className="shipping-add">
+                      Shipping Address
+                      <i
+                        className="fa fa-pencil"
+                        onClick={() => this.open("showAddress")}
+                      />
                     </li>
                     <li>
-                      1031 n 3rd st., 101 <br /> philadelphia , PA <br /> 19123
+                      {shippingAddress[0].street}, {shippingAddress[0].city}{" "}
+                      <br /> {shippingAddress[0].states} <br />{" "}
+                      {shippingAddress[0].zipcode}
                       <br /> USA
                     </li>
-                    <li
-                      className="billing"
-                      onClick={() => this.open("showPayment")}
-                    >
-                      {" "}
+                    <li className="billing">
                       Billing Information{" "}
+                      <i
+                        className="fa fa-pencil"
+                        onClick={() => this.open("showPayment")}
+                      />
                     </li>
                     <li>
                       {data.cardList[0].brand} •••• •••• ••••{" "}

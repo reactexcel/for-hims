@@ -798,8 +798,23 @@ button.closebtn:focus {
 }
 .cart_numbers li.shipping-add {
   color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .cart_numbers li.billing {
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart_numbers li.billing > i,
+.cart_numbers li.shipping-add > i {
+  color: #ccc;
+  cursor: pointer;
+}
+.cart_numbers li.billing > i:hover,
+.cart_numbers li.shipping-add > i:hover {
   color: #000;
 }
 .checkout_recurring-charge {
@@ -2172,7 +2187,7 @@ button.underline_button {
 form.shipping_form {
   display: flex;
   flex-direction: column;
-  margin-bottom:3rem;
+  margin-bottom: 3rem;
 }
 /* end shipping form */
 
@@ -2481,7 +2496,7 @@ form.shipping_form {
 
   #mySidenav6 .register_box {
     width: 80%;
-    padding:0px;
+    padding: 0px;
   }
   #mySidenav5 .register_box {
     width: 80%;

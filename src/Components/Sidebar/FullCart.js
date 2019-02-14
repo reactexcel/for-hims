@@ -66,8 +66,10 @@ class FullCart extends Component {
         return this.props.userProfile.data.dateOfBirth ? (
           this.props.userProfile.data.shippingAddress ? (
             this.props.payment.data.cardList.length ? (
-              <ConfirmOrder payment = {this.props.payment} 
-                userProfile = {this.props.userProfile}
+              <ConfirmOrder
+                payment={this.props.payment}
+                userProfile={this.props.userProfile}
+                onAddNewPayment={this.onAddNewPayment}
               />
             ) : (
               <CartPaymentContainer
@@ -85,7 +87,7 @@ class FullCart extends Component {
 
       // case 3:
       //   return this.props.payment.data.cardList.length ? (
-      //     <ConfirmOrder payment = {this.props.payment} 
+      //     <ConfirmOrder payment = {this.props.payment}
       //       userProfile = {this.props.userProfile}
       //     />
       //   ) : (
