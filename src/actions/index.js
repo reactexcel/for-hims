@@ -173,3 +173,8 @@ export const updateAppointmentSuccess = createAction(
 export const updateAppointmentError = createAction(
   constants.UPDATE_APPOINTMENT_ERROR
 );
+
+// actions for saving gender
+export const saveGenderRequest = createAction(constants.SAVE_GENDER_REQUEST);
+export const saveGenderSuccess = createAction(constants.SAVE_GENDER_SUCCESS);
+export const saveGenderError = createAction(constants.SAVE_GENDER_ERROR);

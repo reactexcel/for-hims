@@ -130,3 +130,20 @@ export function* updateAppointmentRequest(action) {
     yield put(actions.updateAppointmentError(e.message));
   }
 }
+
+export function* saveGenderRequest(action) {
+  const { uid, gender } = action.payload;
+  try {
+    const response = yield firebase.user(uid).get();
+    if (response.exists && response.data().gender) {
+      yield put(actions.saveGenderSuccess("Your Gender is already saved"));
+    } else {
+      yield firebase.user(uid).set({ gender }, { merge: true });
+      const userData = yield firebase.user(uid).get();
+      yield put(actions.updateProfileSuccess(userData.data()));
+      yield put(actions.saveGenderSuccess("Your Gender has been updated"));
+    }
+  } catch (e) {
+    yield put(actions.saveGenderError(e));
+  }
+}

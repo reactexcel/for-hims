@@ -38,8 +38,8 @@ class Gender extends Component {
               <div className="back-btn">
                 <Link to="/">Close Visit</Link>
               </div>
-              <div className="confirm-gender">
-                <Link to="/informed-consent">Confirm</Link>
+              <div className="confirm-gender" onClick={this.props.saveGender}>
+                Confirm
               </div>
             </div>
           </div>
