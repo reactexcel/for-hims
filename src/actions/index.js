@@ -151,3 +151,6 @@ export const messageReadStatusSuccess = createAction(
 export const messageReadStatusError = createAction(
   constants.MESSAGE_READ_STATUS_ERROR
 );
+
+//actions for payment
+export const chargeCustomerRequest = createAction(constants.CHARGE_CUSTOMER_REQUEST);

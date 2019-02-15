@@ -128,6 +128,11 @@ async function charge(req, res) {
           currency: "usd",
           customer: customerData.customerId
         });
+        console.log(charge,'asssssssssss')
+        send(res, 200, {
+          message: "Success",
+          charge: charge
+        });
       } else {
         send(res, 404, {
           error: "User is not a customer yet"
@@ -179,7 +184,7 @@ app.post("/getAllCards", (req, res) => {
 
 app.post("/chargeCustomer", (req, res) => {
   try {
-    getAllCards(req, res);
+    charge(req, res);
   } catch (e) {
     console.log(e);
     send(res, 500, {

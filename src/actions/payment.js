@@ -17,8 +17,15 @@ function getAllCardsApi(data) {
   );
 }
 
+function chargeCustomer(data) {
+  return axios.post(
+    "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/payment/chargeCustomer",
+    data
+  );
+}
+
 export function* addNewPaymentRequest(action) {
-  const { uid, token,email } = action.payload;
+  const { uid, token, email } = action.payload;
   try {
     const response = yield call(addnewPaymentApi, {
       uid,
@@ -58,5 +65,15 @@ export function* getAllCardsRequest(action) {
     }
   } catch (e) {
     yield put(actions.getAllCardsError(e.message));
+  }
+}
+
+export function* chargeCustomerRequest(action) {
+  const { uid } = action.payload;
+  try {
+    const response = yield call(chargeCustomer, { uid });
+    console.log(response, "sadaas");
+  } catch (e) {
+    console.log(e, "asduayyhjsfdgbnjhf");
   }
 }

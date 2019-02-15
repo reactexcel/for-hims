@@ -139,7 +139,7 @@ class ConfirmOrder extends Component {
               tabIndex="0"
               type="orange"
               className="absolute_no"
-              // onClick={this.props.renderNext}
+              onClick={this.props.onChargeCustomer}
             >
               Confirm & Start Visit
             </button>
