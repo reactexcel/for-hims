@@ -41,7 +41,7 @@ class Shipping extends Component {
   );
 
   render() {
-    const { addNew,shippingAddress : {isLoading} } = this.props;
+    const { addNew, shippingAddress } = this.props;
     return (
       <>
         <div className="cart_section">

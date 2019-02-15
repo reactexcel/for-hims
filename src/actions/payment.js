@@ -72,8 +72,15 @@ export function* chargeCustomerRequest(action) {
   const { uid } = action.payload;
   try {
     const response = yield call(chargeCustomer, { uid });
-    console.log(response, "sadaas");
+    if (response.data.statusCode === 200) {
+      yield put(
+        actions.chargeCustomerSuccess({ ...JSON.parse(response.data.body) })
+      );
+    } else {
+      const error = JSON.parse(response.data.body).error;
+      yield put(actions.chargeCustomerError(error));
+    }
   } catch (e) {
-    console.log(e, "asduayyhjsfdgbnjhf");
+    yield put(actions.chargeCustomerError(e.message));
   }
 }
