@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 class Gender extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      gender: "male"
-    };
-  }
-  onGenderChange = e => this.setState({ gender: e.currentTarget.value });
   render() {
-    console.log(this.state.gender,'asd')
     return (
       <div className="container">
         <div className="row">
@@ -24,8 +16,8 @@ class Gender extends Component {
                   type="radio"
                   name="tabs"
                   value="male"
-                  checked={"male" === this.state.gender}
-                  onChange={this.onGenderChange}
+                  checked={"male" === this.props.gender}
+                  onChange={this.props.onGenderChange}
                 />
                 <label for="tab1" className="man-silhouette">
                   Male
@@ -35,8 +27,8 @@ class Gender extends Component {
                   type="radio"
                   name="tabs"
                   value="female"
-                  checked={"female" === this.state.gender}
-                  onChange={this.onGenderChange}
+                  checked={"female" === this.props.gender}
+                  onChange={this.props.onGenderChange}
                 />
                 <label for="tab2" className="woman-silhouette">
                   Female
