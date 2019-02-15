@@ -11,12 +11,19 @@ class GenderContainer extends Component {
     };
   }
 
+  componentDidMount(){
+    if(this.props.userProfile.data.gender){
+      this.props.history.push("/")
+    }
+  }
+
   onGenderChange = e => this.setState({ gender: e.currentTarget.value });
 
   saveGender = () => {
     const { uid } = this.props;
     const { gender } = this.state;
     this.props.saveGenderRequest({ uid, gender });
+    this.props.history.push("/informed-consent");
   };
 
   render() {

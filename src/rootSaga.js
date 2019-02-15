@@ -13,7 +13,8 @@ import {
   getProfileInfoRequest,
   addDateOfBirthRequest,
   addShipingAddressRequest,
-  updateAppointmentRequest
+  updateAppointmentRequest,
+  saveGenderRequest
 } from "./actions/profile";
 import {
   sendMessageRequest,
@@ -60,6 +61,7 @@ function* watchActions() {
     constants.UPDATE_APPOINTMENT_REQUEST,
     updateAppointmentRequest
   );
+  yield takeLatest(constants.SAVE_GENDER_REQUEST, saveGenderRequest);
 }
 export default function* rootSaga() {
   yield [watchActions()];
