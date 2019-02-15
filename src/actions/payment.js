@@ -78,7 +78,11 @@ export function* chargeCustomerRequest(action) {
       );
     } else {
       const error = JSON.parse(response.data.body).error;
-      yield put(actions.chargeCustomerError(error));
+      if (error.code) {
+        yield put(actions.chargeCustomerError(error.message));
+      } else {
+        yield put(actions.chargeCustomerError(error));
+      }
     }
   } catch (e) {
     yield put(actions.chargeCustomerError(e.message));

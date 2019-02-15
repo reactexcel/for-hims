@@ -12,7 +12,8 @@ import {
   updateProfileRequest,
   getProfileInfoRequest,
   addDateOfBirthRequest,
-  addShipingAddressRequest
+  addShipingAddressRequest,
+  updateAppointmentRequest
 } from "./actions/profile";
 import {
   sendMessageRequest,
@@ -55,6 +56,10 @@ function* watchActions() {
   );
   yield takeLatest(constants.GET_ALL_CARDS_REQUEST, getAllCardsRequest);
   yield takeLatest(constants.CHARGE_CUSTOMER_REQUEST, chargeCustomerRequest);
+  yield takeLatest(
+    constants.UPDATE_APPOINTMENT_REQUEST,
+    updateAppointmentRequest
+  );
 }
 export default function* rootSaga() {
   yield [watchActions()];

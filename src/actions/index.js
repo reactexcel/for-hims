@@ -162,3 +162,14 @@ export const chargeCustomerSuccess = createAction(
 export const chargeCustomerError = createAction(
   constants.CHARGE_CUSTOMER_ERROR
 );
+
+// actions for updating appointment
+export const updateAppointmentRequest = createAction(
+  constants.UPDATE_APPOINTMENT_REQUEST
+);
+export const updateAppointmentSuccess = createAction(
+  constants.UPDATE_APPOINTMENT_SUCCESS
+);
+export const updateAppointmentError = createAction(
+  constants.UPDATE_APPOINTMENT_ERROR
+);

@@ -18,6 +18,7 @@ class ConfirmOrder extends Component {
 
   componentDidUpdate(prevProps){
     if(this.props.payment.charge.isSuccess && prevProps.payment.charge.isSuccess !== this.props.payment.charge.isSuccess){
+      this.props.onUpdateAppointment({status:'Waiting'})
       this.props.history.push("/gender")
     }
   }

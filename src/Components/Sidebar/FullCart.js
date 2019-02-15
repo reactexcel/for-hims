@@ -11,7 +11,8 @@ import { withRouter } from "react-router-dom";
 import {
   addNewPaymentRequest,
   getAllCardsRequest,
-  chargeCustomerRequest
+  chargeCustomerRequest,
+  updateAppointmentRequest
 } from "../../actions";
 
 class FullCart extends Component {
@@ -50,6 +51,10 @@ class FullCart extends Component {
     const { uid } = this.props.user.data;
     this.props.chargeCustomerRequest({ uid });
   };
+  onUpdateAppointment = data => {
+    const { uid } = this.props.user.data;
+    this.props.updateAppointmentRequest({ uid, ...data });
+  };
   renderNext = () => {
     if (!this.props.user.auth) {
       this.setState({ next: 10 });
@@ -79,6 +84,7 @@ class FullCart extends Component {
                 userProfile={this.props.userProfile}
                 onAddNewPayment={this.onAddNewPayment}
                 onChargeCustomer={this.onChargeCustomer}
+                onUpdateAppointment={this.onUpdateAppointment}
               />
             ) : (
               <CartPaymentContainer
@@ -125,5 +131,10 @@ const mapStateToProps = ({ user, profile: { userProfile }, payment }) => ({
 
 export default connect(
   mapStateToProps,
-  { addNewPaymentRequest, getAllCardsRequest, chargeCustomerRequest }
+  {
+    addNewPaymentRequest,
+    getAllCardsRequest,
+    chargeCustomerRequest,
+    updateAppointmentRequest
+  }
 )(withRouter(FullCart));
