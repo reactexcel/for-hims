@@ -128,7 +128,7 @@ async function charge(req, res) {
           currency: "usd",
           customer: customerData.customerId
         });
-        console.log(charge,'asssssssssss')
+        console.log(charge)
         send(res, 200, {
           message: "Success",
           charge: charge

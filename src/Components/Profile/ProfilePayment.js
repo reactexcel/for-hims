@@ -14,8 +14,8 @@ class ProfilePayment extends Component {
 
   componentDidUpdate(prevProps) {
     if (
-      this.props.payment.isSuccess &&
-      prevProps.payment.isSuccess !== this.props.payment.isSuccess
+      this.props.card.isSuccess &&
+      prevProps.card.isSuccess !== this.props.card.isSuccess
     ) {
       this.onCloseAddPayment();
     }
@@ -48,7 +48,7 @@ class ProfilePayment extends Component {
 
   render() {
     const { errors, loading, showAddPayment } = this.state;
-    const { isError, isLoading, message, data } = this.props.payment;
+    const { isError, isLoading, message, data } = this.props.card;
     const {
       data: { customerId }
     } = this.props.userProfile;

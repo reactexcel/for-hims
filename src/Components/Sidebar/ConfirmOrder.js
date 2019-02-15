@@ -24,7 +24,7 @@ class ConfirmOrder extends Component {
       },
       payment
     } = this.props;
-    const { data } = payment;
+    const { data } = payment.card;
     const { showPayment, showAddress, index } = this.state;
     return (
       <>

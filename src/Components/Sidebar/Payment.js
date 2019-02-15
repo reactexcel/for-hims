@@ -17,10 +17,10 @@ class Payment extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    const { data } = this.props.payment;
+    const { data } = this.props.payment.card;
     if (
-      this.props.payment.isSuccess &&
-      prevProps.payment.isSuccess !== this.props.payment.isSuccess
+      this.props.payment.card.isSuccess &&
+      prevProps.payment.card.isSuccess !== this.props.payment.card.isSuccess
     ) {
       if (data.cardList && data.cardList.length) this.props.closePayment();
     } else {
@@ -63,7 +63,7 @@ class Payment extends Component {
 
   render() {
     const { errors, showAddPayment } = this.state;
-    const { isError, message, isLoading, isSuccess, data } = this.props.payment;
+    const { isError, message, isLoading, isSuccess, data } = this.props.payment.card;
     return (
       <>
         {isLoading ? (

@@ -26,7 +26,7 @@ class FullCart extends Component {
         data: { customerId }
       }
     } = this.props;
-    if (!this.props.payment.isSuccess && uid && customerId) {
+    if (!this.props.payment.card.isSuccess && uid && customerId) {
       this.props.getAllCardsRequest({ uid });
     }
   }
@@ -73,7 +73,7 @@ class FullCart extends Component {
       case 2:
         return this.props.userProfile.data.dateOfBirth ? (
           this.props.userProfile.data.shippingAddress ? (
-            this.props.payment.data.cardList.length ? (
+            this.props.payment.card.data.cardList.length ? (
               <ConfirmOrder
                 payment={this.props.payment}
                 userProfile={this.props.userProfile}

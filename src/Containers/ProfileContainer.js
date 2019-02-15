@@ -40,7 +40,7 @@ class ProfileContainer extends Component {
         data: { customerId }
       }
     } = this.props.profile;
-    if (!this.props.payment.isSuccess && uid && customerId) {
+    if (!this.props.card.isSuccess && uid && customerId) {
       this.props.getAllCardsRequest({ uid });
     }
   }
@@ -61,7 +61,7 @@ class ProfileContainer extends Component {
     const {
       user: { data },
       profile: { resetpsw, userProfile, additionalInfo },
-      payment
+      card
     } = this.props;
     return (
       <div>
@@ -90,7 +90,7 @@ class ProfileContainer extends Component {
                 <PaymentContainer
                   userProfile={userProfile}
                   onAddNewPayment={this.onAddNewPayment}
-                  payment={payment}
+                  card={card}
                 />
               </div>
             </div>
@@ -103,10 +103,10 @@ class ProfileContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ user, profile, payment }) => ({
+const mapStateToProps = ({ user, profile, payment :{card} }) => ({
   user,
   profile,
-  payment
+  card
 });
 
 export default connect(

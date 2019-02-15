@@ -153,4 +153,12 @@ export const messageReadStatusError = createAction(
 );
 
 //actions for payment
-export const chargeCustomerRequest = createAction(constants.CHARGE_CUSTOMER_REQUEST);
+export const chargeCustomerRequest = createAction(
+  constants.CHARGE_CUSTOMER_REQUEST
+);
+export const chargeCustomerSuccess = createAction(
+  constants.CHARGE_CUSTOMER_SUCCESS
+);
+export const chargeCustomerError = createAction(
+  constants.CHARGE_CUSTOMER_ERROR
+);
