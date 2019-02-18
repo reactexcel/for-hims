@@ -5,7 +5,7 @@ import { uploadPhotoRequest } from "../actions";
 
 class PhotosContainer extends Component {
   onUploadPhoto = file => {
-    this.props.uploadPhotoRequest({ file :file[0]});
+    this.props.uploadPhotoRequest({ file });
   };
   render() {
     return (

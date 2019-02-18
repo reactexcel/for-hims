@@ -179,6 +179,16 @@ export const saveGenderRequest = createAction(constants.SAVE_GENDER_REQUEST);
 export const saveGenderSuccess = createAction(constants.SAVE_GENDER_SUCCESS);
 export const saveGenderError = createAction(constants.SAVE_GENDER_ERROR);
 
+//uploading photo
 export const uploadPhotoRequest = createAction(constants.UPLOAD_PHOTO_REQUEST);
 export const uploadPhotoSuccess = createAction(constants.UPLOAD_PHOTO_SUCCESS);
-export const uploadPhotoError = createAction(constants.UPLOAD_PHOTO_ERROR)
+export const uploadPhotoError = createAction(constants.UPLOAD_PHOTO_ERROR);
+
+//actions for saving consent
+export const savingConsentRequest = createAction(
+  constants.SAVE_CONSENT_REQUEST
+);
+export const savingConsentSuccess = createAction(
+  constants.SAVE_CONSENT_SUCCESS
+);
+export const savingConsentError = createAction(constants.SAVE_CONSENT_ERROR);

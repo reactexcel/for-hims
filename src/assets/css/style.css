@@ -1520,7 +1520,7 @@ ul.tab_header li i {
 ul.tab_header li.active2 {
   border-bottom: 2px solid #c49875;
 }
-a.consent_next_btn {
+button.consent_next_btn {
   display: inline-block;
   width: 100%;
   padding: 15px 25px;
@@ -1530,6 +1530,7 @@ a.consent_next_btn {
   background: #000;
   color: #fff;
   margin: 15px 0px 15px 0px;
+  border: 0
 }
 
 ul.tab_header.questions_header_tab li.active1 {

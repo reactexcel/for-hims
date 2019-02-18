@@ -38,7 +38,12 @@ export default class UploadPhoto extends Component {
     }
   };
 
-  uploadPhoto = () => this.props.onUpload(this.state.file);
+  uploadPhoto = async () => {
+    const response = await fetch(this.state.imageUrl);
+    const blob = await response.blob();
+    const file = this.state.file[0] ? this.state.file[0] : blob;
+    this.props.onUpload(file);
+  };
 
   setImageFromCamera = imageUrl => {
     this.setState({ imageUrl });
@@ -49,7 +54,6 @@ export default class UploadPhoto extends Component {
     this.setState(prevState => ({ openCamera: !prevState.openCamera }));
   render() {
     const { openCamera, imageUrl } = this.state;
-    console.log(this.state.file, "sad");
     return (
       <>
         {!imageUrl && (

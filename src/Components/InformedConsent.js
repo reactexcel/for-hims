@@ -1,7 +1,20 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 class InformedConsent extends Component {
+  onProvidingConsent = () => {
+    const {
+      userProfile: { data }
+    } = this.props;
+    if (data.hasOwnProperty("consentProvided") && data.consentProvided) {
+      this.props.history.push("/questions");
+    } else {
+      this.props.onSavingConsentRequest();
+    }
+  };
   render() {
+    const {
+      userProfile: { data }
+    } = this.props;
     return (
       <>
         <div className="emr_header">
@@ -16,10 +29,10 @@ class InformedConsent extends Component {
                   <i className="fa fa-check-circle" />
                   <Link to="/informed-consent"> Informed Consent </Link>
                 </li>
-                <li>             
+                <li>
                   <Link to="/questions"> Questions </Link>
                 </li>
-                <li>                 
+                <li>
                   <Link to="/photos"> Photos </Link>
                 </li>
               </ul>
@@ -27,27 +40,27 @@ class InformedConsent extends Component {
           </div>
         </div>
 
-        <div className="container">         
+        <div className="container">
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-2"> </div>
             <div className="col-xs-12 col-sm-12 col-md-8">
-              <h4>                
+              <h4>
                 Bailey Health of Pennsylvania P.C. <br /> INFORMED CONSENT
                 REGARDING USE OF TELEMEDICINE SERVICES
               </h4>
-              <p>               
+              <p>
                 <strong>Patient's Legal Name</strong> Garrett Gillins
               </p>
-              <p>               
+              <p>
                 <strong>Location</strong> <br /> 1031 n 3rd st., 101 <br />
                 philadelphia, PA <br />
                 19123 <br />
                 USA
               </p>
-              <p>                
+              <p>
                 <strong>Date of birth</strong> 1988-04-17
               </p>
-              <p>               
+              <p>
                 <strong>Date of Consent</strong> December 10, 2018 6:51 PM
               </p>
               <strong> PURPOSE</strong> <br />
@@ -130,11 +143,9 @@ class InformedConsent extends Component {
                 emergency, call 911.
               </p>
               <p>
-                
                 <strong>Phone: </strong>1-800-368-0038 (M-F 9AM – 5PM PT)
               </p>
               <p>
-                
                 <strong>YOUR PRIVACY RIGHTS</strong>
                 <br />
                 Bailey Health of Pennsylvania P.C. uses network and software
@@ -150,7 +161,7 @@ class InformedConsent extends Component {
                 otherwise set forth in Bailey Health’s Notice of Privacy
                 Practices.
               </p>
-              <p>                
+              <p>
                 <strong>
                   By signing this form, I understand the following
                 </strong>
@@ -194,21 +205,21 @@ class InformedConsent extends Component {
                 information above and all of my questions have been answered to
                 my satisfaction.
               </p>
-              <p>                
+              <p>
                 All photos are models and not actual patients unless expressed
                 otherwise.
               </p>
-              <p>               
+              <p>
                 If you have a concern about a medical professional, you may
                 contact the Medical Board in your state regarding your concerns.
                 For applicable contact information see the list available
                 <Link to="#">here.</Link>
               </p>
-              <p>               
+              <p>
                 I consent to a Bailey Health physician, physician assistant, or
                 nurse practitioner to provide services to me via telemedicine.
               </p>
-              <p>                
+              <p>
                 By clicking "I Agree" below, I understand and consent to the
                 foregoing acknowledgements and disclosures including Bailey
                 Health of Pennsylvania P.C. Terms of Service and Notice of
@@ -224,10 +235,16 @@ class InformedConsent extends Component {
                 purposes of this informed consent, MY ACT OF CLICKING "I Agree"
                 SHALL CONSTITUTE AND IS MY ELECTRONIC SIGNATURE.
               </p>
-              <p>               
-                <Link to="/questions" className="consent_next_btn">                  
-                  Consent provided - Next
-                </Link>
+              <p>
+                <button
+                  className="consent_next_btn"
+                  onClick={this.onProvidingConsent}
+                >
+                  {data.hasOwnProperty("consentProvided") &&
+                  data.consentProvided
+                    ? "Consent provided - Next"
+                    : "Provide Consent"}
+                </button>
               </p>
               <p align="center">
                 Powered by Hims <br />

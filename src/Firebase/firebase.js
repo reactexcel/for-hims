@@ -78,7 +78,7 @@ class Firebase {
   uploadPhoto = file => {
     let user = this.auth.currentUser.uid;
     let storageRef = this.storage.ref();
-    let photoRef = storageRef.child(`${user}/${file.name}`);
+    let photoRef = storageRef.child(`${user}/${file.name || 'image'}`);
     return photoRef.put(file);
   };
 }

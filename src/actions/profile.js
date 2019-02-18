@@ -148,13 +148,30 @@ export function* saveGenderRequest(action) {
   }
 }
 
-export function* uploadPhotoRequest(action){
-  const {file} = action.payload
-  console.log(file,'sads')
-  try{
-    const response = yield firebase.uploadPhoto(file)
-    console.log(response,'sadsad')
-  }catch(e){
-  console.log(e,'sadasdas')
+export function* uploadPhotoRequest(action) {
+  const { file } = action.payload;
+  console.log(file, "sads");
+  try {
+    const response = yield firebase.uploadPhoto(file);
+    console.log(response, "sadsad");
+  } catch (e) {
+    console.log(e, "sadasdas");
+  }
+}
+
+export function* savingConsentRequest(action) {
+  const { uid } = action.payload;
+  try {
+    const response = yield firebase.user(uid).get();
+    if (response.exists && response.data().consentProvided) {
+      yield put(actions.savingConsentSuccess("Your Consent is already saved"));
+    } else {
+      yield firebase.user(uid).set({ consentProvided: true }, { merge: true });
+      const userData = yield firebase.user(uid).get();
+      yield put(actions.updateProfileSuccess(userData.data()));
+      yield put(actions.savingConsentSuccess("Your Consent has been saved"));
+    }
+  } catch (e) {
+    yield put(actions.savingConsentError(e));
   }
 }
