@@ -38,6 +38,8 @@ export default class UploadPhoto extends Component {
     }
   };
 
+  uploadPhoto = () => this.props.onUpload(this.state.file);
+
   setImageFromCamera = imageUrl => {
     this.setState({ imageUrl });
   };
@@ -47,6 +49,7 @@ export default class UploadPhoto extends Component {
     this.setState(prevState => ({ openCamera: !prevState.openCamera }));
   render() {
     const { openCamera, imageUrl } = this.state;
+    console.log(this.state.file, "sad");
     return (
       <>
         {!imageUrl && (
@@ -74,7 +77,9 @@ export default class UploadPhoto extends Component {
             >
               Retake
             </button>
-            <button className="use-photo_btn">Use Photo</button>
+            <button className="use-photo_btn" onClick={this.uploadPhoto}>
+              Use Photo
+            </button>
           </div>
         ) : (
           <div className="camera_icons">

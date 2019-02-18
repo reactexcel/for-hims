@@ -147,3 +147,14 @@ export function* saveGenderRequest(action) {
     yield put(actions.saveGenderError(e));
   }
 }
+
+export function* uploadPhotoRequest(action){
+  const {file} = action.payload
+  console.log(file,'sads')
+  try{
+    const response = yield firebase.uploadPhoto(file)
+    console.log(response,'sadsad')
+  }catch(e){
+  console.log(e,'sadasdas')
+  }
+}

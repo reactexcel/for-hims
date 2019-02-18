@@ -41,9 +41,9 @@ class Photos extends Component {
                   This photo must be clear with a good resolution for medical
                   purposes.
                 </h4>
-                <h4 className="grew">
+                {/* <h4 className="grew">
                   You can drag and drop a valid photo to upload.
-                </h4>
+                </h4> */}
                 <h5 className="grew">
                   Allowed photo types: jpeg, png. Max photo size: 10MB.
                 </h5>
@@ -52,7 +52,7 @@ class Photos extends Component {
                   <li className="circle_line"> &nbsp; </li>
                   <li className="circle2"> 2 </li>
                 </ul>
-                <UploadPhoto />
+                <UploadPhoto onUpload={this.props.onUploadPhoto} />
               </div>
               <p align="center">
                 Powered by Hims <br />

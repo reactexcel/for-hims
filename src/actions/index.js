@@ -178,3 +178,7 @@ export const updateAppointmentError = createAction(
 export const saveGenderRequest = createAction(constants.SAVE_GENDER_REQUEST);
 export const saveGenderSuccess = createAction(constants.SAVE_GENDER_SUCCESS);
 export const saveGenderError = createAction(constants.SAVE_GENDER_ERROR);
+
+export const uploadPhotoRequest = createAction(constants.UPLOAD_PHOTO_REQUEST);
+export const uploadPhotoSuccess = createAction(constants.UPLOAD_PHOTO_SUCCESS);
+export const uploadPhotoError = createAction(constants.UPLOAD_PHOTO_ERROR)

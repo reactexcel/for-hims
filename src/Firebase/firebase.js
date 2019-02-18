@@ -1,6 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -21,6 +22,7 @@ class Firebase {
     this.EmailAuthProvider = app.auth.EmailAuthProvider;
     this.db = app.firestore();
     this.db.settings(settings);
+    this.storage = app.storage();
   }
 
   //Authentication API
@@ -71,6 +73,14 @@ class Firebase {
       .collection("users")
       .doc(uid)
       .collection("orders");
+
+  // Creating storage ref for uploading photo
+  uploadPhoto = file => {
+    let user = this.auth.currentUser.uid;
+    let storageRef = this.storage.ref();
+    let photoRef = storageRef.child(`${user}/${file.name}`);
+    return photoRef.put(file);
+  };
 }
 
 export default Firebase;

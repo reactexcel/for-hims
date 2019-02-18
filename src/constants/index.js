@@ -97,3 +97,10 @@ export const UPDATE_APPOINTMENT_ERROR = "UPDATE_APPOINTMENT_ERROR";
 export const SAVE_GENDER_REQUEST = "SAAVE_GENDER_REQUEST";
 export const SAVE_GENDER_SUCCESS = "SAVE_GENDER_SUCCESS";
 export const SAVE_GENDER_ERROR = "SAVE_GENDER_ERROR";
+
+//constants for uploading photo
+export const UPLOAD_PHOTO_REQUEST = "UPLOAD_PHOTO_REQUEST";
+export const UPLOAD_PHOTO_SUCCESS = "UPLOAD_PHOTO_SUCCESS";
+export const UPLOAD_PHOTO_ERROR = "UPLOAD_PHOTO_ERROR";
+
+//constants for saving consent
