@@ -12,7 +12,8 @@ import {
   addNewPaymentRequest,
   getAllCardsRequest,
   chargeCustomerRequest,
-  updateAppointmentRequest
+  updateAppointmentRequest,
+  removeFromCartRequest
 } from "../../actions";
 
 class FullCart extends Component {
@@ -85,6 +86,8 @@ class FullCart extends Component {
                 onAddNewPayment={this.onAddNewPayment}
                 onChargeCustomer={this.onChargeCustomer}
                 onUpdateAppointment={this.onUpdateAppointment}
+                closeSidebar={this.props.closeSidebar}
+                removeFromCart={this.props.removeFromCartRequest}
               />
             ) : (
               <CartPaymentContainer
@@ -135,6 +138,7 @@ export default connect(
     addNewPaymentRequest,
     getAllCardsRequest,
     chargeCustomerRequest,
-    updateAppointmentRequest
+    updateAppointmentRequest,
+    removeFromCartRequest
   }
 )(withRouter(FullCart));

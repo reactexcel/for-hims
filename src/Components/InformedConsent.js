@@ -16,7 +16,6 @@ class InformedConsent extends Component {
     const {
       userProfile: { data }
     } = this.props;
-    console.log(this.props.userProfile, "as");
     return (
       <>
         <div className="emr_header">

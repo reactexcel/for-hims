@@ -16,10 +16,19 @@ class ConfirmOrder extends Component {
   open = state => this.setState({ [state]: true });
   close = state => this.setState({ [state]: false });
 
-  componentDidUpdate(prevProps){
-    if(this.props.payment.charge.isSuccess && prevProps.payment.charge.isSuccess !== this.props.payment.charge.isSuccess){
-      this.props.onUpdateAppointment({status:'Waiting'})
-      this.props.history.push("/gender")
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.payment.charge.isSuccess &&
+      prevProps.payment.charge.isSuccess !== this.props.payment.charge.isSuccess
+    ) {
+      if (!this.props.userProfile.data.hasOwnProperty("appointmentStatus")) {
+        this.props.onUpdateAppointment({ status: "Waiting" });
+        this.props.history.push("/gender");
+      } else {
+        this.props.removeFromCart();
+        // this.props.closeSidebar();
+        this.props.history.push("/orders");
+      }
     }
   }
 
