@@ -11,9 +11,9 @@ class GenderContainer extends Component {
     };
   }
 
-  componentDidMount(){
-    if(this.props.userProfile.data.gender){
-      this.props.history.push("/")
+  componentDidMount() {
+    if (this.props.userProfile.data.gender) {
+      this.props.history.push("/informed-consent");
     }
   }
 

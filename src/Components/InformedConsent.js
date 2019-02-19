@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 class InformedConsent extends Component {
   onProvidingConsent = () => {
     const {
       userProfile: { data }
     } = this.props;
-    if (data.hasOwnProperty("consentProvided") && data.consentProvided) {
+    if (data.hasOwnProperty("consent") && data.consent.consentProvided) {
       this.props.history.push("/questions");
     } else {
       this.props.onSavingConsentRequest();
@@ -15,6 +16,7 @@ class InformedConsent extends Component {
     const {
       userProfile: { data }
     } = this.props;
+    console.log(this.props.userProfile, "as");
     return (
       <>
         <div className="emr_header">
@@ -49,19 +51,34 @@ class InformedConsent extends Component {
                 REGARDING USE OF TELEMEDICINE SERVICES
               </h4>
               <p>
-                <strong>Patient's Legal Name</strong> Garrett Gillins
+                <strong>Patient's Legal Name</strong>{" "}
+                {`${data.firstName} ${data.lastName}`}
+              </p>
+              {data.hasOwnProperty("shippingAddress") && (
+                <p>
+                  <strong>Location</strong> <br />{" "}
+                  {data.shippingAddress[0].street},{" "}
+                  {data.shippingAddress[0].city}
+                  <br />
+                  {data.shippingAddress[0].states} <br />
+                  {data.shippingAddress[0].zipcode} <br />
+                  USA
+                </p>
+              )}
+              <p>
+                <strong>Date of birth </strong>
+                {data.dateOfBirth &&
+                  new Date(
+                    data.dateOfBirth.seconds * 1000
+                  ).toLocaleDateString()}
               </p>
               <p>
-                <strong>Location</strong> <br /> 1031 n 3rd st., 101 <br />
-                philadelphia, PA <br />
-                19123 <br />
-                USA
-              </p>
-              <p>
-                <strong>Date of birth</strong> 1988-04-17
-              </p>
-              <p>
-                <strong>Date of Consent</strong> December 10, 2018 6:51 PM
+                <strong>Date of Consent</strong>{" "}
+                {(data.hasOwnProperty("consent") &&
+                  moment(data.consent.dateOfConsent.seconds * 1000).format(
+                    "LLL"
+                  )) ||
+                  moment().format("LLL")}
               </p>
               <strong> PURPOSE</strong> <br />
               <p>
@@ -240,8 +257,8 @@ class InformedConsent extends Component {
                   className="consent_next_btn"
                   onClick={this.onProvidingConsent}
                 >
-                  {data.hasOwnProperty("consentProvided") &&
-                  data.consentProvided
+                  {data.hasOwnProperty("consent") &&
+                  data.consent.consentProvided
                     ? "Consent provided - Next"
                     : "Provide Consent"}
                 </button>

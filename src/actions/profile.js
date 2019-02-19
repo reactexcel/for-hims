@@ -163,10 +163,18 @@ export function* savingConsentRequest(action) {
   const { uid } = action.payload;
   try {
     const response = yield firebase.user(uid).get();
-    if (response.exists && response.data().consentProvided) {
+    if (response.exists && response.data().consent) {
       yield put(actions.savingConsentSuccess("Your Consent is already saved"));
     } else {
-      yield firebase.user(uid).set({ consentProvided: true }, { merge: true });
+      yield firebase.user(uid).set(
+        {
+          consent: {
+            consentProvided: true,
+            dateOfConsent: new Date()
+          }
+        },
+        { merge: true }
+      );
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
       yield put(actions.savingConsentSuccess("Your Consent has been saved"));

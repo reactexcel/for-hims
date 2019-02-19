@@ -15,6 +15,7 @@ class InformedConsentContainer extends Component {
         <InformedConsent
           userProfile={userProfile}
           onSavingConsentRequest={this.onSavingConsentRequest}
+          history={this.props.history}
         />
       </div>
     );
