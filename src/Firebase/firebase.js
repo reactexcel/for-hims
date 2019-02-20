@@ -78,9 +78,11 @@ class Firebase {
   uploadPhoto = file => {
     let user = this.auth.currentUser.uid;
     let storageRef = this.storage.ref();
-    let photoRef = storageRef.child(`${user}/${file.name || 'image'}`);
+    let photoRef = storageRef.child(`${user}/${file.name || "image"}`);
     return photoRef.put(file);
   };
-}
 
+  //fetching all questions
+  fetchQuestions = () => this.db.collection("questions");
+}
 export default Firebase;

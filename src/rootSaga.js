@@ -29,6 +29,7 @@ import {
   getAllCardsRequest,
   chargeCustomerRequest
 } from "./actions/payment";
+import { fetchQuestionsRequest } from "./actions/questions";
 
 function* watchActions() {
   yield takeLatest(constants.LOGIN_REQUEST, loginRequest);
@@ -66,6 +67,10 @@ function* watchActions() {
   yield takeLatest(constants.SAVE_GENDER_REQUEST, saveGenderRequest);
   yield takeLatest(constants.UPLOAD_PHOTO_REQUEST, uploadPhotoRequest);
   yield takeLatest(constants.SAVE_CONSENT_REQUEST, savingConsentRequest);
+  yield takeLatest(
+    constants.FETCH_ALL_QUESTIONS_REQUEST,
+    fetchQuestionsRequest
+  );
 }
 export default function* rootSaga() {
   yield [watchActions()];

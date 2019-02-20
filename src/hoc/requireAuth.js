@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { firebase } from "../Firebase";
-import { loginSuccess, getProfileInfoRequest } from "../actions";
+import {
+  loginSuccess,
+  getProfileInfoRequest,
+  fetchQuestionsRequest
+} from "../actions";
 
 export default WrappedComponent => {
   class Authentication extends Component {
     state = { authUser: null };
     componentDidMount() {
       this.checkAuthentication();
+      this.props.fetchQuestionsRequest();
     }
     componentDidUpdate() {
       this.checkAuthentication();
@@ -51,6 +56,6 @@ export default WrappedComponent => {
 
   return connect(
     mapStateToProps,
-    { loginSuccess, getProfileInfoRequest }
+    { loginSuccess, getProfileInfoRequest, fetchQuestionsRequest }
   )(Authentication);
 };

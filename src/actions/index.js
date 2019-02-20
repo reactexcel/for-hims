@@ -192,3 +192,14 @@ export const savingConsentSuccess = createAction(
   constants.SAVE_CONSENT_SUCCESS
 );
 export const savingConsentError = createAction(constants.SAVE_CONSENT_ERROR);
+
+//actions for fetching questions
+export const fetchQuestionsRequest = createAction(
+  constants.FETCH_ALL_QUESTIONS_REQUEST
+);
+export const fetchQuestionsSuccess = createAction(
+  constants.FETCH_ALL_QUESTIONS_SUCCESS
+);
+export const fetchQuestionsError = createAction(
+  constants.FETCH_ALL_QUESTIONS_ERROR
+);
