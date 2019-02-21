@@ -14,7 +14,6 @@ class Questions extends Component {
   }
 
   selectAnswer = (questionUid, questionId, choiceId) => {
-    console.log(questionUid, questionId, choiceId, "sadassadsdasddsas");
     const answer = {
       questionUid,
       questionId,
@@ -23,6 +22,7 @@ class Questions extends Component {
     const answers = uniqBy([answer, ...this.state.answers], "questionId");
     this.setState({ answers });
   };
+  selectTextAnswer = (questionUid, questionId, text) => {};
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -48,20 +48,29 @@ class Questions extends Component {
             )}
             {question.data().type !== "text" && (
               <ul className="tab_question">
-                {question.data().choices.map((choice, index) => (
-                  <li
-                    onClick={() =>
-                      this.selectAnswer(question.id, question.data().id, index)
-                    }
-                  >
-                    {choice.label}
-                  </li>
-                ))}
+                {question.data().choices.map((choice, index) => {
+                  console.log('')
+                  return (
+                    <li
+                      key={question.id + index}
+                      onClick={() =>
+                        this.selectAnswer(
+                          question.id,
+                          question.data().id,
+                          index
+                        )
+                      }
+                      className=""
+                    >
+                      {choice.label}
+                    </li>
+                  );
+                })}
               </ul>
             )}
             {question.data().type === "text" && (
               <div className="question_textarea">
-                <textarea readOnly />
+                <textarea />
               </div>
             )}
           </div>
