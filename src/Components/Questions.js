@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { uniqBy } from "lodash";
+import { uniqWith, isEqual, findIndex } from "lodash";
 
 class Questions extends Component {
   state = {
@@ -14,13 +14,26 @@ class Questions extends Component {
   }
 
   selectAnswer = (questionUid, questionId, choiceId) => {
-    const answer = {
-      questionUid,
-      questionId,
-      choiceId
-    };
-    const answers = uniqBy([answer, ...this.state.answers], "questionId");
-    this.setState({ answers });
+    const { answers } = this.state;
+    let answer;
+    if (answers[0] !== undefined) {
+      answers.map((value, index) => {
+        if (value.questionUid === questionUid) {
+          value.choiceId = choiceId;
+        } else {
+          answer = { questionUid, questionId, choiceId };
+        }
+      });
+    } else {
+      answer = { questionUid, questionId, choiceId };
+    }
+    if (answer !== undefined) {
+      answers.push(answer);
+    }
+    const uniqSolution = uniqWith(answers, isEqual);
+    this.setState({
+      answers: uniqSolution
+    });
   };
   selectTextAnswer = (questionUid, questionId, text) => {};
   handleChange = e => {
@@ -29,6 +42,7 @@ class Questions extends Component {
   };
   renderQuestions = () => {
     const { data } = this.props.questions;
+    const { answers } = this.state;
     if (data.length) {
       return data.map((question, index) => (
         <div className="question-container" key={question.id}>
@@ -48,19 +62,30 @@ class Questions extends Component {
             )}
             {question.data().type !== "text" && (
               <ul className="tab_question">
-                {question.data().choices.map((choice, index) => {
-                  console.log('')
+                {question.data().choices.map((choice, choiceIndex) => {
+                  let isSolution =
+                    answers[0] !== undefined
+                      ? findIndex(answers, value => {
+                          return value.questionUid === question.id;
+                        })
+                      : null;
+                  let selected =
+                    isSolution !== null && isSolution !== -1
+                      ? answers[isSolution].choiceId === choiceIndex
+                        ? true
+                        : false
+                      : false;
                   return (
                     <li
-                      key={question.id + index}
+                      key={question.id + choiceIndex}
                       onClick={() =>
                         this.selectAnswer(
                           question.id,
                           question.data().id,
-                          index
+                          choiceIndex
                         )
                       }
-                      className=""
+                      className={selected ? "selected-answer" : ""}
                     >
                       {choice.label}
                     </li>
