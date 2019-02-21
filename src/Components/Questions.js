@@ -1,111 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { uniqWith, isEqual, findIndex } from "lodash";
 
 class Questions extends Component {
-  state = {
-    answers: [],
-    textBox: []
-  };
-  componentDidMount() {
-    if (!this.props.questions.data.length) {
-      this.props.history.push("/");
-    }
-  }
-
-  selectAnswer = (questionUid, questionId, choiceId) => {
-    const { answers } = this.state;
-    let answer;
-    if (answers[0] !== undefined) {
-      answers.map((value, index) => {
-        if (value.questionUid === questionUid) {
-          value.choiceId = choiceId;
-        } else {
-          answer = { questionUid, questionId, choiceId };
-        }
-      });
-    } else {
-      answer = { questionUid, questionId, choiceId };
-    }
-    if (answer !== undefined) {
-      answers.push(answer);
-    }
-    const uniqSolution = uniqWith(answers, isEqual);
-    this.setState({
-      answers: uniqSolution
-    });
-  };
-  selectTextAnswer = (questionUid, questionId, text) => {};
-  handleChange = e => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-  renderQuestions = () => {
-    const { data } = this.props.questions;
-    const { answers } = this.state;
-    if (data.length) {
-      return data.map((question, index) => (
-        <div className="question-container" key={question.id}>
-          <div className="visit_question_left">
-            <div className="question-nomber">
-              {`${index + 1} of ${data.length}`}
-            </div>
-            <div className="question-text">
-              {`${index + 1}. ${question.data().title}`}
-            </div>
-          </div>
-          <div className="clearfix" />
-          <div className="visit_question_right">
-            <small className="gillin_title">Garrett Gillin </small>
-            {question.data().type === "checkbox" && (
-              <small className="apply_title">* select all that apply *</small>
-            )}
-            {question.data().type !== "text" && (
-              <ul className="tab_question">
-                {question.data().choices.map((choice, choiceIndex) => {
-                  let isSolution =
-                    answers[0] !== undefined
-                      ? findIndex(answers, value => {
-                          return value.questionUid === question.id;
-                        })
-                      : null;
-                  let selected =
-                    isSolution !== null && isSolution !== -1
-                      ? answers[isSolution].choiceId === choiceIndex
-                        ? true
-                        : false
-                      : false;
-                  return (
-                    <li
-                      key={question.id + choiceIndex}
-                      onClick={() =>
-                        this.selectAnswer(
-                          question.id,
-                          question.data().id,
-                          choiceIndex
-                        )
-                      }
-                      className={selected ? "selected-answer" : ""}
-                    >
-                      {choice.label}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-            {question.data().type === "text" && (
-              <div className="question_textarea">
-                <textarea />
-              </div>
-            )}
-          </div>
-        </div>
-      ));
-    }
-  };
   render() {
-    const { answers, textBoxAnswer } = this.state;
-    console.log(this.state.answers, "+++");
     return (
       <>
         <div className="emr_header">
@@ -138,7 +35,7 @@ class Questions extends Component {
 
             <div className="col-xs-12 col-sm-12 col-md-8">
               <div className="question-detail">
-                {this.renderQuestions()}
+                {this.props.renderQuestions()}
                 <p align="center">
                   <Link to="/photos" className="consent_next_btn">
                     Continue
