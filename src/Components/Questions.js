@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { uniqBy } from "lodash";
 
 class Questions extends Component {
   state = {
-    selectedAnswer: "1.1",
-    textBoxAnswer: ""
+    answers: [],
+    textBox: []
   };
   componentDidMount() {
     if (!this.props.questions.data.length) {
@@ -12,7 +13,16 @@ class Questions extends Component {
     }
   }
 
-  selectAnswer = id => this.setState({ selectedAnswer: id });
+  selectAnswer = (questionUid, questionId, choiceId) => {
+    console.log(questionUid, questionId, choiceId, "sadassadsdasddsas");
+    const answer = {
+      questionUid,
+      questionId,
+      choiceId
+    };
+    const answers = uniqBy([answer, ...this.state.answers], "questionId");
+    this.setState({ answers });
+  };
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -38,8 +48,14 @@ class Questions extends Component {
             )}
             {question.data().type !== "text" && (
               <ul className="tab_question">
-                {question.data().choices.map(choice => (
-                  <li>{choice.label}</li>
+                {question.data().choices.map((choice, index) => (
+                  <li
+                    onClick={() =>
+                      this.selectAnswer(question.id, question.data().id, index)
+                    }
+                  >
+                    {choice.label}
+                  </li>
                 ))}
               </ul>
             )}
@@ -54,8 +70,8 @@ class Questions extends Component {
     }
   };
   render() {
-    const { selectedAnswer, textBoxAnswer } = this.state;
-    console.log(this.props.questions, "asd");
+    const { answers, textBoxAnswer } = this.state;
+    console.log(this.state.answers, "+++");
     return (
       <>
         <div className="emr_header">
