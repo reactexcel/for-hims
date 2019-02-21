@@ -8,13 +8,27 @@ class QuestionsContainer extends Component {
     super(props);
     this.state = {
       answers: [],
-      textBox: []
+      textAnswers: []
     };
   }
   componentDidMount() {
     if (!this.props.questions.data.length) {
       this.props.history.push("/");
     }
+    const textAnswers = [];
+    if (this.props.questions.data.length) {
+      this.props.questions.data.forEach(question => {
+        if (question.data().type === "text") {
+          textAnswers.push({
+            questionUid: question.id,
+            questionId: question.data().id,
+            value: question.data().value
+          });
+        }
+      });
+    }
+    console.log(textAnswers);
+    this.setState({ textAnswers });
   }
 
   selectAnswer = (questionUid, questionId, choiceId, quesType) => {
@@ -57,6 +71,22 @@ class QuestionsContainer extends Component {
       answers: uniqAnswers
     });
   };
+
+  setTextQuestion = (questionUid, questionId) => {
+    console.log(questionUid, questionId, "sas");
+    const { textAnswers } = this.state;
+    const existingTextQuestion =
+      findIndex(textAnswers, { questionUid }) === -1 ? false : true;
+    if (!existingTextQuestion) {
+      this.setState({
+        textAnswers: [
+          ...this.state.textAnswers,
+          { questionUid, questionId, value: "" }
+        ]
+      });
+    }
+  };
+  handleChange = e => console.log(e.target.value, e.target.name, "event");
 
   renderQuestions = () => {
     const { data } = this.props.questions;
@@ -116,9 +146,22 @@ class QuestionsContainer extends Component {
                 })}
               </ul>
             )}
-            {question.data().type === "text" && (
+            {question.data().type === "text" && this.state.textAnswers.length && (
               <div className="question_textarea">
-                <textarea />
+                <textarea
+                  onFocus={() => {
+                    this.setTextQuestion(question.id, question.data().id);
+                  }}
+                  onChange={this.handleChange}
+                  name={question.id}
+                  value={
+                    this.state.textAnswers[
+                      findIndex(this.state.textAnswers, {
+                        questionUid: question.id
+                      })
+                    ].value
+                  }
+                />
               </div>
             )}
           </div>
@@ -128,6 +171,7 @@ class QuestionsContainer extends Component {
   };
   render() {
     const { questions } = this.props;
+    console.log(this.state.textAnswers, "asdadada");
     return (
       <div>
         <Questions
