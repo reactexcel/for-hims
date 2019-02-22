@@ -1633,6 +1633,10 @@ button.next-question_btn {
   font-weight: 400;
   border:0
 }
+/* style for loader container */
+.question-loader-container{
+  height : 100vh;
+}
 
 .photos_taken {
   text-align: center;

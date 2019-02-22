@@ -41,6 +41,15 @@ class QuestionsContainer extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.questions.isSuccess &&
+      prevProps.questions.isSuccess !== this.props.questions.isSuccess
+    ) {
+      this.props.history.push("/photos");
+    }
+  }
+
   selectAnswer = (questionUid, questionId, choiceId, quesType) => {
     const { answers } = this.state;
     let answer;

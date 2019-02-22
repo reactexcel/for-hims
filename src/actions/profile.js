@@ -150,12 +150,13 @@ export function* saveGenderRequest(action) {
 
 export function* uploadPhotoRequest(action) {
   const { file } = action.payload;
-  console.log(file, "sads");
   try {
     const response = yield firebase.uploadPhoto(file);
-    console.log(response, "sadsad");
+    if (response.status === "success") {
+      yield actions.uploadPhotoSuccess("Photo uploadedd Successfully");
+    }
   } catch (e) {
-    console.log(e, "sadasdas");
+    yield actions.uploadPhotoSuccess(e.message);
   }
 }
 

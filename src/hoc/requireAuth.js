@@ -12,7 +12,10 @@ export default WrappedComponent => {
     state = { authUser: null };
     componentDidMount() {
       this.checkAuthentication();
-      this.props.fetchQuestionsRequest();
+      // to fetch questions
+      if (!this.props.questions.data.length) {
+        this.props.fetchQuestionsRequest();
+      }
     }
     componentDidUpdate() {
       this.checkAuthentication();
@@ -49,9 +52,10 @@ export default WrappedComponent => {
       return <WrappedComponent {...this.props} uid={uid} />;
     }
   }
-  const mapStateToProps = ({ user, profile: { userProfile } }) => ({
+  const mapStateToProps = ({ user, profile: { userProfile }, questions }) => ({
     user,
-    userProfile
+    userProfile,
+    questions
   });
 
   return connect(
