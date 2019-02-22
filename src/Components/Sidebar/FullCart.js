@@ -3,7 +3,6 @@ import Cart from "./Cart";
 import Shipping from "./Shipping";
 import ConfirmOrder from "./ConfirmOrder";
 import CartPaymentContainer from "./CartPaymentContainer";
-import VerifyAddress from "./VerifyAddress";
 import Login from "./Login";
 import DateOfBirth from "./DateOfBirth";
 import { connect } from "react-redux";

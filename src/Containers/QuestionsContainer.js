@@ -17,7 +17,17 @@ class QuestionsContainer extends Component {
       this.props.history.push("/");
     }
     const textAnswers = [];
-    if (this.props.questions.data.length) {
+    const answers = [];
+    if (this.props.userProfile.data.answers) {
+      this.props.userProfile.data.answers.forEach(answer => {
+        if (answer.hasOwnProperty("value")) {
+          textAnswers.push(answer);
+        } else {
+          answers.push(answer);
+        }
+      });
+      this.setState({ answers, textAnswers });
+    } else if (this.props.questions.data.length) {
       this.props.questions.data.forEach(question => {
         if (question.data().type === "text") {
           textAnswers.push({
@@ -27,8 +37,8 @@ class QuestionsContainer extends Component {
           });
         }
       });
+      this.setState({ textAnswers });
     }
-    this.setState({ textAnswers });
   }
 
   selectAnswer = (questionUid, questionId, choiceId, quesType) => {
@@ -187,7 +197,6 @@ class QuestionsContainer extends Component {
   };
   render() {
     const { questions } = this.props;
-    console.log(this.props.uid, "uid");
     return (
       <div>
         <Questions
@@ -199,8 +208,9 @@ class QuestionsContainer extends Component {
     );
   }
 }
-const mapStateToProps = ({ questions }) => ({
-  questions
+const mapStateToProps = ({ questions, profile: { userProfile } }) => ({
+  questions,
+  userProfile
 });
 export default connect(
   mapStateToProps,

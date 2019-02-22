@@ -52,7 +52,7 @@ export function* getProfileInfoRequest(action) {
     }
   } catch (e) {
     yield put(actions.getProfileInfoError(e.message));
-    yield put(actions.getProfileInfoSuccess({ firstName: null }));
+    // yield put(actions.getProfileInfoSuccess({ firstName: null }));
   }
 }
 

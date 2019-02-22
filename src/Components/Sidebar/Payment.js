@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import StripeContainer from "../Generic/StripeContainer";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import ErrorText from "../Generic/ErrorText";
 
@@ -63,7 +62,13 @@ class Payment extends Component {
 
   render() {
     const { errors, showAddPayment } = this.state;
-    const { isError, message, isLoading, isSuccess, data } = this.props.payment.card;
+    const {
+      isError,
+      message,
+      isLoading,
+      isSuccess,
+      data
+    } = this.props.payment.card;
     return (
       <>
         {isLoading ? (
