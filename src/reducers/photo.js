@@ -23,7 +23,7 @@ const photosSuccess = (state, action) =>
     isLoading: { $set: false },
     isSuccess: { $set: true },
     isError: { $set: false },
-    message: { $set: action.payoad }
+    message: { $set: action.payload }
   });
 
 const photosError = (state, action) =>

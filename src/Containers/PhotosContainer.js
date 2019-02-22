@@ -10,13 +10,13 @@ class PhotosContainer extends Component {
   render() {
     return (
       <div>
-        <Photos onUploadPhoto={this.onUploadPhoto} />
+        <Photos photo={this.props.photo} onUploadPhoto={this.onUploadPhoto} />
       </div>
     );
   }
 }
-
+const mapStateToProps = ({ photo }) => ({ photo });
 export default connect(
-  null,
+  mapStateToProps,
   { uploadPhotoRequest }
 )(PhotosContainer);

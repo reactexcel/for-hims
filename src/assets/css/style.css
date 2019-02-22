@@ -1631,11 +1631,7 @@ button.next-question_btn {
   margin: 0px auto;
   border-radius: 6px;
   font-weight: 400;
-  border:0
-}
-/* style for loader container */
-.question-loader-container{
-  height : 100vh;
+  border: 0;
 }
 
 .photos_taken {
@@ -1913,6 +1909,10 @@ ul.viewbox_section li {
   100% {
     transform: rotate(360deg);
   }
+}
+/* style for loader container */
+.loader-container {
+  height: 100vh;
 }
 
 /* choose file button style on photos page */

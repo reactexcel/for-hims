@@ -152,11 +152,13 @@ export function* uploadPhotoRequest(action) {
   const { file } = action.payload;
   try {
     const response = yield firebase.uploadPhoto(file);
-    if (response.status === "success") {
-      yield actions.uploadPhotoSuccess("Photo uploadedd Successfully");
-    }
+    yield put(
+      actions.uploadPhotoSuccess(
+        "Photo uploaded Successfully and Wait for appointment"
+      )
+    );
   } catch (e) {
-    yield actions.uploadPhotoSuccess(e.message);
+    yield put(actions.uploadPhotoError(e.message));
   }
 }
 

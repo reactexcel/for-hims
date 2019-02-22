@@ -7,7 +7,7 @@ class Questions extends Component {
     return (
       <>
         {isLoading ? (
-          <div className="question-loader-container">
+          <div className="loader-container">
             <div className="login-loader">
               <div>Saving your questions...</div>
               <div>Hang tight</div>
