@@ -42,9 +42,12 @@ class Questions extends Component {
                   </Link>
                 </p>
                 <p align="center">
-                  <Link to="/photos" className="next-question_btn">
-                    Next Question
-                  </Link>
+                  <button
+                    onClick={this.props.submitAnswers}
+                    className="next-question_btn"
+                  >
+                    Submit Answers
+                  </button>
                 </p>
               </div>
               <h1>&nbsp; </h1>

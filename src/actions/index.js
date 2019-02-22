@@ -203,3 +203,12 @@ export const fetchQuestionsSuccess = createAction(
 export const fetchQuestionsError = createAction(
   constants.FETCH_ALL_QUESTIONS_ERROR
 );
+
+//actions for submitting answers
+export const submitAnswersRequest = createAction(
+  constants.SUBMIT_ANSWERS_REQUEST
+);
+export const submitAnswersSuccess = createAction(
+  constants.SUBMIT_ANSWERS_SUCCESS
+);
+export const submitAnswersError = createAction(constants.SUBMIT_ANSWERS_ERROR);

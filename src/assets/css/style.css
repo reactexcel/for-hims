@@ -1251,7 +1251,7 @@ div.read:hover,
   background: #fff;
   padding: 30px 20px 30px 20px;
   border: 2px solid #eee;
-  color:#999;
+  color: #999;
   text-align: left;
   width: 80%;
   margin: 0px auto;
@@ -1530,7 +1530,7 @@ button.consent_next_btn {
   background: #000;
   color: #fff;
   margin: 15px 0px 15px 0px;
-  border: 0
+  border: 0;
 }
 
 ul.tab_header.questions_header_tab li.active1 {
@@ -1620,7 +1620,7 @@ ul.tab_question li:hover {
   border-radius: 6px;
   margin-bottom: 30px;
 }
-a.next-question_btn {
+button.next-question_btn {
   display: inline-block;
   width: 60%;
   padding: 15px 25px;
@@ -1631,6 +1631,7 @@ a.next-question_btn {
   margin: 0px auto;
   border-radius: 6px;
   font-weight: 400;
+  border:0
 }
 
 .photos_taken {

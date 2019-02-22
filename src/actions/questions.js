@@ -13,3 +13,21 @@ export function* fetchQuestionsRequest(action) {
     yield put(actions.fetchQuestionsError(e.message));
   }
 }
+
+export function* submitAnswersRequest(action) {
+  const { uid, answers } = action.payload;
+  try {
+    const response = yield firebase.user(uid).get();
+    if (response.exists && response.data().answers) {
+      yield firebase.user(uid).update({ answers: [...answers] });
+      const userData = yield firebase.user(uid).get();
+      yield put(actions.updateProfileSuccess(userData.data()));
+    } else {
+      yield firebase.user(uid).set({ answers }, { merge: true });
+      const userData = yield firebase.user(uid).get();
+      yield put(actions.updateProfileSuccess(userData.data()));
+    }
+  } catch (e) {
+    console.log(e, "error");
+  }
+}

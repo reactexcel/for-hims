@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Questions from "../Components/Questions";
 import { connect } from "react-redux";
-import { uniqWith, isEqual, findIndex } from "lodash";
+import { uniqWith, isEqual, findIndex, sortBy } from "lodash";
+import { submitAnswersRequest } from "../actions";
 
 class QuestionsContainer extends Component {
   constructor(props) {
@@ -27,7 +28,6 @@ class QuestionsContainer extends Component {
         }
       });
     }
-    console.log(textAnswers);
     this.setState({ textAnswers });
   }
 
@@ -73,7 +73,6 @@ class QuestionsContainer extends Component {
   };
 
   setTextQuestion = (questionUid, questionId) => {
-    console.log(questionUid, questionId, "sas");
     const { textAnswers } = this.state;
     const existingTextQuestion =
       findIndex(textAnswers, { questionUid }) === -1 ? false : true;
@@ -87,7 +86,6 @@ class QuestionsContainer extends Component {
     }
   };
   handleChange = event => {
-    console.log(event.target.value, event.target.name, "event");
     let textAnswers = this.state.textAnswers.slice();
     for (let i in textAnswers) {
       if (textAnswers[i].questionUid === event.target.name) {
@@ -157,14 +155,6 @@ class QuestionsContainer extends Component {
             )}
             {question.data().type === "text" && this.state.textAnswers.length && (
               <div className="question_textarea">
-                {console.log(
-                  this.state.textAnswers[
-                    findIndex(this.state.textAnswers, {
-                      questionUid: question.id
-                    })
-                  ].value,
-                  "as"
-                )}
                 <textarea
                   onFocus={() => {
                     this.setTextQuestion(question.id, question.data().id);
@@ -186,14 +176,24 @@ class QuestionsContainer extends Component {
       ));
     }
   };
+
+  submitAnswers = () => {
+    const { uid } = this.props;
+    const answers = sortBy(
+      [...this.state.answers, ...this.state.textAnswers],
+      "questionId"
+    );
+    this.props.submitAnswersRequest({ uid, answers });
+  };
   render() {
     const { questions } = this.props;
-    console.log(this.state.textAnswers, "asdadada");
+    console.log(this.props.uid, "uid");
     return (
       <div>
         <Questions
           questions={questions}
           renderQuestions={this.renderQuestions}
+          submitAnswers={this.submitAnswers}
         />
       </div>
     );
@@ -202,4 +202,7 @@ class QuestionsContainer extends Component {
 const mapStateToProps = ({ questions }) => ({
   questions
 });
-export default connect(mapStateToProps)(QuestionsContainer);
+export default connect(
+  mapStateToProps,
+  { submitAnswersRequest }
+)(QuestionsContainer);
