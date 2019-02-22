@@ -128,7 +128,7 @@ async function charge(req, res) {
           currency: "usd",
           customer: customerData.customerId
         });
-        console.log(charge)
+        console.log(charge);
         send(res, 200, {
           message: "Success",
           charge: charge
@@ -143,6 +143,25 @@ async function charge(req, res) {
         error: "No User found"
       });
     }
+  } catch (e) {
+    send(res, 500, {
+      error: e.message
+    });
+  }
+}
+
+async function createProduct(req, res) {
+  try {
+    const product = stripe.products.create({
+      name: "Sildenafil",
+      type: "good",
+      description: "Medicine for Erectile Dysfunction",
+      attributes: ["size"]
+    });
+    send(res, 200, {
+      message: "Success",
+      product
+    });
   } catch (e) {
     send(res, 500, {
       error: e.message
@@ -187,6 +206,16 @@ app.post("/chargeCustomer", (req, res) => {
     charge(req, res);
   } catch (e) {
     console.log(e);
+    send(res, 500, {
+      error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`
+    });
+  }
+});
+
+app.post("/createProduct", (req, res) => {
+  try {
+    createProduct(req, res);
+  } catch (e) {
     send(res, 500, {
       error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`
     });
