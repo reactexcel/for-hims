@@ -86,8 +86,17 @@ class QuestionsContainer extends Component {
       });
     }
   };
-  handleChange = e => console.log(e.target.value, e.target.name, "event");
-
+  handleChange = event => {
+    console.log(event.target.value, event.target.name, "event");
+    let textAnswers = this.state.textAnswers.slice();
+    for (let i in textAnswers) {
+      if (textAnswers[i].questionUid === event.target.name) {
+        textAnswers[i].value = event.target.value;
+        this.setState({ textAnswers });
+        break;
+      }
+    }
+  };
   renderQuestions = () => {
     const { data } = this.props.questions;
     const { answers } = this.state;
@@ -148,6 +157,14 @@ class QuestionsContainer extends Component {
             )}
             {question.data().type === "text" && this.state.textAnswers.length && (
               <div className="question_textarea">
+                {console.log(
+                  this.state.textAnswers[
+                    findIndex(this.state.textAnswers, {
+                      questionUid: question.id
+                    })
+                  ].value,
+                  "as"
+                )}
                 <textarea
                   onFocus={() => {
                     this.setTextQuestion(question.id, question.data().id);
