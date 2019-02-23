@@ -189,13 +189,18 @@ async function order(req, res) {
 
 async function createProduct(req, res) {
   try {
-    const product = stripe.products.create({
+    const product = await stripe.products.create({
       name: "Sildenafil",
       type: "good",
       description: "Medicine for Erectile Dysfunction",
       attributes: ["size"]
     });
-    console.log(product)
+    const response = await admin
+      .firestore()
+      .collection("products")
+      .doc(product.id)
+      .set({ ...product });
+    console.log(product);
     const sku = await stripe.skus.create({
       currency: "usd",
       inventory: { type: "finite", quantity: 500 },
@@ -203,6 +208,14 @@ async function createProduct(req, res) {
       product: product.id,
       attributes: { size: "20 tablets" }
     });
+    const skuResponse = await admin
+      .firestore()
+      .collection("products")
+      .doc(product.id)
+      .collection("sku")
+      .doc(sku.id)
+      .set({ ...sku });
+    console.log(sku);
     send(res, 200, {
       message: "Success",
       product,
