@@ -113,6 +113,7 @@ async function getAllCards(req, res) {
 async function charge(req, res) {
   const body = req.body;
   const uid = body.uid;
+  const orderId = body.orderId;
 
   try {
     const response = await admin
@@ -123,9 +124,15 @@ async function charge(req, res) {
     if (response.exists) {
       const customerData = response.data();
       if (customerData.customerId) {
-        const charge = await stripe.charges.create({
-          amount: 30000,
-          currency: "usd",
+        const order = stripe.orders.retrieve(orderId);
+        const orderResponse = await admin
+          .firestore()
+          .collection("users")
+          .doc(uid)
+          .collection("orders")
+          .doc(orderId)
+          .set({ ...order });
+        const charge = await stripe.orders.pay(orderId, {
           customer: customerData.customerId
         });
         console.log(charge);
@@ -176,6 +183,7 @@ async function order(req, res) {
         address
       }
     });
+
     send(res, 200, {
       message: "Success",
       order
