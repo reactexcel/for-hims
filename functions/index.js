@@ -150,6 +150,43 @@ async function charge(req, res) {
   }
 }
 
+async function order(req, res) {
+  const body = req.body;
+  const uid = body.uid;
+  const address = body.address;
+  const quantity = body.quantity;
+  const response = await admin
+    .firestore()
+    .collection("users")
+    .doc(uid)
+    .get();
+  try {
+    const order = await stripe.orders.create({
+      currency: "usd",
+      email: response.data().email,
+      items: [
+        {
+          type: "sku",
+          parent: "sku_EYLFVZsPIFIXvg",
+          quantity
+        }
+      ],
+      shipping: {
+        name: `${response.data().firstName + response.data().lastName}`,
+        address
+      }
+    });
+    send(res, 200, {
+      message: "Success",
+      order
+    });
+  } catch (e) {
+    send(res, 500, {
+      error: e.message
+    });
+  }
+}
+
 async function createProduct(req, res) {
   try {
     const product = stripe.products.create({
@@ -158,9 +195,18 @@ async function createProduct(req, res) {
       description: "Medicine for Erectile Dysfunction",
       attributes: ["size"]
     });
+    console.log(product)
+    const sku = await stripe.skus.create({
+      currency: "usd",
+      inventory: { type: "finite", quantity: 500 },
+      price: 30000,
+      product: product.id,
+      attributes: { size: "20 tablets" }
+    });
     send(res, 200, {
       message: "Success",
-      product
+      product,
+      sku
     });
   } catch (e) {
     send(res, 500, {
@@ -168,6 +214,8 @@ async function createProduct(req, res) {
     });
   }
 }
+
+// async function
 
 function send(res, code, body) {
   res.send({
