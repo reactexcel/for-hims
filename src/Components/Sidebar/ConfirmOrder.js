@@ -16,6 +16,22 @@ class ConfirmOrder extends Component {
   open = state => this.setState({ [state]: true });
   close = state => this.setState({ [state]: false });
 
+  onChargeCustomer = () => {
+    const {
+      userProfile: {
+        data: { shippingAddress }
+      }
+    } = this.props;
+    const { index } = this.state;
+    const address = {
+      line1: shippingAddress[index].street,
+      city: shippingAddress[index].city,
+      state: shippingAddress[index].states,
+      postal_code: shippingAddress[index].zipcode,
+      country: "US"
+    };
+    this.props.onChargeCustomer(address)
+  };
   componentDidUpdate(prevProps) {
     if (
       this.props.payment.charge.isSuccess &&
@@ -60,7 +76,7 @@ class ConfirmOrder extends Component {
           />
         ) : (
           <>
-            {chargeLoading ? (
+            {true ? (
               <div className="login-loader">
                 <div>Waiting for transaction to complete...</div>
                 <div>Hang tight</div>
@@ -112,13 +128,13 @@ class ConfirmOrder extends Component {
                           Medical Fee <span> $5.00 </span>
                         </li>
                         <li>
-                          Promo Discount <span> -$30.00 </span>
+                          Promo Discount <span> -$5.00 </span>
                         </li>
                         <li className="total">
-                          Grand Total <span> $5.00 </span>
+                          Grand Total <span> $30.00 </span>
                         </li>
                         <li className="promo_code_btn">
-                          You save $30.00 with this promo code!
+                          You save $5.00 with this promo code!
                         </li>
 
                         <li className="includes">
@@ -134,7 +150,7 @@ class ConfirmOrder extends Component {
                         </li>
                         <li>
                           {shippingAddress[index].street},{" "}
-                          {shippingAddress[index].city} <br />{" "}
+                          {shippingAddress[index].city}
                           {shippingAddress[index].states} <br />{" "}
                           {shippingAddress[index].zipcode}
                           <br /> USA
@@ -164,7 +180,7 @@ class ConfirmOrder extends Component {
                   tabIndex="0"
                   type="orange"
                   className="absolute_no"
-                  onClick={this.props.onChargeCustomer}
+                  onClick={this.onChargeCustomer}
                 >
                   Confirm & Start Visit
                 </button>

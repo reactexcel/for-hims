@@ -3,6 +3,7 @@ import Collapsible from "react-collapsible";
 class MyOrders extends Component {
   render() {
     const { orders } = this.props;
+    console.log(orders, "asdsad");
     return (
       <>
         <div className="orders_section">
@@ -45,16 +46,16 @@ class MyOrders extends Component {
                         <ul className="open_tab_order">
                           <li className="add1">
                             <span className="small_title">Amount</span>
-                            {order.data().amount}$
+                            {order.data().amount / 1000}$
                             <br />
                             <br />
                             <span>
                               <span className="small_title">
                                 Shipping Address
                               </span>
-                              {order.data().shippingAddress.street} <br />
-                              {order.data().shippingAddress.states} <br />{" "}
-                              {order.data().shippingAddress.zipcode}
+                              {order.data().shipping.address.line1} <br />
+                              {order.data().shipping.address.state} <br />{" "}
+                              {order.data().shipping.address.postal_code}
                               <br /> USA
                             </span>
                           </li>

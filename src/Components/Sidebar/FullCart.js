@@ -47,9 +47,9 @@ class FullCart extends Component {
     const { uid, email } = this.props.user.data;
     this.props.addNewPaymentRequest({ uid, email, ...data });
   };
-  onChargeCustomer = () => {
+  onChargeCustomer = data => {
     const { uid } = this.props.user.data;
-    this.props.chargeCustomerRequest({ uid });
+    this.props.chargeCustomerRequest({ uid, address: { ...data } });
   };
   onUpdateAppointment = data => {
     const { uid } = this.props.user.data;

@@ -77,13 +77,13 @@ class Cart extends Component {
                       Medical Fee <span> $5.00 </span>
                     </li>
                     <li>
-                      Promo Discount <span> -$30.00 </span>
+                      Promo Discount <span> -$5.00 </span>
                     </li>
                     <li className="total">
-                      Grand Total <span> $5.00 </span>
+                      Grand Total <span> $30.00 </span>
                     </li>
                     <li className="promo_code_btn">
-                      You save $30.00 with this promo code!
+                      You save $5.00 with this promo code!
                     </li>
                   </ul>
                 </div>

@@ -6,6 +6,7 @@ export function* getAllOrdersRequest(action) {
   const { uid } = action.payload;
   try {
     const response = yield firebase.userOrders(uid).get();
+    console.log(response,'sad')
     yield put(actions.getAllOrdersSuccess(response.docs));
   } catch (e) {
     yield put(actions.getAllOrdersError(e.message));

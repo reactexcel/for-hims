@@ -2,26 +2,22 @@ import { put, call } from "redux-saga/effects";
 import * as actions from "./index";
 import axios from "axios";
 
+const url = "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/payment";
 function addnewPaymentApi(data) {
   // "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/charge/"
-  return axios.post(
-    "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/payment/addNew",
-    data
-  );
+  return axios.post(`${url}/addNew`, data);
 }
 
 function getAllCardsApi(data) {
-  return axios.post(
-    "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/payment/getAllCards",
-    data
-  );
+  return axios.post(`${url}/getAllCards`, data);
 }
 
 function chargeCustomer(data) {
-  return axios.post(
-    "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/payment/chargeCustomer",
-    data
-  );
+  return axios.post(`${url}/chargeCustomer`, data);
+}
+
+function calculateOrder(data) {
+  return axios.post(`${url}/calculateOrder`, data);
 }
 
 export function* addNewPaymentRequest(action) {
@@ -69,20 +65,33 @@ export function* getAllCardsRequest(action) {
 }
 
 export function* chargeCustomerRequest(action) {
-  const { uid } = action.payload;
+  const { uid, address } = action.payload;
   try {
-    const response = yield call(chargeCustomer, { uid });
+    const response = yield call(calculateOrder, { uid, address });
     if (response.data.statusCode === 200) {
-      yield put(
-        actions.chargeCustomerSuccess({ ...JSON.parse(response.data.body) })
-      );
+      const orderId = JSON.parse(response.data.body).order.id;
+      const orderResponse = yield call(chargeCustomer, { uid, orderId });
+      console.log(orderResponse, "hhhhhhh");
+      if (orderResponse.data.statusCode === 200) {
+        yield put(
+          actions.chargeCustomerSuccess({
+            ...JSON.parse(orderResponse.data.body)
+          })
+        );
+      } else {
+        const error = JSON.parse(orderResponse.data.body).error;
+        console.log(error, "hgfdcxfdghj");
+
+        if (error.code) {
+          yield put(actions.chargeCustomerError(error.message));
+        } else {
+          yield put(actions.chargeCustomerError(error));
+        }
+      }
     } else {
       const error = JSON.parse(response.data.body).error;
-      if (error.code) {
-        yield put(actions.chargeCustomerError(error.message));
-      } else {
-        yield put(actions.chargeCustomerError(error));
-      }
+      console.log(error, "jhgfdxcvgh");
+      yield put(actions.chargeCustomerError(error));
     }
   } catch (e) {
     yield put(actions.chargeCustomerError(e.message));

@@ -114,7 +114,7 @@ async function charge(req, res) {
   const body = req.body;
   const uid = body.uid;
   const orderId = body.orderId;
-
+  console.log(orderId, uid, "charge 1");
   try {
     const response = await admin
       .firestore()
@@ -123,8 +123,9 @@ async function charge(req, res) {
       .get();
     if (response.exists) {
       const customerData = response.data();
+      console.log(customerData, "===customerData");
       if (customerData.customerId) {
-        const order = stripe.orders.retrieve(orderId);
+        const order = await stripe.orders.retrieve(orderId);
         const orderResponse = await admin
           .firestore()
           .collection("users")
@@ -161,7 +162,8 @@ async function order(req, res) {
   const body = req.body;
   const uid = body.uid;
   const address = body.address;
-  const quantity = body.quantity;
+  // const quantity = body.quantity;
+
   const response = await admin
     .firestore()
     .collection("users")
@@ -174,13 +176,13 @@ async function order(req, res) {
       items: [
         {
           type: "sku",
-          parent: "sku_EYLFVZsPIFIXvg",
-          quantity
+          parent: "sku_EaAGvTgxtOgg8s",
+          quantity: 1
         }
       ],
       shipping: {
-        name: `${response.data().firstName + response.data().lastName}`,
-        address
+        name: `${response.data().firstName} ${response.data().lastName}`,
+        address: { ...address }
       }
     });
 
@@ -284,6 +286,16 @@ app.post("/chargeCustomer", (req, res) => {
 app.post("/createProduct", (req, res) => {
   try {
     createProduct(req, res);
+  } catch (e) {
+    send(res, 500, {
+      error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`
+    });
+  }
+});
+
+app.post("/calculateOrder", (req, res) => {
+  try {
+    order(req, res);
   } catch (e) {
     send(res, 500, {
       error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`
