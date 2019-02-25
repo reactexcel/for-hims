@@ -76,7 +76,7 @@ class ConfirmOrder extends Component {
           />
         ) : (
           <>
-            {true ? (
+            {chargeLoading ? (
               <div className="login-loader">
                 <div>Waiting for transaction to complete...</div>
                 <div>Hang tight</div>

@@ -3,7 +3,6 @@ import Collapsible from "react-collapsible";
 class MyOrders extends Component {
   render() {
     const { orders } = this.props;
-    console.log(orders, "asdsad");
     return (
       <>
         <div className="orders_section">

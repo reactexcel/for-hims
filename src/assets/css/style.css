@@ -2929,10 +2929,6 @@ form.shipping_form {
   .camera-container {
     width: 100%;
   }
-
-  ul.tab_order li {
-    padding: 15px 0px 15px 0px;
-  }
 }
 
 @media only screen and (max-width: 768px) and (min-width: 240px) {
@@ -2952,5 +2948,12 @@ form.shipping_form {
   }
   .action_required_section {
     padding: 140px 0px 50px 0px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  ul.tab_order li.orders1 {
+    overflow-wrap: break-word;
+    width: 95%;
   }
 }

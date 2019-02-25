@@ -18,11 +18,20 @@ class OrdersContainer extends Component {
     }
   }
   render() {
-    const { data } = this.props.orders;
+    const { data, isLoading } = this.props.orders;
     return (
       <div>
         <Header />
-        {data.length ? <MyOrders orders={data} /> : <Orders />}
+        {isLoading ? (
+          <div className="loader-container">
+            <div className="login-loader">
+              <div>Loading your orders...</div>
+              <div>Hang tight</div>
+            </div>
+          </div>
+        ) : (
+          <MyOrders orders={data} />
+        )}
         <Footer />
       </div>
     );
