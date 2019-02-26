@@ -123,7 +123,6 @@ async function charge(req, res) {
       .get();
     if (response.exists) {
       const customerData = response.data();
-      console.log(customerData, "===customerData");
       if (customerData.customerId) {
         const order = await stripe.orders.retrieve(orderId);
         const orderResponse = await admin
@@ -136,7 +135,6 @@ async function charge(req, res) {
         const charge = await stripe.orders.pay(orderId, {
           customer: customerData.customerId
         });
-        console.log(charge);
         send(res, 200, {
           message: "Success",
           charge: charge
@@ -210,7 +208,6 @@ async function createProduct(req, res) {
       .collection("products")
       .doc(product.id)
       .set({ ...product });
-    console.log(product);
     const sku = await stripe.skus.create({
       currency: "usd",
       inventory: { type: "finite", quantity: 500 },
@@ -225,7 +222,6 @@ async function createProduct(req, res) {
       .collection("sku")
       .doc(sku.id)
       .set({ ...sku });
-    console.log(sku);
     send(res, 200, {
       message: "Success",
       product,
