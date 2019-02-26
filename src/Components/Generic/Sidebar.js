@@ -3,7 +3,6 @@ import Account from "../Sidebar/Account";
 import FullCart from "../Sidebar/FullCart";
 import Login from "../Sidebar/Login";
 import Shop from "../Sidebar/Shop";
-import Learn from "../Sidebar/Learn";
 import isTablet from "../../hoc/isTablet";
 
 class Sidebar extends Component {
@@ -40,8 +39,6 @@ class Sidebar extends Component {
         return <Login closeSidebar={this.props.closeSidebar} />;
       case "shop":
         return <Shop />;
-      case "learn":
-        return <Learn />;
       default:
         return;
     }

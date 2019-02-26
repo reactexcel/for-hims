@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import hims_pdp_sildenafil_product01 from "../assets/images/hims_pdp_sildenafil_product01.png";
+import noleuderm_product from "../assets/images/product.png";
 import hims_pdp_sildenafil_img from "../assets/images/hims_pdp_sildenafil_img.jpg";
 import hims_pdp_sildenafil_img3 from "../assets/images/hims_pdp_sildenafil_img3.jpg";
 import hims_pdp_sildenafil_img4 from "../assets/images/hims_pdp_sildenafil_img4.jpg";
@@ -46,9 +46,9 @@ class HomeContainer extends Component {
               <div className="col-xs-12 col-sm-12 col-md-2"> </div>
               <div className="col-xs-12 col-sm-12 col-md-4 text-center">
                 <img
-                  src={hims_pdp_sildenafil_product01}
+                  src={noleuderm_product}
                   className="product-img"
-                  alt="Sildenafil Product"
+                  alt="Noleuderm Product"
                 />
               </div>
               <div className="col-xs-12 col-sm-12 col-md-1"> </div>

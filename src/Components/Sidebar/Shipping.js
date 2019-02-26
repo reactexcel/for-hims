@@ -80,13 +80,13 @@ class Shipping extends Component {
                   value="United States"
                   readOnly
                 />
-                <div className="switch_title">
+                {/* <div className="switch_title">
                   <h4> Send me SMS Delivery Updates </h4>
                   <label className="switch">
                     <input type="checkbox" />
                     <span className="slid round" />
                   </label>
-                </div>
+                </div> */}
                 {addNew && (
                   <button
                     className="underline_button"
@@ -120,7 +120,7 @@ const validate = values => {
   }
 
   for (let value of fields) {
-    if (!values[value.name]) {
+    if (!values[value.name] && values[value.name] !== "type") {
       error[value.name] = "Required Field";
     }
   }

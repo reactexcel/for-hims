@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import hims_logo from "../../assets/images/hims_logo.png";
+import noleuderm_logo from "../../assets/images/logo.png";
 import Sidebar from "./Sidebar";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -74,7 +74,7 @@ class Header extends Component {
             </div>
             <div className="header_logo">
               <Link to="/">
-                <img src={hims_logo} title="hime" alt="hime" />
+                <img src={noleuderm_logo} title="hime" alt="hime" />
               </Link>
             </div>
 
@@ -94,15 +94,10 @@ class Header extends Component {
             </div>
 
             <div className="navbar-collapse collapse">
-              <ul className="nav navbar-nav">
-                <li onClick={() => this._openSidebar("left", "shop")}>
+              <ul className="nav navbar-nav navbar-right">
+                <li onClick={() => this._openSidebar("right", "shop")}>
                   <Link to="#">Shop</Link>
                 </li>
-                <li onClick={() => this._openSidebar("left", "learn")}>
-                  <Link to="#">Learn</Link>
-                </li>
-              </ul>
-              <ul className="nav navbar-nav navbar-right">
                 <li
                   className="mobile_none"
                   onClick={() => this._openSidebar("right", "cart")}
