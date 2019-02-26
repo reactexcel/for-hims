@@ -82,8 +82,9 @@ h4 {
   position: absolute;
   left: 0px;
   right: 0px;
-  /* top: 25px; */
+  top: 8px;
   width: 25vw;
+  min-width: 130px;
 }
 .header_logo > a {
   display: inline-block;
@@ -2667,6 +2668,7 @@ form.shipping_form {
   }
   .header_logo {
     top: 20px;
+    margin: 0 auto;
   }
 
   ul.left_menu {
@@ -2785,6 +2787,7 @@ form.shipping_form {
   }
   .header_logo {
     top: 20px;
+    margin: 0 auto;
   }
 
   ul.left_menu {
