@@ -102,7 +102,6 @@ export function* validateOldPasswordRequest(action) {
   const { password } = action.payload;
   try {
     const response = yield firebase.validateOldPassword(password);
-    console.log(response);
   } catch (e) {
     console.log(e, "err");
   }

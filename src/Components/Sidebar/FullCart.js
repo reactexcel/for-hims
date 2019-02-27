@@ -130,7 +130,6 @@ class FullCart extends Component {
     }
   };
   render() {
-    console.log(this.state);
     return <>{this._renderItem()}</>;
   }
 }

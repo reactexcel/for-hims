@@ -114,7 +114,6 @@ async function charge(req, res) {
   const body = req.body;
   const uid = body.uid;
   const orderId = body.orderId;
-  console.log(orderId, uid, "charge 1");
   try {
     const response = await admin
       .firestore()

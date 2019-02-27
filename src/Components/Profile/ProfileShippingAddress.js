@@ -15,7 +15,6 @@ class ProfileShippingAddress extends Component {
     };
   }
   openEditShippingAddress = index => {
-    console.log(index, "asddsa");
     this.props.initialize({
       ...this.props.userProfile.data.shippingAddress[index]
     });
