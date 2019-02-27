@@ -76,31 +76,41 @@ class FullCart extends Component {
           />
         );
       case 2:
-        return this.props.userProfile.data.dateOfBirth ? (
-          this.props.userProfile.data.shippingAddress ? (
-            this.props.payment.card.data.cardList &&
-            this.props.payment.card.data.cardList.length ? (
-              <ConfirmOrder
-                payment={this.props.payment}
-                userProfile={this.props.userProfile}
-                onAddNewPayment={this.onAddNewPayment}
-                onChargeCustomer={this.onChargeCustomer}
-                onUpdateAppointment={this.onUpdateAppointment}
-                closeSidebar={this.props.closeSidebar}
-                removeFromCart={this.props.removeFromCartRequest}
-              />
+        return !this.props.userProfile.isLoading ? (
+          this.props.userProfile.data.dateOfBirth ? (
+            this.props.userProfile.data.shippingAddress ? (
+              this.props.payment.card.data.cardList &&
+              this.props.payment.card.data.cardList.length ? (
+                <ConfirmOrder
+                  payment={this.props.payment}
+                  userProfile={this.props.userProfile}
+                  onAddNewPayment={this.onAddNewPayment}
+                  onChargeCustomer={this.onChargeCustomer}
+                  onUpdateAppointment={this.onUpdateAppointment}
+                  closeSidebar={this.props.closeSidebar}
+                  removeFromCart={this.props.removeFromCartRequest}
+                />
+              ) : (
+                <CartPaymentContainer
+                  onAddNewPayment={this.onAddNewPayment}
+                  renderNext={this.renderNext}
+                  payment={this.props.payment}
+                />
+              )
             ) : (
-              <CartPaymentContainer
-                onAddNewPayment={this.onAddNewPayment}
-                renderNext={this.renderNext}
-                payment={this.props.payment}
-              />
+              <Shipping renderNext={this.renderNext} />
             )
           ) : (
-            <Shipping renderNext={this.renderNext} />
+            <DateOfBirth />
           )
         ) : (
-          <DateOfBirth />
+          <div className="loader-container">
+            <div className="login-loader">
+              <div>Loading your account...</div>
+              <div>Hang tight</div>
+              <div className="loader" />
+            </div>
+          </div>
         );
 
       case 3:

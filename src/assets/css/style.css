@@ -2097,8 +2097,11 @@ form.profile_form button:disabled,
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  cursor: pointer;
 }
-
+.card_details-block .card_detail.selected-card {
+  color: burlywood;
+}
 .payment_form .add-payment,
 .payment_form .payment-cancel {
   all: unset;

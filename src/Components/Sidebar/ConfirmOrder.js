@@ -7,7 +7,8 @@ class ConfirmOrder extends Component {
   state = {
     showPayment: false,
     showAddress: false,
-    index: 0
+    index: 0,
+    cardIndex: 0
   };
   static defaultProps = {
     renderNext: () => {}
@@ -20,9 +21,12 @@ class ConfirmOrder extends Component {
     const {
       userProfile: {
         data: { shippingAddress }
+      },
+      payment: {
+        card: { data }
       }
     } = this.props;
-    const { index } = this.state;
+    const { index, cardIndex } = this.state;
     const address = {
       line1: shippingAddress[index].street,
       city: shippingAddress[index].city,
@@ -30,7 +34,9 @@ class ConfirmOrder extends Component {
       postal_code: shippingAddress[index].zipcode,
       country: "US"
     };
-    this.props.onChargeCustomer(address)
+    // const cardId = cardIndex === 0 ? cardIndex : data.cardList[cardIndex].id;
+    // console.log(cardId);
+    this.props.onChargeCustomer(address);
   };
   componentDidUpdate(prevProps) {
     if (
@@ -49,6 +55,7 @@ class ConfirmOrder extends Component {
   }
 
   selectAddress = index => this.setState({ index });
+  selectPayment = cardIndex => this.setState({ cardIndex });
   render() {
     const {
       userProfile: {
@@ -58,7 +65,7 @@ class ConfirmOrder extends Component {
     } = this.props;
     const { data } = payment.card;
     const { isLoading: chargeLoading } = payment.charge;
-    const { showPayment, showAddress, index } = this.state;
+    const { showPayment, showAddress, index, cardIndex } = this.state;
     return (
       <>
         {showPayment ? (
@@ -66,6 +73,8 @@ class ConfirmOrder extends Component {
             payment={payment}
             closePayment={() => this.close("showPayment")}
             onAddNewPayment={this.props.onAddNewPayment}
+            selectPayment={this.selectPayment}
+            cardIndex={cardIndex}
           />
         ) : showAddress ? (
           <ShippingAddress
@@ -150,7 +159,7 @@ class ConfirmOrder extends Component {
                         </li>
                         <li>
                           {shippingAddress[index].street},{" "}
-                          {shippingAddress[index].city}
+                          {shippingAddress[index].city},{" "}
                           {shippingAddress[index].states} <br />{" "}
                           {shippingAddress[index].zipcode}
                           <br /> USA
@@ -163,8 +172,8 @@ class ConfirmOrder extends Component {
                           />
                         </li>
                         <li>
-                          {data.cardList[0].brand} •••• •••• ••••{" "}
-                          {data.cardList[0].last4}
+                          {data.cardList[cardIndex].brand} •••• •••• ••••{" "}
+                          {data.cardList[cardIndex].last4}
                         </li>
 
                         <div className="checkout_recurring-charge">

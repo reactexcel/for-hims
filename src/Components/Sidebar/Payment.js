@@ -100,8 +100,18 @@ class Payment extends Component {
                         <>
                           <div className="card_details-block">
                             {data.cardList &&
-                              data.cardList.map(card => (
-                                <div className="card_detail" key={card.id}>
+                              data.cardList.map((card, cardIndex) => (
+                                <div
+                                  className={`card_detail ${
+                                    this.props.cardIndex === cardIndex
+                                      ? "selected-card"
+                                      : ""
+                                  }`}
+                                  key={card.id}
+                                  onClick={() =>
+                                    this.props.selectPayment(cardIndex)
+                                  }
+                                >
                                   <div>{card.brand}</div>
                                   <div> •••• •••• •••• {card.last4}</div>
                                 </div>
