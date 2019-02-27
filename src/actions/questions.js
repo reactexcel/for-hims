@@ -22,12 +22,12 @@ export function* submitAnswersRequest(action) {
       yield firebase.user(uid).update({ answers: [...answers] });
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
-      yield put(actions.submitAnswersSuccess("Answers updated"));
+      yield put(actions.submitAnswersSuccess());
     } else {
       yield firebase.user(uid).set({ answers }, { merge: true });
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
-      yield put(actions.submitAnswersSuccess("Answers saved"));
+      yield put(actions.submitAnswersSuccess());
     }
   } catch (e) {
     yield put(actions.submitAnswersError(e.message));

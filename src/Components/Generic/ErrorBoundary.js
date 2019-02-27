@@ -17,9 +17,9 @@ export default class ErrorBoundary extends Component {
   }
   render() {
     return this.state.hasError ? (
-      <div className="error-container">
+      <div className="error-boundary-container">
         {" "}
-        <div className="error-text">
+        <div className="error-boundary-text">
           Something Went Wrong!
           <details style={{ whiteSpace: "pre-wrap" }}>
             {this.state.error.toString()}

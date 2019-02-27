@@ -91,7 +91,8 @@ const additionalInfoRequest = (state, action) =>
     additionalInfo: {
       isLoading: { $set: true },
       isSuccess: { $set: false },
-      isError: { $set: false }
+      isError: { $set: false },
+      message: { $set: "" }
     }
   });
 

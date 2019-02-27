@@ -33,7 +33,7 @@ class DateOfBirth extends Component {
       <>
         {isLoading ? (
           <div className="login-loader">
-            <div>Loading your account...</div>
+            <div>Saving your Information...</div>
             <div>Hang tight</div>
             <div className="loader" />
           </div>

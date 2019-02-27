@@ -48,8 +48,8 @@ class FullCart extends Component {
     this.props.addNewPaymentRequest({ uid, email, ...data });
   };
   onChargeCustomer = data => {
-    const { uid } = this.props.user.data;
-    this.props.chargeCustomerRequest({ uid, address: { ...data } });
+    const { uid, email } = this.props.user.data;
+    this.props.chargeCustomerRequest({ uid, email, address: { ...data } });
   };
   onUpdateAppointment = data => {
     const { uid } = this.props.user.data;
@@ -78,6 +78,7 @@ class FullCart extends Component {
       case 2:
         return this.props.userProfile.data.dateOfBirth ? (
           this.props.userProfile.data.shippingAddress ? (
+            this.props.payment.card.data.cardList &&
             this.props.payment.card.data.cardList.length ? (
               <ConfirmOrder
                 payment={this.props.payment}
@@ -102,18 +103,25 @@ class FullCart extends Component {
           <DateOfBirth />
         );
 
-      // case 3:
-      //   return this.props.payment.data.cardList.length ? (
-      //     <ConfirmOrder payment = {this.props.payment}
-      //       userProfile = {this.props.userProfile}
-      //     />
-      //   ) : (
-      //     <CartPaymentContainer
-      //       onAddNewPayment={this.onAddNewPayment}
-      //       renderNext={this.renderNext}
-      //       payment={this.props.payment}
-      //     />
-      //   );
+      case 3:
+        return this.props.payment.card.data.cardList &&
+          this.props.payment.card.data.cardList.length ? (
+          <ConfirmOrder
+            payment={this.props.payment}
+            userProfile={this.props.userProfile}
+            onAddNewPayment={this.onAddNewPayment}
+            onChargeCustomer={this.onChargeCustomer}
+            onUpdateAppointment={this.onUpdateAppointment}
+            closeSidebar={this.props.closeSidebar}
+            removeFromCart={this.props.removeFromCartRequest}
+          />
+        ) : (
+          <CartPaymentContainer
+            onAddNewPayment={this.onAddNewPayment}
+            renderNext={this.renderNext}
+            payment={this.props.payment}
+          />
+        );
 
       case 10:
         return <Login closeSidebar={this.props.closeSidebar} />;
@@ -122,6 +130,7 @@ class FullCart extends Component {
     }
   };
   render() {
+    console.log(this.state);
     return <>{this._renderItem()}</>;
   }
 }

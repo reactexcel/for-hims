@@ -65,9 +65,9 @@ export function* getAllCardsRequest(action) {
 }
 
 export function* chargeCustomerRequest(action) {
-  const { uid, address } = action.payload;
+  const { uid, address,email } = action.payload;
   try {
-    const response = yield call(calculateOrder, { uid, address });
+    const response = yield call(calculateOrder, { uid, address,email });
     if (response.data.statusCode === 200) {
       const orderId = JSON.parse(response.data.body).order.id;
       const orderResponse = yield call(chargeCustomer, { uid, orderId });

@@ -124,6 +124,9 @@ async function charge(req, res) {
     if (response.exists) {
       const customerData = response.data();
       if (customerData.customerId) {
+        const charge = await stripe.orders.pay(orderId, {
+          customer: customerData.customerId
+        });
         const order = await stripe.orders.retrieve(orderId);
         const orderResponse = await admin
           .firestore()
@@ -132,9 +135,6 @@ async function charge(req, res) {
           .collection("orders")
           .doc(orderId)
           .set({ ...order });
-        const charge = await stripe.orders.pay(orderId, {
-          customer: customerData.customerId
-        });
         send(res, 200, {
           message: "Success",
           charge: charge
@@ -160,6 +160,7 @@ async function order(req, res) {
   const body = req.body;
   const uid = body.uid;
   const address = body.address;
+  const email = body.email;
   // const quantity = body.quantity;
 
   const response = await admin
@@ -170,7 +171,7 @@ async function order(req, res) {
   try {
     const order = await stripe.orders.create({
       currency: "usd",
-      email: response.data().email,
+      email: response.data().email || email,
       items: [
         {
           type: "sku",

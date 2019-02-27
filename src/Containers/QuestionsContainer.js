@@ -117,6 +117,7 @@ class QuestionsContainer extends Component {
   renderQuestions = () => {
     const { data } = this.props.questions;
     const { answers } = this.state;
+    console.log(data, data.length)
     if (data.length) {
       return data.map((question, index) => (
         <div className="question-container" key={question.id}>
