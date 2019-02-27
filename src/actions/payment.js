@@ -66,7 +66,6 @@ export function* getAllCardsRequest(action) {
 
 export function* chargeCustomerRequest(action) {
   const { uid, address, email, cardId } = action.payload;
-  console.log(cardId)
   try {
     const response = yield call(calculateOrder, { uid, address, email });
     if (response.data.statusCode === 200) {
