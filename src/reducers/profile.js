@@ -136,7 +136,11 @@ export default handleActions(
 
     [constants.ADD_SHIPPING_ADDRESS_REQUEST]: additionalInfoRequest,
     [constants.ADD_SHIPPING_ADDRESS_SUCCESS]: additionalInfoSuccess,
-    [constants.ADD_SHIPPING_ADDRESS_ERROR]: additionalInfoError
+    [constants.ADD_SHIPPING_ADDRESS_ERROR]: additionalInfoError,
+
+    [constants.SAVE_CONSENT_REQUEST]: additionalInfoRequest,
+    [constants.SAVE_CONSENT_SUCCESS]: additionalInfoSuccess,
+    [constants.SAVE_CONSENT_ERROR]: additionalInfoError
   },
   initialState
 );

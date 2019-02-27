@@ -34,9 +34,8 @@ class ConfirmOrder extends Component {
       postal_code: shippingAddress[index].zipcode,
       country: "US"
     };
-    // const cardId = cardIndex === 0 ? cardIndex : data.cardList[cardIndex].id;
-    // console.log(cardId);
-    this.props.onChargeCustomer(address);
+    const cardId = cardIndex === 0 ? cardIndex : data.cardList[cardIndex].id;
+    this.props.onChargeCustomer(address,cardId);
   };
   componentDidUpdate(prevProps) {
     if (

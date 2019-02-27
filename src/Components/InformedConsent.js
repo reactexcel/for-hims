@@ -14,7 +14,8 @@ class InformedConsent extends Component {
   };
   render() {
     const {
-      userProfile: { data }
+      userProfile: { data },
+      additionalInfo: { isLoading }
     } = this.props;
     return (
       <>
@@ -258,7 +259,9 @@ class InformedConsent extends Component {
                 >
                   {data.hasOwnProperty("consent") &&
                   data.consent.consentProvided
-                    ? "Consent provided - Next"
+                    ? isLoading
+                      ? "Saving Consent..."
+                      : "Consent provided - Next"
                     : "Provide Consent"}
                 </button>
               </p>

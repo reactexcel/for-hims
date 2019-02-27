@@ -65,12 +65,17 @@ export function* getAllCardsRequest(action) {
 }
 
 export function* chargeCustomerRequest(action) {
-  const { uid, address, email } = action.payload;
+  const { uid, address, email, cardId } = action.payload;
+  console.log(cardId)
   try {
     const response = yield call(calculateOrder, { uid, address, email });
     if (response.data.statusCode === 200) {
       const orderId = JSON.parse(response.data.body).order.id;
-      const orderResponse = yield call(chargeCustomer, { uid, orderId });
+      const orderResponse = yield call(chargeCustomer, {
+        uid,
+        orderId,
+        cardId
+      });
       if (orderResponse.data.statusCode === 200) {
         yield put(
           actions.chargeCustomerSuccess({

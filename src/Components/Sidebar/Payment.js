@@ -61,7 +61,7 @@ class Payment extends Component {
   onCloseAddPayment = () => this.setState({ showAddPayment: false });
 
   render() {
-    const { errors, showAddPayment } = this.state;
+    const { errors, showAddPayment,loading } = this.state;
     const {
       isError,
       message,
@@ -71,7 +71,7 @@ class Payment extends Component {
     } = this.props.payment.card;
     return (
       <>
-        {isLoading ? (
+        {loading || isLoading ? (
           <div className="login-loader">
             <div>Saving Payment Information...</div>
             <div>Hang tight</div>

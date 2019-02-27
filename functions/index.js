@@ -114,6 +114,8 @@ async function charge(req, res) {
   const body = req.body;
   const uid = body.uid;
   const orderId = body.orderId;
+  const cardId = body.cardId;
+  console.log(cardId)
   try {
     const response = await admin
       .firestore()
@@ -123,6 +125,12 @@ async function charge(req, res) {
     if (response.exists) {
       const customerData = response.data();
       if (customerData.customerId) {
+        if(cardId){
+          console.log(cardId,'sasasasa')
+          const updateCard = await stripe.customers.update(customerData.customerId,{
+            default_source:cardId
+          })
+        }
         const charge = await stripe.orders.pay(orderId, {
           customer: customerData.customerId
         });

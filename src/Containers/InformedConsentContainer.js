@@ -9,11 +9,12 @@ class InformedConsentContainer extends Component {
     this.props.savingConsentRequest({ uid });
   };
   render() {
-    const { userProfile } = this.props;
+    const { userProfile,additionalInfo } = this.props;
     return (
       <div>
         <InformedConsent
           userProfile={userProfile}
+          additionalInfo={additionalInfo}
           onSavingConsentRequest={this.onSavingConsentRequest}
           history={this.props.history}
         />
@@ -22,7 +23,10 @@ class InformedConsentContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ profile: { userProfile } }) => ({ userProfile });
+const mapStateToProps = ({ profile: { userProfile, additionalInfo } }) => ({
+  userProfile,
+  additionalInfo
+});
 export default connect(
   mapStateToProps,
   { savingConsentRequest }
