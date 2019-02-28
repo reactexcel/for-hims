@@ -139,7 +139,7 @@ class FullCart extends Component {
         );
 
       case 10:
-        return <Login closeSidebar={this.props.closeSidebar} />;
+        return <Login addedProduct closeSidebar={this.props.closeSidebar} />;
       default:
         return;
     }

@@ -6,6 +6,7 @@ import ForgotPassword from "./ForgotPassword";
 import { connect } from "react-redux";
 import { loginRequest } from "../../actions";
 import Account from "./Account";
+import FullCart from "./FullCart";
 
 class Login extends Component {
   constructor(props) {
@@ -17,10 +18,14 @@ class Login extends Component {
       showForgotPassword: false
     };
   }
+  static defaultProps = {
+    addedProduct: false
+  };
   componentDidUpdate(prevProps) {
     if (
       this.props.user.isSuccess &&
-      prevProps.user.isSuccess !== this.props.user.isSuccess
+      prevProps.user.isSuccess !== this.props.user.isSuccess &&
+      !this.props.addedProduct
     ) {
       this.props.closeSidebar();
     }
@@ -56,7 +61,7 @@ class Login extends Component {
     } = this.state;
     const { isSuccess, isLoading, isError, message } = this.props.user;
     if (isSuccess) {
-      return <Account />;
+      return this.props.addedProduct ? <FullCart /> : <Account />;
     }
     return (
       <>
