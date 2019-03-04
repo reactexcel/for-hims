@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import noleuderm_logo from "../../assets/images/logo.png";
 import Sidebar from "./Sidebar";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import requireAuth from "../../hoc/requireAuth";
 
-class Header extends Component {
+class Header extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
