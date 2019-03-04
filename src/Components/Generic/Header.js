@@ -3,7 +3,7 @@ import noleuderm_logo from "../../assets/images/logo.png";
 import Sidebar from "./Sidebar";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import requireAuth from "../../hoc/requireAuth";
+import requireAuthentication from "../../hoc/requireAuthentication";
 
 class Header extends PureComponent {
   constructor(props) {
@@ -135,4 +135,6 @@ class Header extends PureComponent {
   }
 }
 const mapStateToProps = ({ user, addcart }) => ({ user, addcart });
-export default connect(mapStateToProps)(withRouter(requireAuth(Header)));
+export default connect(mapStateToProps)(
+  withRouter(requireAuthentication(Header))
+);

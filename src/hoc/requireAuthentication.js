@@ -21,7 +21,7 @@ export default WrappedComponent => {
       this.checkAuthentication();
     }
     checkAuthentication = () => {
-      firebase.auth.onAuthStateChanged(authUser => {
+     this.listener = firebase.auth.onAuthStateChanged(authUser => {
         if (!this.props.user.auth && !authUser) {
           this.props.history.push("/");
         } else {
@@ -47,6 +47,9 @@ export default WrappedComponent => {
         }
       });
     };
+    componentWillUnmount(){
+      this.listener()
+    }
     render() {
       const { uid } = this.props.user.data;
       return <WrappedComponent {...this.props} uid={uid} />;
