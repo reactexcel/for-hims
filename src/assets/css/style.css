@@ -2053,9 +2053,10 @@ input:not([type="checkbox"]) {
 .register_box input.error,
 .profile_module input.error,
 .dob_form input.error,
-.message-text-box input.error {
+.message-text-box input.error,select.error {
   border-bottom-color: red;
 }
+
 /* forms in profile page */
 .profile_module form.profile_form {
   display: flex;

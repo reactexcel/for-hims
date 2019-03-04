@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { shippingAddressFields as fields } from "../../constants/profile";
-import ProfileField from "../Profile/ProfileField";
+import ProfileField from "../Generic/ProfileField";
 import ErrorText from "../Generic/ErrorText";
 import { usaStates } from "../../constants/profile";
 import { addShippingAddressRequest } from "../../actions";

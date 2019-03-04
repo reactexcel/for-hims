@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import ProfileField from "./ProfileField";
+import ProfileField from "../Generic/ProfileField";
 import { resetPasswordFields as fields } from "../../constants/profile";
 
 

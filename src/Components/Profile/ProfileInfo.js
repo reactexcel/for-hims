@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
-import ProfileField from "./ProfileField";
+import ProfileField from "../Generic/ProfileField";
 import { profileInfoFields as fields } from "../../constants/profile";
 import { validatePhone } from "../../utils/validate";
 

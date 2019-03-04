@@ -260,3 +260,15 @@ export const dateOfBirthFields = [
   { name: "day", placeholder: "DD" },
   { name: "year", placeholder: "YY" }
 ];
+
+export const doctorInfoFields = [
+  { name: "firstName", placeholder: "Doctor's First Name", type: "text" },
+  { name: "lastName", placeholder: "Doctor's Last Name", type: "text" },
+  { name: "phone", placeholder: "Doctor's Phone number", type: "phone" },
+  { name: "email", placeholder: "Doctor's Email", type: "email" },
+  {
+    name: "password",
+    placeholder: "Password for Doctor's ID",
+    type: "password"
+  }
+];

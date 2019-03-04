@@ -1,5 +1,5 @@
 import React from "react";
-import ErrorText from "../Generic/ErrorText";
+import ErrorText from "./ErrorText";
 
 export default function ProfileField({
   label,

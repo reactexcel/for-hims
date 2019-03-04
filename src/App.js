@@ -18,6 +18,7 @@ import { Provider } from "react-redux";
 import createStore from "./createStore";
 import ScrollToTop from "./Components/Generic/ScrollToTop";
 import ErrorBoundary from "./Components/Generic/ErrorBoundary";
+import CreateDoctorContainer from "./Containers/AdminContainer/CreateDoctorContainer";
 const store = createStore();
 
 class App extends Component {
@@ -90,6 +91,9 @@ class App extends Component {
                   path="/messages/:id"
                   component={requireAuthentication(ReplyContainer)}
                 />
+                <Route
+                path="/create-doctor"
+                component={requireAuthentication(CreateDoctorContainer)}/>
               </Switch>
             </ScrollToTop>
           </Router>

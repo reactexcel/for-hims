@@ -37,10 +37,12 @@ export default WrappedComponent => {
           // getting user detail if user is authenticated
           // and stoping unneccessary api calls
           if (
-            this.props.userProfile.data.firstName === undefined &&
-            this.props.userProfile.data.dateOfBirth === undefined &&
-            this.props.userProfile.data.shippingAddress === undefined &&
-            this.props.userProfile.data.customerId === undefined
+            // this.props.userProfile.data.firstName === undefined &&
+            // this.props.userProfile.data.dateOfBirth === undefined &&
+            // this.props.userProfile.data.shippingAddress === undefined &&
+            // this.props.userProfile.data.customerId === undefined &&
+            !this.props.userProfile.isLoading &&
+            this.props.userProfile.data.email === undefined
           ) {
             this.props.getProfileInfoRequest({ uid: this.props.user.data.uid });
           }
