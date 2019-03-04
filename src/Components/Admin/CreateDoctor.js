@@ -42,13 +42,15 @@ function CreateDoctor(props) {
     <div className="profile_module">
       <h3>Create Doctor's Profile</h3>
 
-      <form>
+      <form className="doctor_form">
         {renderFields()}
         <Field component={renderStates} name="states" />
         <button onClick={props.handleSubmit(submitDoctorDetails)}>
           Save Changes
         </button>
-        <button onClick={props.reset}>Cancel</button>
+        <button className="underline_button" onClick={props.reset}>
+          Cancel
+        </button>
       </form>
     </div>
   );

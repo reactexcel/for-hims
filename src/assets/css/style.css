@@ -2207,6 +2207,10 @@ form.shipping_form {
   margin-bottom: 3rem;
 }
 /* end shipping form */
+form.doctor_form{
+  display:flex;
+  flex-direction: column;
+}
 
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {
   h3,
