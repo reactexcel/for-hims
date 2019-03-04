@@ -2,11 +2,11 @@ import { put } from "redux-saga/effects";
 import { delay } from "redux-saga";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
-import * as ROLE from "../constants/roles";
+import * as ROLES from "../constants/roles";
 export function* signupRequest(action) {
   const { email, password } = action.payload;
-  let { role } = action.payload;
-  role = role ? role : ROLE.CUSTOMER;
+  let { role, firstName, lastName, phone, states } = action.payload;
+  role = role ? role : ROLES.CUSTOMER;
   try {
     const response = yield firebase.createUser(email, password);
     const data = {
@@ -18,7 +18,16 @@ export function* signupRequest(action) {
     const { uid } = response.user;
     const userResponse = yield firebase.user(uid).get();
     if (!userResponse.exists) {
-      yield firebase.user(uid).set({ email, role }, { merge: true });
+      if (role === ROLES.CUSTOMER) {
+        yield firebase.user(uid).set({ email, role }, { merge: true });
+      } else {
+        yield firebase
+          .user(uid)
+          .set(
+            { email, role, firstName, lastName, phone, states },
+            { merge: true }
+          );
+      }
     }
     yield put(actions.signupSuccess(data));
   } catch (e) {

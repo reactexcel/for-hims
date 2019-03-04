@@ -36,7 +36,7 @@ function CreateDoctor(props) {
     </>
   );
   const submitDoctorDetails = values => {
-    console.log(values, "ddddd");
+    props.onSubmitDocotorDetails(values);
   };
   return (
     <div className="profile_module">
@@ -48,7 +48,7 @@ function CreateDoctor(props) {
         <button onClick={props.handleSubmit(submitDoctorDetails)}>
           Save Changes
         </button>
-        <Link to="#">Cancel</Link>
+        <button onClick={props.reset}>Cancel</button>
       </form>
     </div>
   );
