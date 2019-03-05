@@ -2225,6 +2225,11 @@ form.doctor_form {
   flex-direction: column;
 }
 
+/* styles for create doctor-form */
+.doctor_module{
+  margin-top:5rem;
+}
+
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {
   h3,
   .h3 {

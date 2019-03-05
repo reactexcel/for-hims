@@ -4,7 +4,9 @@ import Sidebar from "./Sidebar";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import requireAuthentication from "../../hoc/requireAuthentication";
+import * as ROLES from "../../constants/roles";
 
+/**Component for Header of the App */
 class Header extends PureComponent {
   constructor(props) {
     super(props);
@@ -19,6 +21,11 @@ class Header extends PureComponent {
     };
   }
 
+  /**
+   * To open sidebar
+   * @param {String} side side of the Sidebar, left or right
+   * @param {String} content content which will be rendered in Sidebar
+   */
   _openSidebar = (side, content) => {
     this.setState({
       openSidebar: true,
@@ -33,6 +40,10 @@ class Header extends PureComponent {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
+
+  /**
+   * To change the background color of Header
+   */
   handleScroll = e => {
     if (this.headerRef) {
       if (
@@ -46,6 +57,8 @@ class Header extends PureComponent {
       }
     }
   };
+
+  /**To add class for showing breadcrumbs in Tablets and below */
   handleMobileNav = () => {
     let navbar = document.querySelector(".navbar-collapse.collapse");
     if ([...navbar.classList].includes("in")) {
@@ -57,7 +70,10 @@ class Header extends PureComponent {
   render() {
     const {
       user: { isSuccess: loginSuccess, auth },
-      addcart: { addToCart }
+      addcart: { addToCart },
+      userProfile: {
+        data: { role }
+      }
     } = this.props;
     return (
       <>
@@ -95,15 +111,19 @@ class Header extends PureComponent {
 
             <div className="navbar-collapse collapse">
               <ul className="nav navbar-nav navbar-right">
-                <li onClick={() => this._openSidebar("right", "shop")}>
-                  <Link to="#">Shop</Link>
-                </li>
-                <li
-                  className="mobile_none"
-                  onClick={() => this._openSidebar("right", "cart")}
-                >
-                  <Link to="#">Cart{addToCart && "(1)"} </Link>
-                </li>
+                {role === ROLES.CUSTOMER && (
+                  <>
+                    <li onClick={() => this._openSidebar("right", "shop")}>
+                      <Link to="#">Shop</Link>
+                    </li>
+                    <li
+                      className="mobile_none"
+                      onClick={() => this._openSidebar("right", "cart")}
+                    >
+                      <Link to="#">Cart{addToCart && "(1)"} </Link>
+                    </li>
+                  </>
+                )}
 
                 {loginSuccess && auth ? (
                   <li onClick={() => this._openSidebar("right", "account")}>
@@ -134,7 +154,11 @@ class Header extends PureComponent {
     );
   }
 }
-const mapStateToProps = ({ user, addcart }) => ({ user, addcart });
+const mapStateToProps = ({ user, addcart, userProfile }) => ({
+  user,
+  addcart,
+  userProfile
+});
 export default connect(mapStateToProps)(
   withRouter(requireAuthentication(Header))
 );

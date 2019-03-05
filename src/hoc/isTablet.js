@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { debounce } from "../utils/helper";
 
+/**Higher Order Component for checking whether a device is
+ *  having width less than or equal to 768px */
 export default WrappedComponent => {
   class isTablet extends Component {
     constructor(props) {

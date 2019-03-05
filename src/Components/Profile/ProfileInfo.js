@@ -5,6 +5,7 @@ import ProfileField from "../Generic/ProfileField";
 import { profileInfoFields as fields } from "../../constants/profile";
 import { validatePhone } from "../../utils/validate";
 
+/**Component for showing Profile Information and Editing them */
 class ProfileInfo extends Component {
   constructor(props) {
     super(props);

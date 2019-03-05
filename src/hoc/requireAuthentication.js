@@ -7,6 +7,8 @@ import {
   fetchQuestionsRequest
 } from "../actions";
 
+/**Higher Order Component for checking if a User is authenticated or not
+ * and calling different if API on the basis of that*/
 export default WrappedComponent => {
   class Authentication extends Component {
     state = { authUser: null };
@@ -21,7 +23,7 @@ export default WrappedComponent => {
       this.checkAuthentication();
     }
     checkAuthentication = () => {
-     this.listener = firebase.auth.onAuthStateChanged(authUser => {
+      this.listener = firebase.auth.onAuthStateChanged(authUser => {
         if (!this.props.user.auth && !authUser) {
           this.props.history.push("/");
         } else {
@@ -37,10 +39,6 @@ export default WrappedComponent => {
           // getting user detail if user is authenticated
           // and stoping unneccessary api calls
           if (
-            // this.props.userProfile.data.firstName === undefined &&
-            // this.props.userProfile.data.dateOfBirth === undefined &&
-            // this.props.userProfile.data.shippingAddress === undefined &&
-            // this.props.userProfile.data.customerId === undefined &&
             !this.props.userProfile.isLoading &&
             this.props.userProfile.data.email === undefined
           ) {
@@ -49,8 +47,8 @@ export default WrappedComponent => {
         }
       });
     };
-    componentWillUnmount(){
-      this.listener()
+    componentWillUnmount() {
+      this.listener();
     }
     render() {
       const { uid } = this.props.user.data;

@@ -6,7 +6,7 @@ import ProfileField from "../Generic/ProfileField";
 import ErrorText from "../Generic/ErrorText";
 
 /**Create Doctor will render a form to
- * @param {object} props props of create doctor component
+ * @param {*} props props of create doctor component
  */
 function CreateDoctor(props) {
   /** renders all the fields for doctor*/
@@ -61,8 +61,8 @@ function CreateDoctor(props) {
 
   const { isLoading, isError, isSuccess, message } = props.createUser;
   return (
-    <div className="profile_module">
-      <h3>Create Doctor's Profile</h3>
+    <div className="profile_module doctor_module">
+      <h2>Create Doctor's Profile</h2>
 
       <form className="doctor_form">
         {renderFields()}
@@ -85,6 +85,7 @@ function CreateDoctor(props) {
 
 /**To validate Create Doctor form values
  * @param values values of redux form
+ * @returns error object if any
  */
 const validate = values => {
   const error = {};

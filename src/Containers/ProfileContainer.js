@@ -14,7 +14,9 @@ import {
   addNewPaymentRequest,
   getAllCardsRequest
 } from "../actions";
+import * as ROLES from "../constants/roles";
 
+/**Parent Container for showing different section of Profile */
 class ProfileContainer extends Component {
   onResetPassword = data => {
     this.props.resetPasswordRequest({ ...data });
@@ -87,11 +89,13 @@ class ProfileContainer extends Component {
                   additionalInfo={additionalInfo}
                   onUpdateShippingAddress={this.onUpdateShippingAddress}
                 />
-                <PaymentContainer
-                  userProfile={userProfile}
-                  onAddNewPayment={this.onAddNewPayment}
-                  card={card}
-                />
+                {userProfile.data.role === ROLES.CUSTOMER && (
+                  <PaymentContainer
+                    userProfile={userProfile}
+                    onAddNewPayment={this.onAddNewPayment}
+                    card={card}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -103,7 +107,7 @@ class ProfileContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ user, profile, payment :{card} }) => ({
+const mapStateToProps = ({ user, profile, payment: { card } }) => ({
   user,
   profile,
   card
