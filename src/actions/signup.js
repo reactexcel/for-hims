@@ -38,16 +38,23 @@ export function* createUserByAdminRequest(action) {
     const { uid } = response.user;
     const userResponse = yield firebase.user(uid).get();
     if (!userResponse.exists) {
-        yield firebase
-          .user(uid)
-          .set(
-            { email, role, firstName, lastName, phone, states },
-            { merge: true }
-          );
-      }
-    
-    console.log(response,'jhgf');
+      yield firebase
+        .user(uid)
+        .set(
+          { email, role, firstName, lastName, phone, states },
+          { merge: true }
+        );
+      yield put(
+        actions.createUserByAdminSuccess(
+          "Doctor's Account Created Successfully"
+        )
+      );
+      yield delay(5000);
+      yield put(actions.resetAuthMessage());
+    }
   } catch (e) {
-    console.log(e, "s");
+    yield put(actions.createUserByAdminError(e.message));
+    yield delay(5000);
+    yield put(actions.resetAuthMessage());
   }
 }

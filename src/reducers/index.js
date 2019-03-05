@@ -8,7 +8,8 @@ import message from "./message";
 import orders from "./orders";
 import payment from "./payment";
 import questions from "./questions";
-import photo from "./photo"
+import photo from "./photo";
+import createuser from "./createuser";
 import { LOGOUT_SUCCESS } from "../constants";
 
 const makeRootReducer = asyncReducers => {
@@ -23,6 +24,7 @@ const makeRootReducer = asyncReducers => {
     payment,
     questions,
     photo,
+    createuser,
     ...asyncReducers
   });
   return (state, action) => {

@@ -1800,6 +1800,18 @@ ul.viewbox_section li {
   margin-top: 3rem;
   overflow-wrap: break-word;
 }
+
+.server_success {
+  font-size: 1.5rem;
+  color: #00ff95;
+  background: rgba(54, 244, 127, 0.1);
+  border: 2px solid rgba(54, 244, 127, 0.3);
+  line-height: 2rem;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  overflow-wrap: break-word;
+}
+
 /* Style for Modal */
 .ReactModal__Overlay {
   opacity: 0;
@@ -2053,7 +2065,8 @@ input:not([type="checkbox"]) {
 .register_box input.error,
 .profile_module input.error,
 .dob_form input.error,
-.message-text-box input.error,select.error {
+.message-text-box input.error,
+select.error {
   border-bottom-color: red;
 }
 
@@ -2207,8 +2220,8 @@ form.shipping_form {
   margin-bottom: 3rem;
 }
 /* end shipping form */
-form.doctor_form{
-  display:flex;
+form.doctor_form {
+  display: flex;
   flex-direction: column;
 }
 

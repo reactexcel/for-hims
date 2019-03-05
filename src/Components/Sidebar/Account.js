@@ -4,6 +4,7 @@ import ActionItems from "./ActionItems";
 import { connect } from "react-redux";
 import { logoutRequest } from "../../actions";
 import Login from "./Login";
+import * as ROLES from "../../constants/roles";
 
 class Account extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Account extends Component {
     const { showActionRequired } = this.state;
     const { auth } = this.props.user;
     const {
-      data: { firstName }
+      data: { firstName, role }
     } = this.props.userProfile;
     if (!auth) {
       return <Login />;
@@ -57,12 +58,25 @@ class Account extends Component {
               <li>
                 <Link to="/profile">Profile</Link>
               </li>
-              <li>
-                <Link to="/orders">Orders</Link>
-              </li>
-              <li>
-                <Link to="/messages">Messages</Link>
-              </li>
+              {role === ROLES.CUSTOMER && (
+                <>
+                  <li>
+                    <Link to="/orders">Orders</Link>
+                  </li>
+                  <li>
+                    <Link to="/messages">Messages</Link>
+                  </li>
+                </>
+              )}
+              {
+                role === ROLES.ADMIN && (
+                  <>
+                  <li>
+                    <Link to="/create-doctor">Create Doctor's Account</Link>
+                  </li>
+                </>
+                )
+              }
               <li>
                 <Link to="" onClick={this.handleLogout}>
                   Logout

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import { doctorInfoFields as fields, usaStates } from "../../constants/profile";
 import ProfileField from "../Generic/ProfileField";
 import ErrorText from "../Generic/ErrorText";
+
+/**Create Doctor will render a form to
+ * @param {object} props props of create doctor component
+ */
 function CreateDoctor(props) {
+  /** renders all the fields for doctor*/
   const renderFields = () =>
     fields.map(({ name, placeholder, type }) => (
       <Field
@@ -20,6 +25,7 @@ function CreateDoctor(props) {
         }
       />
     ));
+  /** render state field for Doctor*/
   const renderStates = ({ input, meta: { touched, error } }) => (
     <>
       <select {...input} className={touched && error ? "error" : ""}>
@@ -35,9 +41,25 @@ function CreateDoctor(props) {
       {touched && error && <ErrorText text={error} />}
     </>
   );
+  /**To submit Doctor details to parent function which will call createUser action
+   * @param values values of redux form
+   */
   const submitDoctorDetails = values => {
     props.onSubmitDocotorDetails(values);
   };
+  /**to reset form */
+  const onCancel = event => {
+    event.preventDefault();
+    props.reset();
+  };
+  /**Using useEffect hook to clear out form when createUser action is successful */
+  useEffect(() => {
+    if (props.createUser.isSuccess) {
+      props.reset();
+    }
+  }, [props.createUser.isSuccess]);
+
+  const { isLoading, isError, isSuccess, message } = props.createUser;
   return (
     <div className="profile_module">
       <h3>Create Doctor's Profile</h3>
@@ -45,10 +67,15 @@ function CreateDoctor(props) {
       <form className="doctor_form">
         {renderFields()}
         <Field component={renderStates} name="states" />
+        {isSuccess && message && (
+          <div className="server_success">{message}</div>
+        )}
+
+        {isError && message && <div className="server_error">{message}</div>}
         <button onClick={props.handleSubmit(submitDoctorDetails)}>
-          Save Changes
+          {isLoading ? "Creating Account..." : "Create Account"}
         </button>
-        <button className="underline_button" onClick={props.reset}>
+        <button className="underline_button" onClick={onCancel}>
           Cancel
         </button>
       </form>
@@ -56,6 +83,9 @@ function CreateDoctor(props) {
   );
 }
 
+/**To validate Create Doctor form values
+ * @param values values of redux form
+ */
 const validate = values => {
   const error = {};
   for (let value of fields) {
