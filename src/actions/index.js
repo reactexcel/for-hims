@@ -212,3 +212,14 @@ export const submitAnswersSuccess = createAction(
   constants.SUBMIT_ANSWERS_SUCCESS
 );
 export const submitAnswersError = createAction(constants.SUBMIT_ANSWERS_ERROR);
+
+//actions for creating user by admin
+export const createUserByAdminRequest = createAction(
+  constants.CREATE_USER_BY_ADMIN_REQUEST
+);
+export const createUserByAdminSuccess = createAction(
+  constants.CREATE_USER_BY_ADMIN_SUCCESS
+);
+export const createUserByAdminError = createAction(
+  constants.CREATE_USER_BY_ADMIN_ERROR
+);

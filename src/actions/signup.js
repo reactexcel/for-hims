@@ -2,11 +2,10 @@ import { put } from "redux-saga/effects";
 import { delay } from "redux-saga";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
-import * as ROLES from "../constants/roles";
+
 export function* signupRequest(action) {
   const { email, password } = action.payload;
-  let { role, firstName, lastName, phone, states } = action.payload;
-  role = role ? role : ROLES.CUSTOMER;
+
   try {
     const response = yield firebase.createUser(email, password);
     const data = {
@@ -15,12 +14,30 @@ export function* signupRequest(action) {
       phoneNumber: response.user.phoneNumber,
       uid: response.user.uid
     };
+    yield put(actions.signupSuccess(data));
+  } catch (e) {
+    yield put(actions.signupError(e));
+    yield delay(5000);
+    yield put(actions.resetAuthMessage());
+  }
+}
+
+export function* createUserByAdminRequest(action) {
+  const {
+    firstName,
+    lastName,
+    phone,
+    states,
+    email,
+    password,
+    role
+  } = action.payload;
+
+  try {
+    const response = yield firebase.createUserByAdmin(email, password);
     const { uid } = response.user;
     const userResponse = yield firebase.user(uid).get();
     if (!userResponse.exists) {
-      if (role === ROLES.CUSTOMER) {
-        yield firebase.user(uid).set({ email, role }, { merge: true });
-      } else {
         yield firebase
           .user(uid)
           .set(
@@ -28,11 +45,9 @@ export function* signupRequest(action) {
             { merge: true }
           );
       }
-    }
-    yield put(actions.signupSuccess(data));
+    
+    console.log(response,'jhgf');
   } catch (e) {
-    yield put(actions.signupError(e));
-    yield delay(5000);
-    yield put(actions.resetAuthMessage());
+    console.log(e, "s");
   }
 }

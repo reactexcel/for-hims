@@ -17,7 +17,8 @@ const settings = { timestampsInSnapshots: true };
 class Firebase {
   constructor() {
     app.initializeApp(config);
-
+    this.authApp = app.initializeApp(config, "detachedAuth");
+    this.detachedAuth = this.authApp.auth();
     this.auth = app.auth();
     this.EmailAuthProvider = app.auth.EmailAuthProvider;
     this.db = app.firestore();
@@ -30,6 +31,10 @@ class Firebase {
   //creating user with email and password
   createUser = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
+
+  //creating user by admin
+  createUserByAdmin = (email, password) =>
+    this.detachedAuth.createUserWithEmailAndPassword(email, password);
 
   //user sign in
   userSignIn = (email, password) =>
