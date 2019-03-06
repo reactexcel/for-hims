@@ -6,15 +6,26 @@ import MyOrders from "../Components/MyOrders";
 import { getAllOrdersRequest } from "../actions";
 import { connect } from "react-redux";
 
+/**Parent Component for Orders UI */
 class OrdersContainer extends Component {
   componentDidMount() {
-    const { uid } = this.props;
-    this.props.getAllOrdersRequest({ uid });
+    const {
+      uid,
+      userProfile: {
+        data: { role }
+      }
+    } = this.props;
+    this.props.getAllOrdersRequest({ uid, role });
   }
   componentDidUpdate(prevProps) {
-    const { uid } = this.props;
-    if (prevProps.uid !== this.props.uid) {
-      this.props.getAllOrdersRequest({ uid });
+    const {
+      uid,
+      userProfile: {
+        data: { role }
+      }
+    } = this.props;
+    if (prevProps.userProfile.data.role !== this.props.userProfile.data.role) {
+      this.props.getAllOrdersRequest({ uid, role });
     }
   }
   render() {
@@ -37,7 +48,10 @@ class OrdersContainer extends Component {
     );
   }
 }
-const mapStateToProps = ({ orders }) => ({ orders });
+const mapStateToProps = ({ orders, profile: { userProfile } }) => ({
+  orders,
+  userProfile
+});
 export default connect(
   mapStateToProps,
   { getAllOrdersRequest }

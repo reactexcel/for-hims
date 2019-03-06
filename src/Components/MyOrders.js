@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Collapsible from "react-collapsible";
+
+/**UI component for rendering User's Orders */
 class MyOrders extends Component {
   render() {
     const { orders } = this.props;

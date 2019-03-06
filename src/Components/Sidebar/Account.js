@@ -6,6 +6,7 @@ import { logoutRequest } from "../../actions";
 import Login from "./Login";
 import * as ROLES from "../../constants/roles";
 
+/**UI component for showing links related to Account Information*/
 class Account extends Component {
   constructor(props) {
     super(props);
@@ -58,25 +59,21 @@ class Account extends Component {
               <li>
                 <Link to="/profile">Profile</Link>
               </li>
+              <li>
+                <Link to="/orders">Orders</Link>
+              </li>
               {role === ROLES.CUSTOMER && (
-                <>
-                  <li>
-                    <Link to="/orders">Orders</Link>
-                  </li>
-                  <li>
-                    <Link to="/messages">Messages</Link>
-                  </li>
-                </>
+                <li>
+                  <Link to="/messages">Messages</Link>
+                </li>
               )}
-              {
-                role === ROLES.ADMIN && (
-                  <>
+              {role === ROLES.ADMIN && (
+                <>
                   <li>
                     <Link to="/create-doctor">Create Doctor's Account</Link>
                   </li>
                 </>
-                )
-              }
+              )}
               <li>
                 <Link to="" onClick={this.handleLogout}>
                   Logout
