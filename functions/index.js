@@ -115,7 +115,7 @@ async function charge(req, res) {
   const uid = body.uid;
   const orderId = body.orderId;
   const cardId = body.cardId;
-  console.log(cardId)
+  console.log(cardId);
   try {
     const response = await admin
       .firestore()
@@ -125,16 +125,36 @@ async function charge(req, res) {
     if (response.exists) {
       const customerData = response.data();
       if (customerData.customerId) {
-        if(cardId){
-          console.log(cardId,'sasasasa')
-          const updateCard = await stripe.customers.update(customerData.customerId,{
-            default_source:cardId
-          })
+        if (cardId) {
+          const updateCard = await stripe.customers.update(
+            customerData.customerId,
+            {
+              default_source: cardId
+            }
+          );
         }
         const charge = await stripe.orders.pay(orderId, {
           customer: customerData.customerId
         });
         const order = await stripe.orders.retrieve(orderId);
+        // console.log(order,'============', order.shipping.address.state);
+        let doctorId;
+        const doctor = await admin
+          .firestore()
+          .collection("users")
+          .where("role", "==", "doctor")
+          .where("states", "==", order.shipping.address.state).get();
+          doctor.forEach((doc,index) => {
+            if(index === 0){
+              doctorId = doc.id
+            }
+          })
+        
+        const orderResponse2 = await admin
+          .firestore()
+          .collection("orders")
+          .doc(orderId)
+          .set({ ...order, userId: uid, doctorId });
         const orderResponse = await admin
           .firestore()
           .collection("users")
@@ -241,8 +261,6 @@ async function createProduct(req, res) {
     });
   }
 }
-
-// async function
 
 function send(res, code, body) {
   res.send({

@@ -3,6 +3,7 @@ import legitscript_logo from "../../assets/images/legitscript_logo.png";
 import bbb_logo from "../../assets/images/bbb_logo.png";
 import { Link } from "react-router-dom";
 
+/**UI component for Footer of App */
 const Footer = memo(() => {
   const scrollToTop = () => {
     if (window.pageYOffset) {

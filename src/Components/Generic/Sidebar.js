@@ -29,6 +29,10 @@ class Sidebar extends Component {
     }
   };
 
+  /**Render a component in Sidebar
+   * @param {string} param component to be rendered
+   * @returns Returns a Component which will be rendered
+   */
   _renderItem = param => {
     switch (param) {
       case "account":

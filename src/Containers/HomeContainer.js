@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { addToCartRequest } from "../actions";
 import Sidebar from "../Components/Generic/Sidebar";
 
+/**Parent Component for Home component */
 class HomeContainer extends Component {
   state = { openSidebar: false };
   onAddProduct = () => {
@@ -14,11 +15,14 @@ class HomeContainer extends Component {
   };
   openCart = () => this.setState({ openSidebar: true });
   render() {
+    const {
+      data: { role }
+    } = this.props.userProfile;
     return (
       <>
         <div className="blank_space" />
         <Header />
-        <Home onAddProduct={this.onAddProduct} />
+        <Home role={role} onAddProduct={this.onAddProduct} />
         <Sidebar
           openSidebar={this.state.openSidebar}
           side={"right"}
@@ -35,7 +39,8 @@ class HomeContainer extends Component {
   }
 }
 
+const mapStateToProps = ({ profile: { userProfile } }) => ({ userProfile });
 export default connect(
-  null,
+  mapStateToProps,
   { addToCartRequest }
 )(HomeContainer);

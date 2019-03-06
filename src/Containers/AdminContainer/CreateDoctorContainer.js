@@ -8,8 +8,8 @@ import Footer from "../../Components/Generic/Footer";
 import requireAdmin from "../../hoc/requireAdmin";
 
 /**
- * Parent Container for Create Doctor component
- * @param {*} props 
+ * Parent Component for Create Doctor component
+ * @param {*} props
  */
 function CreateDoctorContainer(props) {
   /**To submit Doctor details to create their account

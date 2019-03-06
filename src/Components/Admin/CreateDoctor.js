@@ -5,7 +5,8 @@ import { doctorInfoFields as fields, usaStates } from "../../constants/profile";
 import ProfileField from "../Generic/ProfileField";
 import ErrorText from "../Generic/ErrorText";
 
-/**Create Doctor will render a form to
+/**Create Doctor is a UI component which will render a form to create
+ * Doctor's Profile
  * @param {*} props props of create doctor component
  */
 function CreateDoctor(props) {

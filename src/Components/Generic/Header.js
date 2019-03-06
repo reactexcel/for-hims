@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import requireAuthentication from "../../hoc/requireAuthentication";
 import * as ROLES from "../../constants/roles";
 
-/**Component for Header of the App */
+/**UI Component for Header of the App */
 class Header extends PureComponent {
   constructor(props) {
     super(props);

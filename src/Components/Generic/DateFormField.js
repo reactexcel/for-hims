@@ -1,6 +1,8 @@
 import React from "react";
 import ErrorText from "../Generic/ErrorText";
 
+/** DateFormField is a UI component which will render fields
+ *  for DateOfBirth Component */
 export default function DateFormField({
   label,
   input,
