@@ -38,19 +38,33 @@ export function* createUserByAdminRequest(action) {
     const { uid } = response.user;
     const userResponse = yield firebase.user(uid).get();
     if (!userResponse.exists) {
-      yield firebase
-        .user(uid)
-        .set(
-          { email, role, firstName, lastName, phone, states },
-          { merge: true }
+      const stateResponse = yield firebase
+        .users()
+        .where("role", "==", "doctor")
+        .where("states", "==", states);
+      if (!stateResponse) {
+        yield firebase
+          .user(uid)
+          .set(
+            { email, role, firstName, lastName, phone, states },
+            { merge: true }
+          );
+        yield put(
+          actions.createUserByAdminSuccess(
+            `Doctor's Account with ${email} has been created Successfully`
+          )
         );
-      yield put(
-        actions.createUserByAdminSuccess(
-          "Doctor's Account Created Successfully"
-        )
-      );
-      yield delay(5000);
-      yield put(actions.resetAuthMessage());
+        yield delay(5000);
+        yield put(actions.resetAuthMessage());
+      } else {
+        yield put(
+          actions.createUserByAdminError(
+            `A Doctor has been already assigned to ${states}. Please select another state `
+          )
+        );
+        yield delay(5000);
+        yield put(actions.resetAuthMessage());
+      }
     }
   } catch (e) {
     yield put(actions.createUserByAdminError(e.message));

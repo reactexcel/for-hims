@@ -137,31 +137,22 @@ async function charge(req, res) {
           customer: customerData.customerId
         });
         const order = await stripe.orders.retrieve(orderId);
-        // console.log(order,'============', order.shipping.address.state);
         let doctorId;
         const doctor = await admin
           .firestore()
           .collection("users")
           .where("role", "==", "doctor")
-          .where("states", "==", order.shipping.address.state).get();
-          doctor.forEach((doc,index) => {
-            if(index === 0){
-              doctorId = doc.id
-            }
-          })
-        
-        const orderResponse2 = await admin
+          .where("states", "==", order.shipping.address.state)
+          .get();
+        doctor.forEach(doc => {
+          doctorId = doc.id;
+        });
+        const orderResponse = await admin
           .firestore()
           .collection("orders")
           .doc(orderId)
           .set({ ...order, userId: uid, doctorId });
-        const orderResponse = await admin
-          .firestore()
-          .collection("users")
-          .doc(uid)
-          .collection("orders")
-          .doc(orderId)
-          .set({ ...order });
+
         send(res, 200, {
           message: "Success",
           charge: charge

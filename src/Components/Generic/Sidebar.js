@@ -5,6 +5,7 @@ import Login from "../Sidebar/Login";
 import Shop from "../Sidebar/Shop";
 import isTablet from "../../hoc/isTablet";
 
+/**UI component for Sidebar of the App */
 class Sidebar extends Component {
   constructor(props) {
     super(props);

@@ -58,7 +58,7 @@ class Firebase {
   };
 
   // *** User API ***
-
+  users = () => this.db.collection("users")
   user = uid => this.db.collection("users").doc(uid);
   //message api
   userMessages = uid =>
@@ -75,10 +75,8 @@ class Firebase {
   //orders api
   userOrders = uid =>
     this.db
-      .collection("users")
-      .doc(uid)
-      .collection("orders");
-
+      .collection("orders")
+      
   // Creating storage ref for uploading photo
   uploadPhoto = file => {
     let user = this.auth.currentUser.uid;

@@ -10,7 +10,7 @@ import ErrorText from "../Generic/ErrorText";
  * @param {*} props props of create doctor component
  */
 function CreateDoctor(props) {
-  /** renders all the fields for doctor*/
+  /** Renders all the fields for doctor*/
   const renderFields = () =>
     fields.map(({ name, placeholder, type }) => (
       <Field
@@ -26,7 +26,7 @@ function CreateDoctor(props) {
         }
       />
     ));
-  /** render state field for Doctor*/
+  /** Render state field for Doctor*/
   const renderStates = ({ input, meta: { touched, error } }) => (
     <>
       <select {...input} className={touched && error ? "error" : ""}>
@@ -48,7 +48,7 @@ function CreateDoctor(props) {
   const submitDoctorDetails = values => {
     props.onSubmitDocotorDetails(values);
   };
-  /**to reset form */
+  /**To reset Create Doctor form */
   const onCancel = event => {
     event.preventDefault();
     props.reset();

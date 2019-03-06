@@ -5,7 +5,10 @@ import { firebase } from "../Firebase";
 export function* getAllOrdersRequest(action) {
   const { uid } = action.payload;
   try {
-    const response = yield firebase.userOrders(uid).get();
+    const response = yield firebase
+      .userOrders()
+      .where("userId", "==", uid)
+      .get();
     yield put(actions.getAllOrdersSuccess(response.docs));
   } catch (e) {
     yield put(actions.getAllOrdersError(e.message));

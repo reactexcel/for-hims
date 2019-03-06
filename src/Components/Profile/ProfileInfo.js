@@ -14,13 +14,18 @@ class ProfileInfo extends Component {
     };
   }
 
+  /**To save information of user
+   * @param {Object} values values from profile info form
+   */
   handleSaveProfile = values => {
     const { uid, email } = this.props.userInfo;
     this.props.onUpdateProfileRequest({ ...values, email, uid });
   };
 
+  /**Open the form where user can edit their profile information */
   openEditProfile = () => this.setState({ showEditProfile: true });
 
+  /**Closes the edit profile form and resets the value */
   cancelEditProfile = () => {
     this.setState({ showEditProfile: false });
     this.props.reset();
@@ -42,6 +47,7 @@ class ProfileInfo extends Component {
       this.props.initialize({ ...this.props.userProfile.data });
     }
   }
+  /** Renders all the fields for Profile form*/
   renderFields = () =>
     fields.map(({ name, placeholder, type }) => (
       <Field
