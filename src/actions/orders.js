@@ -6,7 +6,6 @@ import * as ROLES from "../constants/roles";
 export function* getAllOrdersRequest(action) {
   const { uid, role } = action.payload;
   let response;
-  console.log(role)
   try {
     if (role === ROLES.CUSTOMER) {
       response = yield firebase
@@ -21,7 +20,6 @@ export function* getAllOrdersRequest(action) {
     } else if (role === ROLES.ADMIN) {
       response = yield firebase.userOrders().get();
     }
-    console.log(response,'sad')
     yield put(actions.getAllOrdersSuccess(response.docs));
   } catch (e) {
     yield put(actions.getAllOrdersError(e.message));

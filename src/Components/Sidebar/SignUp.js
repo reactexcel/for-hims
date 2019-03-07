@@ -4,6 +4,8 @@ import ErrorText from "../Generic/ErrorText";
 import Account from "./Account";
 import { connect } from "react-redux";
 import { signupRequest } from "../../actions";
+
+/**UI component for Sign Up */
 class SignUp extends Component {
   constructor(props) {
     super(props);

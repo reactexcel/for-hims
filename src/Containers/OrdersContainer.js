@@ -3,7 +3,7 @@ import Header from "../Components/Generic/Header";
 import Footer from "../Components/Generic/Footer";
 import Orders from "../Components/Orders";
 import MyOrders from "../Components/MyOrders";
-import { getAllOrdersRequest } from "../actions";
+import { getAllOrdersRequest, getCustomerDetailRequest } from "../actions";
 import { connect } from "react-redux";
 
 /**Parent Component for Orders UI */
@@ -28,8 +28,14 @@ class OrdersContainer extends Component {
       this.props.getAllOrdersRequest({ uid, role });
     }
   }
+  getCustomerDetails(e) {
+    console.log(e.currentTarget.dataset.uid, "asdasd");
+  }
   render() {
     const { data, isLoading } = this.props.orders;
+    const {
+      data: { role }
+    } = this.props.userProfile;
     return (
       <div>
         <Header />
@@ -40,8 +46,14 @@ class OrdersContainer extends Component {
               <div>Hang tight</div>
             </div>
           </div>
+        ) : data.length ? (
+          <MyOrders
+            role={role}
+            orders={data}
+            getCustomerDetails={this.getCustomerDetails}
+          />
         ) : (
-          <MyOrders orders={data} />
+          <Orders />
         )}
         <Footer />
       </div>
@@ -54,5 +66,5 @@ const mapStateToProps = ({ orders, profile: { userProfile } }) => ({
 });
 export default connect(
   mapStateToProps,
-  { getAllOrdersRequest }
+  { getAllOrdersRequest, getCustomerDetailRequest }
 )(OrdersContainer);

@@ -83,11 +83,13 @@ class Header extends PureComponent {
           ref={this.setHeaderRef}
         >
           <div className="container">
-            <div className="cart_desktop">
-              <span onClick={() => this._openSidebar("right", "cart")}>
-                Cart
-              </span>
-            </div>
+            {role === ROLES.CUSTOMER && (
+              <div className="cart_desktop">
+                <span onClick={() => this._openSidebar("right", "cart")}>
+                  Cart
+                </span>
+              </div>
+            )}
             <div className="header_logo">
               <Link to="/">
                 <img src={noleuderm_logo} title="hime" alt="hime" />

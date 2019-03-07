@@ -10,7 +10,6 @@ export default function ProfileField({
   type,
   meta: { touched, error }
 }) {
-  console.log(input, "as");
   return (
     <>
       <input
@@ -30,7 +29,7 @@ ProfileField.propTypes = {
   /**type for the input tag */
   type: PropTypes.string.isRequired,
   /**A boolean value which tells whether a field is touched or not */
-  touched: PropTypes.bool.isRequired,
+  touched: PropTypes.bool,
   /**A string for error text */
   error: PropTypes.string,
   /**Input Props */

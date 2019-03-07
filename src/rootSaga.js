@@ -33,6 +33,7 @@ import {
   fetchQuestionsRequest,
   submitAnswersRequest
 } from "./actions/questions";
+import { getCustomerDetailRequest } from "./actions/getuserdetails";
 
 function* watchActions() {
   yield takeLatest(constants.LOGIN_REQUEST, loginRequest);
@@ -78,6 +79,10 @@ function* watchActions() {
   yield takeLatest(
     constants.CREATE_USER_BY_ADMIN_REQUEST,
     createUserByAdminRequest
+  );
+  yield takeLatest(
+    constants.GET_CUSTOMER_DETAIL_REQUEST,
+    getCustomerDetailRequest
   );
 }
 export default function* rootSaga() {

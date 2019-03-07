@@ -1,10 +1,31 @@
 import React, { Component } from "react";
 import Collapsible from "react-collapsible";
-
+import * as ROLES from "../constants/roles";
 /**UI component for rendering User's Orders */
 class MyOrders extends Component {
+  /**Used for rendering a title according to user role
+   * @returns {string} title
+   */
+  renderTitle = () => {
+    const { role } = this.props;
+    let title;
+    switch (role) {
+      case ROLES.CUSTOMER:
+        title = "My Orders";
+        break;
+      case ROLES.ADMIN:
+        title = "All Orders";
+        break;
+      case ROLES.DOCTOR:
+        title = "Customer's Orders";
+      default:
+        break;
+    }
+    return title;
+  };
   render() {
-    const { orders } = this.props;
+    const { orders, role } = this.props;
+    console.log(orders[0])
     return (
       <>
         <div className="orders_section">
@@ -12,12 +33,16 @@ class MyOrders extends Component {
             <div className="row">
               <div className="col-xs-12 col-sm-12 col-md-12">
                 <div className="my-orders-section">
-                  <h3 align="center"> My Orders</h3>
+                  <h3 align="center"> {this.renderTitle()}</h3>
                   {orders.map(order => (
                     <Collapsible
                       key={order.id}
                       trigger={
-                        <button type="button">
+                        <button
+                          type="button"
+                          onClick={this.props.getCustomerDetails}
+                          data-uid = {order.data().userId}
+                        >
                           <ul className="tab_order">
                             <li className="orders1">
                               <span className="small_title"> Order No. </span>
@@ -51,6 +76,14 @@ class MyOrders extends Component {
                             <br />
                             <br />
                             <span>
+                              {role !== ROLES.CUSTOMER && (
+                                <>
+                                  <span className="small_title">
+                                    Customer's Name:
+                                  </span>
+                                  {order.data().shipping.name}
+                                </>
+                              )}
                               <span className="small_title">
                                 Shipping Address
                               </span>
@@ -60,7 +93,17 @@ class MyOrders extends Component {
                               <br /> USA
                             </span>
                           </li>
-                          <li className="add2"> Sildenafil x1 </li>
+                          {order
+                            .data()
+                            .items.slice(0, -2)
+                            .map((item, index) => (
+                              <li
+                                key={item.description + index}
+                                className="add2"
+                              >
+                                {`${item.description} X${item.quantity}`}{" "}
+                              </li>
+                            ))}
                         </ul>
                       </div>
                     </Collapsible>

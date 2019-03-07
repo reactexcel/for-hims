@@ -15,10 +15,7 @@ export function* signupRequest(action) {
       uid: response.user.uid
     };
     const { uid } = response.user;
-    const userResponse = yield firebase.user(uid).get();
-    if (!userResponse.exists) {
-      yield firebase.user(uid).set({ email, role }, { merge: true });
-    }
+    yield firebase.user(uid).set({ email, role }, { merge: true });
     yield put(actions.signupSuccess(data));
   } catch (e) {
     yield put(actions.signupError(e));

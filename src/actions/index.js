@@ -223,3 +223,14 @@ export const createUserByAdminSuccess = createAction(
 export const createUserByAdminError = createAction(
   constants.CREATE_USER_BY_ADMIN_ERROR
 );
+
+//actions for getting customer details
+export const getCustomerDetailRequest = createAction(
+  constants.GET_CUSTOMER_DETAIL_REQUEST
+);
+export const getCustomerDetailSuccess = createAction(
+  constants.GET_CUSTOMER_DETAIL_SUCCESS
+);
+export const getCustomerDetailError = createAction(
+  constants.GET_CUSTOMER_DETAIL_ERROR
+);
