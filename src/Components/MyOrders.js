@@ -25,7 +25,6 @@ class MyOrders extends Component {
   };
   render() {
     const { orders, role } = this.props;
-    console.log(orders[0])
     return (
       <>
         <div className="orders_section">

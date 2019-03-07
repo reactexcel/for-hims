@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+/**UI component for Questions Answer section */
 class Questions extends Component {
   render() {
     const { isLoading } = this.props.questions;

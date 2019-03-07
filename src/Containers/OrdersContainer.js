@@ -28,9 +28,14 @@ class OrdersContainer extends Component {
       this.props.getAllOrdersRequest({ uid, role });
     }
   }
-  getCustomerDetails(e) {
-    console.log(e.currentTarget.dataset.uid, "asdasd");
-  }
+  /**To get customer detail of a particular user   */
+  getCustomerDetails = e => {
+    const { uid } = e.currentTarget.dataset;
+    if (this.props.customerDetails.data.uid !== uid) {
+      this.props.getCustomerDetailRequest({ uid });
+    }
+    this.props.history.push(`/customer-details/${uid}`)
+  };
   render() {
     const { data, isLoading } = this.props.orders;
     const {
@@ -60,9 +65,14 @@ class OrdersContainer extends Component {
     );
   }
 }
-const mapStateToProps = ({ orders, profile: { userProfile } }) => ({
+const mapStateToProps = ({
   orders,
-  userProfile
+  profile: { userProfile },
+  customerDetails
+}) => ({
+  orders,
+  userProfile,
+  customerDetails
 });
 export default connect(
   mapStateToProps,

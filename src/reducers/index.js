@@ -10,6 +10,7 @@ import payment from "./payment";
 import questions from "./questions";
 import photo from "./photo";
 import createuser from "./createuser";
+import customerDetails from "./customerdetails";
 import { LOGOUT_SUCCESS } from "../constants";
 
 const makeRootReducer = asyncReducers => {
@@ -25,6 +26,7 @@ const makeRootReducer = asyncReducers => {
     questions,
     photo,
     createuser,
+    customerDetails,
     ...asyncReducers
   });
   return (state, action) => {

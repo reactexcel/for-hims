@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { uniqWith, isEqual, findIndex, sortBy } from "lodash";
 import { submitAnswersRequest } from "../actions";
 
+/**Parent Component for Questions */
 class QuestionsContainer extends Component {
   constructor(props) {
     super(props);
