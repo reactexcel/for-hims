@@ -1993,6 +1993,9 @@ ul.viewbox_section li {
   background: #0000001f;
   color: #d37e52;
 }
+ul.tab_question li.customer-answer {
+  cursor: auto;
+}
 
 /* close camera modal icon */
 .close-camera_modal {
@@ -2226,8 +2229,34 @@ form.doctor_form {
 }
 
 /* styles for create doctor-form */
-.doctor_module{
-  margin-top:5rem;
+.doctor_module {
+  margin-top: 5rem;
+}
+
+/* styles for customer information on doctor page */
+.customer-info {
+  padding: 5px 0;
+}
+.review-customer_button {
+  display: flex;
+  height: 12.6rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  margin-bottom: 2rem;
+}
+.review-customer_button button {
+  display: inline-block;
+  width: 60%;
+  padding: 15px 25px;
+  font-size: 16px;
+  text-align: center;
+  background: #d1906d;
+  color: #fff;
+  margin: 0px auto;
+  border-radius: 6px;
+  font-weight: 400;
+  border: 0;
 }
 
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {

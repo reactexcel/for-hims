@@ -9,7 +9,6 @@ import requireAdmin from "../../hoc/requireAdmin";
 
 /**
  * Parent Component for Create Doctor component
- * @param {*} props
  */
 function CreateDoctorContainer(props) {
   /**To submit Doctor details to create their account

@@ -21,27 +21,6 @@ class Home extends Component {
     const { onAddProduct, role } = this.props;
     return (
       <>
-        {/* <div className="header_menu_bg">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-12">
-                <ul className="left_menu">
-                  <li>
-                    <Link to="#">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Erectile Dysfunction</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Sildenafil</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="clearfix" /> */}
-
         <div className="header_slider">
           <div className="container-fluid">
             <div className="row">

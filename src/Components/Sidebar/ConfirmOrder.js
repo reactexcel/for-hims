@@ -35,14 +35,14 @@ class ConfirmOrder extends Component {
       country: "US"
     };
     const cardId = cardIndex === 0 ? cardIndex : data.cardList[cardIndex].id;
-    this.props.onChargeCustomer(address,cardId);
+    this.props.onChargeCustomer(address, cardId);
   };
   componentDidUpdate(prevProps) {
     if (
       this.props.payment.charge.isSuccess &&
       prevProps.payment.charge.isSuccess !== this.props.payment.charge.isSuccess
     ) {
-      if (!this.props.userProfile.data.hasOwnProperty("appointmentStatus")) {
+      if (!this.props.userProfile.data.hasOwnProperty("approvalStatus")) {
         this.props.onUpdateAppointment({ status: "Waiting" });
         this.props.history.push("/gender");
       } else {

@@ -51,6 +51,12 @@ class QuestionsContainer extends Component {
     }
   }
 
+  /**To Select Answers according to type of question
+   * @param {string} questionUid unique id of a question document from firebase
+   * @param {number} questionId id of question
+   * @param {number} choiceId choice index of answers
+   * @param {string} quesType type of question, radio or checkbox
+   */
   selectAnswer = (questionUid, questionId, choiceId, quesType) => {
     const { answers } = this.state;
     let answer;
@@ -91,7 +97,10 @@ class QuestionsContainer extends Component {
       answers: uniqAnswers
     });
   };
-
+  /**To set answers of questions which are of text type
+   * @param {string} questionUid unique id of a question document from firebase
+   * @param {number} questionId id of question
+   */
   setTextQuestion = (questionUid, questionId) => {
     const { textAnswers } = this.state;
     const existingTextQuestion =
@@ -105,6 +114,8 @@ class QuestionsContainer extends Component {
       });
     }
   };
+
+  /**Handling change of controlled text answers */
   handleChange = event => {
     let textAnswers = this.state.textAnswers.slice();
     for (let i in textAnswers) {
@@ -115,6 +126,7 @@ class QuestionsContainer extends Component {
       }
     }
   };
+  /**Renders all the questions */
   renderQuestions = () => {
     const { data } = this.props.questions;
     const { answers } = this.state;
@@ -197,6 +209,7 @@ class QuestionsContainer extends Component {
     }
   };
 
+  /**To submit answer of the consumer*/
   submitAnswers = () => {
     const { uid } = this.props;
     const answers = sortBy(

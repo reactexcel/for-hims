@@ -109,21 +109,24 @@ export function* validateOldPasswordRequest(action) {
 }
 
 export function* updateAppointmentRequest(action) {
-  const { uid, status } = action.payload;
+  const { uid, status, role } = action.payload;
   try {
     const response = yield firebase.user(uid).get();
-    if (response.exists && response.data().appointmentStatus) {
-      yield firebase.user(uid).update({ appointmentStatus: status });
+    if (response.exists && response.data().approvalStatus) {
+      yield firebase.user(uid).update({ approvalStatus: status });
+      yield put(
+        actions.updateAppointmentSuccess("Appointment status has been updated")
+      );
     } else {
       yield firebase
         .user(uid)
         .set({ appointmentStatus: status }, { merge: true });
-      const userData = yield firebase.user(uid).get();
-      yield put(actions.updateProfileSuccess(userData.data()));
+      if (!role) {
+        const userData = yield firebase.user(uid).get();
+        yield put(actions.updateProfileSuccess(userData.data()));
+      }
       yield put(
-        actions.updateAppointmentSuccess(
-          "Your Appointment status has been updated"
-        )
+        actions.updateAppointmentSuccess("Appointment status has been updated")
       );
     }
   } catch (e) {

@@ -140,7 +140,11 @@ export default handleActions(
 
     [constants.SAVE_CONSENT_REQUEST]: additionalInfoRequest,
     [constants.SAVE_CONSENT_SUCCESS]: additionalInfoSuccess,
-    [constants.SAVE_CONSENT_ERROR]: additionalInfoError
+    [constants.SAVE_CONSENT_ERROR]: additionalInfoError,
+
+    [constants.UPDATE_APPOINTMENT_REQUEST]: additionalInfoRequest,
+    [constants.UPDATE_APPOINTMENT_SUCCESS]: additionalInfoSuccess,
+    [constants.UPDATE_APPOINTMENT_ERROR]: additionalInfoError
   },
   initialState
 );
