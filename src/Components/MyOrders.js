@@ -23,6 +23,12 @@ class MyOrders extends Component {
     }
     return title;
   };
+  getCustomerDetails = (e) => {
+    const {role} = this.props
+    if(role !==ROLES.CUSTOMER){
+      this.props.getCustomerDetails(e)
+    }
+  }
 
   render() {
     const { orders, role } = this.props;
@@ -40,7 +46,7 @@ class MyOrders extends Component {
                       trigger={
                         <button
                           type="button"
-                          onClick={this.props.getCustomerDetails}
+                          onClick={this.getCustomerDetails}
                           data-uid={order.data().userId}
                         >
                           <ul className="tab_order">
