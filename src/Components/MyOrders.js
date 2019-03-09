@@ -23,12 +23,13 @@ class MyOrders extends Component {
     }
     return title;
   };
-  getCustomerDetails = (e) => {
-    const {role} = this.props
-    if(role !==ROLES.CUSTOMER){
-      this.props.getCustomerDetails(e)
+  /**To call getCustomerDetails on the basis of user roles */
+  getCustomerDetails = e => {
+    const { role } = this.props;
+    if (role !== ROLES.CUSTOMER) {
+      this.props.getCustomerDetails(e);
     }
-  }
+  };
 
   render() {
     const { orders, role } = this.props;
