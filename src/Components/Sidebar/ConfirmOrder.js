@@ -52,7 +52,10 @@ class ConfirmOrder extends Component {
       this.props.payment.charge.isSuccess &&
       prevProps.payment.charge.isSuccess !== this.props.payment.charge.isSuccess
     ) {
-      if (!this.props.userProfile.data.hasOwnProperty("approvalStatus")) {
+      if (
+        !this.props.userProfile.data.hasOwnProperty("approvalStatus") ||
+        this.props.userProfile.data.approvalStatus !== "Approved"
+      ) {
         this.props.onUpdateAppointment({ status: "Waiting" });
         this.props.history.push("/gender");
       } else {

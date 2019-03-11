@@ -13,11 +13,14 @@ class ActionRequired extends Component {
     };
   }
 
+  /**Opens the modal */
   openMessageModal = () =>
     this.setState({ sendMessage: false, openMessageModal: true });
 
+  /**Closes the modal */
   closeMessageModal = () => this.setState({ openMessageModal: false });
 
+  /**Toggles the message box */
   toggleTextMessageBox = () =>
     this.setState(prevState => ({ sendMessage: !prevState.sendMessage }));
 

@@ -118,9 +118,7 @@ export function* updateAppointmentRequest(action) {
         actions.updateAppointmentSuccess("Appointment status has been updated")
       );
     } else {
-      yield firebase
-        .user(uid)
-        .set({ appointmentStatus: status }, { merge: true });
+      yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
       if (!role) {
         const userData = yield firebase.user(uid).get();
         yield put(actions.updateProfileSuccess(userData.data()));

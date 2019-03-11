@@ -32,7 +32,7 @@ class Login extends Component {
     }
   }
 
-  /**Handles the change of text field */
+  /**Handles the change of input tag */
   handleChange = e => {
     const { value, name } = e.target;
     const data = { ...this.state.data };

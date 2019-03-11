@@ -13,6 +13,8 @@ class Cart extends Component {
   onRemoveProduct = () => this.props.removeFromCartRequest();
   render() {
     const { addToCart } = this.props.addcart;
+    const { approvalStatus } = this.props.userProfile.data;
+    console.log(approvalStatus === "Waiting",'asd',approvalStatus)
     return (
       <>
         <div className="cart_section">
@@ -95,6 +97,11 @@ class Cart extends Component {
                     Apply
                   </a>
                 </div>
+                {approvalStatus === "Waiting" && (
+                  <div className="server_error">
+                    Your approval status is Waiting
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -105,6 +112,7 @@ class Cart extends Component {
             type="orange"
             className="next_btn"
             onClick={this.props.renderNext}
+            disabled={approvalStatus === "Waiting"}
           >
             Next
           </button>
@@ -114,7 +122,10 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = ({ addcart }) => ({ addcart });
+const mapStateToProps = ({ addcart, profile: { userProfile } }) => ({
+  addcart,
+  userProfile
+});
 
 export default connect(
   mapStateToProps,

@@ -46,7 +46,10 @@ export default class CustomerOrders extends Component {
                 <span>{`${firstName} ${lastName}`}</span>
               </div>
               <div className="customer-info">
-                <span>{moment(dateOfBirth.seconds * 1000).format("LL")}</span>
+                <span>
+                  {dateOfBirth &&
+                    moment(dateOfBirth.seconds * 1000).format("LL")}
+                </span>
               </div>
               <div className="customer-info">
                 <span>Approval Status : </span>

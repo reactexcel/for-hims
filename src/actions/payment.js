@@ -1,6 +1,7 @@
 import { put, call } from "redux-saga/effects";
 import * as actions from "./index";
 import axios from "axios";
+import { firebase } from "../Firebase";
 
 const url = "https://us-central1-noleuderm-d2b6a.cloudfunctions.net/payment";
 function addnewPaymentApi(data) {
@@ -67,7 +68,12 @@ export function* getAllCardsRequest(action) {
 export function* chargeCustomerRequest(action) {
   const { uid, address, email, cardId } = action.payload;
   try {
-    const response = yield call(calculateOrder, { uid, address, email });
+    const response = yield call(calculateOrder, {
+      uid,
+      address,
+      email,
+      cardId
+    });
     if (response.data.statusCode === 200) {
       const orderId = JSON.parse(response.data.body).order.id;
       const orderResponse = yield call(chargeCustomer, {
@@ -93,6 +99,35 @@ export function* chargeCustomerRequest(action) {
     } else {
       const error = JSON.parse(response.data.body).error;
       yield put(actions.chargeCustomerError(error));
+    }
+  } catch (e) {
+    console.log(e, "error");
+    yield put(actions.chargeCustomerError(e.message));
+  }
+}
+
+export function* chargeAfterApproval(action) {
+  const { uid, orderId, cardId } = action.payload;
+  try {
+    const response = yield call(chargeCustomer, {
+      uid,
+      orderId,
+      cardId
+    });
+    if (response.data.statusCode === 200) {
+      yield put(
+        actions.chargeCustomerSuccess({
+          ...JSON.parse(response.data.body)
+        })
+      );
+    } else {
+      const error = JSON.parse(response.data.body).error;
+
+      if (error.code) {
+        yield put(actions.chargeCustomerError(error.message));
+      } else {
+        yield put(actions.chargeCustomerError(error));
+      }
     }
   } catch (e) {
     yield put(actions.chargeCustomerError(e.message));

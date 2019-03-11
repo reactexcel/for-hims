@@ -115,8 +115,12 @@ async function charge(req, res) {
   const uid = body.uid;
   const orderId = body.orderId;
   const cardId = body.cardId;
-  console.log(cardId);
   try {
+    const orderResponse = await admin
+      .firestore()
+      .collection("orders")
+      .where("id", "==", orderId)
+      .get();
     const response = await admin
       .firestore()
       .collection("users")
@@ -133,30 +137,37 @@ async function charge(req, res) {
             }
           );
         }
-        const charge = await stripe.orders.pay(orderId, {
-          customer: customerData.customerId
-        });
-        const order = await stripe.orders.retrieve(orderId);
-        let doctorId;
-        const doctor = await admin
-          .firestore()
-          .collection("users")
-          .where("role", "==", "doctor")
-          .where("states", "==", order.shipping.address.state)
-          .get();
-        doctor.forEach(doc => {
-          doctorId = doc.id;
-        });
-        const orderResponse = await admin
-          .firestore()
-          .collection("orders")
-          .doc(orderId)
-          .set({ ...order, userId: uid, doctorId });
+        if (customerData.approvalStatus === "Approved") {
+          const charge = await stripe.orders.pay(orderId, {
+            customer: customerData.customerId
+          });
+          const order = await stripe.orders.retrieve(orderId);
+          let doctorId;
+          const doctor = await admin
+            .firestore()
+            .collection("users")
+            .where("role", "==", "doctor")
+            .where("states", "==", order.shipping.address.state)
+            .get();
+          doctor.forEach(doc => {
+            doctorId = doc.id;
+          });
+          const orderResponse = await admin
+            .firestore()
+            .collection("orders")
+            .doc(orderId)
+            .update({ ...order, userId: uid, doctorId });
 
-        send(res, 200, {
-          message: "Success",
-          charge: charge
-        });
+          send(res, 200, {
+            message: "Success",
+            charge: charge
+          });
+        } else {
+          send(res, 200, {
+            message: "Success",
+            charge: "You will be charged after approval by Doctor"
+          });
+        }
       } else {
         send(res, 404, {
           error: "User is not a customer yet"
@@ -179,6 +190,8 @@ async function order(req, res) {
   const uid = body.uid;
   const address = body.address;
   const email = body.email;
+  const cardId = body.cardId;
+
   // const quantity = body.quantity;
 
   const response = await admin
@@ -186,6 +199,18 @@ async function order(req, res) {
     .collection("users")
     .doc(uid)
     .get();
+  const userOrders = await admin
+    .firestore()
+    .collection("orders")
+    .where("userId", "==", uid)
+    .get();
+  const currentApprovalStatus = response.data().approvalStatus;
+  const approvalStatus = userOrders.size
+    ? currentApprovalStatus === "Denied"
+      ? "Waiting"
+      : "Approved"
+    : "Waiting";
+
   try {
     const order = await stripe.orders.create({
       currency: "usd",
@@ -200,8 +225,24 @@ async function order(req, res) {
       shipping: {
         name: `${response.data().firstName} ${response.data().lastName}`,
         address: { ...address }
-      }
+      },
+      metadata: { approvalStatus }
     });
+    let doctorId;
+    const doctor = await admin
+      .firestore()
+      .collection("users")
+      .where("role", "==", "doctor")
+      .where("states", "==", order.shipping.address.state)
+      .get();
+    doctor.forEach(doc => {
+      doctorId = doc.id;
+    });
+    const orderResponse = await admin
+      .firestore()
+      .collection("orders")
+      .doc(order.id)
+      .set({ ...order, userId: uid, doctorId, cardId });
 
     send(res, 200, {
       message: "Success",

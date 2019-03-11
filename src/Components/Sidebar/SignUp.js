@@ -27,7 +27,7 @@ class SignUp extends Component {
     }
   }
 
-  /**Handles the change for text field */
+  /**Handles the change for input tag */
   handleChange = e => {
     const { target } = e;
     const { name } = target;

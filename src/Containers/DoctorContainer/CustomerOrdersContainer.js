@@ -23,10 +23,12 @@ class CustomerOrdersContainer extends Component {
   }
   componentDidMount() {
     const { uid } = this.props.match.params;
+    console.log(this.props.customerDetails)
     if (
       !this.props.customerDetails.isLoading &&
       !this.props.customerDetails.isSuccess
     ) {
+      console.log('aaakaskjsdnkjndaknjnsjnddjnk')
       this.props.getCustomerDetailRequest({ uid });
     }
   }
