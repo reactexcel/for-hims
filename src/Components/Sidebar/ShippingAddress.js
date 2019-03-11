@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Shipping from "./Shipping";
 
+/**UI component for showing all Shipping Address in Full Cart*/
 class ShippingAddress extends Component {
   constructor(props) {
     super(props);
@@ -8,8 +9,11 @@ class ShippingAddress extends Component {
       addShipping: false
     };
   }
+
+  /**Toggles the form for adding Shipping Adddress */
   toggleAddAddress = () =>
     this.setState(prevState => ({ addShipping: !prevState.addShipping }));
+
   render() {
     const { shippingAddress, addressIndex } = this.props;
     const { addShipping } = this.state;

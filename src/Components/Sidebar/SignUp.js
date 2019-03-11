@@ -26,6 +26,8 @@ class SignUp extends Component {
       this.props.closeSidebar();
     }
   }
+
+  /**Handles the change for text field */
   handleChange = e => {
     const { target } = e;
     const { name } = target;
@@ -34,6 +36,8 @@ class SignUp extends Component {
     data[name] = value;
     this.setState({ data });
   };
+
+  /**Validates the data and calls the action for sign up if data is validated */
   handleSubmit = () => {
     const errors = validate(this.state.data);
     this.setState({ errors });

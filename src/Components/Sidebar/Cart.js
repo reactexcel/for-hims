@@ -4,10 +4,12 @@ import emptycart from "../../assets/images/empty_cart.png";
 import { connect } from "react-redux";
 import { removeFromCartRequest } from "../../actions";
 
+/**UI component for Cart */
 class Cart extends Component {
   static defaultProps = {
     renderNext: () => {}
   };
+  /**Removes the product from Cart */
   onRemoveProduct = () => this.props.removeFromCartRequest();
   render() {
     const { addToCart } = this.props.addcart;

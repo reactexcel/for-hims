@@ -7,12 +7,16 @@ import { usaStates } from "../../constants/profile";
 import { addShippingAddressRequest } from "../../actions";
 import { connect } from "react-redux";
 
+/**UI component for Shipping Address form in FullCart */
 class Shipping extends Component {
   static defaultProps = {
     renderNext: () => {},
     addNew: false
   };
 
+  /**Calls the action for adding Shipping Address
+   * @param {Object} values values from redux form
+   */
   handleSaveAddress = values => {
     const shippingAddress = this.props.addNew
       ? [...this.props.shippingAddress, values]
@@ -23,6 +27,7 @@ class Shipping extends Component {
     });
   };
 
+  /**Renders the field of Shipping Address Component */
   renderFields = () =>
     fields.map(({ name, placeholder }) => (
       <Field
@@ -33,6 +38,8 @@ class Shipping extends Component {
         key={name}
       />
     ));
+
+  /**Renders the field for ZIP CODE */
   renderZipCode = ({ label, input, meta: { touched, error } }) => (
     <>
       <input {...input} type="text" maxLength={5} placeholder={label} />
@@ -122,6 +129,11 @@ class Shipping extends Component {
     );
   }
 }
+
+/**Validates the values from redux form before submitting
+ * @param {Object} values values from the redux form
+ * @returns {Object} error message for respective fields in an object with field as properties
+ */
 const validate = values => {
   const error = {};
   const regex = /(\d{5}([\-]\d{4})?)/;

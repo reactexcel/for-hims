@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+
+/**UI component for Informed Consent */
 class InformedConsent extends Component {
+  /**Calls the action for saving consent if consent not given else navigates
+   * to Questions
+   */
   onProvidingConsent = () => {
     const {
       userProfile: { data }

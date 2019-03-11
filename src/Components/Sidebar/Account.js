@@ -23,11 +23,13 @@ class Account extends Component {
       this.props.closeSidebar();
     }
   }
+  /**Toggles Action Required Component */
   toggleActionRequired = () => {
     this.setState(prevState => ({
       showActionRequired: !prevState.showActionRequired
     }));
   };
+  /**Calls the action for logging out the user */
   handleLogout = () => {
     this.props.logoutRequest();
   };

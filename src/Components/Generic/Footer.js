@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 /**UI component for Footer of App */
 const Footer = memo(() => {
+  /**Smooth Scroll Behaviour to top  */
   const scrollToTop = () => {
     if (window.pageYOffset) {
       window.scroll({ top: 0, left: 0, behavior: "smooth" });

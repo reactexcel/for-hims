@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Webcam from "react-webcam";
 
+/**Generic UI component for opening WebCam to capture photo */
 class WebCamera extends Component {
   constructor(props) {
     super(props);
@@ -11,11 +12,13 @@ class WebCamera extends Component {
     };
   }
 
+  /**Captures the image from WebCam */
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
     this.props.setImageFromCamera(imageSrc);
     this.closeCameraModal();
   };
+  /**Closes the WebCam */
   closeCameraModal = () => {
     this.props.closeCameraModal();
   };
@@ -36,8 +39,12 @@ class WebCamera extends Component {
           videoConstraints={videoConstraints}
         />
         <div className="camera-btn_container">
-          <button className="capture_btn" onClick={this.capture}>Capture photo</button>
-          <button className="capture-close_btn" onClick={this.closeCameraModal}>Close</button>
+          <button className="capture_btn" onClick={this.capture}>
+            Capture photo
+          </button>
+          <button className="capture-close_btn" onClick={this.closeCameraModal}>
+            Close
+          </button>
         </div>
       </>
     );

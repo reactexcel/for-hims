@@ -3,8 +3,9 @@ import { Field, reduxForm } from "redux-form";
 import ProfileField from "../Generic/ProfileField";
 import { resetPasswordFields as fields } from "../../constants/profile";
 
-
+/**UI Component for Reset Password  */
 class ResetPassword extends Component {
+  /**Render the fields for reset password form */
   renderFields = () =>
     fields.map(({ name, placeholder }) => (
       <Field
@@ -15,6 +16,9 @@ class ResetPassword extends Component {
         key={name}
       />
     ));
+  /**Calls the action for resetting password
+   * @param {Object} values values from redux form
+   */
   handleSubmit = values => {
     this.props.onResetPassword(values);
   };
@@ -48,6 +52,10 @@ class ResetPassword extends Component {
     );
   }
 }
+/**Validates the values from redux form before submitting
+ * @param {Object} values values from the redux form
+ * @returns {Object} error message for respective fields in an object with field as properties
+ */
 const validate = values => {
   const error = {};
   if (values.newPassword !== values.confirmPassword) {
@@ -60,7 +68,6 @@ const validate = values => {
   }
   return error;
 };
-
 
 export default reduxForm({
   form: "resetPassword",

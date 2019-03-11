@@ -41,9 +41,7 @@ class Header extends PureComponent {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  /**
-   * To change the background color of Header
-   */
+  /** To change the background color of Header on scroll*/
   handleScroll = e => {
     if (this.headerRef) {
       if (

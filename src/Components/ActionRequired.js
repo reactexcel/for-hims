@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
 import UploadPhoto from "./Generic/UploadPhoto";
 
+/**UI component for Action Required */
 class ActionRequired extends Component {
   constructor(props) {
     super(props);

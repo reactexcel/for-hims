@@ -6,6 +6,7 @@ import { usaStates } from "../../constants/profile";
 import ErrorText from "../Generic/ErrorText";
 import { shippingAddressFields as fields } from "../../constants/profile";
 
+/**UI Component for seeing and editing Shipping Address */
 class ProfileShippingAddress extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +15,10 @@ class ProfileShippingAddress extends Component {
       index: 0
     };
   }
+  /**Opens the form for editing the selected shipping address and initialize
+   * the form with its current values
+   * @param {number} index Index of array of shipping address
+   */
   openEditShippingAddress = index => {
     this.props.initialize({
       ...this.props.userProfile.data.shippingAddress[index]
@@ -24,6 +29,7 @@ class ProfileShippingAddress extends Component {
     });
   };
 
+  /**Closes the form for editing shipping address and resets the form */
   cancelEditShippingAddress = () => {
     this.setState({ showEditShippingAddress: false });
     this.props.reset();
@@ -50,6 +56,9 @@ class ProfileShippingAddress extends Component {
     // }
   }
 
+  /**Calls the action for updating the selected shipping address
+   * @param {Object} values values from redux form
+   */
   handleUpdateShippingAddress = values => {
     const { index } = this.state;
     let shippingAddress = [...this.props.userProfile.data.shippingAddress];
@@ -59,6 +68,7 @@ class ProfileShippingAddress extends Component {
     });
   };
 
+  /**Renders the shipping address fields */
   renderFields = () =>
     fields.map(({ name, placeholder }) => (
       <Field
@@ -70,6 +80,7 @@ class ProfileShippingAddress extends Component {
       />
     ));
 
+  /**Renders the field for ZIP CODE */
   renderZipCode = ({ label, input, meta: { touched, error } }) => (
     <>
       <input {...input} type="text" maxLength={5} placeholder={label} />
@@ -153,8 +164,14 @@ class ProfileShippingAddress extends Component {
     );
   }
 }
+
+/**Validates the values from redux form before submitting
+ * @param {Object} values values from the redux form
+ * @returns {Object} error message for respective fields in an object with field as properties
+ */
 const validate = values => {
   const error = {};
+  //Regex for testing the ZIPCODE for USA
   const regex = /(\d{5}([\-]\d{4})?)/;
 
   if (!regex.test(values.zipcode)) {

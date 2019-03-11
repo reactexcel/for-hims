@@ -23,7 +23,7 @@ class Sidebar extends Component {
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
-
+  /**Closes the Sidebar when clicked anywhere outside of Sidebar */
   handleClickOutside = event => {
     if (this.sideBarRef && !this.sideBarRef.contains(event.target)) {
       this.props.closeSidebar();

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./ErrorBoundary.css";
 
-/**
- * Component to catch any error in whole app and showing fallback UI
- */
+/**Component to catch any error in whole app and showing fallback UI*/
 export default class ErrorBoundary extends Component {
   state = {
     hasError: false,

@@ -14,6 +14,8 @@ class Home extends Component {
     super(props);
     this.state = { showInfo: false };
   }
+
+  /**Toggles the information block*/
   toggleInfo = () =>
     this.setState(prevState => ({ showInfo: !prevState.showInfo }));
   render() {

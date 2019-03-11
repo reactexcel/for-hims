@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+/**UI component for Gender */
 class Gender extends Component {
   render() {
     return (

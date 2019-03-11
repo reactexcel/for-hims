@@ -7,6 +7,7 @@ import {
 } from "../../actions";
 import { connect } from "react-redux";
 
+/**UI component for Forgot Password */
 class ForgotPassword extends Component {
   constructor(props) {
     super(props);
@@ -15,12 +16,16 @@ class ForgotPassword extends Component {
       errors: {}
     };
   }
+
+  /**Handles the change of text field*/
   handleChange = e => {
     const { value, name } = e.target;
     const data = { ...this.state.data };
     data[name] = value;
     this.setState({ data });
   };
+
+  /**Validates the data and calls the action for forgot password */
   handleSubmit = () => {
     const errors = validate(this.state.data);
     this.setState({ errors });
@@ -52,7 +57,12 @@ class ForgotPassword extends Component {
           <div className="forgot-psw_next-steps">
             <div className="forgot-psw_next">NEXT STEP</div>
             <div>Please Check your email for next steps</div>
-            <div className="forgot-psw_login" onClick={this.props.togglePassword}>LOGIN</div>
+            <div
+              className="forgot-psw_login"
+              onClick={this.props.togglePassword}
+            >
+              LOGIN
+            </div>
           </div>
         ) : (
           <div id="mySidenav2">

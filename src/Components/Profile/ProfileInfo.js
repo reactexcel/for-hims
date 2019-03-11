@@ -22,7 +22,7 @@ class ProfileInfo extends Component {
     this.props.onUpdateProfileRequest({ ...values, email, uid });
   };
 
-  /**Open the form where user can edit their profile information */
+  /**Opens the form where user can edit their profile information */
   openEditProfile = () => this.setState({ showEditProfile: true });
 
   /**Closes the edit profile form and resets the value */

@@ -15,6 +15,8 @@ import {
   removeFromCartRequest
 } from "../../actions";
 
+/**Parent Component for rendering Cart, DateOfBirth, Cart Payment,
+ * ConfirmOrder and Login */
 class FullCart extends Component {
   state = {
     next: 1
@@ -43,10 +45,13 @@ class FullCart extends Component {
       this.props.getAllCardsRequest({ uid });
     }
   }
+  /**Calls action for adding new payment */
   onAddNewPayment = data => {
     const { uid, email } = this.props.user.data;
     this.props.addNewPaymentRequest({ uid, email, ...data });
   };
+
+  /**Charges customer for order */
   onChargeCustomer = (address, cardId) => {
     const { uid, email } = this.props.user.data;
     this.props.chargeCustomerRequest({
@@ -56,10 +61,14 @@ class FullCart extends Component {
       address: { ...address }
     });
   };
+
+  /**Updates approval status after placing order */
   onUpdateAppointment = data => {
     const { uid } = this.props.user.data;
     this.props.updateAppointmentRequest({ uid, ...data });
   };
+
+  /**Increment the state for rendering item */
   renderNext = () => {
     if (!this.props.user.auth) {
       this.setState({ next: 10 });
@@ -67,10 +76,14 @@ class FullCart extends Component {
       this.setState(prevState => ({ next: prevState.next + 1 }));
     }
   };
+
+  /**Closes sidebar when clicked on Shop All */
   onPressShopAll = () => {
     this.props.closeSidebar();
     this.props.history.push("/");
   };
+
+  /**Render items accoriding to 'next' state */
   _renderItem = () => {
     switch (this.state.next) {
       case 1:

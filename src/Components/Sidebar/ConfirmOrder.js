@@ -3,6 +3,8 @@ import pro_img1 from "../../assets/images/pro_img1.png";
 import { withRouter } from "react-router-dom";
 import CartPaymentContainer from "./CartPaymentContainer";
 import ShippingAddress from "./ShippingAddress";
+
+/**UI component for Confirming Order */
 class ConfirmOrder extends Component {
   state = {
     showPayment: false,
@@ -14,9 +16,17 @@ class ConfirmOrder extends Component {
     renderNext: () => {}
   };
 
+  /**Opens the payment or address
+   * @param {string} state state which need to be set to true showPayment or showAddress
+   */
   open = state => this.setState({ [state]: true });
+
+  /**Closes the payment or address
+   * @param {string} state state which need to be set to false showPayment or showAddress
+   */
   close = state => this.setState({ [state]: false });
 
+  /**Calls the action for charging customer sending selected address and selected payment as its param */
   onChargeCustomer = () => {
     const {
       userProfile: {
@@ -53,7 +63,14 @@ class ConfirmOrder extends Component {
     }
   }
 
+  /**Selects Address for shipping
+   * @param {number} index index of array of shipping address
+   */
   selectAddress = index => this.setState({ index });
+
+  /**Selects Payment for order
+   * @param {number} index index of array of payment methodI
+   */
   selectPayment = cardIndex => this.setState({ cardIndex });
   render() {
     const {

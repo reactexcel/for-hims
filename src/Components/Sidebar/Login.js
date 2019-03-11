@@ -8,6 +8,7 @@ import { loginRequest } from "../../actions";
 import Account from "./Account";
 import FullCart from "./FullCart";
 
+/**UI component for Login of App */
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -30,12 +31,16 @@ class Login extends Component {
       this.props.closeSidebar();
     }
   }
+
+  /**Handles the change of text field */
   handleChange = e => {
     const { value, name } = e.target;
     const data = { ...this.state.data };
     data[name] = value;
     this.setState({ data });
   };
+
+  /**Validates the data and calls the action for login if data is valid */
   handleSubmit = () => {
     const errors = validate(this.state.data);
     this.setState({ errors });
@@ -44,9 +49,13 @@ class Login extends Component {
       this.props.loginRequest({ ...this.state.data });
     }
   };
+
+  /**Toggles the Register UI component */
   toggleRegister = () => {
     this.setState(prevState => ({ showRegister: !prevState.showRegister }));
   };
+
+  /**Toggles the Forgot Password UI component */
   togglePassword = () => {
     this.setState(prevState => ({
       showForgotPassword: !prevState.showForgotPassword

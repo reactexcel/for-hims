@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+/**UI component for 'Shop' in Header */
 class Shop extends Component {
   render() {
     return (

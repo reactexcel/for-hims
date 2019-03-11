@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+/**UI component for Back to Inbox */
 class BackToInbox extends Component {
   render() {
     const { message, onOpenMessageModal } = this.props;

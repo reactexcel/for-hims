@@ -5,7 +5,9 @@ import DateFormField from "../Generic/DateFormField";
 import { connect } from "react-redux";
 import { addDateOfBirthRequest } from "../../actions";
 
+/**UI component for addding Date of Birth */
 class DateOfBirth extends Component {
+  /**Render fields for date of birth form */
   renderFields = () =>
     fields.map(({ name, placeholder }) => (
       <Field
@@ -18,6 +20,10 @@ class DateOfBirth extends Component {
         key={name}
       />
     ));
+
+  /**Calls the action for adding date of birth
+   * @param {Object} values values from redux form
+   */
   handleSubmitDate = values => {
     const dateOfBirth = new Date(
       `${values.month}-${values.day}-${values.year}`
@@ -25,6 +31,7 @@ class DateOfBirth extends Component {
     const { uid } = this.props.user.data;
     this.props.addDateOfBirthRequest({ uid, dateOfBirth });
   };
+
   render() {
     const {
       additionalInfo: { isLoading, isError, message }
@@ -71,6 +78,10 @@ class DateOfBirth extends Component {
   }
 }
 
+/**Validates the values from redux form before submitting
+ * @param {Object} values values from the redux form
+ * @returns {Object} error message for respective fields in an object with field as properties
+ */
 const validate = values => {
   const error = {};
   if (values.month < 0 || values.month > 12) {

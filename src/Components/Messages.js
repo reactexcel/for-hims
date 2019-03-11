@@ -5,6 +5,7 @@ import ErrorText from "./Generic/ErrorText";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
+/**UI component for Messages */
 class Messages extends Component {
   constructor(props) {
     super(props);
@@ -13,8 +14,11 @@ class Messages extends Component {
       error: {}
     };
   }
+
+  /**Handles the change for input tag */
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
+  /**Validates the message and if validated calls the action fro send message */
   handleSubmit = e => {
     const error = validateMessage(this.state.message);
     this.setState({ error });
