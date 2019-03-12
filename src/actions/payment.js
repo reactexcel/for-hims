@@ -106,7 +106,7 @@ export function* chargeCustomerRequest(action) {
   }
 }
 
-export function* chargeAfterApproval(action) {
+export function* chargeCustomerAfterApprovalRequest(action) {
   const { uid, orderId, cardId } = action.payload;
   try {
     const response = yield call(chargeCustomer, {
@@ -116,7 +116,7 @@ export function* chargeAfterApproval(action) {
     });
     if (response.data.statusCode === 200) {
       yield put(
-        actions.chargeCustomerSuccess({
+        actions.chargeCustomerAfterApprovalSuccess({
           ...JSON.parse(response.data.body)
         })
       );
@@ -124,12 +124,12 @@ export function* chargeAfterApproval(action) {
       const error = JSON.parse(response.data.body).error;
 
       if (error.code) {
-        yield put(actions.chargeCustomerError(error.message));
+        yield put(actions.chargeCustomerAfterApprovalError(error.message));
       } else {
-        yield put(actions.chargeCustomerError(error));
+        yield put(actions.chargeCustomerAfterApprovalError(error));
       }
     }
   } catch (e) {
-    yield put(actions.chargeCustomerError(e.message));
+    yield put(actions.chargeCustomerAfterApprovalError(e.message));
   }
 }

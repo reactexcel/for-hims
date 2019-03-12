@@ -3,6 +3,7 @@ import moment from "moment";
 import ReactModal from "react-modal";
 import ErrorText from "../Generic/ErrorText";
 import * as ROLES from "../../constants/roles";
+
 /**UI component for Customer Orders where Doctor will review the customer
  * information
  */
@@ -88,7 +89,7 @@ export default class CustomerOrders extends Component {
                       <h4>Message</h4>
                       <input
                         type="text"
-                        name="message"
+                        name="doctorComment"
                         value={doctorComment}
                         placeholder="Enter your message here..."
                         className={error.message ? "error" : ""}

@@ -7,7 +7,8 @@ import { findIndex } from "lodash";
 import {
   getCustomerDetailRequest,
   updateAppointmentRequest,
-  sendMessageRequest
+  sendMessageRequest,
+  chargeCustomerAfterApprovalRequest
 } from "../../actions";
 import { validateMessage } from "../../utils/validate";
 /**Parent Component for CustomerOrders */
@@ -22,12 +23,8 @@ class CustomerOrdersContainer extends Component {
     };
   }
   componentDidMount() {
-    const { uid } = this.props.match.params;
-    if (
-      !this.props.customerDetails.isLoading &&
-      !this.props.customerDetails.isSuccess
-    ) {
-      this.props.getCustomerDetailRequest({ uid });
+    if (this.props.history.location.state === undefined) {
+      this.props.history.goBack();
     }
   }
   componentDidUpdate(prevProps) {
@@ -35,6 +32,12 @@ class CustomerOrdersContainer extends Component {
       this.props.additionalInfo.isSuccess &&
       prevProps.additionalInfo.isSuccess !== this.props.additionalInfo.isSuccess
     ) {
+      const { customerId, orderId, cardId } = this.props.history.location.state;
+      this.props.chargeCustomerAfterApprovalRequest({
+        uid: customerId,
+        orderId,
+        cardId
+      });
       this.props.history.goBack();
     }
   }
@@ -72,7 +75,7 @@ class CustomerOrdersContainer extends Component {
       if (!Object.keys(error).length) {
         status = "Denied";
         this.props.updateAppointmentRequest({ uid, status, role });
-        this.props.sendMessageRequest({ uid, doctorComment });
+        this.props.sendMessageRequest({ uid, message: doctorComment });
       }
       this.setState({ doctorComment: "" });
     }
@@ -160,6 +163,7 @@ class CustomerOrdersContainer extends Component {
     const {
       data: { role }
     } = this.props.userProfile;
+
     return (
       <CustomerOrders
         renderQuestions={this.renderQuestions}
@@ -191,6 +195,11 @@ const mapStateToProps = ({
 export default requireNotCustomer(
   connect(
     mapStateToProps,
-    { getCustomerDetailRequest, updateAppointmentRequest, sendMessageRequest }
+    {
+      getCustomerDetailRequest,
+      updateAppointmentRequest,
+      sendMessageRequest,
+      chargeCustomerAfterApprovalRequest
+    }
   )(withRouter(CustomerOrdersContainer))
 );

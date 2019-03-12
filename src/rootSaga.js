@@ -27,7 +27,8 @@ import { getAllOrdersRequest } from "./actions/orders";
 import {
   addNewPaymentRequest,
   getAllCardsRequest,
-  chargeCustomerRequest
+  chargeCustomerRequest,
+  chargeCustomerAfterApprovalRequest
 } from "./actions/payment";
 import {
   fetchQuestionsRequest,
@@ -83,6 +84,10 @@ function* watchActions() {
   yield takeLatest(
     constants.GET_CUSTOMER_DETAIL_REQUEST,
     getCustomerDetailRequest
+  );
+  yield takeLatest(
+    constants.CHARGE_CUSTOMER_AFTER_APPROVAL_REQUEST,
+    chargeCustomerAfterApprovalRequest
   );
 }
 export default function* rootSaga() {

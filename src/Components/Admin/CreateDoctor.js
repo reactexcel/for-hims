@@ -7,7 +7,6 @@ import ErrorText from "../Generic/ErrorText";
 
 /**Create Doctor is a UI component which will render a form to create
  * Doctor's Profile
- * @param {*} props props of create doctor component
  */
 function CreateDoctor(props) {
   /** Renders all the fields for doctor*/

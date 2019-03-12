@@ -119,6 +119,7 @@ export function* updateAppointmentRequest(action) {
       );
     } else {
       yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
+      //to prevent changing data for doctor
       if (!role) {
         const userData = yield firebase.user(uid).get();
         yield put(actions.updateProfileSuccess(userData.data()));

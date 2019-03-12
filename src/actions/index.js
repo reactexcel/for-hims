@@ -234,3 +234,14 @@ export const getCustomerDetailSuccess = createAction(
 export const getCustomerDetailError = createAction(
   constants.GET_CUSTOMER_DETAIL_ERROR
 );
+
+//actions for charge customer after approval
+export const chargeCustomerAfterApprovalRequest = createAction(
+  constants.CHARGE_CUSTOMER_AFTER_APPROVAL_REQUEST
+);
+export const chargeCustomerAfterApprovalSuccess = createAction(
+  constants.CHARGE_CUSTOMER_AFTER_APPROVAL_SUCCESS
+);
+export const chargeCustomerAfterApprovalError = createAction(
+  constants.CHARGE_CUSTOMER_AFTER_APPROVAL_ERROR
+);

@@ -30,11 +30,13 @@ class OrdersContainer extends Component {
   }
   /**To get customer detail of a particular user   */
   getCustomerDetails = e => {
-    const { uid } = e.currentTarget.dataset;
-    if (this.props.customerDetails.data.uid !== uid) {
-      this.props.getCustomerDetailRequest({ uid });
-    }
-    this.props.history.push(`/customer-details/${uid}`)
+    const { userid, orderid, cardid } = e.currentTarget.dataset;
+    this.props.getCustomerDetailRequest({ uid: userid });
+
+    this.props.history.push({
+      pathname: `/customer-details/${userid}`,
+      state: { customerId: userid, orderId: orderid, cardId: cardid }
+    });
   };
   render() {
     const { data, isLoading } = this.props.orders;

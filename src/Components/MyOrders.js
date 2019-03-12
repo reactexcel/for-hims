@@ -48,7 +48,9 @@ class MyOrders extends Component {
                         <button
                           type="button"
                           onClick={this.getCustomerDetails}
-                          data-uid={order.data().userId}
+                          data-userid={order.data().userId}
+                          data-orderid={order.id}
+                          data-cardid={order.data().cardId}
                         >
                           <ul className="tab_order">
                             <li className="orders1">

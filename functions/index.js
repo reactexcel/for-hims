@@ -129,7 +129,7 @@ async function charge(req, res) {
     if (response.exists) {
       const customerData = response.data();
       if (customerData.customerId) {
-        if (cardId) {
+        if (cardId != 0) {      /*eslint-disable-line*/
           const updateCard = await stripe.customers.update(
             customerData.customerId,
             {
@@ -162,10 +162,15 @@ async function charge(req, res) {
             message: "Success",
             charge: charge
           });
-        } else {
+        } else if (customerData.approvalStatus === "Waiting") {
           send(res, 200, {
             message: "Success",
             charge: "You will be charged after approval by Doctor"
+          });
+        } else {
+          send(res, 200, {
+            message: "Success",
+            charge: "Your medication has been denied"
           });
         }
       } else {
