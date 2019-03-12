@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import validate from "../../utils/validate";
+import { validateForm } from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
 import Account from "./Account";
 import { connect } from "react-redux";
@@ -39,7 +39,7 @@ class SignUp extends Component {
 
   /**Validates the data and calls the action for sign up if data is validated */
   handleSubmit = () => {
-    const errors = validate(this.state.data);
+    const errors = validateForm(this.state.data);
     this.setState({ errors });
     if (!Object.keys(errors).length) {
       this.props.signupRequest({ ...this.state.data });

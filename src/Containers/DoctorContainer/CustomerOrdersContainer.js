@@ -23,12 +23,10 @@ class CustomerOrdersContainer extends Component {
   }
   componentDidMount() {
     const { uid } = this.props.match.params;
-    console.log(this.props.customerDetails)
     if (
       !this.props.customerDetails.isLoading &&
       !this.props.customerDetails.isSuccess
     ) {
-      console.log('aaakaskjsdnkjndaknjnsjnddjnk')
       this.props.getCustomerDetailRequest({ uid });
     }
   }
@@ -46,10 +44,12 @@ class CustomerOrdersContainer extends Component {
   /**Shows a modal with text box when clicked on deny button or ask for
    * Confirmation if clicked on approval */
   onActionClick = event => {
+    //Getting the action through data attributes
     const { action } = event.currentTarget.dataset;
     this.setState({ [action]: true });
   };
   closeModal = event => {
+    //Getting the action through data attributes
     const { action } = event.currentTarget.dataset;
     this.setState({ [action]: false });
   };
@@ -57,6 +57,7 @@ class CustomerOrdersContainer extends Component {
   /**Updating the approval status of customer and also submitting reason
    *  if approval is denied */
   handleSubmit = event => {
+    //Getting the action through data attributes
     const { action } = event.currentTarget.dataset;
     const { uid } = this.props.customerDetails.data;
     const { doctorComment } = this.state;

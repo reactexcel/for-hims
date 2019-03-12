@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import validate from "../../utils/validate";
+import { validateForm } from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
 import SignUp from "./SignUp";
 import ForgotPassword from "./ForgotPassword";
@@ -42,7 +42,7 @@ class Login extends Component {
 
   /**Validates the data and calls the action for login if data is valid */
   handleSubmit = () => {
-    const errors = validate(this.state.data);
+    const errors = validateForm(this.state.data);
     this.setState({ errors });
     delete errors["termsAndConditions"];
     if (!Object.keys(errors).length) {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import validate from "../../utils/validate";
+import { validateForm } from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
 import {
   forgotPasswordRequest,
@@ -27,7 +27,7 @@ class ForgotPassword extends Component {
 
   /**Validates the data and calls the action for forgot password */
   handleSubmit = () => {
-    const errors = validate(this.state.data);
+    const errors = validateForm(this.state.data);
     this.setState({ errors });
     delete errors["password"];
     delete errors["termsAndConditions"];

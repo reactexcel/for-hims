@@ -1,8 +1,9 @@
-/**Validate function which is used for validating Login and SignUp form
+/**Validate function which is used for validating Login, SignUp
+ * and Forgot Password form
  * @param {Object} data values from the signup and login form
  * @returns {Object} error message for respective fields in an object with field as properties
  */
-export default data => {
+export const validateForm = data => {
   const error = {};
   if (!data.email) {
     error.email = "Required Field";

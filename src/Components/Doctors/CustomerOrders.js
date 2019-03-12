@@ -57,7 +57,7 @@ export default class CustomerOrders extends Component {
               </div>
             </div>
             {this.props.renderQuestions()}
-            {(approvalStatus === "Waiting" || role === ROLES.ADMIN) && (
+            {(approvalStatus === "Waiting" && role === ROLES.DOCTOR) && (
               <div className="review-customer_button">
                 <button data-action="approve" onClick={onActionClick}>
                   Approve
