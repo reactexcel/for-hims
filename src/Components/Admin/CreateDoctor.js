@@ -29,7 +29,7 @@ function CreateDoctor(props) {
     <>
       <select {...input} className={touched && error ? "error" : ""}>
         <option value="">
-          Select a state for which Doctor will check the customers{" "}
+          State
         </option>
         {usaStates.map(({ name, abbreviation }) => (
           <option value={`${name}, ${abbreviation}`} key={name}>
@@ -40,17 +40,28 @@ function CreateDoctor(props) {
       {touched && error && <ErrorText text={error} />}
     </>
   );
+
+  /**Renders the field for ZIP CODE */
+  const renderZipCode = ({ label, input, meta: { touched, error } }) => (
+    <>
+      <input {...input} type="text" maxLength={5} placeholder={label} />
+      {touched && error && <ErrorText text={error} />}
+    </>
+  );
+
   /**To submit Doctor details to parent function which will call createUser action
    * @param values values of redux form
    */
   const submitDoctorDetails = values => {
     props.onSubmitDocotorDetails(values);
   };
+
   /**To reset Create Doctor form */
   const onCancel = event => {
     event.preventDefault();
     props.reset();
   };
+
   /**Using useEffect hook to clear out form when createUser action is successful */
   useEffect(() => {
     if (props.createUser.isSuccess) {
@@ -66,6 +77,14 @@ function CreateDoctor(props) {
       <form className="doctor_form">
         {renderFields()}
         <Field component={renderStates} name="states" />
+        <Field component={renderZipCode} name="zipcode" label="Zip" />
+        <input
+          type="text"
+          disabled
+          name="country"
+          value="United States"
+          readOnly
+        />
         {isSuccess && message && (
           <div className="server_success">{message}</div>
         )}

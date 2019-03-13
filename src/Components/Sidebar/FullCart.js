@@ -146,7 +146,6 @@ class FullCart extends Component {
     }
   };
   render() {
-    console.log(this.state, "dxfgchvjkn");
     return <>{this._renderItem()}</>;
   }
 }

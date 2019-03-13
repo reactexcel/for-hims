@@ -270,5 +270,8 @@ export const doctorInfoFields = [
     name: "password",
     placeholder: "Password for Doctor's ID",
     type: "password"
-  }
+  },
+  { name: "street", placeholder: "Street Address", type: "text" },
+  { name: "type", placeholder: "Apt/Suite", type: "text" },
+  { name: "city", placeholder: "City", type: "text" }
 ];

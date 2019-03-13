@@ -33,6 +33,10 @@ export function* createUserByAdminRequest(action) {
     lastName,
     phone,
     states,
+    city,
+    street,
+    type,
+    zipcode,
     email,
     password,
     role
@@ -46,14 +50,26 @@ export function* createUserByAdminRequest(action) {
       const stateResponse = yield firebase
         .users()
         .where("role", "==", "doctor")
-        .where("states", "==", states);
-      if (!stateResponse) {
-        yield firebase
-          .user(uid)
-          .set(
-            { email, role, firstName, lastName, phone, states },
-            { merge: true }
-          );
+        .where("shippingAddress.states", "==", states).get();
+      if (stateResponse.empty) {
+        const shippingAddress = {
+          states,
+          city,
+          street,
+          type,
+          zipcode
+        };
+        yield firebase.user(uid).set(
+          {
+            email,
+            role,
+            firstName,
+            lastName,
+            phone,
+            shippingAddress
+          },
+          { merge: true }
+        );
         yield put(
           actions.createUserByAdminSuccess(
             `Doctor's Account with ${email} has been created Successfully`

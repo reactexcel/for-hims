@@ -15,6 +15,7 @@ function CreateDoctorContainer(props) {
    * @param values values from redux-form
    */
   const onSubmitDocotorDetails = values => {
+    console.log(values,'assasasasa')
     const role = ROLES.DOCTOR;
     props.createUserByAdminRequest({ ...values, role });
   };
