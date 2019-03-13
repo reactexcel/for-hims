@@ -2,6 +2,7 @@ import { put } from "redux-saga/effects";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
 
+//To fetch questions
 export function* fetchQuestionsRequest(action) {
   try {
     const response = yield firebase
@@ -14,6 +15,7 @@ export function* fetchQuestionsRequest(action) {
   }
 }
 
+//To submit answers of customer and updating them
 export function* submitAnswersRequest(action) {
   const { uid, answers } = action.payload;
   try {

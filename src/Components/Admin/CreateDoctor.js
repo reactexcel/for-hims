@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import { doctorInfoFields as fields, usaStates } from "../../constants/profile";
 import ProfileField from "../Generic/ProfileField";

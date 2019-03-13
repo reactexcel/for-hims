@@ -14,7 +14,6 @@ class Cart extends Component {
   render() {
     const { addToCart } = this.props.addcart;
     const { approvalStatus } = this.props.userProfile.data;
-    console.log(approvalStatus === "Waiting",'asd',approvalStatus)
     return (
       <>
         <div className="cart_section">

@@ -2,14 +2,18 @@ import { put } from "redux-saga/effects";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
 
+//Action for resetting password of the user
 export function* resetPasswordRequest(action) {
   const { newPassword: password, oldPassword } = action.payload;
   try {
+    //Firstly api for user sign in will be called to verify
+    //the old password
     const res = yield firebase.userSignIn(
       firebase.auth.currentUser.email,
       oldPassword
     );
     if (res) {
+      //If response is there api for updating password
       yield firebase.userUpdatePassword(password);
       yield put(actions.resetPasswordSuccess("Your Password has been changed"));
     }
@@ -18,6 +22,7 @@ export function* resetPasswordRequest(action) {
   }
 }
 
+//Action for updating profile information
 export function* updateProfileRequest(action) {
   const { uid, firstName, lastName, phone, email } = action.payload;
   try {
@@ -39,6 +44,7 @@ export function* updateProfileRequest(action) {
   }
 }
 
+//To get profile info of users
 export function* getProfileInfoRequest(action) {
   const { uid } = action.payload;
   try {
@@ -57,6 +63,7 @@ export function* getProfileInfoRequest(action) {
   }
 }
 
+//Action for adding date of birth 
 export function* addDateOfBirthRequest(action) {
   const { dateOfBirth, uid } = action.payload;
   try {
@@ -70,6 +77,7 @@ export function* addDateOfBirthRequest(action) {
   }
 }
 
+//Action for updating and adding shipping address
 export function* addShipingAddressRequest(action) {
   const { shippingAddress, uid } = action.payload;
   try {
@@ -108,6 +116,7 @@ export function* validateOldPasswordRequest(action) {
   }
 }
 
+//Updating appointment status of customer
 export function* updateAppointmentRequest(action) {
   const { uid, status, role } = action.payload;
   try {
@@ -133,6 +142,7 @@ export function* updateAppointmentRequest(action) {
   }
 }
 
+//To save gender of customer
 export function* saveGenderRequest(action) {
   const { uid, gender } = action.payload;
   try {
@@ -150,6 +160,7 @@ export function* saveGenderRequest(action) {
   }
 }
 
+//To upload photo of customer
 export function* uploadPhotoRequest(action) {
   const { file } = action.payload;
   try {
@@ -164,6 +175,7 @@ export function* uploadPhotoRequest(action) {
   }
 }
 
+//To save the consent given by customer
 export function* savingConsentRequest(action) {
   const { uid } = action.payload;
   try {

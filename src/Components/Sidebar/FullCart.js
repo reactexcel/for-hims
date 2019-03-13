@@ -72,7 +72,7 @@ class FullCart extends Component {
   renderNext = () => {
     if (!this.props.user.auth) {
       this.setState({ next: 10 });
-    } else if (this.state.next < 3) {
+    } else if (this.state.next < 4) {
       this.setState(prevState => ({ next: prevState.next + 1 }));
     }
   };
@@ -83,7 +83,15 @@ class FullCart extends Component {
     this.props.history.push("/");
   };
 
-  /**Render items accoriding to 'next' state */
+  /**Render items accoriding to 'next' state.
+   * If a customer is not logged it will render Login screen.
+   * Firstly it will render Cart with Product. If there is no date of birth
+   * of customer, a form for adding Date of birth is shown. After that
+   * it will check for Shipping Address of Customer, if it's not there
+   * a form for adding Shipping Address is shown. Then it checks if a 
+   * customer have any payment method added, if not it shows a form for adding
+   * Payment method. And lastly it will render Confirm Order.
+   */
   _renderItem = () => {
     switch (this.state.next) {
       case 1:
@@ -158,6 +166,7 @@ class FullCart extends Component {
     }
   };
   render() {
+    console.log(this.state,'dxfgchvjkn')
     return <>{this._renderItem()}</>;
   }
 }

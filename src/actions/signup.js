@@ -3,6 +3,8 @@ import { delay } from "redux-saga";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
 import * as ROLES from "../constants/roles";
+
+//Action for signup for the user
 export function* signupRequest(action) {
   const { email, password } = action.payload;
   const role = ROLES.CUSTOMER;
@@ -24,6 +26,7 @@ export function* signupRequest(action) {
   }
 }
 
+//To create profile doctor by Admin user
 export function* createUserByAdminRequest(action) {
   const {
     firstName,

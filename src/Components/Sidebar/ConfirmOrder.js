@@ -17,16 +17,19 @@ class ConfirmOrder extends Component {
   };
 
   /**Opens the payment or address
-   * @param {string} state state which need to be set to true showPayment or showAddress
+   * @param {string} state state which need to be set to true showPayment
+   *  or showAddress
    */
   open = state => this.setState({ [state]: true });
 
   /**Closes the payment or address
-   * @param {string} state state which need to be set to false showPayment or showAddress
+   * @param {string} state state which need to be set to false showPayment
+   *  or showAddress
    */
   close = state => this.setState({ [state]: false });
 
-  /**Calls the action for charging customer sending selected address and selected payment as its param */
+  /**Calls the action for charging customer sending selected address
+   *  and selected payment as its param */
   onChargeCustomer = () => {
     const {
       userProfile: {
@@ -44,6 +47,9 @@ class ConfirmOrder extends Component {
       postal_code: shippingAddress[index].zipcode,
       country: "US"
     };
+    //cardId will be assigned as 0 if no other card is selected, indicates
+    //default card of customer will be used for charging customer and if any
+    //other card is selected then its card id will be assigned to cardId
     const cardId = cardIndex === 0 ? cardIndex : data.cardList[cardIndex].id;
     this.props.onChargeCustomer(address, cardId);
   };

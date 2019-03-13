@@ -2,6 +2,7 @@ import { put } from "redux-saga/effects";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
 
+//Action for sending message
 export function* sendMessageRequest(action) {
   const { uid, message } = action.payload;
 
@@ -19,6 +20,7 @@ export function* sendMessageRequest(action) {
   }
 }
 
+//Action for getting all the messages of the user
 export function* getAllMessageRequest(action) {
   const { uid } = action.payload;
   try {
@@ -32,6 +34,7 @@ export function* getAllMessageRequest(action) {
   }
 }
 
+//Action for updating the status of message to read 
 export function* messageReadStatusRequest(action) {
   const { uid, messageId } = action.payload;
   try {

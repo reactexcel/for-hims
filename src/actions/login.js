@@ -3,6 +3,7 @@ import { delay } from "redux-saga";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
 
+//Action for user login
 export function* loginRequest(action) {
   const { email, password } = action.payload;
   try {
@@ -21,6 +22,7 @@ export function* loginRequest(action) {
   }
 }
 
+//Action for logging out user
 export function* logout(action) {
   try {
     yield firebase.userSignOut();
