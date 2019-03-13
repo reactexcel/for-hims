@@ -72,7 +72,7 @@ class FullCart extends Component {
   renderNext = () => {
     if (!this.props.user.auth) {
       this.setState({ next: 10 });
-    } else if (this.state.next < 4) {
+    } else if (this.state.next < 3) {
       this.setState(prevState => ({ next: prevState.next + 1 }));
     }
   };
@@ -88,7 +88,7 @@ class FullCart extends Component {
    * Firstly it will render Cart with Product. If there is no date of birth
    * of customer, a form for adding Date of birth is shown. After that
    * it will check for Shipping Address of Customer, if it's not there
-   * a form for adding Shipping Address is shown. Then it checks if a 
+   * a form for adding Shipping Address is shown. Then it checks if a
    * customer have any payment method added, if not it shows a form for adding
    * Payment method. And lastly it will render Confirm Order.
    */
@@ -139,26 +139,6 @@ class FullCart extends Component {
           </div>
         );
 
-      case 3:
-        return this.props.payment.card.data.cardList &&
-          this.props.payment.card.data.cardList.length ? (
-          <ConfirmOrder
-            payment={this.props.payment}
-            userProfile={this.props.userProfile}
-            onAddNewPayment={this.onAddNewPayment}
-            onChargeCustomer={this.onChargeCustomer}
-            onUpdateAppointment={this.onUpdateAppointment}
-            closeSidebar={this.props.closeSidebar}
-            removeFromCart={this.props.removeFromCartRequest}
-          />
-        ) : (
-          <CartPaymentContainer
-            onAddNewPayment={this.onAddNewPayment}
-            renderNext={this.renderNext}
-            payment={this.props.payment}
-          />
-        );
-
       case 10:
         return <Login addedProduct closeSidebar={this.props.closeSidebar} />;
       default:
@@ -166,7 +146,7 @@ class FullCart extends Component {
     }
   };
   render() {
-    console.log(this.state,'dxfgchvjkn')
+    console.log(this.state, "dxfgchvjkn");
     return <>{this._renderItem()}</>;
   }
 }

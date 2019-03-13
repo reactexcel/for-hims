@@ -22,9 +22,8 @@ class Payment extends Component {
       this.props.payment.card.isSuccess &&
       prevProps.payment.card.isSuccess !== this.props.payment.card.isSuccess
     ) {
+      //When adding a newer payment method from cart
       if (data.cardList && data.cardList.length) this.props.closePayment();
-    } else {
-      this.props.renderNext();
     }
   }
 
@@ -72,16 +71,10 @@ class Payment extends Component {
 
   render() {
     const { errors, showAddPayment, loading } = this.state;
-    const {
-      isError,
-      message,
-      isLoading,
-      isSuccess,
-      data
-    } = this.props.payment.card;
+    const { isError, message, isLoading, data } = this.props.payment.card;
     return (
       <>
-        {loading || isLoading ? (
+        {isLoading ? (
           <div className="login-loader">
             <div>Saving Payment Information...</div>
             <div>Hang tight</div>
@@ -181,6 +174,7 @@ class Payment extends Component {
               tabIndex="0"
               type="button"
               className="login_btn"
+              disabled={loading}
               onClick={
                 data.cardList && data.cardList.length && !showAddPayment
                   ? this.props.closePayment

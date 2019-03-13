@@ -930,6 +930,9 @@ button.absolute_no > a {
   left: 0px;
   right: 0px;
 }
+.login_btn:disabled{
+  background: #cfd7df
+}
 .register_box h3 {
   text-align: center;
 }
