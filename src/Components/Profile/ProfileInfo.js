@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
-import ProfileField from "./ProfileField";
+import ProfileField from "../Generic/ProfileField";
 import { profileInfoFields as fields } from "../../constants/profile";
+import { validatePhone } from "../../utils/validate";
 
+/**Component for showing Profile Information and Editing them */
 class ProfileInfo extends Component {
   constructor(props) {
     super(props);
@@ -12,15 +14,21 @@ class ProfileInfo extends Component {
     };
   }
 
+  /**To save information of user
+   * @param {Object} values values from profile info form
+   */
   handleSaveProfile = values => {
-    const { uid } = this.props.userInfo;
-    this.props.onUpdateProfileRequest({ ...values, uid });
+    const { uid, email } = this.props.userInfo;
+    this.props.onUpdateProfileRequest({ ...values, email, uid });
   };
 
+  /**Opens the form where user can edit their profile information */
   openEditProfile = () => this.setState({ showEditProfile: true });
 
+  /**Closes the edit profile form and resets the value */
   cancelEditProfile = () => {
     this.setState({ showEditProfile: false });
+    this.props.reset();
   };
   componentDidMount() {
     this.props.initialize({ ...this.props.userProfile.data });
@@ -39,6 +47,7 @@ class ProfileInfo extends Component {
       this.props.initialize({ ...this.props.userProfile.data });
     }
   }
+  /** Renders all the fields for Profile form*/
   renderFields = () =>
     fields.map(({ name, placeholder, type }) => (
       <Field
@@ -78,7 +87,7 @@ class ProfileInfo extends Component {
           </>
         ) : (
           <>
-            <form className="profile_form">
+            <form>
               {this.renderFields()}
               <button
                 onClick={this.props.handleSubmit(this.handleSaveProfile)}
@@ -101,7 +110,9 @@ class ProfileInfo extends Component {
 }
 const validate = values => {
   const error = {};
-
+  if (!validatePhone(values.phone)) {
+    error.phone = "Phone number format is not valid";
+  }
   for (let value of fields) {
     if (!values[value.name]) {
       error[value.name] = "Required Field";

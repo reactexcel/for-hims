@@ -3,7 +3,9 @@ import ReactModal from "react-modal";
 import { validateMessage } from "../utils/validate";
 import ErrorText from "./Generic/ErrorText";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
+/**UI component for Messages */
 class Messages extends Component {
   constructor(props) {
     super(props);
@@ -12,15 +14,18 @@ class Messages extends Component {
       error: {}
     };
   }
+
+  /**Handles the change for input tag */
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
+  /**Validates the message and if validated calls the action fro send message */
   handleSubmit = e => {
     const error = validateMessage(this.state.message);
     this.setState({ error });
     if (!Object.keys(error).length) {
       this.props.onSendMessage(this.state.message);
     }
-    this.setState({message:''})
+    this.setState({ message: "" });
   };
 
   render() {
@@ -30,7 +35,8 @@ class Messages extends Component {
       sendMessage,
       onOpenMessageModal,
       closeMessageModal,
-      toggleTextMessageBox
+      toggleTextMessageBox,
+      history
     } = this.props;
     const {
       isLoading,
@@ -53,25 +59,31 @@ class Messages extends Component {
                     New Message
                   </Link>
                   {data.map(message => (
-                    <div className="messages_new_box" key={message.id}>
-                      <i className="fa fa-envelope-o" />
-                      <h4>
-                        <Link
-                          to={{
-                            pathname: `messages/${message.id}`,
-                            state: {
-                              data: message.data()
-                            }
-                          }}
-                          className="black"
-                        >
-                          {message.data().message}
-                        </Link>
-                      </h4>
+                    <div
+                      className="messages_new_box"
+                      key={message.id}
+                      onClick={() => {
+                        history.push({
+                          pathname: `messages/${message.id}`,
+                          state: {
+                            data: message.data()
+                          }
+                        });
+                        if (!message.data().read) {
+                          this.props.onMessageRead(message.id);
+                        }
+                      }}
+                    >
+                      {message.data().read ? (
+                        <i className="fa fa-envelope-o" />
+                      ) : (
+                        <i className="fa fa-envelope" />
+                      )}
+                      <h4>{message.data().message}</h4>
                       <h5 className="grew">
-                        {new Date(message.data().timestamp.seconds * 1000)
-                          .toUTCString()
-                          .slice(4, -4)}
+                        {moment(message.data().timestamp.seconds * 1000).format(
+                          "LLL"
+                        )}
                       </h5>
                     </div>
                   ))}

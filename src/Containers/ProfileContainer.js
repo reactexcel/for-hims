@@ -10,9 +10,13 @@ import { connect } from "react-redux";
 import {
   resetPasswordRequest,
   updateProfileRequest,
-  addShippingAddressRequest
+  addShippingAddressRequest,
+  addNewPaymentRequest,
+  getAllCardsRequest
 } from "../actions";
+import * as ROLES from "../constants/roles";
 
+/**Parent Container for showing different section of Profile */
 class ProfileContainer extends Component {
   onResetPassword = data => {
     this.props.resetPasswordRequest({ ...data });
@@ -26,10 +30,40 @@ class ProfileContainer extends Component {
     this.props.addShippingAddressRequest({ ...data, uid });
   };
 
+  onAddNewPayment = data => {
+    const { uid, email } = this.props.user.data;
+    this.props.addNewPaymentRequest({ uid, email, ...data });
+  };
+
+  componentDidMount() {
+    const { uid } = this.props;
+    const {
+      userProfile: {
+        data: { customerId }
+      }
+    } = this.props.profile;
+    if (!this.props.card.isSuccess && uid && customerId) {
+      this.props.getAllCardsRequest({ uid });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { uid } = this.props;
+
+    if (
+      this.props.userProfile.data.customerId &&
+      prevProps.userProfile.data.customerId !==
+        this.props.userProfile.data.customerId
+    ) {
+      this.props.getAllCardsRequest({ uid });
+    }
+  }
+
   render() {
     const {
       user: { data },
-      profile: { resetpsw, userProfile, additionalInfo }
+      profile: { resetpsw, userProfile, additionalInfo },
+      card
     } = this.props;
     return (
       <div>
@@ -55,7 +89,13 @@ class ProfileContainer extends Component {
                   additionalInfo={additionalInfo}
                   onUpdateShippingAddress={this.onUpdateShippingAddress}
                 />
-                <PaymentContainer />
+                {userProfile.data.role === ROLES.CUSTOMER && (
+                  <PaymentContainer
+                    userProfile={userProfile}
+                    onAddNewPayment={this.onAddNewPayment}
+                    card={card}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -67,9 +107,19 @@ class ProfileContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ user, profile }) => ({ user, profile });
+const mapStateToProps = ({ user, profile, payment: { card } }) => ({
+  user,
+  profile,
+  card
+});
 
 export default connect(
   mapStateToProps,
-  { resetPasswordRequest, updateProfileRequest, addShippingAddressRequest }
+  {
+    resetPasswordRequest,
+    updateProfileRequest,
+    addShippingAddressRequest,
+    addNewPaymentRequest,
+    getAllCardsRequest
+  }
 )(ProfileContainer);

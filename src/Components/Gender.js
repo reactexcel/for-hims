@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+/**UI component for Gender */
 class Gender extends Component {
   render() {
     return (
@@ -11,11 +13,25 @@ class Gender extends Component {
               <h2> What is your gender?</h2>
               <div className="clearfix" />
               <div className="male_box">
-                <input id="tab1" type="radio" name="tabs" checked />
+                <input
+                  id="tab1"
+                  type="radio"
+                  name="tabs"
+                  value="male"
+                  checked={"male" === this.props.gender}
+                  onChange={this.props.onGenderChange}
+                />
                 <label for="tab1" className="man-silhouette">
                   Male
                 </label>
-                <input id="tab2" type="radio" name="tabs" />
+                <input
+                  id="tab2"
+                  type="radio"
+                  name="tabs"
+                  value="female"
+                  checked={"female" === this.props.gender}
+                  onChange={this.props.onGenderChange}
+                />
                 <label for="tab2" className="woman-silhouette">
                   Female
                 </label>
@@ -24,8 +40,8 @@ class Gender extends Component {
               <div className="back-btn">
                 <Link to="/">Close Visit</Link>
               </div>
-              <div className="confirm-gender">
-                <Link to="/informed-consent">Confirm</Link>
+              <div className="confirm-gender" onClick={this.props.saveGender}>
+                Confirm
               </div>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import { put } from "redux-saga/effects";
+import { delay } from "redux-saga";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
 
+//Action for user login
 export function* loginRequest(action) {
   const { email, password } = action.payload;
   try {
@@ -15,12 +17,15 @@ export function* loginRequest(action) {
     yield put(actions.loginSuccess(data));
   } catch (e) {
     yield put(actions.loginError(e));
+    yield delay(5000);
+    yield put(actions.resetAuthMessage());
   }
 }
 
+//Action for logging out user
 export function* logout(action) {
   try {
-    const response = yield firebase.userSignOut();
+    yield firebase.userSignOut();
     yield put(actions.logoutSuccess());
   } catch (e) {
     console.log(e);

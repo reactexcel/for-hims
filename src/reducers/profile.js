@@ -91,7 +91,8 @@ const additionalInfoRequest = (state, action) =>
     additionalInfo: {
       isLoading: { $set: true },
       isSuccess: { $set: false },
-      isError: { $set: false }
+      isError: { $set: false },
+      message: { $set: "" }
     }
   });
 
@@ -135,7 +136,15 @@ export default handleActions(
 
     [constants.ADD_SHIPPING_ADDRESS_REQUEST]: additionalInfoRequest,
     [constants.ADD_SHIPPING_ADDRESS_SUCCESS]: additionalInfoSuccess,
-    [constants.ADD_SHIPPING_ADDRESS_ERROR]: additionalInfoError
+    [constants.ADD_SHIPPING_ADDRESS_ERROR]: additionalInfoError,
+
+    [constants.SAVE_CONSENT_REQUEST]: additionalInfoRequest,
+    [constants.SAVE_CONSENT_SUCCESS]: additionalInfoSuccess,
+    [constants.SAVE_CONSENT_ERROR]: additionalInfoError,
+
+    [constants.UPDATE_APPOINTMENT_REQUEST]: additionalInfoRequest,
+    [constants.UPDATE_APPOINTMENT_SUCCESS]: additionalInfoSuccess,
+    [constants.UPDATE_APPOINTMENT_ERROR]: additionalInfoError
   },
   initialState
 );

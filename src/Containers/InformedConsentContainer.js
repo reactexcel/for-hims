@@ -1,16 +1,33 @@
-import React, { Component } from 'react';
-import Header from '../Components/Generic/Header';
-import Footer from '../Components/Generic/Footer';
-import InformedConsent from '../Components/InformedConsent';
+import React, { Component } from "react";
+import InformedConsent from "../Components/InformedConsent";
+import { connect } from "react-redux";
+import { savingConsentRequest } from "../actions";
 
 class InformedConsentContainer extends Component {
+  onSavingConsentRequest = () => {
+    const { uid } = this.props;
+    this.props.savingConsentRequest({ uid });
+  };
   render() {
+    const { userProfile,additionalInfo } = this.props;
     return (
       <div>
-        	<InformedConsent/>        
+        <InformedConsent
+          userProfile={userProfile}
+          additionalInfo={additionalInfo}
+          onSavingConsentRequest={this.onSavingConsentRequest}
+          history={this.props.history}
+        />
       </div>
     );
   }
 }
 
-export default InformedConsentContainer;
+const mapStateToProps = ({ profile: { userProfile, additionalInfo } }) => ({
+  userProfile,
+  additionalInfo
+});
+export default connect(
+  mapStateToProps,
+  { savingConsentRequest }
+)(InformedConsentContainer);

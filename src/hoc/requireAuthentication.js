@@ -1,19 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { firebase } from "../Firebase";
-import { loginSuccess, getProfileInfoRequest } from "../actions";
+import {
+  loginSuccess,
+  getProfileInfoRequest,
+  fetchQuestionsRequest
+} from "../actions";
 
+/**Higher Order Component for checking if a User is authenticated or not
+ * and calling different if API on the basis of that*/
 export default WrappedComponent => {
   class Authentication extends Component {
     state = { authUser: null };
     componentDidMount() {
       this.checkAuthentication();
+      // to fetch questions
+      if (!this.props.questions.data.length) {
+        this.props.fetchQuestionsRequest();
+      }
     }
     componentDidUpdate() {
       this.checkAuthentication();
     }
     checkAuthentication = () => {
-      firebase.auth.onAuthStateChanged(authUser => {
+      this.listener = firebase.auth.onAuthStateChanged(authUser => {
         if (!this.props.user.auth && !authUser) {
           this.props.history.push("/");
         } else {
@@ -29,27 +39,30 @@ export default WrappedComponent => {
           // getting user detail if user is authenticated
           // and stoping unneccessary api calls
           if (
-            this.props.userProfile.data.firstName === undefined &&
-            this.props.userProfile.data.dateOfBirth === undefined &&
-            this.props.userProfile.data.shippingAddress === undefined
+            !this.props.userProfile.isLoading &&
+            this.props.userProfile.data.email === undefined
           ) {
             this.props.getProfileInfoRequest({ uid: this.props.user.data.uid });
           }
         }
       });
     };
+    componentWillUnmount() {
+      this.listener();
+    }
     render() {
       const { uid } = this.props.user.data;
       return <WrappedComponent {...this.props} uid={uid} />;
     }
   }
-  const mapStateToProps = ({ user, profile: { userProfile } }) => ({
+  const mapStateToProps = ({ user, profile: { userProfile }, questions }) => ({
     user,
-    userProfile
+    userProfile,
+    questions
   });
 
   return connect(
     mapStateToProps,
-    { loginSuccess, getProfileInfoRequest }
+    { loginSuccess, getProfileInfoRequest, fetchQuestionsRequest }
   )(Authentication);
 };

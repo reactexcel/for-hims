@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "noleuderm-d2b6a",
+    "test": "for-hims-dev"
+  }
+}

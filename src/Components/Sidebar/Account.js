@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import baseline from "../../assets/images/baseline-error.svg";
 import ActionItems from "./ActionItems";
 import { connect } from "react-redux";
 import { logoutRequest } from "../../actions";
 import Login from "./Login";
+import * as ROLES from "../../constants/roles";
 
+/**UI component for showing links related to Account Information*/
 class Account extends Component {
   constructor(props) {
     super(props);
@@ -13,11 +14,22 @@ class Account extends Component {
       showActionRequired: false
     };
   }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.user.isSuccess &&
+      prevProps.user.isSuccess !== this.props.user.isSuccess
+    ) {
+      this.props.closeSidebar();
+    }
+  }
+  /**Toggles Action Required Component */
   toggleActionRequired = () => {
     this.setState(prevState => ({
       showActionRequired: !prevState.showActionRequired
     }));
   };
+  /**Calls the action for logging out the user */
   handleLogout = () => {
     this.props.logoutRequest();
   };
@@ -25,7 +37,7 @@ class Account extends Component {
     const { showActionRequired } = this.state;
     const { auth } = this.props.user;
     const {
-      data: { firstName }
+      data: { firstName, role }
     } = this.props.userProfile;
     if (!auth) {
       return <Login />;
@@ -52,9 +64,18 @@ class Account extends Component {
               <li>
                 <Link to="/orders">Orders</Link>
               </li>
-              <li>
-                <Link to="/messages">Messages</Link>
-              </li>
+              {role === ROLES.CUSTOMER && (
+                <li>
+                  <Link to="/messages">Messages</Link>
+                </li>
+              )}
+              {role === ROLES.ADMIN && (
+                <>
+                  <li>
+                    <Link to="/create-doctor">Create Doctor's Account</Link>
+                  </li>
+                </>
+              )}
               <li>
                 <Link to="" onClick={this.handleLogout}>
                   Logout

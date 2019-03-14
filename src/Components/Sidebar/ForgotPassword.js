@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import validate from "../../utils/validate";
+import { validateForm } from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
 import {
   forgotPasswordRequest,
@@ -7,6 +7,7 @@ import {
 } from "../../actions";
 import { connect } from "react-redux";
 
+/**UI component for Forgot Password */
 class ForgotPassword extends Component {
   constructor(props) {
     super(props);
@@ -15,18 +16,21 @@ class ForgotPassword extends Component {
       errors: {}
     };
   }
+
+  /**Handles the change of input tag*/
   handleChange = e => {
     const { value, name } = e.target;
     const data = { ...this.state.data };
     data[name] = value;
     this.setState({ data });
   };
+
+  /**Validates the data and calls the action for forgot password */
   handleSubmit = () => {
-    const errors = validate(this.state.data);
+    const errors = validateForm(this.state.data);
     this.setState({ errors });
     delete errors["password"];
     delete errors["termsAndConditions"];
-    console.log(errors);
     if (!Object.keys(errors).length) {
       this.props.forgotPasswordRequest({ ...this.state.data });
     }
@@ -53,7 +57,12 @@ class ForgotPassword extends Component {
           <div className="forgot-psw_next-steps">
             <div className="forgot-psw_next">NEXT STEP</div>
             <div>Please Check your email for next steps</div>
-            <div className="forgot-psw_login" onClick={this.props.togglePassword}>LOGIN</div>
+            <div
+              className="forgot-psw_login"
+              onClick={this.props.togglePassword}
+            >
+              LOGIN
+            </div>
           </div>
         ) : (
           <div id="mySidenav2">

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import WebCamera from "./WebCamera";
 import ReactModal from "react-modal";
 
+/**UI component to upload photos using WebCam or images on system */
 export default class UploadPhoto extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,7 @@ export default class UploadPhoto extends Component {
     };
   }
 
+  /**Handles Image change and also show preview of selected image */
   handleFileChange = e => {
     this.setState({ file: Array.from(e.target.files) });
     const file = this.fileRef.files[0];
@@ -38,11 +40,22 @@ export default class UploadPhoto extends Component {
     }
   };
 
+  /**Converts the image into blob if WebCam is used and calls the action
+   *  for uploading file or blob  */
+  uploadPhoto = async () => {
+    const response = await fetch(this.state.imageUrl);
+    const blob = await response.blob();
+    const file = this.state.file[0] ? this.state.file[0] : blob;
+    this.props.onUpload(file);
+  };
+  /**Set the image in state from WebCam */
   setImageFromCamera = imageUrl => {
     this.setState({ imageUrl });
   };
+  /**Deselect the image or file */
   clearImage = () => this.setState({ imageUrl: "", file: [] });
 
+  /**Toggles the WebCam */
   toggleCamera = () =>
     this.setState(prevState => ({ openCamera: !prevState.openCamera }));
   render() {
@@ -63,7 +76,7 @@ export default class UploadPhoto extends Component {
           </button>
         )}
         <div className="camera-container">
-          <img src={this.state.imageUrl} />
+          <img src={this.state.imageUrl} alt="" />
         </div>
         {imageUrl ? (
           <div className="retake-use_container">
@@ -74,7 +87,9 @@ export default class UploadPhoto extends Component {
             >
               Retake
             </button>
-            <button className="use-photo_btn">Use Photo</button>
+            <button className="use-photo_btn" onClick={this.uploadPhoto}>
+              Use Photo
+            </button>
           </div>
         ) : (
           <div className="camera_icons">

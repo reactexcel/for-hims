@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import { StripeProvider, Elements } from "react-stripe-elements";
+import StripeContainer from "../Generic/StripeContainer";
 import ProfilePayment from "./ProfilePayment";
+/**Enclose Profile Payment UI with Stripe Container  */
 export default class PaymentContainer extends Component {
   render() {
     return (
-      <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
-        <Elements>
-            <ProfilePayment />
-        </Elements>
-      </StripeProvider>
+      <StripeContainer>
+        <ProfilePayment {...this.props} />
+      </StripeContainer>
     );
   }
 }
