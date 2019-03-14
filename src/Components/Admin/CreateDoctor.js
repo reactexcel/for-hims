@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { doctorInfoFields as fields, usaStates } from "../../constants/profile";
 import ProfileField from "../Generic/ProfileField";
 import ErrorText from "../Generic/ErrorText";
-
+import { validatePhone } from "../../utils/validate";
 /**Create Doctor is a UI component which will render a form to create
  * Doctor's Profile
  */
@@ -17,20 +17,13 @@ function CreateDoctor(props) {
         label={placeholder}
         type={type}
         key={name}
-        parse={
-          name === "phone"
-            ? value => (isNaN(parseInt(value, 10)) ? null : parseInt(value, 10))
-            : undefined
-        }
       />
     ));
   /** Render state field for Doctor*/
   const renderStates = ({ input, meta: { touched, error } }) => (
     <>
       <select {...input} className={touched && error ? "error" : ""}>
-        <option value="">
-          State
-        </option>
+        <option value="">State</option>
         {usaStates.map(({ name, abbreviation }) => (
           <option value={`${name}, ${abbreviation}`} key={name}>
             {name}
@@ -107,6 +100,9 @@ function CreateDoctor(props) {
  */
 const validate = values => {
   const error = {};
+  if (!validatePhone(values.phone)) {
+    error.phone = "Phone number format is not valid";
+  }
   for (let value of fields) {
     if (!values[value.name]) {
       error[value.name] = "Required Field";

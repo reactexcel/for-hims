@@ -5,7 +5,7 @@ import ProfileField from "../Generic/ProfileField";
 import { usaStates } from "../../constants/profile";
 import ErrorText from "../Generic/ErrorText";
 import { shippingAddressFields as fields } from "../../constants/profile";
-
+import * as ROLES from "../../constants/roles";
 /**UI Component for seeing and editing Shipping Address */
 class ProfileShippingAddress extends Component {
   constructor(props) {
@@ -90,29 +90,38 @@ class ProfileShippingAddress extends Component {
   render() {
     const { showEditShippingAddress } = this.state;
     const { isLoading, isError, message } = this.props.additionalInfo;
-    const { shippingAddress } = this.props.userProfile.data;
+    const { shippingAddress, role } = this.props.userProfile.data;
     return (
       <div className="profile_module">
         {shippingAddress ? (
           !showEditShippingAddress ? (
             <>
               <h3>Shipping Addresses</h3>
-              {shippingAddress.map((add, index) => (
-                <React.Fragment key={index}>
-                  <p>
-                    {add.street}
-                    <br /> {add.states}
-                    <br /> {add.zipcode}
-                    <br /> USA
-                  </p>
-                  <Link
-                    to="#"
-                    onClick={() => this.openEditShippingAddress(index)}
-                  >
-                    edit
-                  </Link>
-                </React.Fragment>
-              ))}
+              {role === ROLES.CUSTOMER &&
+                shippingAddress.map((address, index) => (
+                  <React.Fragment key={index}>
+                    <p>
+                      {address.street}
+                      <br /> {address.states}
+                      <br /> {address.zipcode}
+                      <br /> USA
+                    </p>
+                    <Link
+                      to="#"
+                      onClick={() => this.openEditShippingAddress(index)}
+                    >
+                      edit
+                    </Link>
+                  </React.Fragment>
+                ))}
+              {role === ROLES.DOCTOR && (
+                <p>
+                  {shippingAddress.street}
+                  <br /> {shippingAddress.states}
+                  <br /> {shippingAddress.zipcode}
+                  <br /> USA
+                </p>
+              )}
             </>
           ) : (
             <>

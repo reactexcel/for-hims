@@ -56,11 +56,6 @@ class ProfileInfo extends Component {
         label={placeholder}
         type={type}
         key={name}
-        parse={
-          name === "phone"
-            ? value => (isNaN(parseInt(value, 10)) ? null : parseInt(value, 10))
-            : undefined
-        }
       />
     ));
   render() {
@@ -115,6 +110,9 @@ class ProfileInfo extends Component {
 }
 const validate = values => {
   const error = {};
+  if (!validatePhone(values.phone)) {
+    error.phone = "Phone number format is not valid";
+  }
   for (let value of fields) {
     if (!values[value.name]) {
       error[value.name] = "Required Field";

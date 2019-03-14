@@ -43,15 +43,16 @@ export function* createUserByAdminRequest(action) {
   } = action.payload;
 
   try {
-    const response = yield firebase.createUserByAdmin(email, password);
-    const { uid } = response.user;
-    const userResponse = yield firebase.user(uid).get();
-    if (!userResponse.exists) {
-      const stateResponse = yield firebase
-        .users()
-        .where("role", "==", "doctor")
-        .where("shippingAddress.states", "==", states).get();
-      if (stateResponse.empty) {
+    const stateResponse = yield firebase
+      .users()
+      .where("role", "==", "doctor")
+      .where("shippingAddress.states", "==", states)
+      .get();
+    if (stateResponse.empty) {
+      const response = yield firebase.createUserByAdmin(email, password);
+      const { uid } = response.user;
+      const userResponse = yield firebase.user(uid).get();
+      if (!userResponse.exists) {
         const shippingAddress = {
           states,
           city,
@@ -77,15 +78,15 @@ export function* createUserByAdminRequest(action) {
         );
         yield delay(5000);
         yield put(actions.resetAuthMessage());
-      } else {
-        yield put(
-          actions.createUserByAdminError(
-            `A Doctor has been already assigned to ${states}. Please select another state `
-          )
-        );
-        yield delay(5000);
-        yield put(actions.resetAuthMessage());
       }
+    } else {
+      yield put(
+        actions.createUserByAdminError(
+          `A Doctor has been already assigned to ${states}. Please select another state `
+        )
+      );
+      yield delay(5000);
+      yield put(actions.resetAuthMessage());
     }
   } catch (e) {
     yield put(actions.createUserByAdminError(e.message));
