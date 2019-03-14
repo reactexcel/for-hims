@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import validate from "../../utils/validate";
+import { validateForm } from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
 import Account from "./Account";
 import { connect } from "react-redux";
 import { signupRequest } from "../../actions";
+
+/**UI component for Sign Up */
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,16 @@ class SignUp extends Component {
   static defaultProps = {
     toggleRegister: () => {}
   };
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.user.isSuccess &&
+      prevProps.user.isSuccess !== this.props.user.isSuccess
+    ) {
+      this.props.closeSidebar();
+    }
+  }
+
+  /**Handles the change for input tag */
   handleChange = e => {
     const { target } = e;
     const { name } = target;
@@ -24,11 +36,13 @@ class SignUp extends Component {
     data[name] = value;
     this.setState({ data });
   };
+
+  /**Validates the data and calls the action for sign up if data is validated */
   handleSubmit = () => {
-    const errors = validate(this.state.data);
+    const errors = validateForm(this.state.data);
     this.setState({ errors });
     if (!Object.keys(errors).length) {
-      this.props.signupRequest();
+      this.props.signupRequest({ ...this.state.data });
     }
   };
 
@@ -37,7 +51,7 @@ class SignUp extends Component {
       data: { email, password, checked },
       errors
     } = this.state;
-    const { isSuccess, isLoading } = this.props.login;
+    const { isSuccess, isLoading, isError, message } = this.props.user;
     if (isSuccess) {
       return <Account />;
     }
@@ -85,8 +99,8 @@ class SignUp extends Component {
                     I agree to the
                     <a className="register-link" href="">
                       Terms and Conditions
-                    </a>
-                    and
+                    </a>{" "}
+                    and{" "}
                     <a className="forgot-password-link" href="">
                       Privacy Policy
                     </a>
@@ -103,6 +117,9 @@ class SignUp extends Component {
                     <div className="error--terms-and-condition">
                       {errors.termsAndConditions}
                     </div>
+                  )}
+                  {isError && message && (
+                    <div className="server_error">{message}</div>
                   )}
                 </form>
               </div>
@@ -121,7 +138,7 @@ class SignUp extends Component {
     );
   }
 }
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ user }) => ({ user });
 export default connect(
   mapStateToProps,
   { signupRequest }

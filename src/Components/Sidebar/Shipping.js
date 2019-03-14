@@ -1,121 +1,173 @@
 import React, { Component } from "react";
+import { Field, reduxForm } from "redux-form";
+import { shippingAddressFields as fields } from "../../constants/profile";
+import ProfileField from "../Generic/ProfileField";
+import ErrorText from "../Generic/ErrorText";
+import { usaStates } from "../../constants/profile";
+import { addShippingAddressRequest } from "../../actions";
+import { connect } from "react-redux";
 
+/**UI component for Shipping Address form in FullCart */
 class Shipping extends Component {
   static defaultProps = {
-    renderNext: () => {}
+    renderNext: () => {},
+    addNew: false
   };
 
+  /**Calls the action for adding Shipping Address
+   * @param {Object} values values from redux form
+   */
+  handleSaveAddress = values => {
+    const shippingAddress = this.props.addNew
+      ? [...this.props.shippingAddress, values]
+      : values;
+    this.props.addShippingAddressRequest({
+      shippingAddress,
+      uid: this.props.user.data.uid
+    });
+  };
+
+  /**Renders the field of Shipping Address Component */
+  renderFields = () =>
+    fields.map(({ name, placeholder }) => (
+      <Field
+        component={ProfileField}
+        name={name}
+        label={placeholder}
+        type={"text"}
+        key={name}
+      />
+    ));
+
+  /**Renders the field for ZIP CODE */
+  renderZipCode = ({ label, input, meta: { touched, error } }) => (
+    <>
+      <input {...input} type="text" maxLength={5} placeholder={label} />
+      {touched && error && <ErrorText text={error} />}
+    </>
+  );
+
   render() {
+    const { addNew, shippingAddress } = this.props;
+    const { isLoading } = this.props.additionalInfo;
     return (
-      <div id="mySidenav5">
-        <div className="symbols">
-          <div className="symbols-title">Shipping</div>
-          <ul>
-            <li className="symbols1"> </li>
-            <li className="symbols2"> </li>
-            <li className="symbols3 active"> </li>
-            <li className="symbols4"> </li>
-            <li className="symbols5"> </li>
-          </ul>
-        </div>
-        <div className="login_form">
-          <div className="register_box">
-            <h3>Shipping Information</h3>
-            <h5>Please enter your home shipping address</h5>
-            <form>
-              <input
-                type="text"
-                name="firstName"
-                value=""
-                autoComplete="true"
-                placeholder="First Name"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="lastName"
-                value=""
-                autoComplete="true"
-                placeholder="Last Name"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="line1"
-                value=""
-                autoComplete="true"
-                placeholder="Street Address"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="line2"
-                value=""
-                autoComplete="true"
-                placeholder="Apt/Suite"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="city"
-                value=""
-                autoComplete="true"
-                placeholder="City"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="state"
-                value=""
-                autoComplete="true"
-                placeholder="State"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="zip"
-                value=""
-                autoComplete="true"
-                placeholder="Zip"
-                onChange={() => {}}
-              />
-              <input
-                type="text"
-                name="united"
-                value=""
-                autoComplete="true"
-                placeholder="United States"
-                onChange={() => {}}
-              />
-              <input
-                type="number"
-                name="phone"
-                value=""
-                autoComplete="true"
-                placeholder="Phone"
-                onChange={() => {}}
-              />
-              <div className="switch_title">
-                <h4> Send me SMS Delivery Updates </h4>
-                <label className="switch">
-                  <input type="checkbox" />
-                  <span className="slid round" />
-                </label>
-              </div>
-            </form>
+      <>
+        {isLoading ? (
+          <div className="login-loader">
+            <div>Saving your Address...</div>
+            <div>Hang tight</div>
+            <div className="loader" />
           </div>
-        </div>
-        <button
-          tabIndex="0"
-          type="button"
-          className="next_btn"
-          onClick={this.props.renderNext}
-        >
-          Save Shipping Address
-        </button>
-      </div>
+        ) : (
+          <>
+            <div className="cart_section">
+              <div className="symbols">
+                <div className="symbols-title">Shipping</div>
+                <ul>
+                  <li className="symbols1"> </li>
+                  <li className="symbols2"> </li>
+                  <li className="symbols3 active"> </li>
+                  <li className="symbols4"> </li>
+                  <li className="symbols5"> </li>
+                </ul>
+              </div>
+              <div className="login_form">
+                <div className="register_box">
+                  <h3>Shipping Information</h3>
+                  <h5>Please enter your home shipping address</h5>
+                  <form className="shipping_form">
+                    {this.renderFields()}
+                    <Field component="select" name="states">
+                      {usaStates.map(({ name, abbreviation }) => (
+                        <option value={`${name}, ${abbreviation}`} key={name}>
+                          {name}
+                        </option>
+                      ))}
+                    </Field>
+                    <Field
+                      component={this.renderZipCode}
+                      name="zipcode"
+                      label="Zip"
+                    />
+                    <input
+                      type="text"
+                      disabled
+                      name="country"
+                      value="United States"
+                      readOnly
+                    />
+                    {/* <div className="switch_title">
+                  <h4> Send me SMS Delivery Updates </h4>
+                  <label className="switch">
+                    <input type="checkbox" />
+                    <span className="slid round" />
+                  </label>
+                </div> */}
+                    {addNew && (
+                      <button
+                        className="underline_button"
+                        onClick={this.props.toggleAddAddress}
+                      >
+                        Cancel
+                      </button>
+                    )}
+                  </form>
+                </div>
+              </div>
+            </div>
+            <button
+              tabIndex="0"
+              type="button"
+              className="next_btn"
+              onClick={this.props.handleSubmit(this.handleSaveAddress)}
+            >
+              Save Shipping Address
+            </button>
+          </>
+        )}
+      </>
     );
   }
 }
 
-export default Shipping;
+/**Validates the values from redux form before submitting
+ * @param {Object} values values from the redux form
+ * @returns {Object} error message for respective fields in an object with field as properties
+ */
+const validate = values => {
+  const error = {};
+  const regex = /(\d{5}([\-]\d{4})?)/;
+
+  if (!regex.test(values.zipcode)) {
+    error.zipcode = "Invalid ZIP code";
+  }
+
+  for (let value of fields) {
+    if (!values[value.name] && value.name !== "type") {
+      error[value.name] = "Required Field";
+    }
+  }
+  if (!values.zipcode) {
+    error.zipcode = "Required Field";
+  }
+  return error;
+};
+
+const mapStateToProps = ({
+  user,
+  profile: { userProfile, additionalInfo }
+}) => ({
+  user,
+  userProfile,
+  additionalInfo
+});
+
+export default reduxForm({
+  form: "shippingForm",
+  validate
+})(
+  connect(
+    mapStateToProps,
+    { addShippingAddressRequest }
+  )(Shipping)
+);

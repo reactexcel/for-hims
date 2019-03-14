@@ -3,41 +3,42 @@ import update from "immutability-helper";
 import * as constants from "../constants";
 
 const initialState = {
-  auth: false,
   isError: false,
   isSuccess: false,
-  isLoading: false
+  isLoading: false,
+  message: "",
+  data: []
 };
 
-const signupRequest = (state, action) =>
+const photosRequest = (state, action) =>
   update(state, {
-    auth: { $set: false },
     isLoading: { $set: true },
     isSuccess: { $set: false },
-    isError: { $set: false }
+    isError: { $set: false },
+    message: { $set: "" }
   });
 
-const signupSuccess = (state, action) =>
+const photosSuccess = (state, action) =>
   update(state, {
-    auth: { $set: true },
     isLoading: { $set: false },
     isSuccess: { $set: true },
-    isError: { $set: false }
+    isError: { $set: false },
+    message: { $set: action.payload }
   });
 
-const signupError = (state, action) =>
+const photosError = (state, action) =>
   update(state, {
-    auth: { $set: false },
     isLoading: { $set: false },
     isSuccess: { $set: false },
-    isError: { $set: true }
+    isError: { $set: true },
+    message: { $set: action.payload }
   });
 
 export default handleActions(
   {
-    [constants.SIGNUP_REQUEST]: signupRequest,
-    [constants.SIGNUP_SUCCESS]: signupSuccess,
-    [constants.SIGNUP_ERROR]: signupError
+    [constants.UPLOAD_PHOTO_REQUEST]: photosRequest,
+    [constants.UPLOAD_PHOTO_SUCCESS]: photosSuccess,
+    [constants.UPLOAD_PHOTO_ERROR]: photosError
   },
   initialState
 );

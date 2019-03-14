@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import validate from "../../utils/validate";
+import { validateForm } from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
 import SignUp from "./SignUp";
 import ForgotPassword from "./ForgotPassword";
 import { connect } from "react-redux";
 import { loginRequest } from "../../actions";
 import Account from "./Account";
+import FullCart from "./FullCart";
 
+/**UI component for Login of App */
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -17,23 +19,43 @@ class Login extends Component {
       showForgotPassword: false
     };
   }
+  static defaultProps = {
+    addedProduct: false
+  };
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.user.isSuccess &&
+      prevProps.user.isSuccess !== this.props.user.isSuccess &&
+      !this.props.addedProduct
+    ) {
+      this.props.closeSidebar();
+    }
+  }
+
+  /**Handles the change of input tag */
   handleChange = e => {
     const { value, name } = e.target;
     const data = { ...this.state.data };
     data[name] = value;
     this.setState({ data });
   };
+
+  /**Validates the data and calls the action for login if data is valid */
   handleSubmit = () => {
-    const errors = validate(this.state.data);
+    const errors = validateForm(this.state.data);
     this.setState({ errors });
     delete errors["termsAndConditions"];
     if (!Object.keys(errors).length) {
-      this.props.loginRequest();
+      this.props.loginRequest({ ...this.state.data });
     }
   };
+
+  /**Toggles the Register UI component */
   toggleRegister = () => {
     this.setState(prevState => ({ showRegister: !prevState.showRegister }));
   };
+
+  /**Toggles the Forgot Password UI component */
   togglePassword = () => {
     this.setState(prevState => ({
       showForgotPassword: !prevState.showForgotPassword
@@ -46,9 +68,9 @@ class Login extends Component {
       showRegister,
       showForgotPassword
     } = this.state;
-    const { isSuccess, isLoading } = this.props.login;
+    const { isSuccess, isLoading, isError, message } = this.props.user;
     if (isSuccess) {
-      return <Account />;
+      return this.props.addedProduct ? <FullCart /> : <Account />;
     }
     return (
       <>
@@ -56,10 +78,13 @@ class Login extends Component {
           <div className="login-loader">
             <div>Loading your account...</div>
             <div>Hang tight</div>
-            <div className ="loader"></div>
+            <div className="loader" />
           </div>
         ) : showRegister ? (
-          <SignUp toggleRegister={this.toggleRegister} />
+          <SignUp
+            closeSidebar={this.props.closeSidebar}
+            toggleRegister={this.toggleRegister}
+          />
         ) : showForgotPassword ? (
           <ForgotPassword togglePassword={this.togglePassword} />
         ) : (
@@ -100,6 +125,9 @@ class Login extends Component {
                       forgot password?
                     </a>
                   </div>
+                  {isError && message && (
+                    <div className="server_error">{message}</div>
+                  )}
                 </form>
               </div>
             </div>
@@ -118,7 +146,7 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(
   mapStateToProps,

@@ -239,7 +239,7 @@ export const usaStates = [
 
 export const shippingAddressFields = [
   { name: "street", placeholder: "Street Address" },
-  { name: "apt/suite", placeholder: "Apt/Suite" },
+  { name: "type", placeholder: "Apt/Suite" },
   { name: "city", placeholder: "City" }
 ];
 
@@ -253,4 +253,25 @@ export const resetPasswordFields = [
   { name: "oldPassword", placeholder: "Old Password" },
   { name: "newPassword", placeholder: "New Password" },
   { name: "confirmPassword", placeholder: "Re-enter new password" }
+];
+
+export const dateOfBirthFields = [
+  { name: "month", placeholder: "MM" },
+  { name: "day", placeholder: "DD" },
+  { name: "year", placeholder: "YY" }
+];
+
+export const doctorInfoFields = [
+  { name: "firstName", placeholder: "Doctor's First Name", type: "text" },
+  { name: "lastName", placeholder: "Doctor's Last Name", type: "text" },
+  { name: "phone", placeholder: "Doctor's Phone number", type: "phone" },
+  { name: "email", placeholder: "Doctor's Email", type: "email" },
+  {
+    name: "password",
+    placeholder: "Password for Doctor's ID",
+    type: "password"
+  },
+  { name: "street", placeholder: "Street Address", type: "text" },
+  { name: "type", placeholder: "Apt/Suite", type: "text" },
+  { name: "city", placeholder: "City", type: "text" }
 ];

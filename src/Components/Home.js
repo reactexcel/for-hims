@@ -1,54 +1,37 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import hims_pdp_sildenafil_product01 from "../assets/images/hims_pdp_sildenafil_product01.png";
+import * as ROLES from "../constants/roles";
+import noleuderm_product from "../assets/images/product.png";
 import hims_pdp_sildenafil_img from "../assets/images/hims_pdp_sildenafil_img.jpg";
 import hims_pdp_sildenafil_img3 from "../assets/images/hims_pdp_sildenafil_img3.jpg";
 import hims_pdp_sildenafil_img4 from "../assets/images/hims_pdp_sildenafil_img4.jpg";
 import hims_pdp_sildenafil_img5 from "../assets/images/hims_pdp_sildenafil_img5.jpg";
 import hims_pdp_sildenafil_img6 from "../assets/images/hims_pdp_sildenafil_img6.jpg";
 
-class HomeContainer extends Component {
+/**UI Component for Home page */
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = { showInfo: false };
   }
+
+  /**Toggles the information block*/
   toggleInfo = () =>
     this.setState(prevState => ({ showInfo: !prevState.showInfo }));
   render() {
     const { showInfo } = this.state;
-    const { onAddProduct } = this.props;
+    const { onAddProduct, role } = this.props;
     return (
       <>
-        <div className="header_menu_bg">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-12">
-                <ul className="left_menu">
-                  <li>
-                    <Link to="#">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Erectile Dysfunction</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Sildenafil</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="clearfix" />
-
         <div className="header_slider">
           <div className="container-fluid">
             <div className="row">
               <div className="col-xs-12 col-sm-12 col-md-2"> </div>
               <div className="col-xs-12 col-sm-12 col-md-4 text-center">
                 <img
-                  src={hims_pdp_sildenafil_product01}
+                  src={noleuderm_product}
                   className="product-img"
-                  alt="Sildenafil Product"
+                  alt="Noleuderm Product"
                 />
               </div>
               <div className="col-xs-12 col-sm-12 col-md-1"> </div>
@@ -65,9 +48,11 @@ class HomeContainer extends Component {
                       improves blood flow to your penis to allow for a harder
                       and longer-lasting erection.
                     </h4>
-                    <Link to="#" className="btn1" onClick={onAddProduct}>
-                      Try Today - $30.00 per month
-                    </Link>
+                    {role === ROLES.CUSTOMER && (
+                      <Link to="#" className="btn1" onClick={onAddProduct}>
+                        Try Today - $30.00 per month
+                      </Link>
+                    )}
                     <div className="baseball-card__legal">
                       * Prescription products require a medical consultation via
                       an online
@@ -501,4 +486,4 @@ class HomeContainer extends Component {
   }
 }
 
-export default HomeContainer;
+export default Home;

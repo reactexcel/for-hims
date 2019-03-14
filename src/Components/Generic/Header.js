@@ -1,10 +1,13 @@
-import React, { Component } from "react";
-import hims_logo from "../../assets/images/hims_logo.png";
+import React, { PureComponent } from "react";
+import noleuderm_logo from "../../assets/images/logo.png";
 import Sidebar from "./Sidebar";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { loginSuccess } from "../../actions";
-class Header extends Component {
+import requireAuthentication from "../../hoc/requireAuthentication";
+import * as ROLES from "../../constants/roles";
+
+/**UI Component for Header of the App */
+class Header extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +21,11 @@ class Header extends Component {
     };
   }
 
+  /**
+   * To open sidebar
+   * @param {String} side side of the Sidebar, left or right
+   * @param {String} content content which will be rendered in Sidebar
+   */
   _openSidebar = (side, content) => {
     this.setState({
       openSidebar: true,
@@ -27,20 +35,19 @@ class Header extends Component {
   };
 
   componentDidMount() {
-    const auth = JSON.parse(localStorage.getItem("auth"));
-    if (auth) {
-      this.props.loginSuccess();
-    }
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
+
+  /** To change the background color of Header on scroll*/
   handleScroll = e => {
     if (this.headerRef) {
       if (
         this.headerRef.getBoundingClientRect().height <
-        document.documentElement.scrollTop || document.body.scrollTop
+          document.documentElement.scrollTop ||
+        document.body.scrollTop
       ) {
         this.headerRef.classList.add("scrolled");
       } else {
@@ -48,6 +55,8 @@ class Header extends Component {
       }
     }
   };
+
+  /**To add class for showing breadcrumbs in Tablets and below */
   handleMobileNav = () => {
     let navbar = document.querySelector(".navbar-collapse.collapse");
     if ([...navbar.classList].includes("in")) {
@@ -58,8 +67,11 @@ class Header extends Component {
   };
   render() {
     const {
-      login: { isSuccess: loginSuccess, auth },
-      addcart: { addToCart }
+      user: { isSuccess: loginSuccess, auth },
+      addcart: { addToCart },
+      userProfile: {
+        data: { role }
+      }
     } = this.props;
     return (
       <>
@@ -69,14 +81,16 @@ class Header extends Component {
           ref={this.setHeaderRef}
         >
           <div className="container">
-            <div className="cart_desktop">
-              <span onClick={() => this._openSidebar("right", "cart")}>
-                Cart
-              </span>
-            </div>
+            {role === ROLES.CUSTOMER && (
+              <div className="cart_desktop">
+                <span onClick={() => this._openSidebar("right", "cart")}>
+                  Cart
+                </span>
+              </div>
+            )}
             <div className="header_logo">
               <Link to="/">
-                <img src={hims_logo} title="hime" alt="hime" />
+                <img src={noleuderm_logo} title="hime" alt="hime" />
               </Link>
             </div>
 
@@ -96,21 +110,20 @@ class Header extends Component {
             </div>
 
             <div className="navbar-collapse collapse">
-              <ul className="nav navbar-nav">
-                <li onClick={() => this._openSidebar("left", "shop")}>
-                  <Link to="#">Shop</Link>
-                </li>
-                <li onClick={() => this._openSidebar("left", "learn")}>
-                  <Link to="#">Learn</Link>
-                </li>
-              </ul>
               <ul className="nav navbar-nav navbar-right">
-                <li
-                  className="mobile_none"
-                  onClick={() => this._openSidebar("right", "cart")}
-                >
-                  <Link to="#">Cart{addToCart && "(1)"  } </Link>
-                </li>
+                {role === ROLES.CUSTOMER && (
+                  <>
+                    <li onClick={() => this._openSidebar("right", "shop")}>
+                      <Link to="#">Shop</Link>
+                    </li>
+                    <li
+                      className="mobile_none"
+                      onClick={() => this._openSidebar("right", "cart")}
+                    >
+                      <Link to="#">Cart{addToCart && "(1)"} </Link>
+                    </li>
+                  </>
+                )}
 
                 {loginSuccess && auth ? (
                   <li onClick={() => this._openSidebar("right", "account")}>
@@ -141,8 +154,11 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = ({ login, addcart }) => ({ login, addcart });
-export default connect(
-  mapStateToProps,
-  { loginSuccess }
-)(Header);
+const mapStateToProps = ({ user, addcart, userProfile }) => ({
+  user,
+  addcart,
+  userProfile
+});
+export default connect(mapStateToProps)(
+  withRouter(requireAuthentication(Header))
+);

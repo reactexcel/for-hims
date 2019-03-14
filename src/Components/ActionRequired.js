@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
 import UploadPhoto from "./Generic/UploadPhoto";
 
+/**UI component for Action Required */
 class ActionRequired extends Component {
   constructor(props) {
     super(props);
@@ -12,17 +13,19 @@ class ActionRequired extends Component {
     };
   }
 
+  /**Opens the modal */
   openMessageModal = () =>
     this.setState({ sendMessage: false, openMessageModal: true });
 
+  /**Closes the modal */
   closeMessageModal = () => this.setState({ openMessageModal: false });
 
+  /**Toggles the message box */
   toggleTextMessageBox = () =>
     this.setState(prevState => ({ sendMessage: !prevState.sendMessage }));
 
   render() {
     const { openMessageModal, sendMessage } = this.state;
-
     return (
       <div className="container">
         <div className="row">

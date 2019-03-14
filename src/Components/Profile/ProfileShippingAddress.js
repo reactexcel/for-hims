@@ -1,29 +1,74 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
-import ProfileField from "./ProfileField";
+import ProfileField from "../Generic/ProfileField";
 import { usaStates } from "../../constants/profile";
 import ErrorText from "../Generic/ErrorText";
-import { connect } from "react-redux";
 import { shippingAddressFields as fields } from "../../constants/profile";
-
+import * as ROLES from "../../constants/roles";
+/**UI Component for seeing and editing Shipping Address */
 class ProfileShippingAddress extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showEditShippingAddress: false
+      showEditShippingAddress: false,
+      index: 0
     };
   }
-  toggleEditShippingAddress = () =>
-    this.setState(prevState => ({
-      showEditShippingAddress: !prevState.showEditShippingAddress
-    }));
-
-  cancelEditShippingAddress = () => {
-    this.props.reset();
-    this.toggleEditShippingAddress();
+  /**Opens the form for editing the selected shipping address and initialize
+   * the form with its current values
+   * @param {number} index Index of array of shipping address
+   */
+  openEditShippingAddress = index => {
+    this.props.initialize({
+      ...this.props.userProfile.data.shippingAddress[index]
+    });
+    this.setState({
+      showEditShippingAddress: true,
+      index
+    });
   };
 
+  /**Closes the form for editing shipping address and resets the form */
+  cancelEditShippingAddress = () => {
+    this.setState({ showEditShippingAddress: false });
+    this.props.reset();
+  };
+  componentDidMount() {
+    this.props.initialize({ ...this.props.userProfile.data.shippingAddress });
+  }
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.additionalInfo.isSuccess &&
+      prevProps.additionalInfo.isSuccess !== this.props.additionalInfo.isSuccess
+    ) {
+      this.cancelEditShippingAddress();
+    }
+
+    // if (
+    //   this.props.userProfile.data.shippingAddress &&
+    //   prevProps.userProfile.data.shippingAddress !==
+    //     this.props.userProfile.data.shippingAddress
+    // ) {
+    //   this.props.initialize({
+    //     ...this.props.userProfile.data.shippingAddress[0]
+    //   });
+    // }
+  }
+
+  /**Calls the action for updating the selected shipping address
+   * @param {Object} values values from redux form
+   */
+  handleUpdateShippingAddress = values => {
+    const { index } = this.state;
+    let shippingAddress = [...this.props.userProfile.data.shippingAddress];
+    shippingAddress.splice(index, 1, values);
+    this.props.onUpdateShippingAddress({
+      shippingAddress
+    });
+  };
+
+  /**Renders the shipping address fields */
   renderFields = () =>
     fields.map(({ name, placeholder }) => (
       <Field
@@ -35,6 +80,7 @@ class ProfileShippingAddress extends Component {
       />
     ));
 
+  /**Renders the field for ZIP CODE */
   renderZipCode = ({ label, input, meta: { touched, error } }) => (
     <>
       <input {...input} type="text" maxLength={5} placeholder={label} />
@@ -43,70 +89,98 @@ class ProfileShippingAddress extends Component {
   );
   render() {
     const { showEditShippingAddress } = this.state;
+    const { isLoading, isError, message } = this.props.additionalInfo;
+    const { shippingAddress, role } = this.props.userProfile.data;
     return (
       <div className="profile_module">
-        {!showEditShippingAddress ? (
-          <>
-            <h3>Shipping Addresses</h3>
-            <p>
-              {this.props.profileShippingAddressForm &&
-              this.props.profileShippingAddressForm.values
-                ? this.props.profileShippingAddressForm.values.street
-                : "1069 N Bodine St"}
-              <br />{" "}
-              {this.props.profileShippingAddressForm &&
-              this.props.profileShippingAddressForm.values
-                ? this.props.profileShippingAddressForm.values.states
-                : "Philadelphia, PA"}
-              <br />{" "}
-              {this.props.profileShippingAddressForm &&
-              this.props.profileShippingAddressForm.values
-                ? this.props.profileShippingAddressForm.values.zipcode
-                : "19123"}
-              <br /> USA
-            </p>
-            <Link to="#" onClick={this.toggleEditShippingAddress}>
-              edit
-            </Link>
-          </>
+        {shippingAddress ? (
+          !showEditShippingAddress ? (
+            <>
+              <h3>Shipping Addresses</h3>
+              {role === ROLES.CUSTOMER &&
+                shippingAddress.map((address, index) => (
+                  <React.Fragment key={index}>
+                    <p>
+                      {address.street}
+                      <br /> {address.states}
+                      <br /> {address.zipcode}
+                      <br /> USA
+                    </p>
+                    <Link
+                      to="#"
+                      onClick={() => this.openEditShippingAddress(index)}
+                    >
+                      edit
+                    </Link>
+                  </React.Fragment>
+                ))}
+              {role === ROLES.DOCTOR && (
+                <p>
+                  {shippingAddress.street}
+                  <br /> {shippingAddress.states}
+                  <br /> {shippingAddress.zipcode}
+                  <br /> USA
+                </p>
+              )}
+            </>
+          ) : (
+            <>
+              <form className="profile_form">
+                {this.renderFields()}
+                <Field component="select" name="states">
+                  {usaStates.map(({ name, abbreviation }) => (
+                    <option value={`${name}, ${abbreviation}`} key={name}>
+                      {name}
+                    </option>
+                  ))}
+                </Field>
+                <Field
+                  component={this.renderZipCode}
+                  name="zipcode"
+                  label="Zip"
+                />
+                <input
+                  type="text"
+                  disabled
+                  name="country"
+                  value="United States"
+                  readOnly
+                />
+                <button
+                  onClick={this.props.handleSubmit(
+                    this.handleUpdateShippingAddress
+                  )}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Saving..." : "Save Changes"}
+                </button>
+                <Link to="#" onClick={this.cancelEditShippingAddress}>
+                  Cancel
+                </Link>
+              </form>
+              {isError && message && (
+                <div className="server_error">{message}</div>
+              )}
+            </>
+          )
         ) : (
           <>
-            <form className="profile_form">
-              {this.renderFields()}
-              <Field component="select" name="states">
-                {usaStates.map(({ name, abbreviation }) => (
-                  <option value={`${name}, ${abbreviation}`} key={name}>
-                    {name}
-                  </option>
-                ))}
-              </Field>
-              <Field
-                component={this.renderZipCode}
-                name="zipcode"
-                label="Zip"
-              />
-              <input
-                type="text"
-                disabled
-                name="country"
-                value="United States"
-                readOnly
-              />
-              <button onClick={this.toggleEditShippingAddress}>
-                Save Changes
-              </button>
-              <Link to="#" onClick={this.cancelEditShippingAddress}>
-                Cancel
-              </Link>
-            </form>
+            <h3>Shipping Addresses</h3>
+            <div>There are no shipping address.</div>
           </>
         )}
       </div>
     );
   }
 }
+
+/**Validates the values from redux form before submitting
+ * @param {Object} values values from the redux form
+ * @returns {Object} error message for respective fields in an object with field as properties
+ */
 const validate = values => {
   const error = {};
+  //Regex for testing the ZIPCODE for USA
   const regex = /(\d{5}([\-]\d{4})?)/;
 
   if (!regex.test(values.zipcode)) {
@@ -124,16 +198,9 @@ const validate = values => {
   return error;
 };
 
-const mapStateToProps = ({ form: { profileShippingAddressForm } }) => ({
-  profileShippingAddressForm
-});
-
 export default reduxForm({
   form: "profileShippingAddressForm",
   validate,
-  initialValues: {
-    street: "1069 N Bodine St",
-    states: "Philadelphia, PA",
-    zipcode: "19123"
-  }
-})(connect(mapStateToProps)(ProfileShippingAddress));
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true
+})(ProfileShippingAddress);

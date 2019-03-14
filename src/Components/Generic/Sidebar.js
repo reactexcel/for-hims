@@ -3,8 +3,9 @@ import Account from "../Sidebar/Account";
 import FullCart from "../Sidebar/FullCart";
 import Login from "../Sidebar/Login";
 import Shop from "../Sidebar/Shop";
-import Learn from "../Sidebar/Learn";
+import isTablet from "../../hoc/isTablet";
 
+/**UI component for Sidebar of the App */
 class Sidebar extends Component {
   constructor(props) {
     super(props);
@@ -22,37 +23,40 @@ class Sidebar extends Component {
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
-
+  /**Closes the Sidebar when clicked anywhere outside of Sidebar */
   handleClickOutside = event => {
     if (this.sideBarRef && !this.sideBarRef.contains(event.target)) {
       this.props.closeSidebar();
     }
   };
 
+  /**Render a component in Sidebar
+   * @param {string} param component to be rendered
+   * @returns Returns a Component which will be rendered
+   */
   _renderItem = param => {
     switch (param) {
       case "account":
-        return <Account />;
+        return <Account closeSidebar={this.props.closeSidebar} />;
       case "cart":
         return <FullCart closeSidebar={this.props.closeSidebar} />;
       case "login":
-        return <Login />;
+        return <Login closeSidebar={this.props.closeSidebar} />;
       case "shop":
         return <Shop />;
-      case "learn":
-        return <Learn />;
       default:
         return;
     }
   };
 
   render() {
-    const { openSidebar, side } = this.props;
+    const { openSidebar, side, isTablet } = this.props;
+
     let closeIconClass =
       side === "left"
         ? "glyphicon glyphicon-menu-left"
         : "glyphicon glyphicon-menu-right";
-    const width = openSidebar ? "45%" : 0;
+    const width = openSidebar ? (isTablet ? "100%" : "45%") : 0;
 
     return (
       <div
@@ -64,9 +68,9 @@ class Sidebar extends Component {
         className={`side${side}`}
       >
         {openSidebar && (
-          <a href="#" className="closebtn" onClick={this.props.closeSidebar}>
+          <button className="closebtn" onClick={this.props.closeSidebar}>
             <span className={closeIconClass} />
-          </a>
+          </button>
         )}
         {this._renderItem(this.props.content)}
       </div>
@@ -74,4 +78,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+export default isTablet(Sidebar);

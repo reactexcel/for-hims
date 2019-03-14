@@ -4,13 +4,16 @@ import emptycart from "../../assets/images/empty_cart.png";
 import { connect } from "react-redux";
 import { removeFromCartRequest } from "../../actions";
 
+/**UI component for Cart */
 class Cart extends Component {
   static defaultProps = {
     renderNext: () => {}
   };
+  /**Removes the product from Cart */
   onRemoveProduct = () => this.props.removeFromCartRequest();
   render() {
     const { addToCart } = this.props.addcart;
+    const { approvalStatus } = this.props.userProfile.data;
     return (
       <>
         <div className="cart_section">
@@ -30,7 +33,7 @@ class Cart extends Component {
                 <div className="empty_cart">
                   <h3>Your cart is empty!</h3>
                   <h5>Please enter your home shipping address</h5>
-                  <img src={emptycart} />
+                  <img src={emptycart} alt="" />
                 </div>
                 <button
                   type="button"
@@ -44,7 +47,7 @@ class Cart extends Component {
               <>
                 <div className="cart-details_product">
                   <div className="cart-details_product-image">
-                    <img src={pro_img1} />
+                    <img src={pro_img1} alt="" />
                   </div>
                   <div className="cart-details_product-details">
                     <h4> Sildenafil </h4>
@@ -77,13 +80,13 @@ class Cart extends Component {
                       Medical Fee <span> $5.00 </span>
                     </li>
                     <li>
-                      Promo Discount <span> -$30.00 </span>
+                      Promo Discount <span> -$5.00 </span>
                     </li>
                     <li className="total">
-                      Grand Total <span> $5.00 </span>
+                      Grand Total <span> $30.00 </span>
                     </li>
                     <li className="promo_code_btn">
-                      You save $30.00 with this promo code!
+                      You save $5.00 with this promo code!
                     </li>
                   </ul>
                 </div>
@@ -93,6 +96,11 @@ class Cart extends Component {
                     Apply
                   </a>
                 </div>
+                {approvalStatus === "Waiting" && (
+                  <div className="server_error">
+                    Your approval status is Waiting
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -103,6 +111,7 @@ class Cart extends Component {
             type="orange"
             className="next_btn"
             onClick={this.props.renderNext}
+            disabled={approvalStatus === "Waiting"}
           >
             Next
           </button>
@@ -112,7 +121,10 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = ({ addcart }) => ({ addcart });
+const mapStateToProps = ({ addcart, profile: { userProfile } }) => ({
+  addcart,
+  userProfile
+});
 
 export default connect(
   mapStateToProps,

@@ -1,5 +1,6 @@
 import React from "react";
 
+/**UI component for Prescriptions */
 export default function Prescriptions() {
   return (
     <div className="profile_module">
