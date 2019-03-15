@@ -51,6 +51,7 @@ class MyOrders extends Component {
                           data-userid={order.data().userId}
                           data-orderid={order.id}
                           data-cardid={order.data().cardId}
+                          data-doctor={order.data().doctorName}
                         >
                           <ul className="tab_order">
                             <li className="orders1">

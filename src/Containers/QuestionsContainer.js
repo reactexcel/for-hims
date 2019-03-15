@@ -129,6 +129,10 @@ class QuestionsContainer extends Component {
   /**Renders all the questions */
   renderQuestions = () => {
     const { data } = this.props.questions;
+    const {
+      data: { firstName, lastName }
+    } = this.props.userProfile;
+    const name = `${firstName} ${lastName}`;
     const { answers } = this.state;
     if (data.length) {
       return data.map((question, index) => (
@@ -143,7 +147,7 @@ class QuestionsContainer extends Component {
           </div>
           <div className="clearfix" />
           <div className="visit_question_right">
-            <small className="gillin_title">Garrett Gillin </small>
+            <small className="gillin_title">{name} </small>
             {question.data().type === "checkbox" && (
               <small className="apply_title">* select all that apply *</small>
             )}

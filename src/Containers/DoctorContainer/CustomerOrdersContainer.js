@@ -160,6 +160,7 @@ class CustomerOrdersContainer extends Component {
   render() {
     const { customerDetails, additionalInfo } = this.props;
     const { deny, doctorComment, error, approve } = this.state;
+    const { doctorName } = this.props.history.location.state;
     const {
       data: { role }
     } = this.props.userProfile;
@@ -178,6 +179,7 @@ class CustomerOrdersContainer extends Component {
         handleSubmit={this.handleSubmit}
         additionalInfo={additionalInfo}
         role={role}
+        doctorName={doctorName}
       />
     );
   }
