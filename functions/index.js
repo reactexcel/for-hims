@@ -137,7 +137,6 @@ async function charge(req, res) {
             }
           );
         }
-        console.log(customerData.approvalStatus, "approval status");
         if (customerData.approvalStatus === "Approved") {
           const charge = await stripe.orders.pay(orderId, {
             customer: customerData.customerId
@@ -260,7 +259,6 @@ async function order(req, res) {
       doctorId = doc.id;
       doctorName = `${doc.data().firstName} ${doc.data().lastName}`;
     });
-    console.log(order, uid, doctorId, cardId, doctorName, "order");
     const orderResponse = await admin
       .firestore()
       .collection("orders")
