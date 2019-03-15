@@ -115,6 +115,7 @@ export function* chargeCustomerRequest(action) {
       email,
       cardId
     });
+    console.log(response,'response')
     if (response.data.statusCode === 200) {
       const orderId = JSON.parse(response.data.body).order.id;
       const orderResponse = yield call(chargeCustomer, {
@@ -122,6 +123,7 @@ export function* chargeCustomerRequest(action) {
         orderId,
         cardId
       });
+      console.log(orderResponse,'orderRespons')
       if (orderResponse.data.statusCode === 200) {
         yield put(
           actions.chargeCustomerSuccess({
@@ -130,7 +132,7 @@ export function* chargeCustomerRequest(action) {
         );
       } else {
         const error = JSON.parse(orderResponse.data.body).error;
-
+        console.log(error,'orderResponse error')
         if (error.code) {
           yield put(actions.chargeCustomerError(error.message));
         } else {
@@ -139,6 +141,7 @@ export function* chargeCustomerRequest(action) {
       }
     } else {
       const error = JSON.parse(response.data.body).error;
+      console.log(error,'responseerorro')
       yield put(actions.chargeCustomerError(error));
     }
   } catch (e) {
