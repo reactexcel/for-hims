@@ -1,5 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const nodemailer = require("nodemailer");
+const smtpTransport =require("nodemailer-smtp-transport")
 admin.initializeApp(functions.config().firebase);
 // const settings = { timestampsInSnapshots: true };
 // // admin.firestore(settings);
@@ -129,7 +131,8 @@ async function charge(req, res) {
     if (response.exists) {
       const customerData = response.data();
       if (customerData.customerId) {
-        if (cardId != 0) {/*eslint-disable-line*/
+        if (cardId !== 0) {
+          /*eslint-disable-line*/
           const updateCard = await stripe.customers.update(
             customerData.customerId,
             {
@@ -376,6 +379,41 @@ app.post("/calculateOrder", (req, res) => {
       error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`
     });
   }
+});
+
+app.post("/emailsend", (req, res) => {
+  // getting dest email by query string
+  let transporter = nodemailer.createTransport(
+    smtpTransport({
+      service:'gmail',
+      // host: "smtp.gmail.com",
+      // port: 465,
+      secure: false,
+      auth: {
+        user: "rahul.excel2011@gmail.com",
+        pass: "Lknh7Gdq"
+      }
+    })
+  );
+  const dest = req.body.to;
+
+  const mailOptions = {
+    from: "rahul.excel2011@gmail.com", // Something like: Jane Doe <janedoe@gmail.com>
+    to: dest,
+    subject: "Regarding appoinment", // email subject
+    html: `<p style="font-size: 16px;">Pickle Riiiiiiiiiiiiiiiick!!</p>
+            <br />
+            <img src="https://images.prod.meredith.com/product/fc8754735c8a9b4aebb786278e7265a5/1538025388228/l/rick-and-morty-pickle-rick-sticker" />
+        ` // email content in HTML
+  };
+
+  // returning result
+  transporter.sendMail(mailOptions, (erro, info) => {
+    if (erro) {
+      res.send(erro.toString());
+    }
+    res.send("Sended");
+  });
 });
 
 exports.payment = functions.https.onRequest(app);

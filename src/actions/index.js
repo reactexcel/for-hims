@@ -245,3 +245,14 @@ export const chargeCustomerAfterApprovalSuccess = createAction(
 export const chargeCustomerAfterApprovalError = createAction(
   constants.CHARGE_CUSTOMER_AFTER_APPROVAL_ERROR
 );
+
+//actions for email send to doctor
+export const emailSendDoctorRequest = createAction(
+  constants.EMAIL_SEND_DOCTOR_REQUEST
+);
+export const emailSendDoctorSuccess = createAction(
+  constants.EMAIL_SEND_DOCTOR_SUCCESS
+);
+export const emailSendDoctorError = createAction(
+  constants.EMAIL_SEND_DOCTOR_ERROR
+);

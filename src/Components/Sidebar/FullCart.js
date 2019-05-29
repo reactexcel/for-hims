@@ -64,6 +64,8 @@ class FullCart extends Component {
 
   /**Updates approval status after placing order */
   onUpdateAppointment = data => {
+    console.log(data,'7777777777777777');
+    
     const { uid } = this.props.user.data;
     this.props.updateAppointmentRequest({ uid, ...data });
   };

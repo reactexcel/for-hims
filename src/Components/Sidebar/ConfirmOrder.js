@@ -51,7 +51,9 @@ class ConfirmOrder extends Component {
     //default card of customer will be used for charging customer and if any
     //other card is selected then its card id will be assigned to cardId
     const cardId = cardIndex === 0 ? cardIndex : data.cardList[cardIndex].id;
-    this.props.onUpdateAppointment({ status: "Waiting" });
+    console.log('6666666666666666',address.state);
+    
+    this.props.onUpdateAppointment({ status: "Waiting",state:address.state });
     this.props.onChargeCustomer(address, cardId);
   };
   componentDidUpdate(prevProps) {

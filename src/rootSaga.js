@@ -35,6 +35,7 @@ import {
   submitAnswersRequest
 } from "./actions/questions";
 import { getCustomerDetailRequest } from "./actions/getuserdetails";
+import {emailSendDoctorRequest} from "./actions/sendEmail"
 
 function* watchActions() {
   yield takeLatest(constants.LOGIN_REQUEST, loginRequest);
@@ -88,6 +89,10 @@ function* watchActions() {
   yield takeLatest(
     constants.CHARGE_CUSTOMER_AFTER_APPROVAL_REQUEST,
     chargeCustomerAfterApprovalRequest
+  );
+  yield takeLatest(
+    constants.EMAIL_SEND_DOCTOR_REQUEST,
+    emailSendDoctorRequest
   );
 }
 export default function* rootSaga() {

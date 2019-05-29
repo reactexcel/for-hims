@@ -87,5 +87,7 @@ class Firebase {
 
   //fetching all questions
   fetchQuestions = () => this.db.collection("questions");
+  fetchDoctor = () => this.db.collection("users").where("role","==","doctor" );
+
 }
 export default Firebase;
