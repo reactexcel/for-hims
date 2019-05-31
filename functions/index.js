@@ -386,8 +386,8 @@ app.post("/emailsend", (req, res) => {
   let transporter = nodemailer.createTransport(
     smtpTransport({
       service:'gmail',
-      // host: "smtp.gmail.com",
-      // port: 465,
+      host: "smtp.gmail.com",
+      port: 465,
       secure: false,
       auth: {
         user: "rahul.excel2011@gmail.com",
@@ -401,18 +401,20 @@ app.post("/emailsend", (req, res) => {
     from: "rahul.excel2011@gmail.com", // Something like: Jane Doe <janedoe@gmail.com>
     to: dest,
     subject: "Regarding appoinment", // email subject
-    html: `<p style="font-size: 16px;">Pickle Riiiiiiiiiiiiiiiick!!</p>
+    html: `<p style="font-size: 16px;">A new appointment is booked in you area</p>
+            
             <br />
-            <img src="https://images.prod.meredith.com/product/fc8754735c8a9b4aebb786278e7265a5/1538025388228/l/rick-and-morty-pickle-rick-sticker" />
         ` // email content in HTML
   };
 
   // returning result
-  transporter.sendMail(mailOptions, (erro, info) => {
+  transporter.sendMail(mailOptions, (erro, info) => {    
     if (erro) {
       res.send(erro.toString());
     }
+    else{
     res.send("Sended");
+    }
   });
 });
 

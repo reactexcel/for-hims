@@ -59,7 +59,7 @@ class CustomerOrdersContainer extends Component {
 
   /**Updating the approval status of customer and also submitting reason
    *  if approval is denied */
-  handleSubmit = event => {
+  handleSubmit = event => {    
     //Getting the action through data attributes
     const { action } = event.currentTarget.dataset;
     const { uid } = this.props.customerDetails.data;

@@ -119,8 +119,8 @@ export function* validateOldPasswordRequest(action) {
 //Updating appointment status of customer
 export function* updateAppointmentRequest(action) {
   let ariaDoctor
-  const { uid, status, role ,state,email} = action.payload;
-  console.log('bbbbbbbbbbbbbbbbb',email);
+  const { uid, status, role ,state} = action.payload;
+  console.log('bbbbbbbbbbbbbbbbb');
   try {    
     const response = yield firebase.user(uid).get();
     if (response.exists && response.data().approvalStatus) {
@@ -129,17 +129,15 @@ export function* updateAppointmentRequest(action) {
       );
     } else {
       yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
-      console.log('ccccccccccccccccc');
       yield firebase.fetchDoctor(state).get().then(function(res){
         for(let val of res.docs){
-          console.log(val.data(),'rrrrrrrrrrrrrrr');
           if(val.data().shippingAddress.states===state){
             ariaDoctor=val.data();
             break
           }
         }
       });
-      yield put(actions.emailSendDoctorRequest({to:"temp@air-blog.com"}))
+      yield put(actions.emailSendDoctorRequest({to:ariaDoctor.email}))
       //to prevent changing data for doctor
       if (!role) {
         const userData = yield firebase.user(uid).get();
@@ -150,8 +148,6 @@ export function* updateAppointmentRequest(action) {
       );
     }
   } catch (e) {
-    console.log('1111111111111111222222222222');
-
     yield put(actions.updateAppointmentError(e.message));
   }
 }
