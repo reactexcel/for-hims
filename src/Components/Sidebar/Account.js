@@ -48,23 +48,21 @@ class Account extends Component {
           <div className="profile_menu_box">
             <h4> Hi {firstName ? firstName : "there"}! </h4>
             <ul className="profile_menu">
-              {/* <li>
-                <Link
-                  to=""
-                  id="required-action"
-                  onClick={this.toggleActionRequired}
-                >
-                  <img src={baseline} alt="error" />
-                  Required Action
-                </Link>
-              </li> */}
+             
               <li>
                 <Link to="/profile">Profile</Link>
               </li>
               <li>
                 <Link to="/orders">Orders</Link>
               </li>
-              {role === ROLES.CUSTOMER && (
+              {role === ROLES.ADMIN && (
+                <>
+                  <li>
+                    <Link to="/orders-table">Order in Table View</Link>
+                  </li>
+                </>
+              )}
+              {(role === ROLES.CUSTOMER || role === ROLES.DOCTOR) && (
                 <li>
                   <Link to="/messages">Messages</Link>
                 </li>

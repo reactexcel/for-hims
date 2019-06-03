@@ -119,11 +119,13 @@ export function* validateOldPasswordRequest(action) {
 //Updating appointment status of customer
 export function* updateAppointmentRequest(action) {
   let ariaDoctor
-  const { uid, status, role ,state} = action.payload;
-  console.log('bbbbbbbbbbbbbbbbb');
+  const { uid, status, role ,state,email} = action.payload;
   try {    
     const response = yield firebase.user(uid).get();
     if (response.exists && response.data().approvalStatus) {
+      yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
+      yield put(actions.emailSendDoctorRequest({to:email}))
+
       yield put(
         actions.updateAppointmentSuccess("Appointment status has been updated")
       );
@@ -139,7 +141,7 @@ export function* updateAppointmentRequest(action) {
       });
       yield put(actions.emailSendDoctorRequest({to:ariaDoctor.email}))
       //to prevent changing data for doctor
-      if (!role) {
+      if (!role) {        
         const userData = yield firebase.user(uid).get();
         yield put(actions.updateProfileSuccess(userData.data()));
       }
@@ -147,7 +149,7 @@ export function* updateAppointmentRequest(action) {
         actions.updateAppointmentSuccess("Appointment status has been updated")
       );
     }
-  } catch (e) {
+  } catch (e) {    
     yield put(actions.updateAppointmentError(e.message));
   }
 }

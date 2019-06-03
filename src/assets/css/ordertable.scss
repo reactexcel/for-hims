@@ -1,0 +1,21 @@
+.order-table-container {
+  width: 90%;
+  margin: auto;
+  margin: 200px auto 200px auto;
+  .order-table {
+    background-color: white;
+  }
+  h3{
+    text-align: center;
+    font-weight: 600
+  }
+  .csv-data{
+    float:right;
+    border: 2px solid blue;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: white;
+    color: blue
+  }
+}

@@ -49,6 +49,8 @@ class CustomerOrdersContainer extends Component {
   onActionClick = event => {
     //Getting the action through data attributes
     const { action } = event.currentTarget.dataset;
+    console.log(this.props.customerDetails,'pppppppppppp');
+    
     this.setState({ [action]: true });
   };
   closeModal = event => {
@@ -62,19 +64,20 @@ class CustomerOrdersContainer extends Component {
   handleSubmit = event => {    
     //Getting the action through data attributes
     const { action } = event.currentTarget.dataset;
-    const { uid } = this.props.customerDetails.data;
+    const { uid,email } = this.props.customerDetails.data;
+    
     const { doctorComment } = this.state;
     const { role } = this.props.userProfile.data;
     let status;
     if (action === "approve") {
       status = "Approved";
-      this.props.updateAppointmentRequest({ uid, status, role });
+      this.props.updateAppointmentRequest({ uid, status, role,email });
     } else if (action === "deny") {
       const error = validateMessage(this.state.doctorComment);
       this.setState({ error });
       if (!Object.keys(error).length) {
         status = "Denied";
-        this.props.updateAppointmentRequest({ uid, status, role });
+        this.props.updateAppointmentRequest({ uid, status, role,email });
         this.props.sendMessageRequest({ uid, message: doctorComment });
       }
       this.setState({ doctorComment: "" });
@@ -108,7 +111,7 @@ class CustomerOrdersContainer extends Component {
               <ul className="tab_question">
                 {question.data().choices.map((choice, choiceIndex) => {
                   let isSolution =
-                    answers[0] !== undefined
+                  answers && answers[0] !== undefined
                       ? findIndex(answers, value => {
                           return value.questionUid === question.id;
                         })
@@ -160,7 +163,9 @@ class CustomerOrdersContainer extends Component {
   render() {
     const { customerDetails, additionalInfo } = this.props;
     const { deny, doctorComment, error, approve } = this.state;
+    console.log(this.props.history.location,'99999999999999');
     const { doctorName } = this.props.history.location.state;
+    
     const {
       data: { role }
     } = this.props.userProfile;

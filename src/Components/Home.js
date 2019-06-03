@@ -48,7 +48,8 @@ class Home extends Component {
                       improves blood flow to your penis to allow for a harder
                       and longer-lasting erection.
                     </h4>
-                    {role === ROLES.CUSTOMER && (
+                    
+                    {(role === ROLES.CUSTOMER  || role === ROLES.DOCTOR)  && (
                       <Link to="#" className="btn1" onClick={onAddProduct}>
                         Try Today - $30.00 per month
                       </Link>

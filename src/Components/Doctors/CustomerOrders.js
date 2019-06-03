@@ -123,7 +123,7 @@ export default class CustomerOrders extends Component {
                       {deny && " Submit Now"} {approve && "Yes"}
                     </div>
                     <div
-                      data-action={deny ? "deny" : "approve"}
+                      data-action={deny ? "den" : "approve"}
                       onClick={closeModal}
                     >
                       {deny && "Cancel"} {approve && "No"}
