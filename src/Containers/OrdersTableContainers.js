@@ -8,11 +8,15 @@ import OrderTableList from "../Components/OrderTableList";
 import { CSVLink, CSVDownload } from "react-csv";
 import Orders from "../Components/Orders";
 import moment from "moment";
+import OrderTableDropDown from "../Components/OrderTableDropDown"
+import {usaStates} from "../constants/profile"
+import isEqual from "lodash/isEqual"
 const csvData = [
   ["Order No.", "Doctor Name", "Doctor Email", "Status", "Amount", "Order Date"]
 ];
 
 class OrdersTableContainers extends Component {
+  state={stateFilteredUser:[]}
   componentDidMount() {
     const {
       uid,
@@ -27,14 +31,26 @@ class OrdersTableContainers extends Component {
       uid,
       userProfile: {
         data: { role }
-      }
+      },
+      orders:{data}
     } = this.props;
     if (prevProps.userProfile.data.role !== this.props.userProfile.data.role) {
       this.props.getAllOrdersRequest({ uid, role });
     }
+    if(!isEqual(prevProps.orders.data,this.props.orders.data)){
+      this.setState({
+        stateFilteredUser: data
+      })
+    }
   }
-  render() {
-    const { data, isLoading } = this.props.orders;
+  handleParent=(state)=>{        
+    const {data}=this.props.orders
+    let filteredData=data.filter((user)=>user.data().shipping.address.state === state)    
+    this.setState({stateFilteredUser:filteredData})
+  }
+  render() {    
+    const { isLoading ,data} = this.props.orders;
+    let stateList=this.state.stateFilteredUser
     const {
       data: { role }
     } = this.props.userProfile;
@@ -51,7 +67,10 @@ class OrdersTableContainers extends Component {
         ) : data.length ? (
           <div className="order-table-container table-responsive">
             <h3>All Orders in Table </h3>
+            <div className="dropdown-csv">
+            <OrderTableDropDown usaStates={usaStates} handleParent={this.handleParent}/>
             <CSVLink data={csvData} className="csv-data">Download CSV File</CSVLink>
+            </div>
             <table className="table table-bordered table-striped order-table">
               <thead>
                 <tr>
@@ -64,7 +83,7 @@ class OrdersTableContainers extends Component {
                 </tr>
               </thead>
               <tbody>
-                {data.map(element => {
+                {stateList.map(element => {
                   csvData.push([
                     element.data().id,
                     element.data().doctorName,

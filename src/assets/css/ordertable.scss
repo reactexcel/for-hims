@@ -1,21 +1,36 @@
 .order-table-container {
   width: 90%;
+  height: 100vh;
   margin: auto;
   margin: 200px auto 200px auto;
   .order-table {
     background-color: white;
   }
-  h3{
+  h3 {
     text-align: center;
-    font-weight: 600
+    font-weight: 600;
   }
-  .csv-data{
-    float:right;
+  .csv-data {
+    float: right;
     border: 2px solid blue;
     padding: 10px 15px;
     border-radius: 4px;
     margin-bottom: 10px;
     background-color: white;
-    color: blue
+    color: blue;
+  }
+  .dropdown-menu {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .dropdown-csv {
+    display: flex;
+    justify-content: space-between;
+    .dropdown {
+      button {
+        padding: 10px 15px;
+        font-size: 18px;
+      }
+    }
   }
 }
