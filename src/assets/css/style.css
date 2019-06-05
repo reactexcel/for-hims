@@ -99,6 +99,9 @@ h4 {
 .navbar-default .navbar-nav > li > a {
   cursor: pointer;
 }
+.navbar-default .navbar-items{
+  flex-direction:row
+}
 
 .header_menu_bg {
   background: #d7d7d2;

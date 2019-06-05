@@ -110,7 +110,7 @@ class Header extends PureComponent {
             </div>
 
             <div className="navbar-collapse collapse">
-              <ul className="nav navbar-nav navbar-right">
+              <ul className="nav navbar-nav navbar-right navbar-items">
                 {role === ROLES.CUSTOMER && (
                   <>
                     <li onClick={() => this._openSidebar("right", "shop")}>
