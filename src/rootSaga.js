@@ -94,6 +94,10 @@ function* watchActions() {
     constants.EMAIL_SEND_DOCTOR_REQUEST,
     emailSendDoctorRequest
   );
+  yield takeLatest(
+    constants.EMAIL_SEND_ADMIN_REQUEST,
+    emailSendDoctorRequest
+  );
 }
 export default function* rootSaga() {
   yield [watchActions()];

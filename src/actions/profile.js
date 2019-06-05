@@ -212,3 +212,29 @@ export function* savingConsentRequest(action) {
     yield put(actions.savingConsentError(e));
   }
 }
+
+//To save the consent given by customer
+export function* emailSendAdminRequest(action) {
+  const { uid } = action.payload;
+  try {
+    const response = yield firebase.user(uid).get();
+    if (response.exists && response.data().consent) {
+      yield put(actions.savingConsentSuccess("Your Consent is already saved"));
+    } else {
+      yield firebase.user(uid).set(
+        {
+          consent: {
+            consentProvided: true,
+            dateOfConsent: new Date()
+          }
+        },
+        { merge: true }
+      );
+      const userData = yield firebase.user(uid).get();
+      yield put(actions.updateProfileSuccess(userData.data()));
+      yield put(actions.savingConsentSuccess("Your Consent has been saved"));
+    }
+  } catch (e) {
+    yield put(actions.savingConsentError(e));
+  }
+}

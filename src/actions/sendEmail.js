@@ -7,9 +7,10 @@ function sendDoctorEmailApi(data) {
     return axios.post(`${url}/emailsend`, data);
   }
 export function* emailSendDoctorRequest(action) {
-    const { uid, token, to } = action.payload;
+  
+    const { uid, token, to,name,email,subject,message } = action.payload;
     try {
-      const response = yield call(sendDoctorEmailApi,{to})      
+      const response = yield call(sendDoctorEmailApi,{to,name,email,subject,message})      
       yield put(actions.emailSendDoctorSuccess(response.docs));
     } catch (e) {
       yield put(actions.emailSendDoctorError(e.message));

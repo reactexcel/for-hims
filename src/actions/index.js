@@ -256,3 +256,14 @@ export const emailSendDoctorSuccess = createAction(
 export const emailSendDoctorError = createAction(
   constants.EMAIL_SEND_DOCTOR_ERROR
 );
+
+//actions for email send to admin
+export const emailSendAdminRequest = createAction(
+  constants.EMAIL_SEND_ADMIN_REQUEST
+);
+export const emailSendAdminSuccess = createAction(
+  constants.EMAIL_SEND_ADMIN_SUCCESS
+);
+export const emailSendAdminError = createAction(
+  constants.EMAIL_SEND_ADMIN_ERROR
+);
