@@ -21,6 +21,7 @@ import ErrorBoundary from "./Components/Generic/ErrorBoundary";
 import CreateDoctorContainer from "./Containers/AdminContainer/CreateDoctorContainer";
 import CustomerOrdersContainer from "./Containers/DoctorContainer/CustomerOrdersContainer";
 import OrdersTableContainers from "./Containers/OrdersTableContainers.js"
+import ContactUsContainer from "./Containers/ContactUs"
 const store = createStore();
 
 class App extends Component {
@@ -105,6 +106,10 @@ class App extends Component {
                 <Route
                   path="/customer-details/:uid"
                   component={requireAuthentication(CustomerOrdersContainer)}
+                />
+                <Route
+                  path="/contact-us"
+                  component={requireAuthentication(ContactUsContainer)}
                 />
               </Switch>
             </ScrollToTop>

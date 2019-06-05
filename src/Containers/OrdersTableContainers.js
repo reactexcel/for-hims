@@ -49,7 +49,7 @@ class OrdersTableContainers extends Component {
             </div>
           </div>
         ) : data.length ? (
-          <div className="order-table-container">
+          <div className="order-table-container table-responsive">
             <h3>All Orders in Table </h3>
             <CSVLink data={csvData} className="csv-data">Download CSV File</CSVLink>
             <table className="table table-bordered table-striped order-table">

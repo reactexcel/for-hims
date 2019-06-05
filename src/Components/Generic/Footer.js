@@ -21,10 +21,7 @@ const Footer = memo(() => {
               <h4 className="pt2">Have a question?</h4>
               <ul className="footer_ul_amrc">
                 <li>
-                  <Link to="#">Help</Link>
-                </li>
-                <li>
-                  <a href="mailto:contact@forhims.com">contact@forhims.com</a>
+                  <Link to="/contact-us">Contact Us</Link>
                 </li>
               </ul>
 
