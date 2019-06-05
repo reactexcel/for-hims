@@ -42,17 +42,18 @@ class MyOrders extends Component {
                 <div className="my-orders-section">
                   <h3 align="center"> {this.renderTitle()}</h3>
                   {orders.map(order => (
+                    
                     <Collapsible
-                      key={order.id}
-                      trigger={
-                        <button
-                          type="button"
-                          onClick={this.getCustomerDetails}
-                          data-userid={order.data().userId}
-                          data-orderid={order.id}
-                          data-cardid={order.data().cardId}
-                          data-doctor={order.data().doctorName}
-                        >
+                    key={order.id}
+                    trigger={
+                      <button
+                      type="button"
+                      onClick={this.getCustomerDetails}
+                      data-userid={order.data().userId}
+                      data-orderid={order.id}
+                      data-cardid={order.data().cardId}
+                      data-doctor={order.data().doctorName}
+                      >
                           <ul className="tab_order">
                             <li className="orders1">
                               <span className="small_title"> Order No. </span>
@@ -61,7 +62,7 @@ class MyOrders extends Component {
                             <li className="orders2">
                               <span className="small_title">Status</span>
                               <span className="link">
-                                {order.data().status}
+                                {order.data().metadata.approvalStatus}
                               </span>
                             </li>
                             <li className="orders3">
