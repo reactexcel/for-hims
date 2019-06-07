@@ -28,7 +28,13 @@ export function* getAllMessageRequest(action) {
       .userMessages(uid)
       .orderBy("timestamp", "desc")
       .get();
-    yield put(actions.getAllMessageSuccess(response.docs));
+      console.log(response.docs);
+      response.docs.forEach(element => {
+        console.log(element.data());
+        
+      });
+      let res=response.docs
+    yield put(actions.getAllMessageSuccess({res,uid}));
   } catch (e) {
     yield put(actions.getAllMessageError(e.message));
   }
@@ -50,5 +56,20 @@ export function* messageReadStatusRequest(action) {
     yield put(actions.getAllMessageSuccess(response.docs));
   } catch (e) {
     yield put(actions.messageReadStatusError(e.message));
+  }
+}
+
+export function* areaUserRequest(action) {
+  const { states } = action.payload;  
+  try {
+  const response=  yield firebase
+      .fetchStateWiseUser(states).then((res)=>{
+        return res
+      })
+      yield put(actions.areaUserSuccess(response));
+      
+   
+  } catch (e) {
+    yield put(actions.areaUserError(e.message));
   }
 }

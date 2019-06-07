@@ -1,0 +1,37 @@
+.message-container {
+  .navbar-fixed-top {
+    position: sticky;
+  }
+  .message-doctor-container {
+    display: flex;
+    border: 1px solid;
+    height: calc(100vh - 120px);
+    background: white;
+    position: relative;
+  }
+  .user-list-container {
+    width: 30%;
+    border-right: 1px solid;
+    overflow-y: scroll;
+    .message-list-user {
+      border-top: 1px solid;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+  .messsage-reply-container {
+    width: 70%;
+    .reply-input {
+      position: absolute;
+      bottom: 0;     
+      input {
+        border: 1px solid;
+        margin: 0px;
+      }
+    }
+    .message-header {
+      position: sticky;
+      top: 0;
+    }
+  }
+}

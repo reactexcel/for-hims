@@ -21,7 +21,8 @@ import {
 import {
   sendMessageRequest,
   getAllMessageRequest,
-  messageReadStatusRequest
+  messageReadStatusRequest,
+  areaUserRequest
 } from "./actions/message";
 import { getAllOrdersRequest } from "./actions/orders";
 import {
@@ -98,6 +99,11 @@ function* watchActions() {
     constants.EMAIL_SEND_ADMIN_REQUEST,
     emailSendDoctorRequest
   );
+  yield takeLatest(
+    constants.AREA_USER_REQUEST,
+    areaUserRequest
+  );
+  
 }
 export default function* rootSaga() {
   yield [watchActions()];

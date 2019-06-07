@@ -267,3 +267,14 @@ export const emailSendAdminSuccess = createAction(
 export const emailSendAdminError = createAction(
   constants.EMAIL_SEND_ADMIN_ERROR
 );
+
+//action to get areawise user
+export const areaUserRequest = createAction(
+  constants.AREA_USER_REQUEST
+);
+export const areaUserSuccess = createAction(
+  constants.AREA_USER_SUCCESS
+);
+export const areaUserError = createAction(
+  constants.AREA_USER_ERROR
+);
