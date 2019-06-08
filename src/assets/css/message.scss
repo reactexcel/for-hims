@@ -21,9 +21,12 @@
   }
   .messsage-reply-container {
     width: 70%;
+    overflow-y: scroll;
+
     .reply-input {
+      display: flex;
       position: absolute;
-      bottom: 0;     
+      bottom: 0;
       input {
         border: 1px solid;
         margin: 0px;
@@ -32,6 +35,12 @@
     .message-header {
       position: sticky;
       top: 0;
+    }
+    .message-input {
+      // position: absolute;
+      // bottom: 0;
+      // overflow-y: scroll;
+
     }
   }
 }

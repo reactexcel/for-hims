@@ -1,14 +1,15 @@
 import { handleActions } from "redux-actions";
 import update from "immutability-helper";
 import * as constants from "../constants";
+import cloneDeep from "lodash/cloneDeep";
 
 const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  isAPICalled:false,
+  isAPICalled: false,
   message: "",
-  data: [],
+  data: {},
   stateUser: {
     isError: false,
     isSuccess: false,
@@ -23,26 +24,34 @@ const messageRequest = (state, action) =>
     isLoading: { $set: true },
     isSuccess: { $set: false },
     isError: { $set: false },
-    isAPICalled:{ $set:true},
+    isAPICalled: { $set: true },
     message: { $set: "" }
   });
 
-const messageSuccess = (state, action) =>
-  update(state, {
+const messageSuccess = (state, action) => {
+  const { uid, res } = action.payload;
+  
+  const newData = cloneDeep(state.data);
+  console.log(state.data,'rrrrrrrrrrrrrrrr1111111111111',uid);
+  
+  newData[uid] = res;
+  console.log(res,'rrrrrrrrrrrrrr',newData);
+  return update(state, {
     isLoading: { $set: false },
     isSuccess: { $set: true },
     isError: { $set: false },
-    isAPICalled:{ $set:true},
-    data: { $set: action.payload },
+    isAPICalled: { $set: true },
+    data: { $set: newData },
     message: { $set: "" }
   });
+};
 
 const messageError = (state, action) =>
   update(state, {
     isLoading: { $set: false },
     isSuccess: { $set: false },
     isError: { $set: true },
-    isAPICalled:{ $set:true},
+    isAPICalled: { $set: true },
     message: { $set: action.payload }
   });
 

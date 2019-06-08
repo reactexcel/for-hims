@@ -5,16 +5,22 @@ import { firebase } from "../Firebase";
 //Action for sending message
 export function* sendMessageRequest(action) {
   const { uid, message } = action.payload;
-
   try {
     yield firebase
-      .userMessages(uid)
-      .add({ message, timestamp: new Date(), read: false });
+    .userMessages(uid)
+    .add(action.payload);
     const resp = yield firebase
-      .userMessages(uid)
-      .orderBy("timestamp", "desc")
-      .get();
-    yield put(actions.sendMessageSuccess(resp.docs));
+    .userMessages(uid)
+    .orderBy("timestamp", "asc")
+    .get();
+    console.log(resp.docs);
+    resp.docs.forEach(element => {
+      console.log(element.data());
+      
+    });
+    let res=resp.docs
+
+    yield put(actions.sendMessageSuccess({res,uid}));
   } catch (e) {
     yield put(actions.sendMessageError(e.message));
   }
@@ -26,7 +32,7 @@ export function* getAllMessageRequest(action) {
   try {
     const response = yield firebase
       .userMessages(uid)
-      .orderBy("timestamp", "desc")
+      .orderBy("timestamp", "asc")
       .get();
       console.log(response.docs);
       response.docs.forEach(element => {

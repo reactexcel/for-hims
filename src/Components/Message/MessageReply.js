@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Spinner from "react-bootstrap/Spinner";
 export default class MessageReply extends Component {
   state = {
     replyMessage: ""
@@ -11,24 +11,43 @@ export default class MessageReply extends Component {
   };
 
   render() {
-      console.log(this.props.message.isAPICalled,'llllllllllllll');
-      const {message}=this.props
+    const { message, selectedCustomerMessage,replyMessage } = this.props;
+    console.log(selectedCustomerMessage, "lllllllllll",replyMessage);
+
     return (
       <div>
-          {message.isAPICalled ?
+        {message.isAPICalled ? (
           <>
-        <div className="message-header">header</div>
-        <div className="reply-input">
-          <input
-            type="text"
-            name="replyMessage"
-            value={this.props.replyMessage}
-            onChange={this.props.onMessageReply}
-          />
-        </div>
-        </>:
-        "click on user to see message"
-          }
+            <div className="message-header">header</div>
+            <div className="message-input">
+              <div className="doctor-customer-message-container">
+                {selectedCustomerMessage ? (
+                  selectedCustomerMessage.map(element => (
+                    <div className="doctor-customer-message">
+                      {element.exists
+                        ? element.data().messageDoctor
+                        : element.messageDoctor}
+                    </div>
+                  ))
+                ) : (
+                  <Spinner animation="border" variant="info" />
+                )}
+              </div>
+            </div>
+            <div className="reply-input">
+              <input
+                type="text"
+                name="replyMessage"
+                value={this.props.replyMessage}
+                onChange={this.props.onMessageReply}
+                onKeyUp={this.props.onSendClick}
+              />
+              <button onClick={this.props.onSendClick}>Send Message</button>
+            </div>
+          </>
+        ) : (
+          "click on user to see message"
+        )}
       </div>
     );
   }
