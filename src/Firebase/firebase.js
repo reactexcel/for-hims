@@ -101,12 +101,12 @@ class Firebase {
               Array.isArray(val.data().shippingAddress) &&
               val
                 .data()
-                .shippingAddress.filter(value => value["states"] === state);
+                .shippingAddress.filter(value => value["states"] === state);                
             if (address.length) {
               const dataWithId = val.data();
               dataWithId["uid"] = val.id;
               data.push(dataWithId);
-            }
+            }            
             if (key == response.docs.length - 1) {
               resolve(data);
             }

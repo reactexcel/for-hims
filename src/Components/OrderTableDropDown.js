@@ -4,7 +4,6 @@ export default function OrderTableDropDown({ usaStates,handleParent }) {
   const [selected, setSelected] = useState("");
 
   const handleSelect = e => {
-    console.log(e.target.value);
     setSelected(e.target.value)
     handleParent(e.target.value)
   };

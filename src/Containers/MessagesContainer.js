@@ -13,7 +13,7 @@ class MessagesContainer extends Component {
       <div className="message-container">
         <Header />
         <div className="message-role container">
-          {data.role === role.DOCTOR ? <MessageDoctor /> : <MessageUser />}
+          {data.role === role.DOCTOR ? <MessageDoctor /> : data.role === role.CUSTOMER?<MessageUser uid={this.props.uid} />:"loading data"}
         </div>
       </div>
     );

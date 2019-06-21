@@ -269,12 +269,17 @@ export const emailSendAdminError = createAction(
 );
 
 //action to get areawise user
-export const areaUserRequest = createAction(
-  constants.AREA_USER_REQUEST
+export const areaUserRequest = createAction(constants.AREA_USER_REQUEST);
+export const areaUserSuccess = createAction(constants.AREA_USER_SUCCESS);
+export const areaUserError = createAction(constants.AREA_USER_ERROR);
+
+//action for state doctor
+export const fetchStateDoctorRequest = createAction(
+  constants.FETCH_STATE_DOCTOR_REQUEST
 );
-export const areaUserSuccess = createAction(
-  constants.AREA_USER_SUCCESS
+export const fetchStateDoctorSuccess = createAction(
+  constants.FETCH_STATE_DOCTOR_SUCCESS
 );
-export const areaUserError = createAction(
-  constants.AREA_USER_ERROR
+export const fetchStateDoctorError = createAction(
+  constants.FETCH_STATE_DOCTOR_ERROR
 );

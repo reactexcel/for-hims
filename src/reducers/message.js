@@ -30,12 +30,8 @@ const messageRequest = (state, action) =>
 
 const messageSuccess = (state, action) => {
   const { uid, res } = action.payload;
-  
-  const newData = cloneDeep(state.data);
-  console.log(state.data,'rrrrrrrrrrrrrrrr1111111111111',uid);
-  
+  const newData = cloneDeep(state.data);  
   newData[uid] = res;
-  console.log(res,'rrrrrrrrrrrrrr',newData);
   return update(state, {
     isLoading: { $set: false },
     isSuccess: { $set: true },
@@ -85,6 +81,39 @@ const areaUserError = (state, action) =>
     }
   });
 
+
+
+
+  const fetchStateDoctorRequest = (state, action) =>
+  update(state, {
+    stateUser: {
+      isLoading: { $set: true },
+      isSuccess: { $set: false },
+      isError: { $set: false }
+    }
+  });
+
+const fetchStateDoctorSuccess = (state, action) =>
+  update(state, {
+    stateUser: {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false },
+      data: { $set: action.payload },
+      message: { $set: "" }
+    }
+  });
+
+const fetchStateDoctorError = (state, action) =>
+  update(state, {
+    stateUser: {
+      isLoading: { $set: false },
+      isSuccess: { $set: false },
+      isError: { $set: true },
+      message: { $set: action.payload }
+    }
+  });
+
 export default handleActions(
   {
     [constants.SEND_MESSAGES_REQUEST]: messageRequest,
@@ -97,7 +126,11 @@ export default handleActions(
 
     [constants.AREA_USER_REQUEST]: areaUserRequest,
     [constants.AREA_USER_SUCCESS]: areaUserSuccess,
-    [constants.AREA_USER_ERROR]: areaUserError
+    [constants.AREA_USER_ERROR]: areaUserError,
+
+    [constants.FETCH_STATE_DOCTOR_REQUEST]: fetchStateDoctorRequest,
+    [constants.FETCH_STATE_DOCTOR_SUCCESS]: fetchStateDoctorSuccess,
+    [constants.FETCH_STATE_DOCTOR_ERROR]: fetchStateDoctorError
   },
   initialState
 );

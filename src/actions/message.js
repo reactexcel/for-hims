@@ -13,13 +13,7 @@ export function* sendMessageRequest(action) {
     .userMessages(uid)
     .orderBy("timestamp", "asc")
     .get();
-    console.log(resp.docs);
-    resp.docs.forEach(element => {
-      console.log(element.data());
-      
-    });
-    let res=resp.docs
-
+    const res=resp.docs
     yield put(actions.sendMessageSuccess({res,uid}));
   } catch (e) {
     yield put(actions.sendMessageError(e.message));
@@ -29,19 +23,18 @@ export function* sendMessageRequest(action) {
 //Action for getting all the messages of the user
 export function* getAllMessageRequest(action) {
   const { uid } = action.payload;
+  console.log(uid,'yyyyyyyy');
+  
   try {
     const response = yield firebase
       .userMessages(uid)
       .orderBy("timestamp", "asc")
       .get();
-      console.log(response.docs);
-      response.docs.forEach(element => {
-        console.log(element.data());
-        
-      });
-      let res=response.docs
+      const res=response.docs
     yield put(actions.getAllMessageSuccess({res,uid}));
   } catch (e) {
+    console.log(e.message);
+    
     yield put(actions.getAllMessageError(e.message));
   }
 }
@@ -77,5 +70,28 @@ export function* areaUserRequest(action) {
    
   } catch (e) {
     yield put(actions.areaUserError(e.message));
+  }
+}
+
+
+
+export function* fetchStateDoctorRequest(action) {
+  const { uid,state } = action.payload;  
+  try {
+   let response= yield firebase.fetchDoctor(state).get().then(function(res){
+      for(let val of res.docs){
+        if(val.data().shippingAddress.states===state){
+          console.log(val);
+          
+          return val.data();
+        }
+      }
+    });
+    console.log(response,'jjjjjjjjjjjjj');
+    
+      yield put(actions.fetchStateDoctorSuccess(response));
+  
+  } catch (e) {
+    yield put(actions.fetchStateDoctorError(e));
   }
 }

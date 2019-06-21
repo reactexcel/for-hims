@@ -22,11 +22,17 @@
   .messsage-reply-container {
     width: 70%;
     overflow-y: scroll;
+    position: relative;
+
+    // padding: 0 3%;
 
     .reply-input {
       display: flex;
       position: absolute;
-      bottom: 0;
+      bottom: 1em;
+      left: 50%;
+      width: 95%;
+      transform: translateX(-50%);
       input {
         border: 1px solid;
         margin: 0px;
@@ -35,12 +41,31 @@
     .message-header {
       position: sticky;
       top: 0;
+      font-size: 20px;
+      text-align: center;
+      background: #e7e7e7;
+      padding:2% 0%;
+
     }
     .message-input {
       // position: absolute;
       // bottom: 0;
       // overflow-y: scroll;
-
+      padding: 3% 3%;
+    }
+    .doctor-customer-message {
+      margin-bottom: 5px;
+      .right {
+        text-align: right;
+        span {
+          // background: grey;
+          padding: 10px 15px;
+          border-radius: 4px;
+        }
+      }
+      .left {
+        text-align: left;
+      }
     }
   }
 }

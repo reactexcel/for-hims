@@ -48,9 +48,7 @@ class CustomerOrdersContainer extends Component {
    * Confirmation if clicked on approval */
   onActionClick = event => {
     //Getting the action through data attributes
-    const { action } = event.currentTarget.dataset;
-    console.log(this.props.customerDetails,'pppppppppppp');
-    
+    const { action } = event.currentTarget.dataset;    
     this.setState({ [action]: true });
   };
   closeModal = event => {
@@ -163,7 +161,6 @@ class CustomerOrdersContainer extends Component {
   render() {
     const { customerDetails, additionalInfo } = this.props;
     const { deny, doctorComment, error, approve } = this.state;
-    console.log(this.props.history.location,'99999999999999');
     const { doctorName } = this.props.history.location.state;
     
     const {

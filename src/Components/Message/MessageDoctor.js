@@ -64,12 +64,10 @@ class MessageDoctor extends Component {
       customerMessage: clonedCustomerMessage,
       replyMessage:""
     });
-    console.log(e.keyCode, "kkkkkkkkkkk");
       this.props.sendMessageRequest(messageSendCustomer);
     }
   };
   render() {
-    console.log(this.state.replyMessage, "yyyyyyyyyyyyyy");
     const { data } = this.props.message;
     return (
       <div className="message-doctor-container">
