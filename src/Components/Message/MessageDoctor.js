@@ -72,13 +72,16 @@ class MessageDoctor extends Component {
     return (
       <div className="message-doctor-container">
         <div className="user-list-container">
-          {this.state.stateFilteredUser.map((element, i) => (
+         {this.state.stateFilteredUser.length?
+          this.state.stateFilteredUser.map((element, i) => (
             <MessageSideList
               key={element.uid}
               user={element}
               onCustomerClick={this.onCustomerClick}
             />
-          ))}
+          )):"Loading ..."
+        }
+         
         </div>
         <div className="messsage-reply-container">
           <MessageReply
@@ -87,6 +90,9 @@ class MessageDoctor extends Component {
             selectedCustomerMessage={this.state.customerMessage[this.state.uid]}
             onSendClick={this.onSendClick}
             replyMessage={this.state.replyMessage}
+            activeCustomer={this.state.activeCustomer}
+            doctorClass="right"
+            customerClass="left"
             {...this.props}
           />
         </div>

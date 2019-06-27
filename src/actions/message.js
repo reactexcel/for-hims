@@ -23,7 +23,6 @@ export function* sendMessageRequest(action) {
 //Action for getting all the messages of the user
 export function* getAllMessageRequest(action) {
   const { uid } = action.payload;
-  console.log(uid,'yyyyyyyy');
   
   try {
     const response = yield firebase

@@ -10,13 +10,13 @@ export default class MessageReply extends Component {
     });
   };
 
-  render() {
-    const { message, selectedCustomerMessage,replyMessage ,doctorClass,customerClass} = this.props;
+  render() {    
+    const { message, selectedCustomerMessage,replyMessage ,doctorClass,customerClass,activeCustomer} = this.props;
     return (
       <div>
         {message.isAPICalled ? (
           <>
-            <div className="message-header">header</div>
+            <div className="message-header">{activeCustomer.email}</div>
             <div className="message-input">
               <div className="doctor-customer-message-container">
                 {selectedCustomerMessage ? (

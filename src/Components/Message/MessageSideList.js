@@ -9,7 +9,7 @@ export default class MessageSideList extends Component {
         <div>
           {user.firstName ? user.firstName + " " + user.lastName : user.email}
         </div>
-        <div>last message send</div>
+        {/* <div>last message send</div> */}
       </div>
     );
   }

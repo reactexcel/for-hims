@@ -24,12 +24,10 @@ class MessageUser extends Component {
     const { shippingAddress } = this.props.userProfile.data;
 
     let state = shippingAddress[0].states;
-    console.log(this.props,'kkkkkkkkkkkk', "888888888888888");
     this.props.fetchStateDoctorRequest({ state });
   }
   componentDidUpdate(prevProps) {
     if (!isEqual(prevProps.stateUser.data, this.props.stateUser.data)) {
-      console.log(this.props.stateUser.data, "kkkkkkkkkkk");
       let data = [this.props.stateUser.data];
       this.setState({
         stateFilteredUser: data
@@ -45,9 +43,7 @@ class MessageUser extends Component {
     this.setState({
       activeCustomer: user,
     });
-    const {uid} = this.props;
-    // console.log(this.props,'bbbbbbbbbbbbbbb');
-    
+    const {uid} = this.props;    
     this.props.getAllMessageRequest({ uid });
   };
   onMessageReply = e => {
@@ -81,13 +77,15 @@ class MessageUser extends Component {
     return (
       <div className="message-doctor-container">
         <div className="user-list-container">
-          {this.state.stateFilteredUser.map((element, i) => (
+        {this.state.stateFilteredUser.length?
+          this.state.stateFilteredUser.map((element, i) => (
             <MessageSideList
               key={element.uid}
               user={element}
               onCustomerClick={this.onCustomerClick}
             />
-          ))}
+          )):"Loading ..."
+        }
         </div>
         <div className="messsage-reply-container">
           <MessageReply
@@ -96,6 +94,7 @@ class MessageUser extends Component {
             selectedCustomerMessage={this.state.customerMessage[this.props.uid]}
             onSendClick={this.onSendClick}
             replyMessage={this.state.replyMessage}
+            activeCustomer={this.state.activeCustomer}
             doctorClass="left"
             customerClass="right"
             {...this.props}
