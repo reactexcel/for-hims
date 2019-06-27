@@ -41,10 +41,10 @@ class ConfirmOrder extends Component {
     } = this.props;
     const { index, cardIndex } = this.state;
     const address = {
-      line1: shippingAddress[index].street,
-      city: shippingAddress[index].city,
-      state: shippingAddress[index].states,
-      postal_code: shippingAddress[index].zipcode,
+      line1: shippingAddress[index] && shippingAddress[index].street,
+      city: shippingAddress[index] && shippingAddress[index].city,
+      state: shippingAddress[index] && shippingAddress[index].states,
+      postal_code: shippingAddress[index] && shippingAddress[index].zipcode,
       country: "US"
     };
     //cardId will be assigned as 0 if no other card is selected, indicates
@@ -183,10 +183,10 @@ class ConfirmOrder extends Component {
                           />
                         </li>
                         <li>
-                          {shippingAddress[index].street},{" "}
-                          {shippingAddress[index].city},{" "}
-                          {shippingAddress[index].states} <br />{" "}
-                          {shippingAddress[index].zipcode}
+                          {shippingAddress[index] && shippingAddress[index].street},{" "}
+                          {shippingAddress[index] && shippingAddress[index].city},{" "}
+                          {shippingAddress[index] && shippingAddress[index].states} <br />{" "}
+                          {shippingAddress[index] && shippingAddress[index].zipcode}
                           <br /> USA
                         </li>
                         <li className="billing">
