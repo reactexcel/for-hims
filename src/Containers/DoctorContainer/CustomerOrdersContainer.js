@@ -66,6 +66,7 @@ class CustomerOrdersContainer extends Component {
     
     const { doctorComment } = this.state;
     const { role } = this.props.userProfile.data;
+   
     let status;
     if (action === "approve") {
       status = "Approved";
@@ -74,9 +75,16 @@ class CustomerOrdersContainer extends Component {
       const error = validateMessage(this.state.doctorComment);
       this.setState({ error });
       if (!Object.keys(error).length) {
+        const messageSendCustomer = {
+          messageDoctor: doctorComment,
+          doctorRead: true,
+          customerRead: false,
+          timestamp: new Date(),
+          uid:this.state.uid
+        };
         status = "Denied";
         this.props.updateAppointmentRequest({ uid, status, role,email });
-        this.props.sendMessageRequest({ uid, message: doctorComment });
+        this.props.sendMessageRequest(messageSendCustomer);
       }
       this.setState({ doctorComment: "" });
     }
