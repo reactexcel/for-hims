@@ -1,5 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const nodemailer = require("nodemailer");
+const smtpTransport =require("nodemailer-smtp-transport")
 admin.initializeApp(functions.config().firebase);
 // const settings = { timestampsInSnapshots: true };
 // // admin.firestore(settings);
@@ -129,7 +131,8 @@ async function charge(req, res) {
     if (response.exists) {
       const customerData = response.data();
       if (customerData.customerId) {
-        if (cardId != 0) {      /*eslint-disable-line*/
+        if (cardId !== 0) {
+          /*eslint-disable-line*/
           const updateCard = await stripe.customers.update(
             customerData.customerId,
             {
@@ -141,13 +144,16 @@ async function charge(req, res) {
           const charge = await stripe.orders.pay(orderId, {
             customer: customerData.customerId
           });
+          const updateOrder = await stripe.orders.update(orderId, {
+            metadata: { approvalStatus: "Approved" }
+          });
           const order = await stripe.orders.retrieve(orderId);
           let doctorId;
           const doctor = await admin
             .firestore()
             .collection("users")
             .where("role", "==", "doctor")
-            .where("states", "==", order.shipping.address.state)
+            .where("shippingAddress.states", "==", order.shipping.address.state)
             .get();
           doctor.forEach(doc => {
             doctorId = doc.id;
@@ -156,7 +162,11 @@ async function charge(req, res) {
             .firestore()
             .collection("orders")
             .doc(orderId)
-            .update({ ...order, userId: uid, doctorId });
+            .update({
+              ...order,
+              userId: uid,
+              doctorId
+            });
 
           send(res, 200, {
             message: "Success",
@@ -167,7 +177,15 @@ async function charge(req, res) {
             message: "Success",
             charge: "You will be charged after approval by Doctor"
           });
-        } else {
+        } else if (customerData.approvalStatus === "Denied") {
+          const orderResponse = await admin
+            .firestore()
+            .collection("orders")
+            .doc(orderId)
+            .update({
+              "metadata.approvalStatus": "Denied",
+              status: "cancelled"
+            });
           send(res, 200, {
             message: "Success",
             charge: "Your medication has been denied"
@@ -233,21 +251,22 @@ async function order(req, res) {
       },
       metadata: { approvalStatus }
     });
-    let doctorId;
+    let doctorId, doctorName;
     const doctor = await admin
       .firestore()
       .collection("users")
       .where("role", "==", "doctor")
-      .where("states", "==", order.shipping.address.state)
+      .where("shippingAddress.states", "==", order.shipping.address.state)
       .get();
     doctor.forEach(doc => {
       doctorId = doc.id;
+      doctorName = `${doc.data().firstName} ${doc.data().lastName}`;
     });
     const orderResponse = await admin
       .firestore()
       .collection("orders")
       .doc(order.id)
-      .set({ ...order, userId: uid, doctorId, cardId });
+      .set({ ...order, userId: uid, doctorId, cardId, doctorName });
 
     send(res, 200, {
       message: "Success",
@@ -360,6 +379,43 @@ app.post("/calculateOrder", (req, res) => {
       error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`
     });
   }
+});
+
+app.post("/emailsend", (req, res) => {
+  // getting dest email by query string
+  let transporter = nodemailer.createTransport(
+    smtpTransport({
+      service:'gmail',
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: false,
+      auth: {
+        user: "rahul.excel2011@gmail.com",
+        pass: "Lknh7Gdq"
+      }
+    })
+  );
+  const dest = req.body.to;
+
+  const mailOptions = {
+    from: "rahul.excel2011@gmail.com", // Something like: Jane Doe <janedoe@gmail.com>
+    to: dest,
+    subject: "Regarding appoinment", // email subject
+    html: `<p style="font-size: 16px;">A new appointment is booked in you area</p>
+            
+            <br />
+        ` // email content in HTML
+  };
+
+  // returning result
+  transporter.sendMail(mailOptions, (erro, info) => {    
+    if (erro) {
+      res.send(erro.toString());
+    }
+    else{
+    res.send("Sended");
+    }
+  });
 });
 
 exports.payment = functions.https.onRequest(app);

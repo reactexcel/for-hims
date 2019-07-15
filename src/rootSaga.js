@@ -16,12 +16,15 @@ import {
   updateAppointmentRequest,
   saveGenderRequest,
   uploadPhotoRequest,
-  savingConsentRequest
+  savingConsentRequest,
+  
 } from "./actions/profile";
 import {
   sendMessageRequest,
   getAllMessageRequest,
-  messageReadStatusRequest
+  messageReadStatusRequest,
+  areaUserRequest,
+  fetchStateDoctorRequest
 } from "./actions/message";
 import { getAllOrdersRequest } from "./actions/orders";
 import {
@@ -35,6 +38,7 @@ import {
   submitAnswersRequest
 } from "./actions/questions";
 import { getCustomerDetailRequest } from "./actions/getuserdetails";
+import { emailSendDoctorRequest } from "./actions/sendEmail";
 
 function* watchActions() {
   yield takeLatest(constants.LOGIN_REQUEST, loginRequest);
@@ -88,6 +92,13 @@ function* watchActions() {
   yield takeLatest(
     constants.CHARGE_CUSTOMER_AFTER_APPROVAL_REQUEST,
     chargeCustomerAfterApprovalRequest
+  );
+  yield takeLatest(constants.EMAIL_SEND_DOCTOR_REQUEST, emailSendDoctorRequest);
+  yield takeLatest(constants.EMAIL_SEND_ADMIN_REQUEST, emailSendDoctorRequest);
+  yield takeLatest(constants.AREA_USER_REQUEST, areaUserRequest);
+  yield takeLatest(
+    constants.FETCH_STATE_DOCTOR_REQUEST,
+    fetchStateDoctorRequest
   );
 }
 export default function* rootSaga() {

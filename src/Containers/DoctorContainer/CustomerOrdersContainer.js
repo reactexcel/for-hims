@@ -48,7 +48,7 @@ class CustomerOrdersContainer extends Component {
    * Confirmation if clicked on approval */
   onActionClick = event => {
     //Getting the action through data attributes
-    const { action } = event.currentTarget.dataset;
+    const { action } = event.currentTarget.dataset;    
     this.setState({ [action]: true });
   };
   closeModal = event => {
@@ -59,23 +59,32 @@ class CustomerOrdersContainer extends Component {
 
   /**Updating the approval status of customer and also submitting reason
    *  if approval is denied */
-  handleSubmit = event => {
+  handleSubmit = event => {    
     //Getting the action through data attributes
     const { action } = event.currentTarget.dataset;
-    const { uid } = this.props.customerDetails.data;
+    const { uid,email } = this.props.customerDetails.data;
+    
     const { doctorComment } = this.state;
     const { role } = this.props.userProfile.data;
+   
     let status;
     if (action === "approve") {
       status = "Approved";
-      this.props.updateAppointmentRequest({ uid, status, role });
+      this.props.updateAppointmentRequest({ uid, status, role,email });
     } else if (action === "deny") {
       const error = validateMessage(this.state.doctorComment);
       this.setState({ error });
       if (!Object.keys(error).length) {
+        const messageSendCustomer = {
+          messageDoctor: doctorComment,
+          doctorRead: true,
+          customerRead: false,
+          timestamp: new Date(),
+          uid:this.state.uid
+        };
         status = "Denied";
-        this.props.updateAppointmentRequest({ uid, status, role });
-        this.props.sendMessageRequest({ uid, message: doctorComment });
+        this.props.updateAppointmentRequest({ uid, status, role,email });
+        this.props.sendMessageRequest(messageSendCustomer);
       }
       this.setState({ doctorComment: "" });
     }
@@ -108,7 +117,7 @@ class CustomerOrdersContainer extends Component {
               <ul className="tab_question">
                 {question.data().choices.map((choice, choiceIndex) => {
                   let isSolution =
-                    answers[0] !== undefined
+                  answers && answers[0] !== undefined
                       ? findIndex(answers, value => {
                           return value.questionUid === question.id;
                         })
@@ -160,6 +169,8 @@ class CustomerOrdersContainer extends Component {
   render() {
     const { customerDetails, additionalInfo } = this.props;
     const { deny, doctorComment, error, approve } = this.state;
+    const { doctorName } = this.props.history.location.state;
+    
     const {
       data: { role }
     } = this.props.userProfile;
@@ -178,6 +189,7 @@ class CustomerOrdersContainer extends Component {
         handleSubmit={this.handleSubmit}
         additionalInfo={additionalInfo}
         role={role}
+        doctorName={doctorName}
       />
     );
   }

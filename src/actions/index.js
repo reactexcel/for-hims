@@ -245,3 +245,41 @@ export const chargeCustomerAfterApprovalSuccess = createAction(
 export const chargeCustomerAfterApprovalError = createAction(
   constants.CHARGE_CUSTOMER_AFTER_APPROVAL_ERROR
 );
+
+//actions for email send to doctor
+export const emailSendDoctorRequest = createAction(
+  constants.EMAIL_SEND_DOCTOR_REQUEST
+);
+export const emailSendDoctorSuccess = createAction(
+  constants.EMAIL_SEND_DOCTOR_SUCCESS
+);
+export const emailSendDoctorError = createAction(
+  constants.EMAIL_SEND_DOCTOR_ERROR
+);
+
+//actions for email send to admin
+export const emailSendAdminRequest = createAction(
+  constants.EMAIL_SEND_ADMIN_REQUEST
+);
+export const emailSendAdminSuccess = createAction(
+  constants.EMAIL_SEND_ADMIN_SUCCESS
+);
+export const emailSendAdminError = createAction(
+  constants.EMAIL_SEND_ADMIN_ERROR
+);
+
+//action to get areawise user
+export const areaUserRequest = createAction(constants.AREA_USER_REQUEST);
+export const areaUserSuccess = createAction(constants.AREA_USER_SUCCESS);
+export const areaUserError = createAction(constants.AREA_USER_ERROR);
+
+//action for state doctor
+export const fetchStateDoctorRequest = createAction(
+  constants.FETCH_STATE_DOCTOR_REQUEST
+);
+export const fetchStateDoctorSuccess = createAction(
+  constants.FETCH_STATE_DOCTOR_SUCCESS
+);
+export const fetchStateDoctorError = createAction(
+  constants.FETCH_STATE_DOCTOR_ERROR
+);

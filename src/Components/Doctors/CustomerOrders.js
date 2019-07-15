@@ -27,7 +27,8 @@ export default class CustomerOrders extends Component {
       onActionClick,
       closeModal,
       handleSubmit,
-      role
+      role,
+      doctorName
     } = this.props;
     return (
       <>
@@ -56,9 +57,15 @@ export default class CustomerOrders extends Component {
                 <span>Approval Status : </span>
                 <span>{approvalStatus}</span>
               </div>
+              {role === ROLES.ADMIN && (
+                <div className="customer-info">
+                  <span>Assigned To : </span>
+                  <span>{doctorName}</span>
+                </div>
+              )}
             </div>
             {this.props.renderQuestions()}
-            {(approvalStatus === "Waiting" && role === ROLES.DOCTOR) && (
+            {approvalStatus === "Waiting" && role === ROLES.DOCTOR && (
               <div className="review-customer_button">
                 <button data-action="approve" onClick={onActionClick}>
                   Approve
@@ -116,7 +123,7 @@ export default class CustomerOrders extends Component {
                       {deny && " Submit Now"} {approve && "Yes"}
                     </div>
                     <div
-                      data-action={deny ? "deny" : "approve"}
+                      data-action={deny ? "den" : "approve"}
                       onClick={closeModal}
                     >
                       {deny && "Cancel"} {approve && "No"}

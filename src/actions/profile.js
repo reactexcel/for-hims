@@ -118,18 +118,30 @@ export function* validateOldPasswordRequest(action) {
 
 //Updating appointment status of customer
 export function* updateAppointmentRequest(action) {
-  const { uid, status, role } = action.payload;
-  try {
+  let ariaDoctor
+  const { uid, status, role ,state,email} = action.payload;
+  try {    
     const response = yield firebase.user(uid).get();
     if (response.exists && response.data().approvalStatus) {
-      yield firebase.user(uid).update({ approvalStatus: status });
+      yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
+      yield put(actions.emailSendDoctorRequest({to:email}))
+
       yield put(
         actions.updateAppointmentSuccess("Appointment status has been updated")
       );
     } else {
       yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
+      yield firebase.fetchDoctor(state).get().then(function(res){
+        for(let val of res.docs){
+          if(val.data().shippingAddress.states===state){
+            ariaDoctor=val.data();
+            break
+          }
+        }
+      });
+      yield put(actions.emailSendDoctorRequest({to:ariaDoctor.email}))
       //to prevent changing data for doctor
-      if (!role) {
+      if (!role) {        
         const userData = yield firebase.user(uid).get();
         yield put(actions.updateProfileSuccess(userData.data()));
       }
@@ -137,7 +149,7 @@ export function* updateAppointmentRequest(action) {
         actions.updateAppointmentSuccess("Appointment status has been updated")
       );
     }
-  } catch (e) {
+  } catch (e) {    
     yield put(actions.updateAppointmentError(e.message));
   }
 }
@@ -200,3 +212,31 @@ export function* savingConsentRequest(action) {
     yield put(actions.savingConsentError(e));
   }
 }
+
+//To save the consent given by customer
+export function* emailSendAdminRequest(action) {
+  const { uid } = action.payload;
+  try {
+    const response = yield firebase.user(uid).get();
+    if (response.exists && response.data().consent) {
+      yield put(actions.savingConsentSuccess("Your Consent is already saved"));
+    } else {
+      yield firebase.user(uid).set(
+        {
+          consent: {
+            consentProvided: true,
+            dateOfConsent: new Date()
+          }
+        },
+        { merge: true }
+      );
+      const userData = yield firebase.user(uid).get();
+      yield put(actions.updateProfileSuccess(userData.data()));
+      yield put(actions.savingConsentSuccess("Your Consent has been saved"));
+    }
+  } catch (e) {
+    yield put(actions.savingConsentError(e));
+  }
+}
+
+

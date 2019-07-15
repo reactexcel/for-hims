@@ -41,16 +41,17 @@ class ConfirmOrder extends Component {
     } = this.props;
     const { index, cardIndex } = this.state;
     const address = {
-      line1: shippingAddress[index].street,
-      city: shippingAddress[index].city,
-      state: shippingAddress[index].states,
-      postal_code: shippingAddress[index].zipcode,
+      line1: shippingAddress[index] && shippingAddress[index].street,
+      city: shippingAddress[index] && shippingAddress[index].city,
+      state: shippingAddress[index] && shippingAddress[index].states,
+      postal_code: shippingAddress[index] && shippingAddress[index].zipcode,
       country: "US"
     };
     //cardId will be assigned as 0 if no other card is selected, indicates
     //default card of customer will be used for charging customer and if any
     //other card is selected then its card id will be assigned to cardId
-    const cardId = cardIndex === 0 ? cardIndex : data.cardList[cardIndex].id;
+    const cardId = cardIndex === 0 ? cardIndex : data.cardList[cardIndex].id;    
+    this.props.onUpdateAppointment({ status: "Waiting",state:address.state });
     this.props.onChargeCustomer(address, cardId);
   };
   componentDidUpdate(prevProps) {
@@ -62,7 +63,6 @@ class ConfirmOrder extends Component {
         !this.props.userProfile.data.hasOwnProperty("approvalStatus") ||
         this.props.userProfile.data.approvalStatus !== "Approved"
       ) {
-        this.props.onUpdateAppointment({ status: "Waiting" });
         this.props.history.push("/gender");
       } else {
         this.props.removeFromCart();
@@ -183,10 +183,10 @@ class ConfirmOrder extends Component {
                           />
                         </li>
                         <li>
-                          {shippingAddress[index].street},{" "}
-                          {shippingAddress[index].city},{" "}
-                          {shippingAddress[index].states} <br />{" "}
-                          {shippingAddress[index].zipcode}
+                          {shippingAddress[index] && shippingAddress[index].street},{" "}
+                          {shippingAddress[index] && shippingAddress[index].city},{" "}
+                          {shippingAddress[index] && shippingAddress[index].states} <br />{" "}
+                          {shippingAddress[index] && shippingAddress[index].zipcode}
                           <br /> USA
                         </li>
                         <li className="billing">

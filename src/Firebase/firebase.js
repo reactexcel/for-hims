@@ -2,6 +2,7 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
+import { resolve, reject } from "q";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -58,7 +59,7 @@ class Firebase {
   };
 
   // *** User API ***
-  users = () => this.db.collection("users")
+  users = () => this.db.collection("users");
   user = uid => this.db.collection("users").doc(uid);
   //message api
   userMessages = uid =>
@@ -73,10 +74,8 @@ class Firebase {
       .doc(uid)
       .collection("shippingAddress");
   //orders api
-  userOrders = uid =>
-    this.db
-      .collection("orders")
-      
+  userOrders = uid => this.db.collection("orders");
+
   // Creating storage ref for uploading photo
   uploadPhoto = file => {
     let user = this.auth.currentUser.uid;
@@ -87,5 +86,33 @@ class Firebase {
 
   //fetching all questions
   fetchQuestions = () => this.db.collection("questions");
+  //fetch doctor
+  fetchDoctor = () => this.db.collection("users").where("role", "==", "doctor");
+  //fetch state wise user
+  fetchStateWiseUser = async state => {
+    return new Promise((resolve, reject) => {
+      this.db
+        .collection("users")
+        .get()
+        .then(response => {
+          let data = [];
+          response.docs.forEach((val, key) => {
+            let address =
+              Array.isArray(val.data().shippingAddress) &&
+              val
+                .data()
+                .shippingAddress.filter(value => value["states"] === state);                
+            if (address.length) {
+              const dataWithId = val.data();
+              dataWithId["uid"] = val.id;
+              data.push(dataWithId);
+            }            
+            if (key == response.docs.length - 1) {
+              resolve(data);
+            }
+          });
+        });
+    });
+  };
 }
 export default Firebase;
