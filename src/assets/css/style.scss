@@ -29,7 +29,7 @@
 
 body {
   color: #000;
-  background: #fbf8f5;
+  background: #F6F6F6;
   font-size: 16px;
   line-height: 1.4;
   font-family: 'Lato', sans-serif;
@@ -185,7 +185,32 @@ ul.left_menu li a:hover {
       z-index: 10;
     }
   }
-  
+}
+
+.before-after{
+  padding: 10% 10%; 
+  text-align: center;
+  .main-heading{
+    font-size: 40px;
+    font-weight: 600;
+  }
+  p{
+    font-weight: lighter;
+    font-size: 14px;
+    color: #414142;
+    margin: 0 0
+  }
+  .before-after-content{
+    margin-bottom: 20px;
+  }
+  .effect-month{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+     div{
+       text-align: center;
+       margin-top: 5px;
+     }
+  }
 }
 .header_slider .col-xs-12{
   padding: 0px

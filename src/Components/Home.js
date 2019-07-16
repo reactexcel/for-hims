@@ -12,6 +12,11 @@ import endo1 from "../assets/images/FDACLEARED-white.png"
 import endo2 from "../assets/images/hi-res-logo-registered.png"
 import endo3 from "../assets/images/umassmedical-vitiligo-logo-white.png"
 import uv_light from "../assets/images/UV-light.png"
+import before_1 from "../assets/images/before-1.png"
+import before_2 from "../assets/images/before-2.png"
+import before_3 from "../assets/images/before-3.png"
+import before_4 from "../assets/images/before-4.png"
+
 /**UI Component for Home page */
 class Home extends Component {
   constructor(props) {
@@ -79,31 +84,24 @@ class Home extends Component {
           </div>
         </div>
         <div className="clearfix" />
-        <div className="get_hard_section">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-6">
-                <div className="pdp-silde" />
-              </div>
-              <div className="col-xs-12 col-sm-12 col-md-6">
-                <div className="callout-wrapper">
-                  <div className="callout-inset">
-                    <h1 className="callout-title">Get hard</h1>
-                    <h3>
-                      Sildenafil (Active Ingredient in Viagra) <br /> helps you
-                      get hard when the time is <br /> right. You shouldn’t go
-                      from 6 to <br /> midnight just by taking it. If you do,{" "}
-                      <br /> contact your doctor.
-                    </h3>
-                    <Link to="#" className="learn">
-                      learn: what to expect from taking sildenafil
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="before-after">
+      <div className="main-heading">Before & After</div>
+      <p>The Noleuderm System uses the same phototherapy bulbs found in the leading</p>
+      <p className="before-after-content"> dermatology offices. Achieve in-office results in the comfort of your own home.</p>
+      <div class="grid-container effect-month">
+      <img src={before_1} alt="" className="grid-item"/>
+      <img src={before_2} alt="" className="grid-item"/>
+      <img src={before_3} alt="" className="grid-item"/>
+      <img src={before_4} alt="" className="grid-item"/>
+
+         <div className="grid-item">2 months</div>
+         <div className="grid-item">4 months</div>
+         <div className="grid-item">6 months</div>
+         <div className="grid-item">8 months</div>
+
+
+      </div>
+      </div>
         <div className="clearfix" />
 
         <div className="stay_hard_section">
