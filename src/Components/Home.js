@@ -16,6 +16,7 @@ import before_1 from "../assets/images/before-1.png"
 import before_2 from "../assets/images/before-2.png"
 import before_3 from "../assets/images/before-3.png"
 import before_4 from "../assets/images/before-4.png"
+import video_1 from "../assets/images/video-1.png"
 
 /**UI Component for Home page */
 class Home extends Component {
@@ -98,27 +99,21 @@ class Home extends Component {
          <div className="grid-item">4 months</div>
          <div className="grid-item">6 months</div>
          <div className="grid-item">8 months</div>
-
-
       </div>
       </div>
         <div className="clearfix" />
 
-        <div className="stay_hard_section">
+        <div className="doctor_recommended_section">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-6">
-                <div className="callout-wrapper">
+              <div className="col-xs-12 col-sm-12 col-md-6 content">
+                <div className="recommended-callout-wrapper">
                   <div className="callout-inset">
-                    <h1 className="callout-title"> Stay hard </h1>
-                    <h3>
-                      Sexy time is meant to be sexy. That <br /> means keeping
-                      that erection strong for <br /> as long as it’s needed.
-                      Aint no one have <br /> time for bad sexy time.
-                    </h3>
-                    <Link to="#" className="learn">
-                      learn: how long does Viagra (Sildenafil Citrate) last
-                    </Link>
+                    <h1 className="callout-title"> DOCTOR RECOMMENDED </h1>
+                    <p>UV Phototherapy is the most widely recommended
+                     solution for Vitiligo by doctors worldwide due to its 
+                     clinical validation, safety, and effectiveness.</p>
+                   <button className="play">PLAY VIDEO</button>
                   </div>
                 </div>
               </div>
@@ -126,7 +121,7 @@ class Home extends Component {
               <div className="col-xs-12 col-sm-12 col-md-6">
                 {" "}
                 <img
-                  src={hims_pdp_sildenafil_img}
+                  src={video_1}
                   className="product-img2"
                   alt="Sildenafil"
                 />{" "}
