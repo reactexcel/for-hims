@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import noleuderm_logo from "../../assets/images/logo.png";
+import noleuderm_logo from "../../assets/images/logo-white.png";
 import Sidebar from "./Sidebar";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";

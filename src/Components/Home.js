@@ -7,7 +7,11 @@ import hims_pdp_sildenafil_img3 from "../assets/images/hims_pdp_sildenafil_img3.
 import hims_pdp_sildenafil_img4 from "../assets/images/hims_pdp_sildenafil_img4.jpg";
 import hims_pdp_sildenafil_img5 from "../assets/images/hims_pdp_sildenafil_img5.jpg";
 import hims_pdp_sildenafil_img6 from "../assets/images/hims_pdp_sildenafil_img6.jpg";
-
+import home_bg from "../assets/images/home-bg.png"
+import endo1 from "../assets/images/FDACLEARED-white.png"
+import endo2 from "../assets/images/hi-res-logo-registered.png"
+import endo3 from "../assets/images/umassmedical-vitiligo-logo-white.png"
+import uv_light from "../assets/images/UV-light.png"
 /**UI Component for Home page */
 class Home extends Component {
   constructor(props) {
@@ -26,46 +30,43 @@ class Home extends Component {
         <div className="header_slider">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-2"> </div>
-              <div className="col-xs-12 col-sm-12 col-md-4 text-center">
-                <img
-                  src={noleuderm_product}
-                  className="product-img"
-                  alt="Noleuderm Product"
-                />
+              {/* <div className="col-xs-12 col-sm-12 col-md-2"> </div> */}
+              <div className="col-xs-12 col-sm-12 col-md-8 text-center first-home-section ">
+              <img src={uv_light} className="uv-light"/>
+              <div className="content">
+              <h1>TREAT</h1>
+              <h1>VITILIGO</h1>
+              <p>NATURALLY. EFFECTIVE. AT HOME.</p>
+              <div className="description">
+              <p>Clinically Proven, Trusted Worldwide. Phototherapy is the only FDA</p>
+                <p> cleared treatment for Vitiligo. The Noleuderm System couples a portable,</p>
+                <p> handheld phototherapy lamp with a specially formulated lotion in order to </p>
+                <p> ensure an optimal healing process and results.         </p>
               </div>
-              <div className="col-xs-12 col-sm-12 col-md-1"> </div>
+              <div className="endorsed">
+              <div>Endorsed By</div>
+              <div className="endorsed-list">
+                <img src={endo1}/>
+                <img src={endo2}/>
+                <img src={endo3}/>
+
+              </div>
+              </div>
+              </div>
+              </div>
+              {/* <div className="col-xs-12 col-sm-12 col-md-1"> </div> */}
               <div className="col-xs-12 col-sm-12 col-md-4">
                 <div className="baseballcard__container">
-                  <div className="baseball-card__inset">
-                    <h5> The Erectile Dysfunction Pack</h5>
-                    <h1 className="baseball-card__header">
-                      Sildenafil (Active Ingredient in Viagra)
-                    </h1>
-                    <h4>
-                      Sildenafil is the active ingredient in Viagra and is FDA
-                      approved to treat ED. It helps relax blood vessels and
-                      improves blood flow to your penis to allow for a harder
-                      and longer-lasting erection.
-                    </h4>
+                 
                     
-                    {(role === ROLES.CUSTOMER  || role === ROLES.DOCTOR)  && (
+                    {/* {(role === ROLES.CUSTOMER  || role === ROLES.DOCTOR)  && ( */}
                       <Link to="#" className="btn1" onClick={onAddProduct}>
                         Try Today - $30.00 per month
                       </Link>
-                    )}
-                    <div className="baseball-card__legal">
-                      * Prescription products require a medical consultation via
-                      an online
-                      <br /> assessment after checkout
-                    </div>
-                    <div className="link-text">
-                      Important Safety Information
-                    </div>
-                  </div>
+                    {/* )} */}
+                   
                 </div>
               </div>
-              <div className="col-xs-12 col-sm-12 col-md-1"> </div>
             </div>
           </div>
         </div>

@@ -62,7 +62,7 @@ h4 {
 }
 
 .navbar-default {
-  background-color: #d7d7d2 !important;
+  background-color: transparent !important;
 }
 .navbar-fixed-top .container {
   width: 100%;
@@ -74,9 +74,9 @@ h4 {
   transition: background-color 200ms linear;
 }
 .blank_space {
-  height: 75px;
+  /* height: 75px; */
   width: 100%;
-  display: inline-block;
+  display: none;
 }
 .header_logo {
   position: absolute;
@@ -136,15 +136,58 @@ ul.left_menu li a:hover {
 }
 
 .header_slider {
-  background: #d7d7d2;
+  background: #f6f6f6;
   padding: 80px 0px 180px 0px;
+  .first-home-section{
+    background-image: url("../images/home-bg.png");
+    height: 100vh;
+    background-size: cover;
+    .content{
+      margin-top: 150px;
+      color: #fff;
+      text-align: left;
+      margin-left: 120px;
+      h1{
+        font-size: 45px;
+        font-weight: 700;
+        margin: 0px
+      }
+      p{
+        font-size: 14px;
+      }
+      .description{
+        margin-top: 50px;
+      }
+      .endorsed{
+        margin-top: 50px
+      }
+      .endorsed-list{
+        margin-top: 10px;
+        img{
+          margin-right: 30px;
+        }
+        // display: flex;
+        // justify-content: flex-start;
+      }
+    }
+    .uv-light{
+      position: absolute;
+      top:80px;
+      height: 80%;
+      right:-20px;
+    }
+  }
+  
+}
+.header_slider .col-xs-12{
+  padding: 0px
 }
 .small,
 small {
   font-size: 85%;
 }
 .product-img {
-  padding-top: 75px;
+  /* padding-top: 75px; */
 }
 
 .baseballcard__container {
@@ -2284,7 +2327,7 @@ form.doctor_form {
     display: none;
   }
   .header_slider {
-    padding: 80px 0px 100px 0px;
+    padding: 0px 0px 0px 0px;
   }
 
   .callout-inset h1.callout-title {
@@ -2737,7 +2780,9 @@ form.doctor_form {
   }
 
   .blank_space {
-    height: 68px;
+    /* height: 68px; */
+    display: none;
+
   }
 
   footer {
@@ -2856,7 +2901,9 @@ form.doctor_form {
   }
 
   .blank_space {
-    height: 68px;
+    /* height: 68px; */
+    display: none;
+
   }
 
   footer {
