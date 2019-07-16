@@ -54,17 +54,25 @@ class Home extends Component {
               </div>
               </div>
               </div>
-              {/* <div className="col-xs-12 col-sm-12 col-md-1"> </div> */}
-              <div className="col-xs-12 col-sm-12 col-md-4">
+              <div className="col-xs-12 col-sm-12 col-md-3">
                 <div className="baseballcard__container">
-                 
-                    
+                  <div className="baseball-card__inset">
+                  <div className="pricing">
+                    <h1 className="baseball-card__header">
+                    $49
+                    </h1>
+                   <div>
+                     <div style={{fontSize:"1.3em",marginTop:"10px",fontWeight:"600"}}>MONTH</div>
+                     <div style={{fontSize:"12px",color:"#414142",fontWeight:"lighter"}}>cancel anytime</div>
+                   </div>
+                    </div>
                     {/* {(role === ROLES.CUSTOMER  || role === ROLES.DOCTOR)  && ( */}
                       <Link to="#" className="btn1" onClick={onAddProduct}>
-                        Try Today - $30.00 per month
+                        START <i class="fa fa-arrow-right"></i>
                       </Link>
                     {/* )} */}
-                   
+                
+                  </div>
                 </div>
               </div>
             </div>
