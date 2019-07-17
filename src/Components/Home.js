@@ -294,70 +294,29 @@ class Home extends Component {
         </div>
         <div className="clearfix" />
 
-        <div className="stay_safe_section">
+        <div className="clinical_papers_section">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-6">
-                {" "}
-                <img
-                  src={hims_pdp_sildenafil_img4}
-                  className="product-img2"
-                  alt="Sildenafil"
-                />{" "}
-              </div>
-              <div className="col-xs-12 col-sm-12 col-md-6">
-                <div className="callout-wrapper">
-                  <div className="callout-inset">
-                    <h1 className="callout-title"> Stay safe </h1>
-                    <h3>
-                      Some men experience a tingly feeling in <br /> their body,
-                      headaches, blurred vision <br /> and other side-effects
-                      from Sildenafil <br /> (Viagra). Make sure to read all the{" "}
-                      <br /> important safety information and use <br /> our
-                      platform to talk with a doctor if you <br /> are
-                      experiencing side-effects so they <br /> can recommend
-                      adjustments to your <br /> treatment plan.
-                    </h3>
-                    <Link to="#" className="learn">
-                      view our related articles
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="clearfix" />
+            {/* <div className="callout-inset"> */}
 
-        <div className="viagra_section">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-6">
-                <div className="callout-wrapper">
-                  <div className="callout-inset">
-                    <h1 className="callout-title"> Viagra vs Sildenafil </h1>
-                    <h3>
-                      Viagra is a brand name medication <br /> invented by
-                      Pfizer, while sildenafil (or <br /> sildenafil citrate) is
-                      the active ingredient <br /> in Viagra that’s responsible
-                      for its <br /> positive effects on treating erectile{" "}
-                      <br /> dysfunction.
-                    </h3>
-                    <Link to="#" className="learn">
-                      Learn: How Viagra compares to Sildenafil
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-xs-12 col-sm-12 col-md-6">
-                {" "}
-                <img src={hims_pdp_sildenafil_img5} alt="Sildenafil" />{" "}
-              </div>
+            <div className="clinical-title">
+            DOWNLOAD SUPPORTING CLINICAL PAPERS
             </div>
-          </div>
+            <p>
+            If you’re interested in learning more about the Noleuderm System and the supporting clinical
+             evidence demonstrating the effectiveness our at home UV Phototherapy, submit your email:
+            </p>
+            </div>
+            <div className="email-form">
+            <input type="text" placeholder="email"/>
+            <button>SUBMIT</button>
+            </div>
+            </div>
+          {/* </div> */}
         </div>
-        <div className="clearfix" />
+        
+
+      
 
         <div className="safety_information">
           <div className="container-fluid">
