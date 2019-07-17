@@ -17,6 +17,7 @@ import before_2 from "../assets/images/before-2.png"
 import before_3 from "../assets/images/before-3.png"
 import before_4 from "../assets/images/before-4.png"
 import video_1 from "../assets/images/video-1.png"
+import video_2 from "../assets/images/the-science.png"
 
 /**UI Component for Home page */
 class Home extends Component {
@@ -130,8 +131,37 @@ class Home extends Component {
           </div>
         </div>
         <div className="clearfix" />
+        <div className="science_section">
+          <div className="container-fluid">
+            <div className="row">
+            <div className="col-xs-12 col-sm-12 col-md-4">
+                {" "}
+                <img
+                  src={video_2}
+                  className="product-img3"
+                  alt="Sildenafil"
+                />{" "}
+              </div>
+              <div className="col-xs-12 col-sm-12 col-md-8 content">
+                <div className="recommended-callout-wrapper">
+                  <div className="callout-inset">
+                    <h1 className="callout-title"> THE SCIENCE </h1>
+                    <p>
+                    The Noleuderm System relies on continued and concentrated exposure of
+                     Vitiliginous areas to narrowband UV Phototherapy via its portable
+                      handheld lamp coupled with its specially formulated lotion to promote
+                     effective healing and results.
+                    </p>
+                   <button className="play">PLAY VIDEO</button>
+                  </div>
+                </div>
+              </div>
 
-        <div className="full_bg" />
+            
+            </div>
+          </div>
+        </div>
+        {/* <div className="full_bg" /> */}
         <div className="clearfix" />
 
         <div className="stay_hard_section">

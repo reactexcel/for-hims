@@ -395,6 +395,24 @@ a.learn:hover {
   transform: scale(1.6) translateY(-10px);
   transform-origin: top right;
 }
+.science_section{
+  margin: 30px 0;
+  .recommended-callout-wrapper {
+   clip-path: polygon(15% 0%, 100% 0, 100% 100%, 0% 100%);
+        background-color: #fff;
+  }
+  .product-img3 {
+    transform: scale(2) ;
+    transform-origin: top left;
+    // width:100%
+  }
+  .content{
+    text-align: right
+  }
+  .callout-inset{
+    padding:180px 200px 160px 200px
+  }
+}
 
 .full_bg {
   background: url(../images/full_bg.jpg) no-repeat center center;
@@ -625,11 +643,13 @@ ul.open_tab_order .small_title {
 .active span.close-btn {
   display: inline-block;
 }
+.doctor_recommended_section{
 .content {
   padding: 0 18px;
   /* display: none; */
   overflow: hidden;
   font-size: 16px;
+}
 }
 
 .scrollup {
