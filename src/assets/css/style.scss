@@ -304,10 +304,10 @@ a.btn1:hover {
     color: #414142;
     font-display: Lato, Light-Italic;
   }
-  .play{
+  .play {
     background: transparent;
-    border:1px solid #F15A22;
-    color:#F15A22;
+    border: 1px solid #f15a22;
+    color: #f15a22;
     padding: 15px 50px;
     margin-top: 50px;
   }
@@ -395,25 +395,110 @@ a.learn:hover {
   transform: scale(1.6) translateY(-10px);
   transform-origin: top right;
 }
-.science_section{
+.science_section {
   margin: 30px 0;
   .recommended-callout-wrapper {
-   clip-path: polygon(15% 0%, 100% 0, 100% 100%, 0% 100%);
-        background-color: #fff;
+    clip-path: polygon(15% 0%, 100% 0, 100% 100%, 0% 100%);
+    background-color: #f6f6f6;
   }
   .product-img3 {
-    transform: scale(2) ;
+    transform: scale(2);
     transform-origin: top left;
     // width:100%
   }
-  .content{
-    text-align: right
+  .content {
+    text-align: right;
   }
-  .callout-inset{
-    padding:180px 200px 160px 200px
+  .callout-inset {
+    padding: 180px 100px 160px 300px;
   }
 }
+.system_section {
+  padding: 100px 0;
+  .system-accordion {
+    display: flex;
+    flex-direction: column;
+    width:fit-content;
+    color:#414142
+  }
+  .callout-inset{
+    padding:60px 150px 160px 100px;
+    background: #F6F6F6;
+    color:#414142
+  }
+  p {
+    font-weight: lighter;
+  }
+  .open-right {
+    width: 0;
+    height: 0;
+    border-top: 3px solid #f15a22;
+    border-left: 3px solid #f15a22;
+    border-bottom: 3px solid #f15a22;
+    border-right: 3px solid transparent;
+    margin-right: 10px;
+    padding: 12px 15px;
+    border-radius: 30px;
+    span {
+      position: relative;
+      left: 15px;
+      padding: 4px 0px;
+      top: 5px;
+      color: #f15a22;
+      font-size: 25px;
+      font-weight: 600;
+      background-color: #f6f6f6;
+    }
+  }
+  .open-left {
+    width: 0;
+    height: 0;
+    border-top: 3px solid #f15a22;
+    border-left: 3px solid transparent;
+    border-bottom: 3px solid #f15a22;
+    border-right: 3px solid #f15a22;
+    margin-right: 10px;
+    padding: 12px 15px;
+    border-radius: 30px;
+    span {
+      position: relative;
+      right: 15px;
+      padding: 4px 0px;
+      top: 5px;
+      color: #f15a22;
+      font-size: 25px;
+      font-weight: 600;
+      background-color: #f6f6f6;
+    }
+  }
+  .btn-link {
+    text-align: left;
+    text-decoration:none;
+    outline:none !important;
+    margin-bottom: 10px;
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
 
+  }
+  .fa-angle-down {
+    float: right;
+    color: #f15a22;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+  .collapse{
+    width:50%;
+    margin-left: 70px;
+    font-weight: lighter
+  }
+  .collapsing{
+    width:50%;
+    margin-left: 70px;
+    font-weight: lighter
+
+  }
+}
 .full_bg {
   background: url(../images/full_bg.jpg) no-repeat center center;
   background-size: cover;
@@ -643,13 +728,13 @@ ul.open_tab_order .small_title {
 .active span.close-btn {
   display: inline-block;
 }
-.doctor_recommended_section{
-.content {
-  padding: 0 18px;
-  /* display: none; */
-  overflow: hidden;
-  font-size: 16px;
-}
+.doctor_recommended_section {
+  .content {
+    padding: 0 18px;
+    /* display: none; */
+    overflow: hidden;
+    font-size: 16px;
+  }
 }
 
 .scrollup {
