@@ -80,7 +80,7 @@ class Header extends PureComponent {
           role="navigation"
           ref={this.setHeaderRef}
         >
-          <div className="container">
+          <div className="container header">
             {role === ROLES.CUSTOMER && (
               <div className="cart_desktop">
                 <span onClick={() => this._openSidebar("right", "cart")}>
@@ -91,10 +91,11 @@ class Header extends PureComponent {
             <div className="header_logo">
               <Link to="/">
                 <img src={noleuderm_logo} title="hime" alt="hime" />
+                
               </Link>
             </div>
 
-            <div className="navbar-header">
+            <div className="navbar-header mobile">
               <button
                 type="button"
                 className="navbar-toggle"

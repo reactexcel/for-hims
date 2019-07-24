@@ -12,13 +12,17 @@ const Footer = memo(() => {
     }
   };
 
-  return (
+  return ( 
     <>
-      <footer className="footer">
+      <footer className="footer mobile">
         <div className="container">
           <div className="row">
-           <img src={logo} alt=""/>
-           <p>
+          <div className='logo-main-row'>
+            <div className='logo-class'>
+            <img src={logo} alt="" className='logo-image' />
+            </div>
+            <div className='footer-main-detail'>
+            <p className='footer-detail'>
              Results may vary.Noleuderm is not a drug and is not intended to diagnose,treat,or prevent
              any disease.Individual resul may vary and improvement is often seen within 4 week of use with
              complete result after 16 to 20 days of continuous use .The information throughout the website is not
@@ -28,15 +32,28 @@ const Footer = memo(() => {
              Noleuderm you should stop using it and contact you physician .Statement and information regarding
              cosmetic grade products are not evaluated by the Food and Drug Administration and are not intended 
              to diagnose treat ,cure ,or prevent any disease.
-
-
-
            </p>
-           <div className="copyright">
-             <div className="first">COPYRIGHT @2019.NOLEUDERM ALL RIGHTS RESERVED </div>
-             <div className="second">COPY RIGHT</div>
-             <div className="third">PRIVACY POLICY</div>
-             <div className="fourth">TERMS & CONDITION</div>
+            </div>
+         
+           
+          </div>
+          {/* <div className = 'copyright-mobile '>
+            <div className="first">COPYRIGHT @2019.NOLEUDERM ALL RIGHTS RESERVED </div>
+            <div>
+              <div className="second">COPY RIGHT</div>
+              <div className="third">PRIVACY POLICY</div>
+              <div className="fourth">TERMS & CONDITION</div>
+            </div>
+          </div> */}
+           
+           <div className="copyright footer ">
+             <div className="first one">COPYRIGHT @2019.NOLEUDERM ALL RIGHTS RESERVED </div>
+             <div className='footer-condition'>
+             <div className="second two">COPY RIGHT</div>
+             <div className="third three">PRIVACY POLICY</div>
+             <div className="fourth four">TERMS & CONDITION</div>
+             </div>
+             
            </div>
           </div>
         </div>

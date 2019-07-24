@@ -49,11 +49,11 @@ class Home extends Component {
             <div className="row">
               {/* <div className="col-xs-12 col-sm-12 col-md-2"> </div> */}
               <div className="col-xs-12 col-sm-12 col-md-8 text-center first-home-section ">
-                <img src={uv_light} className="uv-light" />
-                <div className="content">
-                  <h1>TREAT</h1>
-                  <h1>VITILIGO</h1>
-                  <p>NATURALLY. EFFECTIVE. AT HOME.</p>
+                <img src={uv_light} className="uv-light pic" />
+                <div className="content heading">
+                  <h1 className='treat'>TREAT</h1>
+                  <h1 className='treat'>VITILIGO</h1>
+                  <p className='header-quotes'>NATURALLY. EFFECTIVE. AT HOME.</p>
                   <div className="description">
                     <p>
                       Clinically Proven, Trusted Worldwide. Phototherapy is the
@@ -81,13 +81,13 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-xs-12 col-sm-12 col-md-3">
+              <div className="col-xs-12 col-sm-12 col-md-4">
                 <div className="baseballcard__container">
                   <div className="baseball-card__inset">
                     <div className="pricing">
                       <h1 className="baseball-card__header">$49</h1>
                       <div>
-                        <div
+                        <div className='month'
                           style={{
                             fontSize: "1.3em",
                             marginTop: "10px",
@@ -96,7 +96,7 @@ class Home extends Component {
                         >
                           MONTH
                         </div>
-                        <div
+                        <div className='cancel'
                           style={{
                             fontSize: "12px",
                             color: "#414142",
@@ -121,6 +121,7 @@ class Home extends Component {
         <div className="clearfix" />
         <div className="before-after">
           <div className="main-heading">Before & After</div>
+          <div className ='content-before'>
           <p>
             The Noleuderm System uses the same phototherapy bulbs found in the
             leading
@@ -130,8 +131,27 @@ class Home extends Component {
             dermatology offices. Achieve in-office results in the comfort of
             your own home.
           </p>
-          <div class="grid-container effect-month">
-            <img src={before_1} alt="" className="grid-item" />
+          </div>
+          
+          <div class="grid-container effect-month view">
+            <div className="grid-item ">
+              <img src={before_1} alt=""  />
+              <div className="grid-item">2 months</div>
+            </div>
+            <div className="grid-item">
+              <img src={before_2} alt=""  />
+              <div className="grid-item">4 months</div>
+            </div>
+            <div className="grid-item">
+              <img src={before_3} alt=""  />
+              <div className="grid-item">6 months</div>
+            </div>
+            <div className="grid-item">
+              <img src={before_4} alt=""  />
+              <div className="grid-item">8 months</div>
+            </div>
+            
+            {/* <img src={before_1} alt="" className="grid-item" />
             <img src={before_2} alt="" className="grid-item" />
             <img src={before_3} alt="" className="grid-item" />
             <img src={before_4} alt="" className="grid-item" />
@@ -139,19 +159,19 @@ class Home extends Component {
             <div className="grid-item">2 months</div>
             <div className="grid-item">4 months</div>
             <div className="grid-item">6 months</div>
-            <div className="grid-item">8 months</div>
+            <div className="grid-item">8 months</div> */}
           </div>
         </div>
         <div className="clearfix" />
 
         <div className="doctor_recommended_section">
           <div className="container-fluid">
-            <div className="row">
+            <div className="row doctor">
               <div className="col-xs-12 col-sm-12 col-md-6 content">
-                <div className="recommended-callout-wrapper">
-                  <div className="callout-inset">
-                    <h1 className="callout-title"> DOCTOR RECOMMENDED </h1>
-                    <p>
+                <div className="recommended-callout-wrapper doctor">
+                  <div className="callout-inset doctor">
+                    <h1 className="callout-title doctor"> DOCTOR RECOMMENDED </h1>
+                    <p className='text-doctor'>
                       UV Phototherapy is the most widely recommended solution
                       for Vitiligo by doctors worldwide due to its clinical
                       validation, safety, and effectiveness.
@@ -180,13 +200,13 @@ class Home extends Component {
                 {" "}
                 <img
                   src={video_2}
-                  className="product-img3"
+                  className="product-img3 slide"
                   alt="Sildenafil"
                 />{" "}
               </div>
               <div className="col-xs-12 col-sm-12 col-md-8 content">
-                <div className="recommended-callout-wrapper">
-                  <div className="callout-inset">
+                <div className="recommended-callout-wrapper science">
+                  <div className="callout-inset science">
                     <h1 className="callout-title"> THE SCIENCE </h1>
                     <p>
                       The Noleuderm System relies on continued and concentrated
@@ -207,12 +227,12 @@ class Home extends Component {
 
         <div className="system_section">
           <div className="container-fluid">
-            <div className="row">
+            <div className="row science">
               <div className="col-xs-12 col-sm-12 col-md-6">
                 <div className="callout-wrapper">
-                  <div className="callout-inset">
+                  <div className="callout-inset system treatment">
                     <h1 className="callout-title"> THE SYSTEM </h1>
-                    <p>
+                    <p className='content-treatment'>
                       Unlike other Vitiligo treatments found online, the
                       Noleuderm System is the only one to offer clinical
                       validation and doctor endorsement. The reason? UV
@@ -232,9 +252,10 @@ class Home extends Component {
                       variant="link"
                       eventKey="0"
                       onClick={() => this.handleClick(0)}
+                      className='link-button'
                     >
                       <>
-                       <span className={!this.state.accordion[0]?"open-left":"open-right"}><span>1</span></span> START SUBSCRIPTION <i class="fa fa-angle-down" />
+                       <span className={!this.state.accordion[0]?"open-left":"open-right"}><span>1</span></span> <span className='system-btn'>START SUBSCRIPTION </span><i class="fa fa-angle-down" />
                       </>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="0">
@@ -247,8 +268,9 @@ class Home extends Component {
                       variant="link"
                       eventKey="1"
                       onClick={() => this.handleClick(1)}
+                      className='link-button'
                     >
-                      <span className={!this.state.accordion[1]?"open-left":"open-right"}><span>2</span></span>VIRTUAL APPOINTMENT <i class="fa fa-angle-down" />
+                      <span className={!this.state.accordion[1]?"open-left":"open-right"}><span>2</span></span><span className='system-btn'>VIRTUAL APPOINTMENT</span> <i class="fa fa-angle-down" />
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="1">
                       <>asdasdasd</>
@@ -260,9 +282,10 @@ class Home extends Component {
                       variant="link"
                       eventKey="2"
                       onClick={() => this.handleClick(2)}
+                      className='link-button'
                     >
                       <>
-                      <span className={!this.state.accordion[2]?"open-left":"open-right"}><span>3</span></span>  DOCTOR APPROVAL, DELIVERY <i class="fa fa-angle-down" />
+                      <span className={!this.state.accordion[2]?"open-left":"open-right"}><span>3</span></span> <span className='system-btn'> DOCTOR APPROVAL, DELIVERY </span><i class="fa fa-angle-down" />
                       </>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="2">
@@ -275,8 +298,9 @@ class Home extends Component {
                       variant="link"
                       eventKey="3"
                       onClick={() => this.handleClick(3)}
+                      className='link-button'
                     >
-                    <span className={!this.state.accordion[3]?"open-left":"open-right"}><span>4</span></span>  CONTINUED USE & CHECK-UPS <i class="fa fa-angle-down" />
+                    <span className={!this.state.accordion[3]?"open-left":"open-right"}><span>4</span></span> <span className='system-btn'> CONTINUED USE & CHECK-UPS </span><i class="fa fa-angle-down" />
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="3">
                       <>
@@ -302,16 +326,24 @@ class Home extends Component {
             <div className="clinical-title">
             DOWNLOAD SUPPORTING CLINICAL PAPERS
             </div>
-            <p>
+            <p className='clinic-text'>
             If you’re interested in learning more about the Noleuderm System and the supporting clinical
              evidence demonstrating the effectiveness our at home UV Phototherapy, submit your email:
             </p>
             </div>
-            <div className="email-form">
+            <div className="email-form last">
             <input type="text" placeholder="email"/>
-            <button>SUBMIT</button>
+            <button className='last-submit'>SUBMIT</button>
             </div>
             </div>
+            <div className="mobile-endorsed">
+                    <div>Endorsed By</div>
+                    <div className="mobile-endorsed-list d-flex">
+                      <img src={endo1} />
+                      <img src={endo2} />
+                      <img src={endo3} />
+                    </div>
+                  </div>
           {/* </div> */}
         </div>
       </>

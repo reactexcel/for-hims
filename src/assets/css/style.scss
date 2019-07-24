@@ -309,6 +309,9 @@ a.btn1:hover {
     padding: 15px 50px;
     margin-top: 50px;
   }
+  @media screen and (max-width: 768px) {
+    clip-path: unset;
+  }
 }
 .callout-inset {
   padding: 180px 150px 160px 100px;
@@ -398,6 +401,9 @@ a.learn:hover {
   .recommended-callout-wrapper {
     clip-path: polygon(15% 0%, 100% 0, 100% 100%, 0% 100%);
     background-color: #f6f6f6;
+    @media screen and (max-width: 768px) {
+      clip-path: unset;
+    }
   }
   .product-img3 {
     transform: scale(2);
@@ -416,13 +422,13 @@ a.learn:hover {
   .system-accordion {
     display: flex;
     flex-direction: column;
-    width:fit-content;
-    color:#414142
+    width: fit-content;
+    color: #414142;
   }
-  .callout-inset{
-    padding:60px 150px 0px 100px;
-    background: #F6F6F6;
-    color:#414142
+  .callout-inset {
+    padding: 60px 150px 0px 100px;
+    background: #f6f6f6;
+    color: #414142;
   }
   p {
     font-weight: lighter;
@@ -471,13 +477,12 @@ a.learn:hover {
   }
   .btn-link {
     text-align: left;
-    text-decoration:none;
-    outline:none !important;
+    text-decoration: none;
+    outline: none !important;
     margin-bottom: 10px;
     color: black;
     font-weight: 600;
     font-size: 18px;
-
   }
   .fa-angle-down {
     float: right;
@@ -485,45 +490,44 @@ a.learn:hover {
     margin-top: 15px;
     margin-left: 20px;
   }
-  .collapse{
-    width:50%;
+  .collapse {
+    width: 50%;
     margin-left: 70px;
-    font-weight: lighter
+    font-weight: lighter;
   }
-  .collapsing{
-    width:50%;
+  .collapsing {
+    width: 50%;
     margin-left: 70px;
-    font-weight: lighter
-
+    font-weight: lighter;
   }
 }
-.clinical_papers_section{
-  color:#fff;
+.clinical_papers_section {
+  color: #fff;
   text-align: center;
-  background: #299CB7;
+  background: #299cb7;
   padding: 7% 20% 9%;
-  .clinical-title{
+  .clinical-title {
     font-size: 25px;
     font-weight: 600;
-    width:100%;
+    width: 100%;
     margin-bottom: 10px;
   }
-  p{
-    font-weight: lighter
+  p {
+    font-weight: lighter;
   }
-  .email-form{
+  .email-form {
     display: flex;
     margin-top: 30px;
-    ::placeholder{
-      color:#fff;
-      font-weight: lighter
+    ::placeholder {
+      color: #fff;
+      font-weight: lighter;
     }
-    input{
-border:1px solid white !important;
-color:#fff
+    input {
+      border: 1px solid white !important;
+      color: #fff;
     }
   }
-  button{
+  button {
     padding: 0px 60px;
     background: transparent;
     border: 1px solid;
@@ -531,8 +535,7 @@ color:#fff
     right: 40px;
     top: 40px;
     height: 55px;
-    font-weight: 600
-    
+    font-weight: 600;
   }
 }
 .full_bg {
@@ -569,46 +572,47 @@ footer {
   color: #fff;
   padding: 80px 0px 120px 0px;
   height: 700px;
-position: relative;
-.row{
-  margin: 0
-}
-p{
-  font-weight: lighter;
+  position: relative;
+  .row {
+    margin: 0;
+  }
+  p {
+    font-weight: lighter;
     font-style: italic;
     width: 50%;
     right: 150px;
     position: absolute;
     bottom: 150px;
-    text-align: right
-}
-img{
-  position: absolute;
-  top:170px
-}
-.copyright{
-  display: flex;
-  position: absolute;
-  bottom: 100px;
-  font-weight: lighter;
-  // width: 100%;
-  width:calc(100% - 300px);
+    text-align: right;
+  }
+  img {
+    position: absolute;
+    top: 170px;
+  }
+  .copyright {
+    display: flex;
+    position: absolute;
+    bottom: 100px;
+    font-weight: lighter;
+    // width: 100%;
+    width: calc(100% - 300px);
 
-  // justify-content: space-between;
-.first{
-  flex-basis:50%;
+    // justify-content: space-between;
+    .first {
+      flex-basis: 50%;
+    }
+    .second,
+    .third,
+    .fourth {
+      flex-basis: 17%;
+    }
+  }
+  .container {
+    padding: 0 150px;
+    margin: 0;
+  }
 }
-.second ,.third ,.fourth{
-  flex-basis: 17%
-}
-}
-.container{
-  padding: 0 150px;
-  margin: 0;
-}
-
-}
-footer::after{
+footer::after {
   background-image: url("../images/footer-background.png");
   height: 100%;
   background-repeat: no-repeat;
@@ -617,9 +621,9 @@ footer::after{
   content: "";
   position: absolute;
   display: inline-block;
-  top:0px;
-  width:100%;
-  opacity: .2;
+  top: 0px;
+  width: 100%;
+  opacity: 0.2;
 }
 footer h4.pt2 {
   padding-bottom: 0px;
@@ -1557,6 +1561,9 @@ div.read:hover,
   border: 2px solid #c49875;
   color: #000;
 }
+.footer-condition {
+  display: contents;
+}
 
 .verify_address_box {
   text-align: center;
@@ -2344,6 +2351,12 @@ ul.tab_question li.customer-answer {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+.mobile-endorsed {
+  display: none;
+}
+.endorsed {
+  display: block;
 }
 
 @media screen and (max-height: 450px) {
@@ -3325,3 +3338,565 @@ form.doctor_form {
     width: 95%;
   }
 }
+@media only screen and (max-width: 1440px) {
+  .header_slider .first-home-section {
+    background-position-x: right;
+    height: 40em;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .product-img3.slide {
+    height: 21em;
+  }
+  .header_slider .first-home-section {
+    background-size: auto;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .header_slider .first-home-section {
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 80vh;
+  }
+  .header_slider .first-home-section .uv-light {
+    right: -3%;
+    top: 70px;
+  }
+  .baseballcard__container {
+    bottom: 65px;
+  }
+
+  .baseball-card__inset .pricing .baseball-card__header {
+    font-size: 54px;
+    margin: 0;
+    padding-bottom: 0;
+  }
+  .header_slider {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .baseballcard__container {
+    // margin-left: 25px;
+    margin-bottom: 94px;
+  }
+  .header_slider .first-home-section {
+    background-size: cover;
+    .uv-light {
+      height: 70%;
+    }
+  }
+  .before-after {
+    padding: 0;
+  }
+  .callout-inset.doctor {
+    padding-left: 0;
+  }
+  .product-img3.slide {
+    height: 25em;
+  }
+  .before-after .effect-month {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .before-after .effect-month {
+    grid-template-columns: auto auto;
+  }
+  .header_slider .first-home-section {
+    height: auto;
+    padding-bottom: 8em;
+    background-size: cover;
+    .content {
+      margin-left: 45px;
+      margin-top: 12em;
+    }
+  }
+  .endorsed-list {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .endorsed-list > img {
+    margin-top: 10px;
+  }
+
+  .header_slider .first-home-section {
+    .uv-light.pic {
+      left: 77%;
+      height: 33em;
+      top: 9em;
+      width: 17em;
+    }
+  }
+  .description {
+    width: 53%;
+  }
+  .before-after {
+    margin-top: 10em;
+  }
+  .baseball-card__inset {
+    padding: 0;
+    .pricing {
+      justify-content: center;
+    }
+    .btn1 {
+      width: 75%;
+    }
+  }
+  .baseballcard__container {
+    padding: 0;
+    bottom: 0em;
+  }
+  .content.heading > h1.treat {
+    font-size: 60px;
+    font-weight: 600;
+  }
+  .callout-inset h1.callout-title {
+    font-size: 3.2em;
+  }
+}
+
+@media only screen  and (max-width: 768px) {
+  .header_slider .first-home-section {
+    .uv-light.pic {
+      left: 73%;
+      height: 35em;
+      top: 10em;
+      width: 18em;
+    }
+  }
+  .before-after {
+    .main-heading {
+      font-size: 2em;
+    }
+    .content-before {
+      color: #b5b5b2;
+      font-style: italic;
+    }
+  }
+
+  .baseballcard__container {
+    bottom: -2em;
+  }
+  .doctor_recommended_section {
+    margin-top: 10em;
+  }
+  .content-before {
+    width: 17em;
+    margin: 0 auto;
+    text-align: initial;
+    color: lightgray;
+    margin-bottom: 4em;
+  }
+  .grid-container.effect-month.view {
+    width: 70%;
+    margin: 0 auto;
+    color: gray;
+  }
+  .recommended-callout-wrapper {
+    margin-top: 26em;
+    .callout-inset.science {
+      padding: 0;
+      .callout-title {
+        font-size: 3em;
+      }
+    }
+  }
+  .callout-inset.doctor {
+    margin-top: 26em;
+    margin-left: 2em;
+    .callout-title.doctor {
+      font-size: 42px;
+    }
+    p {
+      color: #b5b5b2;
+      font-family: serif;
+      .play {
+        margin-top: 1em;
+      }
+    }
+  }
+
+  .product-img2 {
+    clip-path: polygon(32% 0%, 45% 68%, 78% 68%, 82% 100%, 100% 100%, 100% 0);
+  }
+  .product-img3.slide {
+    height: 12em;
+    clip-path: polygon(0 0, 79% 0, 63% 70%, 30% 70%, 25% 100%, 0 100%);
+    transform: scale(3);
+  }
+  .recommended-callout-wrapper.science {
+    margin-top: 35em;
+    width: 23em;
+    p {
+      color: #b5b5b2;
+    }
+  }
+  .row.science {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .callout-inset.system {
+      padding: 0;
+      p {
+        color: #b5b5b2;
+      }
+    }
+  }
+  .logo-image {
+    position: static;
+  }
+  .footer {
+    .container {
+      padding: 0;
+    }
+  }
+  .logo-main-row {
+    width: 100%;
+  }
+  .logo-class {
+    text-align: right;
+  }
+  .footer-detail {
+    position: static;
+    display: inline-block;
+    width: 68%;
+    color: #b5b5b2;
+  }
+  .footer-main-detail {
+    text-align: right;
+    margin-top: 6em;
+  }
+  .footer-condition {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+  }
+  .copyright.footer {
+    width: 100%;
+    justify-content: space-between;
+    position: static;
+    font-size: 13px;
+    margin-top: 8em;
+  }
+  .first.one {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .second.two {
+    padding-bottom: 1em;
+  }
+  .third.three {
+    padding-bottom: 1em;
+  }
+  .fourth.four {
+    padding-bottom: 1em;
+  }
+  .clinic-text {
+    font-style: italic;
+  }
+  .email-form.last {
+    width: 118%;
+  }
+  .last-submit {
+    padding: 0px 46px;
+  }
+  .link-button {
+    width: 110%;
+  }
+
+  // .logo-class {
+  //   float: right;
+  // }
+  // .content.heading {
+  //   .treat {
+  //     font-size:30px;
+  //   }
+  //   margin-top: 95px;
+  //   margin-left: 30px;
+  //   .description {
+  //     margin-top: 25px;
+  //     .p {
+  //       font-size: 10px;
+  //       margin: 0;
+  //     }
+  //   }
+  // }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .product-img2,
+  .product-img3.slide {
+    transform: scale(1);
+  }
+  .free_shipping_promo {
+    display: none;
+  }
+  .header_slider .first-home-section {
+    .uv-light.pic {
+      left: 53%;
+      height: 35em;
+      top: 10em;
+      width: 18em;
+    }
+  }
+}
+@media only screen and (max-width: 600px) {
+  .free_shipping_promo {
+    display: none;
+  }
+  .footer::after {
+    width: 0;
+  }
+  .endorsed {
+    display: none;
+  }
+  .mobile-endorsed {
+    display: block;
+  }
+  .treat {
+    display: inline;
+    padding-right: 13px;
+  }
+
+  .product-img2,
+  .product-img3.slide {
+    transform: scale(1);
+  }
+  .header_slider .first-home-section .uv-light.pic {
+    position: relative;
+    left: 10px;
+    top: 1em;
+    width: 17em;
+  }
+  .header_logo {
+    margin: 0px;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent !important;
+    background: transparent !important;
+  }
+  .header_slider .first-home-section {
+    display: flex;
+    flex-direction: column-reverse;
+    background-position-x: center;
+  }
+  .col-xs-12.col-sm-12.col-md-8.text-center.first-home-section::after {
+    content: "";
+    position: absolute;
+    clip-path: polygon(100% 0, 0% 40%, 0 100%, 100% 100%);
+    width: 100%;
+    background: #f6f6f6ff;
+    height: 39em;
+    bottom: -2px;
+  }
+  .header_slider .first-home-section {
+    .content.heading {
+      margin-left: 0;
+      text-align: center;
+      .header-quotes {
+        font-size: 25px;
+      }
+    }
+  }
+  .description {
+    width: 100%;
+  }
+  .header_slider .first-home-section .content .description p {
+    font-size: 14px;
+    font-style: italic;
+  }
+  .baseball-card__inset .btn1 {
+    width: 100%;
+    font-size: 18px;
+    right: 20%;
+  }
+  .month {
+    padding-left: 11px;
+  }
+  .baseballcard__container {
+    bottom: 3em;
+    padding-left: 13em;
+  }
+  .pricing {
+    padding-left: 13%;
+  }
+  .cancel {
+    padding-left: 11px;
+  }
+  .navbar-fixed-top .container {
+    justify-content: flex-end;
+  }
+  .before-after {
+    margin-top:0;
+    .main-heading {
+      font-size: 3em;
+    }
+  }
+  .before-after {
+    .effect-month {
+      grid-template-columns: auto;
+    }
+  }
+  .row.doctor {
+    flex-direction: column-reverse;
+  }
+  .recommended-callout-wrapper.doctor {
+    margin:0;
+    .callout-inset.doctor {
+       margin-top:0;
+       margin-left:2em; 
+    }
+  }
+  .text-doctor {
+    width: 47%;
+    font-size: 17px;
+  }
+  .play {
+    font-size: 25px;
+    font-weight: 700;
+    padding: 21px 45px;
+    margin-top: 1em;
+  }
+  .product-img3.slide {
+    height: 23em;
+    width: 100%;
+  }
+  .recommended-callout-wrapper.science {
+    margin-top:0;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2em;
+    width: 100%;
+    .callout-inset.science {
+      width:18em;
+      p {
+        line-height: 1.5;
+      }
+      .play {
+        padding: 1em 2em;
+      }
+    }
+  }
+  .content-treatment {
+    margin: 0 auto;
+    line-height: 1.5;
+    padding-top: 1em;
+    font-size: 20px;
+    font-style: italic;
+  }
+  .callout-inset.system.treatment {
+    text-align: center;
+  }
+  .system_section .btn-link {
+    font-size: 24px;
+  }
+  .system-accordion.accordion {
+    margin-top: 3em;
+  }
+  .clinical_papers_section
+  {
+    padding: 0;
+    .clinical-title {
+      width: 75%;
+      padding-left: 3em;
+    }
+  } 
+  .clinic-text {
+    font-style: italic;
+    color: #c6daec;
+    width: 84%;
+    padding-left: 2em;
+  }
+  .link-button {
+    width: 100%; 
+}
+  .email-form.last {
+    width:100%;
+    input {
+      width: 75%;
+      padding: 2em;  
+    }
+    .last-submit {
+      width: 26%;
+      padding: 2em;
+    }
+  }
+  .mobile-endorsed {
+    text-align: left;
+    margin-top: 2em;
+    font-size: 22px;
+    padding: 1em;
+    .mobile-endorsed-list {
+      margin: 1em 0 4em 10px;
+      flex-wrap: wrap;
+    }
+  }
+  .footer.mobile {
+    height: auto;
+  }
+  .copyright.footer  {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+  .system-btn {
+    max-width: 250px;
+    display: inline-block;
+    white-space: normal;
+  }
+  
+}
+@media only screen and (max-width: 500px) {
+  .baseballcard__container {
+    left:0;
+    right: 20%;
+    .baseball-card__inset {
+      text-align: right;
+    }
+  }
+  .callout-inset.doctor {
+    padding-top: 0;
+  }
+  .link-button {
+    width: 100%;
+  }
+  .clinical-title {
+    padding-top: 2em;
+  }
+  .mobile-endorsed {
+    font-size: 14px;
+  }
+  .footer.mobile {
+    padding-right: 2em;
+  }
+  .body {
+    font-size: 15px !important;
+  }
+  .content.heading > h1.treat {
+    font-size: 41px;
+  }
+  .header_slider .first-home-section {
+    padding-bottom: 5em;
+    .content.heading .header-quotes {
+      font-size: 18px;
+    }
+    .system-btn {
+      max-width: 230px;
+      white-space: pre-line;
+      display: inline-block;
+    }
+  }
+   
+  .cancel {
+    padding: 0;
+  }
+}
+
