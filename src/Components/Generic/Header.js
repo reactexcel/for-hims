@@ -112,19 +112,19 @@ class Header extends PureComponent {
 
             <div className="navbar-collapse collapse">
               <ul className="nav navbar-nav navbar-right navbar-items">
-                {role === ROLES.CUSTOMER && (
+                {/* {role === ROLES.CUSTOMER && ( */}
                   <>
-                    <li onClick={() => this._openSidebar("right", "shop")}>
+                    <li onClick={() => this._openSidebar("right", "shop")}> 
                       <Link to="#">Shop</Link>
                     </li>
                     <li
                       className="mobile_none"
                       onClick={() => this._openSidebar("right", "cart")}
                     >
-                      <Link to="#">Cart{addToCart && "(1)"} </Link>
+                      <Link to="#"><i className='fa fa-shopping-bag'></i>{addToCart && "(1)"} </Link>
                     </li>
                   </>
-                )}
+                {/* )} */}
 
                 {loginSuccess && auth ? (
                   <li onClick={() => this._openSidebar("right", "account")}>

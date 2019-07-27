@@ -48,28 +48,28 @@ class Home extends Component {
           <div className="container-fluid">
             <div className="row">
               {/* <div className="col-xs-12 col-sm-12 col-md-2"> </div> */}
-              <div className="col-xs-12 col-sm-12 col-md-8 text-center first-home-section ">
+              <div className="col-xs-12 col-sm-12 col-md-8 text-center first-home-section pb-5 ">
                 <img src={uv_light} className="uv-light pic" />
                 <div className="content heading">
-                  <h1 className='treat'>TREAT</h1>
+                  <h1 className='treat'>TREAT </h1>
                   <h1 className='treat'>VITILIGO</h1>
                   <p className='header-quotes'>NATURALLY. EFFECTIVE. AT HOME.</p>
                   <div className="description">
-                    <p>
+                    <p className='description_title'>
                       Clinically Proven, Trusted Worldwide. Phototherapy is the
                       only FDA
-                    </p>
-                    <p>
+                    {/* </p>
+                    <p> */}
                       {" "}
                       cleared treatment for Vitiligo. The Noleuderm System
                       couples a portable,
-                    </p>
-                    <p>
+                    {/* </p>
+                    <p> */}
                       {" "}
                       handheld phototherapy lamp with a specially formulated
                       lotion in order to{" "}
-                    </p>
-                    <p> ensure an optimal healing process and results. </p>
+                    {/* </p> */}
+                    ensure an optimal healing process and results. </p>
                   </div>
                   <div className="endorsed">
                     <div>Endorsed By</div>
@@ -86,10 +86,10 @@ class Home extends Component {
                   <div className="baseball-card__inset">
                     <div className="pricing">
                       <h1 className="baseball-card__header">$49</h1>
-                      <div>
+                      <div className='date_value'>
                         <div className='month'
                           style={{
-                            fontSize: "1.3em",
+                            fontSize: "1em",
                             marginTop: "10px",
                             fontWeight: "600"
                           }}
@@ -98,7 +98,7 @@ class Home extends Component {
                         </div>
                         <div className='cancel'
                           style={{
-                            fontSize: "12px",
+                            fontSize: "10px",
                             color: "#414142",
                             fontWeight: "lighter"
                           }}
@@ -120,13 +120,13 @@ class Home extends Component {
         </div>
         <div className="clearfix" />
         <div className="before-after">
-          <div className="main-heading">Before & After</div>
-          <div className ='content-before'>
-          <p>
+          <div className="main-heading">BEFORE & AFTER</div>
+          <div className ='content-before px-3'>
+          <p className='content-after-before'>
             The Noleuderm System uses the same phototherapy bulbs found in the
             leading
-          </p>
-          <p className="before-after-content">
+          
+          
             {" "}
             dermatology offices. Achieve in-office results in the comfort of
             your own home.
@@ -136,19 +136,19 @@ class Home extends Component {
           <div class="grid-container effect-month view">
             <div className="grid-item ">
               <img src={before_1} alt=""  />
-              <div className="grid-item">2 months</div>
+              <div className="grid-item text-secondary  ">2 months</div>
             </div>
             <div className="grid-item">
               <img src={before_2} alt=""  />
-              <div className="grid-item">4 months</div>
+              <div className="grid-item text-secondary ">4 months</div>
             </div>
             <div className="grid-item">
               <img src={before_3} alt=""  />
-              <div className="grid-item">6 months</div>
+              <div className="grid-item text-secondary ">6 months</div>
             </div>
             <div className="grid-item">
               <img src={before_4} alt=""  />
-              <div className="grid-item">8 months</div>
+              <div className="grid-item text-secondary ">8 months</div>
             </div>
             
             {/* <img src={before_1} alt="" className="grid-item" />
@@ -208,7 +208,7 @@ class Home extends Component {
                 <div className="recommended-callout-wrapper science">
                   <div className="callout-inset science">
                     <h1 className="callout-title"> THE SCIENCE </h1>
-                    <p>
+                    <p className ='science-contain'>
                       The Noleuderm System relies on continued and concentrated
                       exposure of Vitiliginous areas to narrowband UV
                       Phototherapy via its portable handheld lamp coupled with
@@ -332,16 +332,16 @@ class Home extends Component {
             </p>
             </div>
             <div className="email-form last">
-            <input type="text" placeholder="email"/>
+            <input type="text" placeholder="email" className='email-content'/>
             <button className='last-submit'>SUBMIT</button>
             </div>
             </div>
             <div className="mobile-endorsed">
                     <div>Endorsed By</div>
                     <div className="mobile-endorsed-list d-flex">
-                      <img src={endo1} />
-                      <img src={endo2} />
-                      <img src={endo3} />
+                      <img src={endo1} className='mobile-logo' />
+                      <img src={endo2} className='mobile-logo'/>
+                      <img src={endo3} className='mobile-logo' />
                     </div>
                   </div>
           {/* </div> */}

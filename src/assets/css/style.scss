@@ -33,6 +33,7 @@ body {
   font-size: 16px;
   line-height: 1.4;
   font-family: "Lato", sans-serif;
+  
 }
 a {
   color: #000;
@@ -140,7 +141,7 @@ ul.left_menu li a:hover {
   padding: 80px 0px 180px 0px;
   .first-home-section {
     background-image: url("../images/home-bg.png");
-    height: 100vh;
+    height: auto;
     background-size: cover;
     .content {
       margin-top: 150px;
@@ -148,18 +149,21 @@ ul.left_menu li a:hover {
       text-align: left;
       margin-left: 120px;
       h1 {
-        font-size: 45px;
-        font-weight: 700;
+        font-size: 48px;
+        font-weight: bold;
         margin: 0px;
       }
       p {
-        font-size: 12px;
+        font-size: 13px;
+        padding-top: 8px;
       }
       .description {
         margin-top: 50px;
         p {
-          font-size: 12px;
+          font-size: 15px;
           font-weight: lighter;
+          color: lightgray;
+          font-style: italic;
         }
       }
       .endorsed {
@@ -198,8 +202,12 @@ ul.left_menu li a:hover {
     color: #414142;
     margin: 0 0;
   }
-  .before-after-content {
-    margin-bottom: 20px;
+  .content-after-before {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1em 0 4em 0;
+    color: #4c4b4bc4;
+    font-style: italic;
   }
   .effect-month {
     display: grid;
@@ -266,7 +274,6 @@ a.btn1 {
 }
 a.btn1:hover {
   background-color: transparent;
-  border: 2px solid #000;
   color: #000;
   text-decoration: none;
 }
@@ -299,8 +306,9 @@ a.btn1:hover {
   background-color: #f6f6f6;
   p {
     font-weight: lighter;
-    color: #414142;
+    color: lightgray;
     font-display: Lato, Light-Italic;
+    font-style: italic;
   }
   .play {
     background: transparent;
@@ -370,8 +378,14 @@ a.learn:hover {
   margin-top: 160px;
   margin-bottom: 100px;
 }
+.email-content::placeholder {
+  color:lightgray;
+}
 
-.viagra_section {
+
+
+.product-img3.slide {
+  clip-path:polygon(0 0, 0 85%, 97% 85%, 95% 83%, 50% 83%, 68% 0);
 }
 .viagra_section .callout-inset {
   padding: 60px 25px 90px 100px;
@@ -417,8 +431,13 @@ a.learn:hover {
     padding: 180px 100px 160px 300px;
   }
 }
+.system_section p {
+  font-weight: lighter;
+  font-style: italic;
+  color: lightgray;
+}
 .system_section {
-  padding: 100px 0;
+  padding: 250px 0;
   .system-accordion {
     display: flex;
     flex-direction: column;
@@ -501,6 +520,10 @@ a.learn:hover {
     font-weight: lighter;
   }
 }
+.clinic-text {
+  color:lightgray;
+}
+
 .clinical_papers_section {
   color: #fff;
   text-align: center;
@@ -605,6 +628,7 @@ footer {
     .third,
     .fourth {
       flex-basis: 17%;
+      text-align: right;
     }
   }
   .container {
@@ -2358,6 +2382,21 @@ ul.tab_question li.customer-answer {
 .endorsed {
   display: block;
 }
+.treat {
+  word-spacing: 10px;
+}
+.description_title {
+  max-width: 530px;
+  line-height: 1.5;
+}
+.system-accordion.accordion {
+  width: 50%;
+}
+.content-before {
+  font-style: italic;
+  line-height: 1.5;
+}
+
 
 @media screen and (max-height: 450px) {
   .sidenav {
@@ -3343,21 +3382,30 @@ form.doctor_form {
     background-position-x: right;
     height: 40em;
   }
+  .header_slider {
+    padding-bottom: 0px;
+  }
+ 
 }
 @media only screen and (max-width: 1280px) {
+  
   .product-img3.slide {
     height: 21em;
   }
+  
   .header_slider .first-home-section {
     background-size: auto;
+  }
+  .system-accordion.accordion {
+    width: 65% ;
   }
 }
 @media only screen and (max-width: 1200px) {
   .header_slider .first-home-section {
     background-repeat: no-repeat;
     background-size: contain;
-    height: 80vh;
   }
+   
   .header_slider .first-home-section .uv-light {
     right: -3%;
     top: 70px;
@@ -3374,13 +3422,27 @@ form.doctor_form {
   .header_slider {
     padding: 0;
   }
+  .system-accordion.accordion {
+    width: 70% ;
+  }
+  .system_section {
+    padding: 100px 0;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
+  .system-accordion.accordion {
+    width: 80%;
+  }
+  .description_title {
+    max-width: 400px;
+    line-height: 1.8;
+}
   .baseballcard__container {
     // margin-left: 25px;
     margin-bottom: 94px;
   }
+  
   .header_slider .first-home-section {
     background-size: cover;
     .uv-light {
@@ -3388,7 +3450,7 @@ form.doctor_form {
     }
   }
   .before-after {
-    padding: 0;
+    padding: 6em 0;
   }
   .callout-inset.doctor {
     padding-left: 0;
@@ -3405,6 +3467,9 @@ form.doctor_form {
 @media only screen and (max-width: 991px) {
   .before-after .effect-month {
     grid-template-columns: auto auto;
+  }
+  .system-accordion.accordion {
+    width: 85%;
   }
   .header_slider .first-home-section {
     height: auto;
@@ -3450,6 +3515,7 @@ form.doctor_form {
   .baseballcard__container {
     padding: 0;
     bottom: 0em;
+    margin-bottom: 18px;
   }
   .content.heading > h1.treat {
     font-size: 60px;
@@ -3461,15 +3527,20 @@ form.doctor_form {
 }
 
 @media only screen  and (max-width: 768px) {
+  .system-accordion.accordion {
+    width: auto;
+  }
   .header_slider .first-home-section {
+    height: 56em;
     .uv-light.pic {
-      left: 73%;
-      height: 35em;
+      left: 72%;
+      height: 36em;
       top: 10em;
-      width: 18em;
+      width: 19em;
     }
   }
   .before-after {
+    margin-top:0;
     .main-heading {
       font-size: 2em;
     }
@@ -3480,10 +3551,10 @@ form.doctor_form {
   }
 
   .baseballcard__container {
-    bottom: -2em;
+    bottom: 3em;
   }
   .doctor_recommended_section {
-    margin-top: 10em;
+    margin-top: 5em;
   }
   .content-before {
     width: 17em;
@@ -3493,7 +3564,7 @@ form.doctor_form {
     margin-bottom: 4em;
   }
   .grid-container.effect-month.view {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     color: gray;
   }
@@ -3610,6 +3681,9 @@ form.doctor_form {
   .link-button {
     width: 110%;
   }
+  .content-treatment {
+    text-align: center;
+  }
 
   // .logo-class {
   //   float: right;
@@ -3630,6 +3704,9 @@ form.doctor_form {
   // }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
+  .system-accordion.accordion {
+    width: auto;
+  }
   .product-img2,
   .product-img3.slide {
     transform: scale(1);
@@ -3640,13 +3717,20 @@ form.doctor_form {
   .header_slider .first-home-section {
     .uv-light.pic {
       left: 53%;
-      height: 35em;
+      height: 27em;
       top: 10em;
       width: 18em;
     }
   }
 }
 @media only screen and (max-width: 600px) {
+  .header_slider .first-home-section {
+    height: 65em;
+  }
+  
+  .system-accordion.accordion {
+    width: auto;
+  }
   .free_shipping_promo {
     display: none;
   }
@@ -3713,9 +3797,10 @@ form.doctor_form {
   .header_slider .first-home-section .content .description p {
     font-size: 14px;
     font-style: italic;
+    margin:0 auto;
   }
   .baseball-card__inset .btn1 {
-    width: 100%;
+    width: 65%;
     font-size: 18px;
     right: 20%;
   }
@@ -3805,11 +3890,15 @@ form.doctor_form {
   .clinical_papers_section
   {
     padding: 0;
+    padding-top: 20px;
     .clinical-title {
       width: 75%;
       padding-left: 3em;
     }
   } 
+  .system_section {
+    padding:100px 0;
+  }
   .clinic-text {
     font-style: italic;
     color: #c6daec;
@@ -3822,12 +3911,15 @@ form.doctor_form {
   .email-form.last {
     width:100%;
     input {
-      width: 75%;
+      width: 85%;
       padding: 2em;  
     }
     .last-submit {
-      width: 26%;
-      padding: 2em;
+      width: 40%;
+      height: auto;
+      padding: 13px;
+      font-size: 12px;
+      border-color:lightgray; 
     }
   }
   .mobile-endorsed {
@@ -3836,7 +3928,7 @@ form.doctor_form {
     font-size: 22px;
     padding: 1em;
     .mobile-endorsed-list {
-      margin: 1em 0 4em 10px;
+      margin-top: 1em;
       flex-wrap: wrap;
     }
   }
@@ -3848,20 +3940,49 @@ form.doctor_form {
     align-items: flex-end;
   }
   .system-btn {
-    max-width: 250px;
+    max-width: 220px;
     display: inline-block;
     white-space: normal;
   }
+  .mobile-endorsed-list {
+    justify-content: space-between;
+  }
+  .mobile-logo {
+    max-width: 100px;
+  }
+  
   
 }
 @media only screen and (max-width: 500px) {
-  .baseballcard__container {
-    left:0;
-    right: 20%;
-    .baseball-card__inset {
-      text-align: right;
-    }
+  .header_slider .first-home-section {
+    height: 50em;
   }
+  .description_title {
+    max-width: 300px;
+  }
+  .system-accordion.accordion {
+    width: auto;
+  }
+  
+  .baseball-card__inset 
+  {
+    padding:0;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+  
+  }
+  .baseball-card__inset .pricing .baseball-card__header {
+    font-size: 2em;
+  }
+   
+  .date_value {
+    font-size: 12px;
+  }
+  .baseball-card__inset .btn1 {
+    width: 100%;
+    font-size: 8px;
+}
   .callout-inset.doctor {
     padding-top: 0;
   }
@@ -3877,26 +3998,135 @@ form.doctor_form {
   .footer.mobile {
     padding-right: 2em;
   }
-  .body {
-    font-size: 15px !important;
-  }
+
   .content.heading > h1.treat {
-    font-size: 41px;
+    font-size: 35px;
   }
   .header_slider .first-home-section {
     padding-bottom: 5em;
     .content.heading .header-quotes {
-      font-size: 18px;
+      font-size: 15px;
     }
-    .system-btn {
-      max-width: 230px;
-      white-space: pre-line;
-      display: inline-block;
-    }
+    
+  }
+  .system_section.system-btn {
+    max-width: 220px;
+    white-space: pre-line;
+    display: inline-block;
   }
    
   .cancel {
     padding: 0;
   }
+  .description_title {
+    margin:0 auto;
+  }
+  .col-xs-12.col-sm-12.col-md-8.text-center.first-home-section::after {
+    height: 24em;
+  }
+  .baseballcard__container {
+    width:50%;
+    right: 21%;
+    left:auto;
+    padding: 0;
+  }
+  .header_slider .first-home-section .uv-light.pic {
+    transform: rotate(-9deg);
+    width:10em;
+    height: 22em;
+    top:1em;
+    left:20px;
+  }
+  .before-after .main-heading  {
+    font-size: 2em;
+  }
+  .before-after .content-before {
+    font-size: 11px;
+  }
+  .callout-inset.doctor .callout-title.doctor {
+    font-size: 25px;
+  }
+  .text-doctor {
+    width: 70%;
+    font-size: 13px;
+}
+.play {
+  font-size:17px;
+}
+.product-img3.slide {
+  height: 17em;
+}
+
+.recommended-callout-wrapper .callout-inset.science .callout-title {
+  font-size: 2em;
+  margin-left: 2em;
+}
+.science-contain {
+  font-size: 10px;
+  margin-left: 6em;
+}
+.system_section {
+  padding: 0;
+}
+.callout-inset h1.callout-title {
+  font-size: 2em;
+}
+.row.science .callout-inset.system p {
+  font-size: 10px;
+}
+.system_section .btn-link {
+  font-size: 18px;
+}
+.clinical_papers_section .clinical-title {
+  font-size: 23px;
+}
+.clinic-text {
+  font-size: 12px;
+}
+.email-form.last
+{
+  display: block;
+  position: relative;
+  text-align: left;
+  input {
+    padding: 0 0 0 10px;
+    height: 40px;
+    font-size: 10px;
+    border-color: lightgray !important;
+  }
+  .last-submit {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    z-index: 999;
+  }
+} 
+.footer-detail {
+  width: 80%;
+  font-size: 10px;
+}
+.footer-condition {
+  font-size: 10px;
+}
+.footer .copyright .first {
+  font-size: 10px;
+}
+.mobile-endorsed-list {
+  justify-content: space-between
+}
+.mobile-logo {
+  max-width: 100px;
+}
+.before-after {
+  padding-bottom: 0;
+}
+  
+.doctor_recommended_section {
+  margin-top: 6em;
+}
+.content-after-before {
+  text-align: center;
+}
+
 }
 
