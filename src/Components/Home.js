@@ -300,7 +300,7 @@ class Home extends Component {
                       onClick={() => this.handleClick(3)}
                       className='link-button'
                     >
-                    <span className={!this.state.accordion[3]?"open-left":"open-right"}><span>4</span></span> <span className='system-btn'> CONTINUED USE & CHECK-UPS </span><i class="fa fa-angle-down" />
+                    <span className={!this.state.accordion[3]?"open-left":"open-right"}><span>4</span></span> <span className='system-btn'> CONTINUED USE & CHECK-UPS </span><i className={!this.state.accordion[3]?"fa fa-angle-down":"fa fa-angle-up"} />
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="3">
                       <>

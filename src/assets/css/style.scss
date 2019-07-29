@@ -503,14 +503,14 @@ a.learn:hover {
     font-weight: 600;
     font-size: 18px;
   }
-  .fa-angle-down {
+  .fa-angle-down,.fa-angle-up {
     float: right;
     color: #f15a22;
     margin-top: 15px;
     margin-left: 20px;
   }
   .collapse {
-    width: 50%;
+    width: 65%;
     margin-left: 70px;
     font-weight: lighter;
   }
@@ -3397,7 +3397,7 @@ form.doctor_form {
     background-size: auto;
   }
   .system-accordion.accordion {
-    width: 65% ;
+    width: 70% ;
   }
 }
 @media only screen and (max-width: 1200px) {
@@ -3423,7 +3423,7 @@ form.doctor_form {
     padding: 0;
   }
   .system-accordion.accordion {
-    width: 70% ;
+    width: 75% ;
   }
   .system_section {
     padding: 100px 0;
