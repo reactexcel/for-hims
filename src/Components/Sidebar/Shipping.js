@@ -9,22 +9,50 @@ import { connect } from "react-redux";
 
 /**UI component for Shipping Address form in FullCart */
 class Shipping extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      response: ""
+    };
+  }
   static defaultProps = {
     renderNext: () => {},
     addNew: false
   };
-
   /**Calls the action for adding Shipping Address
    * @param {Object} values values from redux form
    */
   handleSaveAddress = values => {
-    const shippingAddress = this.props.addNew
-      ? [...this.props.shippingAddress, values]
-      : values;
-    this.props.addShippingAddressRequest({
-      shippingAddress,
-      uid: this.props.user.data.uid
-    });
+    let comman = false;
+    const validState = [
+      "Arkansas",
+      "Colorado",
+      "Connecticut",
+      "Delaware",
+      "Idaho",
+      "Indiana",
+      "Maine",
+      "South Carolina",
+      "Texas",
+      "Virginia",
+      "West Virginia"
+    ];
+    const state = validState.find((v, i) => values.states.includes(v));
+    if (state) {
+      comman = true;
+    }
+    
+    if (comman) {
+      const shippingAddress = this.props.addNew
+        ? [...this.props.shippingAddress, values]
+        : values;
+      this.props.addShippingAddressRequest({
+        shippingAddress,
+        uid: this.props.user.data.uid
+      });
+    } else {
+      this.setState({ response: "We can not process your order. Sorry!" });
+    }
   };
 
   /**Renders the field of Shipping Address Component */
@@ -96,6 +124,7 @@ class Shipping extends Component {
                       value="United States"
                       readOnly
                     />
+                    <div className="text-danger">{this.state.response}</div>
                     {/* <div className="switch_title">
                   <h4> Send me SMS Delivery Updates </h4>
                   <label className="switch">
@@ -123,6 +152,7 @@ class Shipping extends Component {
             >
               Save Shipping Address
             </button>
+            
           </>
         )}
       </>

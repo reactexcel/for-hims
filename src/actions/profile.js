@@ -124,7 +124,8 @@ export function* updateAppointmentRequest(action) {
     const response = yield firebase.user(uid).get();
     if (response.exists && response.data().approvalStatus) {
       yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
-      yield put(actions.emailSendDoctorRequest({to:email}))
+      // let x=sda(actio.payload,"doctor")
+      yield put(actions.emailSendDoctorRequest({to:email,}))
 
       yield put(
         actions.updateAppointmentSuccess("Appointment status has been updated")

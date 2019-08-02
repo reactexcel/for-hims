@@ -401,7 +401,9 @@ app.post("/emailsend", (req, res) => {
     from: "rahul.excel2011@gmail.com", // Something like: Jane Doe <janedoe@gmail.com>
     to: dest,
     subject: "Regarding appoinment", // email subject
-    html: `<p style="font-size: 16px;">A new appointment is booked in you area</p>
+    html: `<div>
+                <p style="font-size: 16px;">You have a new order to review!</p>
+          </div>
             
             <br />
         ` // email content in HTML

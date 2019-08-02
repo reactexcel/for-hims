@@ -84,7 +84,7 @@ class Header extends PureComponent {
             {role === ROLES.CUSTOMER && (
               <div className="cart_desktop">
                 <span onClick={() => this._openSidebar("right", "cart")}>
-                  Cart
+                  {/* Cart */}
                 </span>
               </div>
             )}

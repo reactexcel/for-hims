@@ -167,7 +167,7 @@ class Home extends Component {
         <div className="doctor_recommended_section">
           <div className="container-fluid">
             <div className="row doctor">
-              <div className="col-xs-12 col-sm-12 col-md-6 content">
+              <div className="doctor-second col-xs-12 col-sm-12 col-md-6 content">
                 <div className="recommended-callout-wrapper doctor">
                   <div className="callout-inset doctor">
                     <h1 className="callout-title doctor"> DOCTOR RECOMMENDED </h1>
@@ -181,7 +181,7 @@ class Home extends Component {
                 </div>
               </div>
 
-              <div className="col-xs-12 col-sm-12 col-md-6">
+              <div className="doctor-first col-xs-12 col-sm-12 col-md-6">
                 {" "}
                 <img
                   src={video_1}
@@ -195,7 +195,7 @@ class Home extends Component {
         <div className="clearfix" />
         <div className="science_section">
           <div className="container-fluid">
-            <div className="row">
+            <div className="science-section-block row">
               <div className="col-xs-12 col-sm-12 col-md-4">
                 {" "}
                 <img
@@ -206,7 +206,7 @@ class Home extends Component {
               </div>
               <div className="col-xs-12 col-sm-12 col-md-8 content">
                 <div className="recommended-callout-wrapper science">
-                  <div className="callout-inset science">
+                  <div className="callout-inset science mr-4">
                     <h1 className="callout-title"> THE SCIENCE </h1>
                     <p className ='science-contain'>
                       The Noleuderm System relies on continued and concentrated

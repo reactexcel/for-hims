@@ -45,7 +45,7 @@ export default class CustomerOrders extends Component {
             <h2>Customer's Information</h2>
             <div className="profile_module">
               <div className="customer-info">
-                <span>{`${firstName} ${lastName}`}</span>
+                <span>{`${firstName?firstName:'' } ${lastName?lastName:'' }`}</span>
               </div>
               <div className="customer-info">
                 <span>
