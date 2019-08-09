@@ -22,7 +22,7 @@ const Footer = memo(() => {
             <img src={logo} alt="" className='logo-image' />
             </div>
             <div className='footer-main-detail'>
-            <p className='footer-detail text-secondary'>
+            <p className='footer-detail'>
              Results may vary.Noleuderm is not a drug and is not intended to diagnose,treat,or prevent
              any disease.Individual resul may vary and improvement is often seen within 4 week of use with
              complete result after 16 to 20 days of continuous use .The information throughout the website is not
@@ -46,7 +46,7 @@ const Footer = memo(() => {
             </div>
           </div> */}
            
-           <div className="copyright footer text-secondary ">
+           <div className="copyright footer  ">
              <div className="first one">COPYRIGHT @2019.NOLEUDERM ALL RIGHTS RESERVED </div>
              <div className='footer-condition'>
              <div className="second two">COPY RIGHT</div>

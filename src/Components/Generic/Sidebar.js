@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Account from "../Sidebar/Account";
 import FullCart from "../Sidebar/FullCart";
 import Login from "../Sidebar/Login";
+import SignUp from "../Sidebar/SignUp";
 import Shop from "../Sidebar/Shop";
 import isTablet from "../../hoc/isTablet";
 
@@ -41,7 +42,9 @@ class Sidebar extends Component {
       case "cart":
         return <FullCart closeSidebar={this.props.closeSidebar} />;
       case "login":
-        return <Login closeSidebar={this.props.closeSidebar} />;
+        return <Login closeSidebar={this.props.closeSidebar}/>;
+      case "signup":
+        return <SignUp closeSidebar={this.props.closeSidebar}/>;
       case "shop":
         return <Shop />;
       default:

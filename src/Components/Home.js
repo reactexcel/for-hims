@@ -41,7 +41,7 @@ class Home extends Component {
     this.setState(prevState => ({ showInfo: !prevState.showInfo }));
   render() {
     const { showInfo } = this.state;
-    const { onAddProduct, role } = this.props;        
+    const { onAddProduct, role, openLogin } = this.props;        
     return (
       <>
         <div className="header_slider">
@@ -108,7 +108,7 @@ class Home extends Component {
                       </div>
                     </div>
                     {/* {(role === ROLES.CUSTOMER  || role === ROLES.DOCTOR)  && ( */}
-                    <Link to="#" className="btn1" onClick={onAddProduct}>
+                    <Link to="#" className="btn1" onClick={this.props.user.auth ? onAddProduct : openLogin}>
                       START <i class="fa fa-arrow-right" />
                     </Link>
                     {/* )} */}
@@ -136,19 +136,19 @@ class Home extends Component {
           <div class="grid-container effect-month view">
             <div className="grid-item ">
               <img src={before_1} alt=""  />
-              <div className="grid-item text-secondary  ">2 months</div>
+              <div className="grid-item">2 months</div>
             </div>
             <div className="grid-item">
               <img src={before_2} alt=""  />
-              <div className="grid-item text-secondary ">4 months</div>
+              <div className="grid-item ">4 months</div>
             </div>
             <div className="grid-item">
               <img src={before_3} alt=""  />
-              <div className="grid-item text-secondary ">6 months</div>
+              <div className="grid-item  ">6 months</div>
             </div>
             <div className="grid-item">
               <img src={before_4} alt=""  />
-              <div className="grid-item text-secondary ">8 months</div>
+              <div className="grid-item  ">8 months</div>
             </div>
             
             {/* <img src={before_1} alt="" className="grid-item" />

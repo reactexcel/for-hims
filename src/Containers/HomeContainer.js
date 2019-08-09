@@ -8,12 +8,13 @@ import Sidebar from "../Components/Generic/Sidebar";
 
 /**Parent Component for Home component */
 class HomeContainer extends Component {
-  state = { openSidebar: false };
+  state = { openSidebar: false, sidebarContent: "signup" };
   onAddProduct = () => {
     this.props.addToCartRequest();
     setTimeout(this.openCart, 400);
   };
-  openCart = () => this.setState({ openSidebar: true });
+  openCart = () => this.setState({ openSidebar: true, sidebarContent: "cart" });
+  openLogin = () => this.setState({ openSidebar: true, sidebarContent: "signup" });
   render() {
     const {
       data: { role }
@@ -22,11 +23,16 @@ class HomeContainer extends Component {
       <>
         <div className="blank_space" />
         <Header />
-        <Home role={role} onAddProduct={this.onAddProduct} />
+        <Home
+          role={role}
+          onAddProduct={this.onAddProduct}
+          openLogin ={this.openLogin}
+          user={this.props.user}
+        />
         <Sidebar
           openSidebar={this.state.openSidebar}
           side={"right"}
-          content={"cart"}
+          content={this.state.sidebarContent}
           closeSidebar={() => {
             this.setState({
               openSidebar: false
@@ -39,7 +45,10 @@ class HomeContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ profile: { userProfile } }) => ({ userProfile });
+const mapStateToProps = ({ profile: { userProfile }, user }) => ({
+  userProfile,
+  user
+});
 export default connect(
   mapStateToProps,
   { addToCartRequest }

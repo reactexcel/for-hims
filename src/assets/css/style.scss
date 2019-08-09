@@ -198,8 +198,8 @@ ul.left_menu li a:hover {
   }
   p {
     font-weight: lighter;
-    font-size: 14px;
-    color: #414142;
+    font-size: 20px;
+    color: #4c4c4c;
     margin: 0 0;
   }
   .content-after-before {
@@ -306,9 +306,10 @@ a.btn1:hover {
   background-color: #f6f6f6;
   p {
     font-weight: lighter;
-    color: lightgray;
+    color: #4c4c4c;
     font-display: Lato, Light-Italic;
     font-style: italic;
+    font-size: 18px;
   }
   .play {
     background: transparent;
@@ -411,7 +412,7 @@ a.learn:hover {
   transform-origin: top right;
 }
 .science_section {
-  margin: 30px 0;
+  margin:  0 ;
   .recommended-callout-wrapper {
     clip-path: polygon(15% 0%, 100% 0, 100% 100%, 0% 100%);
     background-color: #f6f6f6;
@@ -434,10 +435,10 @@ a.learn:hover {
 .system_section p {
   font-weight: lighter;
   font-style: italic;
-  color: lightgray;
+  color: #4c4c4c;
 }
 .system_section {
-  padding: 250px 0;
+  padding: 150px 0;
   .system-accordion {
     display: flex;
     flex-direction: column;
@@ -537,6 +538,8 @@ a.learn:hover {
   }
   p {
     font-weight: lighter;
+    font-size: 17px;
+    color: #4c4c4c;
   }
   .email-form {
     display: flex;
@@ -592,7 +595,7 @@ a.learn:hover {
 
 footer {
   background: #000;
-  color: #fff;
+  color: #4c4c4c;
   padding: 80px 0px 120px 0px;
   height: 700px;
   position: relative;
@@ -2396,6 +2399,17 @@ ul.tab_question li.customer-answer {
   font-style: italic;
   line-height: 1.5;
 }
+.header_slider .first-home-section .content p {
+  font-size: 20px;
+  color: #4c4c4c;
+}
+.header_slider .first-home-section .content .description p {
+  font-size: 16px;
+  color: #4c4c4c;
+}
+.grid-container.effect-month.view {
+  color: #4c4c4c;
+}
 
 
 @media screen and (max-height: 450px) {
@@ -3377,6 +3391,22 @@ form.doctor_form {
     width: 95%;
   }
 }
+@media only screen and (min-width: 1681px) {
+  .header_slider {
+    padding: 0 0 100px 0 ;
+  }
+}
+@media only screen and (min-width: 1500px){
+  .science_section .product-img3 {
+    clip-path: polygon(0 0, 0 100%, 40% 100%, 69% 0);
+  }
+  .system_section {
+    margin-top: 5em;
+  }
+}
+
+
+
 @media only screen and (max-width: 1440px) {
   .header_slider .first-home-section {
     background-position-x: right;
@@ -3505,7 +3535,7 @@ form.doctor_form {
   }
   .doctor-second {
     overflow: unset;
-    margin:9em 0 0 8em;
+    margin:9em 0 0 6em;
   }
   .before-after .effect-month {
     grid-template-columns: auto auto;
@@ -3519,8 +3549,10 @@ form.doctor_form {
       width: 80%;
     }
   }
-  .before-after .content-after-before {
-    font-size: 19px;
+  .before-after{
+    .content-after-before {
+      font-size: 20px;
+    } 
   }
   .product-img2 {
     clip-path: polygon(32% 0%, 45% 68%, 78% 68%, 82% 100%, 100% 100%, 100% 0);
@@ -3577,7 +3609,7 @@ form.doctor_form {
     font-weight: 600;
   }
   .callout-inset h1.callout-title {
-    font-size: 3.2em;
+    font-size: 46px;
   }
   .callout-inset.doctor {
     margin-top:3em;
@@ -3727,7 +3759,7 @@ form.doctor_form {
     color: gray;
   }
   .recommended-callout-wrapper {
-    margin-top: 26em;
+    margin-top: 0em;
     .callout-inset.science {
       padding: 0;
       .callout-title {
@@ -3736,7 +3768,7 @@ form.doctor_form {
     }
   }
   .callout-inset.doctor {
-    margin-top: 26em;
+    margin-top: 2em;
     margin-left: 2em;
     .callout-title.doctor {
       font-size: 42px;
@@ -3864,6 +3896,9 @@ form.doctor_form {
 }
 
 @media only screen and (max-width: 767px) {
+  .callout-inset.doctor .callout-title.doctor {
+    font-size: 47px;
+}
   .doctor-second {
     margin:0;
   }
@@ -4008,7 +4043,7 @@ form.doctor_form {
     padding-right: 2em;
     width: 100%;
     .callout-inset.science {
-      width:18em;
+      width:34em;
       p {
         line-height: 1.5;
       }

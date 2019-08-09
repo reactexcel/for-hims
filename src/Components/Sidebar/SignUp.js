@@ -66,7 +66,7 @@ class SignUp extends Component {
           <div id="mySidenav3">
             <div className="login_form">
               <div className="register_box">
-                <h3>Welcome to hims!</h3>
+                <h3>Welcome to Noleuderm</h3>
                 <h5>Fill in your details to create an account</h5>
                 <form>
                   <input
