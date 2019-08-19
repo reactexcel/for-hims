@@ -109,7 +109,7 @@ class CustomerOrdersContainer extends Component {
           </div>
           <div className="clearfix" />
           <div className="visit_question_right">
-            <small className="gillin_title">{customerName} </small>
+            <small className="gillin_title">{!customerName?customerName:''}</small>
             {question.data().type === "checkbox" && (
               <small className="apply_title">* select all that apply *</small>
             )}
