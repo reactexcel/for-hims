@@ -3,7 +3,7 @@ import Header from "../Components/Generic/Header";
 import Footer from "../Components/Generic/Footer";
 import Home from "../Components/Home";
 import { connect } from "react-redux";
-import { addToCartRequest } from "../actions";
+import { addToCartRequest ,loginFromStartRequest} from "../actions";
 import Sidebar from "../Components/Generic/Sidebar";
 
 /**Parent Component for Home component */
@@ -11,10 +11,14 @@ class HomeContainer extends Component {
   state = { openSidebar: false, sidebarContent: "signup" };
   onAddProduct = () => {
     this.props.addToCartRequest();
+    this.props.loginFromStartRequest("cart")
     setTimeout(this.openCart, 400);
   };
   openCart = () => this.setState({ openSidebar: true, sidebarContent: "cart" });
-  openLogin = () => this.setState({ openSidebar: true, sidebarContent: "signup" });
+  openLogin = (authType) =>{ 
+    const {sidebarContent} =this.props.user
+    this.props.loginFromStartRequest(authType ? authType : "login" )
+    this.setState({ openSidebar: true, sidebarContent: sidebarContent })}
   render() {
     const {
       data: { role }
@@ -32,7 +36,7 @@ class HomeContainer extends Component {
         <Sidebar
           openSidebar={this.state.openSidebar}
           side={"right"}
-          content={this.state.sidebarContent}
+          content={this.props.user.sidebarContent}
           closeSidebar={() => {
             this.setState({
               openSidebar: false
@@ -51,5 +55,5 @@ const mapStateToProps = ({ profile: { userProfile }, user }) => ({
 });
 export default connect(
   mapStateToProps,
-  { addToCartRequest }
+  { addToCartRequest,loginFromStartRequest }
 )(HomeContainer);

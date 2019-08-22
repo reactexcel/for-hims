@@ -108,7 +108,7 @@ class Home extends Component {
                       </div>
                     </div>
                     {/* {(role === ROLES.CUSTOMER  || role === ROLES.DOCTOR)  && ( */}
-                    <Link to="#" className="btn1" onClick={this.props.user.auth ? onAddProduct : openLogin}>
+                    <Link to="#" className="btn1" onClick={this.props.user.auth ? onAddProduct : ()=> openLogin("signup")}>
                       START <i class="fa fa-arrow-right" />
                     </Link>
                     {/* )} */}

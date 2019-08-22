@@ -94,3 +94,12 @@ export function* createUserByAdminRequest(action) {
     yield put(actions.resetAuthMessage());
   }
 }
+
+//actions for manage login from start
+export function* loginFromStartRequest(action) {
+  try{  
+      yield put(actions.loginFromStartSuccess(action.payload));
+  } catch (e) {
+
+  }
+}

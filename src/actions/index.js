@@ -283,3 +283,8 @@ export const fetchStateDoctorSuccess = createAction(
 export const fetchStateDoctorError = createAction(
   constants.FETCH_STATE_DOCTOR_ERROR
 );
+
+//actions for manage login
+
+export const loginFromStartRequest = createAction(constants.LOGIN_FROM_START_REQUEST);
+export const loginFromStartSuccess = createAction(constants.LOGIN_FROM_START_SUCCESS);
