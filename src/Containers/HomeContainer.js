@@ -9,6 +9,14 @@ import Sidebar from "../Components/Generic/Sidebar";
 /**Parent Component for Home component */
 class HomeContainer extends Component {
   state = { openSidebar: false, sidebarContent: "signup" };
+
+  componentDidUpdate(preProps){
+    const {auth} = this.props.user
+    if(auth && auth !== preProps.user.auth){
+      this.onAddProduct()
+    }
+  }
+
   onAddProduct = () => {
     this.props.addToCartRequest();
     this.props.loginFromStartRequest("cart")

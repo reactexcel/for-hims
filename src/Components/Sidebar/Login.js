@@ -4,10 +4,9 @@ import ErrorText from "../Generic/ErrorText";
 import SignUp from "./SignUp";
 import ForgotPassword from "./ForgotPassword";
 import { connect } from "react-redux";
-import { loginRequest,loginFromStartRequest } from "../../actions";
+import { loginRequest,loginFromStartRequest,addToCartRequest } from "../../actions";
 import Account from "./Account";
 import FullCart from "./FullCart";
-
 /**UI component for Login of App */
 class Login extends Component {
   constructor(props) {
@@ -16,7 +15,6 @@ class Login extends Component {
       data: { email: "", password: "" },
       errors: {},
       showRegister: false,
-      showForgotPassword: false
     };
   }
   static defaultProps = {
@@ -48,16 +46,14 @@ class Login extends Component {
     if (!Object.keys(errors).length) {
       this.props.loginRequest({ ...this.state.data });
     }
-  };
+     this.props.addToCartRequest();
+  }
   
-
   /**Toggles the Register UI component */
   toggleRegister = () => {
     const { isLoginFromStart} =this.props.user
     const authType = !isLoginFromStart ? "signup" : "login" 
     this.props.loginFromStartRequest(authType)
-    // console.log(this.state.showRegister,'00000000000')
-    // this.setState(prevState => ({ showRegister: !prevState.showRegister }));
   };
 
   /**Toggles the Forgot Password UI component */
@@ -144,7 +140,18 @@ class Login extends Component {
             >
               Login
             </button>
+            {/* <Sidebar
+          openSidebar={this.state.openSidebar}
+          side={"right"}
+          content={this.props.user.sidebarContent}
+          closeSidebar={() => {
+            this.setState({
+              openSidebar: false
+            });
+          }}
+        /> */}
           </div>
+         
         )}
       </>
     );
@@ -155,5 +162,5 @@ const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(
   mapStateToProps,
-  { loginRequest,loginFromStartRequest }
+  { loginRequest,loginFromStartRequest,addToCartRequest }
 )(Login);
