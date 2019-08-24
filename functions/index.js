@@ -396,17 +396,14 @@ app.post("/emailsend", (req, res) => {
     })
   );
   const dest = req.body.to;
+console.log(req.body,'77777777777777');
 
   const mailOptions = {
     from: "rahul.excel2011@gmail.com", // Something like: Jane Doe <janedoe@gmail.com>
     to: dest,
     subject: "Regarding appoinment", // email subject
-    html: `<div>
-                <p style="font-size: 16px;">You have a new order to review!</p>
-          </div>
-            
-            <br />
-        ` // email content in HTML
+    html: req.body.message || "<div>message sent</div>"
+     // email content in HTML
   };
 
   // returning result

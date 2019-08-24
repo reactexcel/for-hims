@@ -1,8 +1,50 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../actions/index";
+import {
+  emailSendDoctorRequest,
+} from "../actions";
+
+const email=(props)=>
+  `<div>
+       <div style="font-size:14px font-weight:'bold', margin-bottom:20px">
+            You have a new order to review!
+       </div> 
+       <div style ="font-size:14px,margin-bottom:10px">Profile</div>
+       <div>${props.user.data.email}</div>
+       <div>${new Date(props.userProfile.data.dateOfBirth.seconds *1000)}</div>
+       <div style="font-size:14px">Order No.</div>
+       <div>${props.orders.orderDetail.order.id}</div>
+       <div>Status</div>
+       <div>${props.orders.orderDetail.order.metadata.approvalStatus}</div>
+       <div>Review now <div>
+</div>`
 
 /**UI component for Gender */
 class Gender extends Component {
+  componentDidMount(){
+    console.log(this.props.orders && this.props.orders.orderDetail,'@@@@@@@@@@@@@')
+
+    if(this.props.orders && this.props.orders.orderDetail ) {
+    const order_id = this.props.orders.orderDetail.order.id;
+    const user_mail = this.props.user.data.email;
+    const  birthdate = new Date(this.props.userProfile.data.dateOfBirth.seconds *1000);
+    // const birthdate = this.props.userProfile.data.dateOfBirth;
+    const status = this.props.orders.orderDetail.order.metadata.approvalStatus;
+    // const email_data ={order:}
+    const x = email(this.props)
+    const data ={
+                  order_no:order_id,
+                  to:"admin@noleuderm.com",
+                  birth:birthdate,
+                  order_status:status,
+                  message:x
+                }
+      this.props.emailSendDoctorRequest(data);
+    }
+  }
+  
   render() {
     return (
       <div className="container">
@@ -51,5 +93,15 @@ class Gender extends Component {
     );
   }
 }
+const mapStateToProps = ({ user, profile: { userProfile }, payment,orders }) => ({
+  user,
+  userProfile,
+  payment,
+  orders
+}); 
 
-export default Gender;
+export default connect(
+  mapStateToProps,
+  {emailSendDoctorRequest}
+)(Gender);
+

@@ -115,18 +115,18 @@ export function* validateOldPasswordRequest(action) {
     console.log(e, "err");
   }
 }
-
 //Updating appointment status of customer
-export function* updateAppointmentRequest(action) {
+export function* updateAppointmentRequest(action) { 
   let ariaDoctor
   const { uid, status, role ,state,email} = action.payload;
+  const data_detail = action.payload;
+  console.log(action.payload,"in function value");// Latest user detail...
   try {    
     const response = yield firebase.user(uid).get();
     if (response.exists && response.data().approvalStatus) {
       yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
       // let x=sda(actio.payload,"doctor")
-      yield put(actions.emailSendDoctorRequest({to:email,}))
-
+      yield put(actions.emailSendDoctorRequest({to:email,data_detail}))
       yield put(
         actions.updateAppointmentSuccess("Appointment status has been updated")
       );
@@ -140,7 +140,7 @@ export function* updateAppointmentRequest(action) {
           }
         }
       });
-      yield put(actions.emailSendDoctorRequest({to:ariaDoctor.email}))
+      yield put(actions.emailSendDoctorRequest({to:ariaDoctor.email,data_detail}))
       //to prevent changing data for doctor
       if (!role) {        
         const userData = yield firebase.user(uid).get();

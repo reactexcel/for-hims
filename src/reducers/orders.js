@@ -7,9 +7,10 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
-  data: []
+  data: [],
+  orderDetail:{}
 };
-
+ 
 const ordersRequest = (state, action) =>
   update(state, {
     isLoading: { $set: true },
@@ -35,11 +36,23 @@ const ordersError = (state, action) =>
     message: { $set: action.payload }
   });
 
+  const orderDetail = (state, action) =>
+    update(state, {
+      isLoading: { $set: false },
+    isSuccess: { $set: false },
+    isError: { $set: true },
+      orderDetail: { $set: action.payload }
+    });
+  
+  
+  
+  
 export default handleActions(
   {
     [constants.GET_ALL_ORDERS_REQUEST]: ordersRequest,
     [constants.GET_ALL_ORDERS_SUCCESS]: ordersSuccess,
-    [constants.GET_ALL_ORDERS_ERROR]: ordersError
+    [constants.GET_ALL_ORDERS_ERROR]: ordersError,
+    [constants.FETCH_ORDER_DETAIL]:orderDetail
   },
   initialState
 );

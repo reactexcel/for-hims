@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { findIndex } from "lodash";
 import {
   getCustomerDetailRequest,
-  updateAppointmentRequest,
+  updateAppointmentRequest, 
   sendMessageRequest,
   chargeCustomerAfterApprovalRequest
 } from "../../actions";

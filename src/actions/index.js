@@ -284,6 +284,11 @@ export const fetchStateDoctorError = createAction(
   constants.FETCH_STATE_DOCTOR_ERROR
 );
 
+// action for get order-id
+export const fetchOrderDetail = createAction(
+  constants.FETCH_ORDER_DETAIL 
+);
+
 //actions for manage login
 
 export const loginFromStartRequest = createAction(constants.LOGIN_FROM_START_REQUEST);

@@ -63,9 +63,11 @@ class FullCart extends Component {
   };
 
   /**Updates approval status after placing order */
-  onUpdateAppointment = data => {    
+  onUpdateAppointment = data => {  
+     const order_detail = this.props.orders;
+    console.log(data,'999999999999')  
     const { uid } = this.props.user.data;
-    this.props.updateAppointmentRequest({ uid, ...data });
+    this.props.updateAppointmentRequest({ order_detail,uid, ...data });
   };
 
   /**Increment the state for rendering item */
@@ -149,10 +151,11 @@ class FullCart extends Component {
     return <>{this._renderItem()}</>;
   }
 }
-const mapStateToProps = ({ user, profile: { userProfile }, payment }) => ({
+const mapStateToProps = ({ user, profile: { userProfile }, payment,orders }) => ({
   user,
   userProfile,
-  payment
+  payment,
+  orders
 });
 
 export default connect(

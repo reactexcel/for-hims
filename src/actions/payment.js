@@ -116,6 +116,13 @@ export function* chargeCustomerRequest(action) {
       cardId
     });
     console.log(response,'response')
+    yield put(
+      actions.fetchOrderDetail({ 
+        ...JSON.parse(response.data.body)
+      })
+    );
+    console.log(response,'response')
+  
     if (response.data.statusCode === 200) {
       const orderId = JSON.parse(response.data.body).order.id;
       const orderResponse = yield call(chargeCustomer, {
@@ -160,6 +167,7 @@ export function* chargeCustomerAfterApprovalRequest(action) {
       cardId
     });
     if (response.data.statusCode === 200) {
+      console.log(response.data.body,"in incoming")
       yield put(
         actions.chargeCustomerAfterApprovalSuccess({
           ...JSON.parse(response.data.body)
