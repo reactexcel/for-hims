@@ -1,6 +1,7 @@
 import { put } from "redux-saga/effects";
 import * as actions from "./index";
 import { firebase } from "../Firebase";
+import * as messageTemplate from "../utils/messageTemplate";
 
 //Action for resetting password of the user
 export function* resetPasswordRequest(action) {
@@ -63,7 +64,7 @@ export function* getProfileInfoRequest(action) {
   }
 }
 
-//Action for adding date of birth 
+//Action for adding date of birth
 export function* addDateOfBirthRequest(action) {
   const { dateOfBirth, uid } = action.payload;
   try {
@@ -116,47 +117,84 @@ export function* validateOldPasswordRequest(action) {
   }
 }
 //Updating appointment status of customer
-export function* updateAppointmentRequest(action) { 
-  let ariaDoctor
-  const { uid, status, role ,state,email} = action.payload;
+export function* updateAppointmentRequest(action) {
+  let ariaDoctor;
+  const { uid, status, role, state, email } = action.payload;
   const data_detail = action.payload;
-  console.log(action.payload,"in function value");// Latest user detail...
-  try {    
+  console.log(action.payload, "innnnnn"); // Latest user detail...
+  try {
     const response = yield firebase.user(uid).get();
     if (response.exists && response.data().approvalStatus) {
-      console.log("11111111",email);
       yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
-      // let x=sda(actio.payload,"doctor")
-      yield put(actions.emailSendDoctorRequest({to:email,data_detail}))
-      yield put(actions.emailSendDoctorRequest({to:"admin@noledurem.com",data_detail,}))
+      if (status === "Approved") {
+        var message = messageTemplate.messageTemplate({
+          sendTo: messageTemplate.ORDER_APPROVED_PATIENT,
+          ...data_detail
+        });
+        yield put(actions.emailSendDoctorRequest({ to: email, message }));
+        message = messageTemplate.messageTemplate({
+          sendTo: messageTemplate.ORDER_APPROVED_ADMIN,
+          ...data_detail
+        });
+        yield put(
+          actions.emailSendDoctorRequest({ to: "admin@noledurem.com", message })
+        );
+      } else if (status === "Denied") {
+         message = messageTemplate.messageTemplate({
+          sendTo: messageTemplate.ORDER_REJECTED_PATIENT,
+          ...data_detail
+        });
 
+        yield put(actions.emailSendDoctorRequest({ to: email, message }));
+
+        message = messageTemplate.messageTemplate({
+          sendTo: messageTemplate.ORDER_REJECTED_ADMIN,
+          ...data_detail
+        });
+        console.log(message,'messagemessagemessage');
+        
+
+        yield put(
+          actions.emailSendDoctorRequest({ to: "admin@noledurem.com", message })
+        );
+      }
       yield put(
         actions.updateAppointmentSuccess("Appointment status has been updated")
       );
     } else {
-      console.log("22222222222");
       yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
-      yield firebase.fetchDoctor(state).get().then(function(res){
-        for(let val of res.docs){
-          if(val.data().shippingAddress.states===state){
-            ariaDoctor=val.data();
-            break
+      yield firebase
+        .fetchDoctor(state)
+        .get()
+        .then(function(res) {
+          for (let val of res.docs) {
+            if (val.data().shippingAddress.states === state) {
+              ariaDoctor = val.data();
+              break;
+            }
           }
-        }
-      });
-      
-      yield put(actions.emailSendDoctorRequest({to:ariaDoctor.email,data_detail}))
+        });
+
+        message = messageTemplate.messageTemplate({
+          sendTo: messageTemplate.ORDER_PLACED_DOCTOR,
+          ...data_detail
+        });
+        console.log(message,'messagemessagemessage',data_detail);
+      yield put(actions.getAreaDoctorRequest(ariaDoctor))
+      yield put(
+        actions.emailSendDoctorRequest({ to: ariaDoctor.email, message })
+      );
       //to prevent changing data for doctor
-      if (!role) {        
+      if (!role) {
         const userData = yield firebase.user(uid).get();
-        console.log("33333333333");
+        console.log("33333333333",userData.data());
         yield put(actions.updateProfileSuccess(userData.data()));
       }
       yield put(
         actions.updateAppointmentSuccess("Appointment status has been updated")
       );
     }
-  } catch (e) {    
+  } catch (e) {
     yield put(actions.updateAppointmentError(e.message));
   }
 }
@@ -245,5 +283,3 @@ export function* emailSendAdminRequest(action) {
     yield put(actions.savingConsentError(e));
   }
 }
-
-

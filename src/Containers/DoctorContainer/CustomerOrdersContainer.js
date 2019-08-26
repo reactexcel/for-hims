@@ -62,15 +62,15 @@ class CustomerOrdersContainer extends Component {
   handleSubmit = event => {    
     //Getting the action through data attributes
     const { action } = event.currentTarget.dataset;
-    const { uid,email } = this.props.customerDetails.data;
-    
+    const { uid,email,dateOfBirth } = this.props.customerDetails.data;
+    const order_id=this.props.match.params.uid
     const { doctorComment } = this.state;
     const { role } = this.props.userProfile.data;
-   
+   let DOB=new Date(dateOfBirth *1000)
     let status;
     if (action === "approve") {
       status = "Approved";
-      this.props.updateAppointmentRequest({ uid, status, role,email });
+      this.props.updateAppointmentRequest({ uid, status, role,email,order_id,DOB});
     } else if (action === "deny") {
       const error = validateMessage(this.state.doctorComment);
       this.setState({ error });
@@ -83,7 +83,7 @@ class CustomerOrdersContainer extends Component {
           uid:this.state.uid
         };
         status = "Denied";
-        this.props.updateAppointmentRequest({ uid, status, role,email });
+        this.props.updateAppointmentRequest({ uid, status, role,email,order_id,DOB });
         this.props.sendMessageRequest(messageSendCustomer);
       }
       this.setState({ doctorComment: "" });
@@ -167,6 +167,8 @@ class CustomerOrdersContainer extends Component {
     }
   };
   render() {
+    console.log(this.props,'pppppppppp');
+    
     const { customerDetails, additionalInfo } = this.props;
     const { deny, doctorComment, error, approve } = this.state;
     const { doctorName } = this.props.history.location.state;

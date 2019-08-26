@@ -8,7 +8,8 @@ const initialState = {
   isLoading: false,
   message: "",
   data: [],
-  orderDetail:{}
+  orderDetail:{},
+  areaDoctor:{}
 };
  
 const ordersRequest = (state, action) =>
@@ -45,6 +46,13 @@ const ordersError = (state, action) =>
     });
   
   
+    const getAraeDoctorSuccess = (state, action) =>
+    update(state, {
+      isLoading: { $set: false },
+      isSuccess: { $set: true },
+      isError: { $set: false },
+      areaDoctor: { $set: action.payload }
+    });
   
   
 export default handleActions(
@@ -52,7 +60,8 @@ export default handleActions(
     [constants.GET_ALL_ORDERS_REQUEST]: ordersRequest,
     [constants.GET_ALL_ORDERS_SUCCESS]: ordersSuccess,
     [constants.GET_ALL_ORDERS_ERROR]: ordersError,
-    [constants.FETCH_ORDER_DETAIL]:orderDetail
+    [constants.FETCH_ORDER_DETAIL]:orderDetail,
+    [constants.GET_AREA_DOCTOR_REQUEST]:getAraeDoctorSuccess
   },
   initialState
 );

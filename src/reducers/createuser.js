@@ -40,7 +40,7 @@ export default handleActions(
     [constants.CREATE_USER_BY_ADMIN_REQUEST]: createUserRequest,
     [constants.CREATE_USER_BY_ADMIN_SUCCESS]: createUserSuccess,
     [constants.CREATE_USER_BY_ADMIN_ERROR]: createUserError,
-    [constants.RESET_AUTH_MESSAGE]: resetMessage
+    [constants.RESET_AUTH_MESSAGE]: resetMessage,
   },
   initialState
 );

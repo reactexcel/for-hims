@@ -164,3 +164,6 @@ export const LOGIN_FROM_START_SUCCESS="LOGIN_FROM_START_SUCCESS"
 
 //constant for order-detail
 export const FETCH_ORDER_DETAIL ="FETCH_ORDER_DETAIL"
+
+//constants for area-doctor
+export const GET_AREA_DOCTOR_REQUEST="GET_AREA_DOCTOR_REQUEST"

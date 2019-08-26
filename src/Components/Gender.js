@@ -5,7 +5,7 @@ import * as actions from "../actions/index";
 import {
   emailSendDoctorRequest,
 } from "../actions";
-
+import * as emailTemplate from "../utils/messageTemplate"
 const email=(props)=>
   `<div>
        <div style="font-size:14px font-weight:'bold', margin-bottom:20px">
@@ -29,10 +29,9 @@ class Gender extends Component {
     if(this.props.orders && this.props.orders.orderDetail ) {
     const order_id = this.props.orders.orderDetail.order.id;
     const user_mail = this.props.user.data.email;
+    const {areaDoctor}=this.props.orders
     const  birthdate = new Date(this.props.userProfile.data.dateOfBirth.seconds *1000);
-    // const birthdate = this.props.userProfile.data.dateOfBirth;
     const status = this.props.orders.orderDetail.order.metadata.approvalStatus;
-    // const email_data ={order:}
     const x = email(this.props)
     const data ={
                   order_no:order_id,
@@ -42,6 +41,10 @@ class Gender extends Component {
                   message:x
                 }
       this.props.emailSendDoctorRequest(data);
+      emailTemplate.messageTemplate()
+      this.props.emailSendDoctorRequest(data);
+      this.props.emailSendDoctorRequest(data);
+
     }
   }
   
