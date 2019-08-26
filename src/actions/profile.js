@@ -124,13 +124,17 @@ export function* updateAppointmentRequest(action) {
   try {    
     const response = yield firebase.user(uid).get();
     if (response.exists && response.data().approvalStatus) {
+      console.log("11111111",email);
       yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
       // let x=sda(actio.payload,"doctor")
       yield put(actions.emailSendDoctorRequest({to:email,data_detail}))
+      yield put(actions.emailSendDoctorRequest({to:"admin@noledurem.com",data_detail,}))
+
       yield put(
         actions.updateAppointmentSuccess("Appointment status has been updated")
       );
     } else {
+      console.log("22222222222");
       yield firebase.user(uid).set({ approvalStatus: status }, { merge: true });
       yield firebase.fetchDoctor(state).get().then(function(res){
         for(let val of res.docs){
@@ -140,10 +144,12 @@ export function* updateAppointmentRequest(action) {
           }
         }
       });
+      
       yield put(actions.emailSendDoctorRequest({to:ariaDoctor.email,data_detail}))
       //to prevent changing data for doctor
       if (!role) {        
         const userData = yield firebase.user(uid).get();
+        console.log("33333333333");
         yield put(actions.updateProfileSuccess(userData.data()));
       }
       yield put(
