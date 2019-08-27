@@ -166,9 +166,7 @@ class CustomerOrdersContainer extends Component {
       ));
     }
   };
-  render() {
-    console.log(this.props,'pppppppppp');
-    
+  render() {    
     const { customerDetails, additionalInfo } = this.props;
     const { deny, doctorComment, error, approve } = this.state;
     const { doctorName } = this.props.history.location.state;

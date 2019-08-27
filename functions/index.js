@@ -76,7 +76,6 @@ async function payment(req, res) {
       });
     }
   } catch (err) {
-    console.log(err);
     send(res, 500, {
       error: err.message
     });
@@ -396,8 +395,6 @@ app.post("/emailsend", (req, res) => {
     })
   );
   const dest = req.body.to;
-console.log(req.body,'77777777777777');
-
   const mailOptions = {
     from: "rahul.excel2011@gmail.com", // Something like: Jane Doe <janedoe@gmail.com>
     to: dest,

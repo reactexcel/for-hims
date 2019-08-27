@@ -34,16 +34,20 @@ class Gender extends Component {
     const status = this.props.orders.orderDetail.order.metadata.approvalStatus;
     const x = email(this.props)
     const data ={
-                  order_no:order_id,
-                  to:"admin@noleuderm.com",
-                  birth:birthdate,
-                  order_status:status,
-                  message:x
+                  order_id,
+                  email:user_mail,
+                  DOB:birthdate,
+                  status:status,
                 }
-      this.props.emailSendDoctorRequest(data);
-      emailTemplate.messageTemplate()
-      this.props.emailSendDoctorRequest(data);
-      this.props.emailSendDoctorRequest(data);
+      //send email to admin on order placed
+     var message= emailTemplate.messageTemplate({sendTo:emailTemplate.ORDER_PLACED_ADMIN,...data})
+      this.props.emailSendDoctorRequest({to:"admin@noleuderm.com",message});
+      //send email to areea doctor on order placed
+      message= emailTemplate.messageTemplate({sendTo:emailTemplate.ORDER_PLACED_DOCTOR,...data})
+      this.props.emailSendDoctorRequest({to:areaDoctor.email,message});
+      //send email to user on order placed
+      message= emailTemplate.messageTemplate({sendTo:emailTemplate.ORDER_PLACED_PATIENT,...data})
+      this.props.emailSendDoctorRequest({to:user_mail,message});
 
     }
   }

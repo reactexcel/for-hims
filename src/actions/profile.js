@@ -121,7 +121,6 @@ export function* updateAppointmentRequest(action) {
   let ariaDoctor;
   const { uid, status, role, state, email } = action.payload;
   const data_detail = action.payload;
-  console.log(action.payload, "innnnnn"); // Latest user detail...
   try {
     const response = yield firebase.user(uid).get();
     if (response.exists && response.data().approvalStatus) {
@@ -150,9 +149,7 @@ export function* updateAppointmentRequest(action) {
         message = messageTemplate.messageTemplate({
           sendTo: messageTemplate.ORDER_REJECTED_ADMIN,
           ...data_detail
-        });
-        console.log(message,'messagemessagemessage');
-        
+        });        
 
         yield put(
           actions.emailSendDoctorRequest({ to: "admin@noledurem.com", message })
@@ -179,7 +176,6 @@ export function* updateAppointmentRequest(action) {
           sendTo: messageTemplate.ORDER_PLACED_DOCTOR,
           ...data_detail
         });
-        console.log(message,'messagemessagemessage',data_detail);
       yield put(actions.getAreaDoctorRequest(ariaDoctor))
       yield put(
         actions.emailSendDoctorRequest({ to: ariaDoctor.email, message })
@@ -187,7 +183,6 @@ export function* updateAppointmentRequest(action) {
       //to prevent changing data for doctor
       if (!role) {
         const userData = yield firebase.user(uid).get();
-        console.log("33333333333",userData.data());
         yield put(actions.updateProfileSuccess(userData.data()));
       }
       yield put(
