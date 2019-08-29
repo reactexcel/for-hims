@@ -78,6 +78,7 @@ class Header extends PureComponent {
         <div
           className="navbar navbar-default navbar-fixed-top"
           role="navigation"
+          style={{backgroundColor:window.location.hash ==="#/"?"transparent":"#22a7c7"}}
           ref={this.setHeaderRef}
         >
           <div className="container header">
