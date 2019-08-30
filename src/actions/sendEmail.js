@@ -12,7 +12,6 @@ export function* emailSendDoctorRequest(action) {
   console.log(action.payload,'Value......')
 
     const { uid, token, to,name,email,subject,message } = action.payload;
-    console.log(action.payload,'mail-id') //mailing Address of doctor.
     try {
       const response = yield call(sendDoctorEmailApi,{to,name,email,subject,message})      
       yield put(actions.emailSendDoctorSuccess(response.docs));

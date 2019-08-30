@@ -25,11 +25,16 @@ class DateOfBirth extends Component {
    * @param {Object} values values from redux form
    */
   handleSubmitDate = values => {
-    const dateOfBirth = new Date(
-      `${values.month}-${values.day}-${values.year}`
-    );
-    const { uid } = this.props.user.data;
-    this.props.addDateOfBirthRequest({ uid, dateOfBirth });
+    var length = values.year.toString().length;
+    if(length == 4)
+    {
+      const dateOfBirth = new Date(
+        `${values.month}-${values.day}-${values.year}`
+      );
+      const { uid } = this.props.user.data;
+      this.props.addDateOfBirthRequest({ uid, dateOfBirth });
+    }
+    
   };
 
   render() {

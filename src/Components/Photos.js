@@ -82,7 +82,11 @@ class Photos extends Component {
                     </Link>
                   </p>
                 </div>
-                <div className="col-xs-12 col-sm-12 col-md-2"> </div>
+                <div className="col-xs-12 col-sm-12 col-md-2"> 
+                <Link to="/" className="link go_homepage">
+                        BACK TO HOME
+                    </Link>
+                </div>
               </div>
             </div>
           </>

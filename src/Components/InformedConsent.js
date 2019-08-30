@@ -34,13 +34,13 @@ class InformedConsent extends Component {
               <ul className="tab_header">
                 <li className="active1">
                   <i className="fa fa-check-circle" />
-                  <Link to="/informed-consent"> Informed Consent </Link>
+                  <Link to="#"> Informed Consent </Link>
                 </li>
                 <li>
-                  <Link to="/questions"> Questions </Link>
+                  <Link to="#"> Questions </Link>
                 </li>
                 <li>
-                  <Link to="/photos"> Photos </Link>
+                  <Link to="#"> Photos </Link>
                 </li>
               </ul>
             </div>
