@@ -258,7 +258,7 @@ export const resetPasswordFields = [
 export const dateOfBirthFields = [
   { name: "month", placeholder: "MM" },
   { name: "day", placeholder: "DD" },
-  { name: "year", placeholder: "YY" }
+  { name: "year", placeholder: "YYYY" }
 ];
 
 export const doctorInfoFields = [

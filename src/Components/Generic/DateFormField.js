@@ -15,7 +15,8 @@ export default function DateFormField({
         {...input}
         placeholder={label}
         type="text"
-        maxLength={label === "YY" ? 4 : 2}
+        maxLength={label === "YYYY" ? 4 : 2}
+        minLength={label === "YYYY" ? 4 : 1}
         className={touched && error ? "error" : ""}
       />
       {touched && error && <ErrorText text={error} />}
