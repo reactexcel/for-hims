@@ -63,9 +63,10 @@ class FullCart extends Component {
   };
 
   /**Updates approval status after placing order */
-  onUpdateAppointment = data => {    
+  onUpdateAppointment = data => {  
+     const order_detail = this.props.orders;
     const { uid } = this.props.user.data;
-    this.props.updateAppointmentRequest({ uid, ...data });
+    this.props.updateAppointmentRequest({ order_detail,uid, ...data });
   };
 
   /**Increment the state for rendering item */
@@ -140,7 +141,7 @@ class FullCart extends Component {
         );
 
       case 10:
-        return <Login addedProduct closeSidebar={this.props.closeSidebar} />;
+        return <Login addedProduct closeSidebar={this.props.closeSidebar} show={"login"} />;
       default:
         return;
     }
@@ -149,10 +150,11 @@ class FullCart extends Component {
     return <>{this._renderItem()}</>;
   }
 }
-const mapStateToProps = ({ user, profile: { userProfile }, payment }) => ({
+const mapStateToProps = ({ user, profile: { userProfile }, payment,orders }) => ({
   user,
   userProfile,
-  payment
+  payment,
+  orders
 });
 
 export default connect(

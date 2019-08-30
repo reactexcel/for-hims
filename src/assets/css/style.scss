@@ -29,10 +29,11 @@
 
 body {
   color: #000;
-  background: #fbf8f5;
+  background: #f6f6f6;
   font-size: 16px;
   line-height: 1.4;
-  font-family: "sofia_proregular";
+  font-family: "Lato", sans-serif;
+  
 }
 a {
   color: #000;
@@ -62,7 +63,7 @@ h4 {
 }
 
 .navbar-default {
-  background-color: #d7d7d2 !important;
+  // background-color: transparent !important;
 }
 .navbar-fixed-top .container {
   width: 100%;
@@ -70,13 +71,13 @@ h4 {
   position: relative;
 }
 .navbar-fixed-top.scrolled {
-  background-color: #fff !important;
+  background-color:#22a7c7 !important;
   transition: background-color 200ms linear;
 }
 .blank_space {
-  height: 75px;
+  /* height: 75px; */
   width: 100%;
-  display: inline-block;
+  display: none;
 }
 .header_logo {
   position: absolute;
@@ -99,8 +100,8 @@ h4 {
 .navbar-default .navbar-nav > li > a {
   cursor: pointer;
 }
-.navbar-default .navbar-items{
-  flex-direction:row
+.navbar-default .navbar-items {
+  flex-direction: row;
 }
 
 .header_menu_bg {
@@ -136,38 +137,125 @@ ul.left_menu li a:hover {
 }
 
 .header_slider {
-  background: #d7d7d2;
+  background: #f6f6f6;
   padding: 80px 0px 180px 0px;
+  .first-home-section {
+    background-image: url("../images/home-bg.png");
+    height: auto;
+    background-size: cover;
+    .content {
+      margin-top: 150px;
+      color: #fff;
+      text-align: left;
+      margin-left: 120px;
+      h1 {
+        font-size: 48px;
+        font-weight: bold;
+        margin: 0px;
+      }
+      p {
+        font-size: 13px;
+        padding-top: 8px;
+      }
+      .description {
+        margin-top: 50px;
+        p {
+          font-size: 15px;
+          font-weight: lighter;
+          color: lightgray;
+          font-style: italic;
+        }
+      }
+      .endorsed {
+        margin-top: 50px;
+        font-weight: lighter;
+      }
+      .endorsed-list {
+        margin-top: 10px;
+        img {
+          margin-right: 30px;
+        }
+        // display: flex;
+        // justify-content: flex-start;
+      }
+    }
+    .uv-light {
+      position: absolute;
+      top: 80px;
+      height: 80%;
+      right: -20px;
+      z-index: 10;
+    }
+  }
+}
+
+.before-after {
+  padding: 10% 10%;
+  text-align: center;
+  .main-heading {
+    font-size: 3em;
+    font-weight: 600;
+  }
+  p {
+    font-weight: lighter;
+    font-size: 20px;
+    color: #4c4c4c;
+    margin: 0 0;
+  }
+  .content-after-before {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1em 0 4em 0;
+    color: #4c4b4bc4;
+    font-style: italic;
+  }
+  .effect-month {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    div {
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
+}
+.header_slider .col-xs-12 {
+  padding: 0px;
 }
 .small,
 small {
   font-size: 85%;
 }
 .product-img {
-  padding-top: 75px;
+  /* padding-top: 75px; */
 }
 
 .baseballcard__container {
   width: 100%;
   display: inline-block;
   padding: 24px;
-  background: #fff;
-  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
   text-align: center;
+  position: absolute;
+  bottom: 40px;
+  left: -100px;
 }
 .baseball-card__inset {
-  background: #fbf8f5;
+  // background: #fbf8f5;
   padding: 35px;
+  .pricing {
+    display: flex;
+    justify-content: flex-end;
+    .baseball-card__header {
+      margin: 0;
+    }
+  }
 }
 .baseball-card__inset h5 {
   color: #cc835c;
   font-weight: 600;
 }
 .baseball-card__inset h1 {
-  font-size: 3em;
-  font-weight: 500;
-  line-height: 1.1;
-  padding-bottom: 25px;
+  font-size: 3.5em;
+  font-weight: 600;
 }
 .baseball-card__inset h4 {
   font-size: 16px;
@@ -177,18 +265,15 @@ small {
 a.btn1 {
   display: inline-block;
   width: 100%;
-  background: #000;
-  border: 2px solid #000;
-  padding: 10px 30px;
-  color: #fff;
+  border: 1px solid #f15a22;
+  padding: 15px 20px;
+  color: #f15a22;
   font-size: 14px;
   font-weight: 600;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  text-align: right;
 }
 a.btn1:hover {
   background-color: transparent;
-  border: 2px solid #000;
   color: #000;
   text-decoration: none;
 }
@@ -216,12 +301,32 @@ a.btn1:hover {
 .callout-wrapper {
   background: #fff;
 }
-
+.recommended-callout-wrapper {
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+  background-color: #f6f6f6;
+  p {
+    font-weight: lighter;
+    color: #4c4c4c;
+    font-display: Lato, Light-Italic;
+    font-style: italic;
+    font-size: 18px;
+  }
+  .play {
+    background: transparent;
+    border: 1px solid #f15a22;
+    color: #f15a22;
+    padding: 15px 50px;
+    margin-top: 50px;
+  }
+  @media screen and (max-width: 768px) {
+    clip-path: unset;
+  }
+}
 .callout-inset {
-  padding: 180px 25px 160px 100px;
+  padding: 180px 150px 160px 100px;
 }
 .callout-inset h1.callout-title {
-  font-size: 6.5em;
+  font-size: 3.5em;
   font-family: "sofia_probold";
 }
 .callout-inset h3 {
@@ -274,9 +379,15 @@ a.learn:hover {
   margin-top: 160px;
   margin-bottom: 100px;
 }
-
-.viagra_section {
+.email-content::placeholder {
+  color:lightgray;
 }
+
+
+
+// .product-img3.slide {
+//   clip-path:polygon(0 0, 0 85%, 97% 85%, 95% 83%, 50% 83%, 68% 0);
+// }
 .viagra_section .callout-inset {
   padding: 60px 25px 90px 100px;
   margin-top: 90px;
@@ -297,10 +408,162 @@ a.learn:hover {
 }
 
 .product-img2 {
-  margin-top: 70px;
-  margin-bottom: 100px;
+  transform: scale(1.6) translateY(-10px);
+  transform-origin: top right;
+}
+.science_section {
+  margin:  0 ;
+  .recommended-callout-wrapper {
+    clip-path: polygon(15% 0%, 100% 0, 100% 100%, 0% 100%);
+    background-color: #f6f6f6;
+    @media screen and (max-width: 768px) {
+      clip-path: unset;
+    }
+  }
+  .product-img3 {
+    transform: scale(2);
+    transform-origin: top left;
+    // width:100%
+  }
+  .content {
+    text-align: right;
+  }
+  .callout-inset {
+    padding: 180px 0px 160px 300px;
+  }
+}
+.system_section p {
+  font-weight: lighter;
+  font-style: italic;
+  color: #4c4c4c;
+}
+.system_section {
+  padding: 150px 0;
+  .system-accordion {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    color: #414142;
+  }
+  .callout-inset {
+    padding: 60px 150px 0px 100px;
+    background: #f6f6f6;
+    color: #414142;
+  }
+  p {
+    font-weight: lighter;
+  }
+  .open-right {
+    width: 0;
+    height: 0;
+    border-top: 3px solid #f15a22;
+    border-left: 3px solid #f15a22;
+    border-bottom: 3px solid #f15a22;
+    border-right: 3px solid transparent;
+    margin-right: 10px;
+    padding: 12px 15px;
+    border-radius: 30px;
+    span {
+      position: relative;
+      left: 15px;
+      padding: 4px 0px;
+      top: 5px;
+      color: #f15a22;
+      font-size: 25px;
+      font-weight: 600;
+      background-color: #f6f6f6;
+    }
+  }
+  .open-left {
+    width: 0;
+    height: 0;
+    border-top: 3px solid #f15a22;
+    border-left: 3px solid transparent;
+    border-bottom: 3px solid #f15a22;
+    border-right: 3px solid #f15a22;
+    margin-right: 10px;
+    padding: 12px 15px;
+    border-radius: 30px;
+    span {
+      position: relative;
+      right: 15px;
+      padding: 4px 0px;
+      top: 5px;
+      color: #f15a22;
+      font-size: 25px;
+      font-weight: 600;
+      background-color: #f6f6f6;
+    }
+  }
+  .btn-link {
+    text-align: left;
+    text-decoration: none;
+    outline: none !important;
+    margin-bottom: 10px;
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .fa-angle-down,.fa-angle-up {
+    float: right;
+    color: #f15a22;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+  .collapse {
+    width: 65%;
+    margin-left: 70px;
+    font-weight: lighter;
+  }
+  .collapsing {
+    width: 50%;
+    margin-left: 70px;
+    font-weight: lighter;
+  }
+}
+.clinic-text {
+  color:lightgray;
 }
 
+.clinical_papers_section {
+  color: #fff;
+  text-align: center;
+  background: #299cb7;
+  padding: 7% 20% 9%;
+  .clinical-title {
+    font-size: 25px;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  p {
+    font-weight: lighter;
+    font-size: 17px;
+    color: white;
+  }
+  .email-form {
+    display: flex;
+    margin-top: 30px;
+    ::placeholder {
+      color: #fff;
+      font-weight: lighter;
+    }
+    input {
+      border: 1px solid white !important;
+      color: #fff;
+    }
+  }
+  button {
+    padding: 0px 60px;
+    background: transparent;
+    border: 1px solid;
+    position: relative;
+    right: 40px;
+    top: 40px;
+    height: 55px;
+    font-weight: 600;
+  }
+}
 .full_bg {
   background: url(../images/full_bg.jpg) no-repeat center center;
   background-size: cover;
@@ -332,8 +595,62 @@ a.learn:hover {
 
 footer {
   background: #000;
-  color: #fff;
+  color: white;
   padding: 80px 0px 120px 0px;
+  height: 700px;
+  position: relative;
+  .row {
+    margin: 0;
+  }
+  p {
+    font-weight: lighter;
+    font-style: italic;
+    width: 50%;
+    right: 150px;
+    position: absolute;
+    bottom: 150px;
+    text-align: right;
+  }
+  img {
+    position: absolute;
+    top: 170px;
+  }
+  .copyright {
+    display: flex;
+    position: absolute;
+    bottom: 100px;
+    font-weight: lighter;
+    // width: 100%;
+    width: calc(100% - 300px);
+
+    // justify-content: space-between;
+    .first {
+      flex-basis: 50%;
+    }
+    .second,
+    .third,
+    .fourth {
+      flex-basis: 17%;
+      text-align: right;
+    }
+  }
+  .container {
+    padding: 0 150px;
+    margin: 0;
+  }
+}
+footer::after {
+  background-image: url("../images/footer-background.png");
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  content: "";
+  position: absolute;
+  display: inline-block;
+  top: 0px;
+  width: 100%;
+  opacity: 0.2;
 }
 footer h4.pt2 {
   padding-bottom: 0px;
@@ -530,11 +847,13 @@ ul.open_tab_order .small_title {
 .active span.close-btn {
   display: inline-block;
 }
-.content {
-  padding: 0 18px;
-  /* display: none; */
-  overflow: hidden;
-  font-size: 16px;
+.doctor_recommended_section {
+  .content {
+    padding: 0 18px;
+    /* display: none; */
+    overflow: hidden;
+    font-size: 16px;
+  }
 }
 
 .scrollup {
@@ -933,8 +1252,8 @@ button.absolute_no > a {
   left: 0px;
   right: 0px;
 }
-.login_btn:disabled{
-  background: #cfd7df
+.login_btn:disabled {
+  background: #cfd7df;
 }
 .register_box h3 {
   text-align: center;
@@ -1268,6 +1587,9 @@ div.read:hover,
 .shipping_address_box blockquote.active-address {
   border: 2px solid #c49875;
   color: #000;
+}
+.footer-condition {
+  display: contents;
 }
 
 .verify_address_box {
@@ -2057,6 +2379,38 @@ ul.tab_question li.customer-answer {
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+.mobile-endorsed {
+  display: none;
+}
+.endorsed {
+  display: block;
+}
+.treat {
+  word-spacing: 10px;
+}
+.description_title {
+  max-width: 530px;
+  line-height: 1.5;
+}
+.system-accordion.accordion {
+  width: 65%;
+}
+.content-before {
+  font-style: italic;
+  line-height: 1.5;
+}
+.header_slider .first-home-section .content p {
+  font-size: 20px;
+  color: white;
+}
+.header_slider .first-home-section .content .description p {
+  font-size: 16px;
+  color: white;
+}
+.grid-container.effect-month.view {
+  color: #4c4c4c;
+}
+
 
 @media screen and (max-height: 450px) {
   .sidenav {
@@ -2264,6 +2618,16 @@ form.doctor_form {
   font-weight: 400;
   border: 0;
 }
+.doctor_recommended_section {
+  .row {
+    overflow: hidden;
+  }
+  .content {
+    position: relative;
+    z-index: 5;
+    margin-top: 15px;
+  }
+}
 
 @media only screen and (min-width: 1220px) and (max-width: 1680px) {
   h3,
@@ -2271,9 +2635,6 @@ form.doctor_form {
     font-size: 20px;
   }
 
-  .baseball-card__inset h1 {
-    font-size: 28px;
-  }
   .baseball-card__inset {
     padding: 15px;
   }
@@ -2284,11 +2645,11 @@ form.doctor_form {
     display: none;
   }
   .header_slider {
-    padding: 80px 0px 100px 0px;
+    padding: 0px 0px 0px 0px;
   }
 
   .callout-inset h1.callout-title {
-    font-size: 4.5em;
+    font-size: 3em;
   }
 
   .stay_hard_section .callout-inset {
@@ -2414,7 +2775,7 @@ form.doctor_form {
     margin-bottom: 100px;
   }
   .callout-inset {
-    padding: 80px 25px 100px 60px;
+    padding: 80px 150px 100px 60px;
   }
 
   .mokokoma_section h4 {
@@ -2737,7 +3098,8 @@ form.doctor_form {
   }
 
   .blank_space {
-    height: 68px;
+    /* height: 68px; */
+    display: none;
   }
 
   footer {
@@ -2856,7 +3218,8 @@ form.doctor_form {
   }
 
   .blank_space {
-    height: 68px;
+    /* height: 68px; */
+    display: none;
   }
 
   footer {
@@ -3028,3 +3391,1006 @@ form.doctor_form {
     width: 95%;
   }
 }
+@media only screen and (min-width: 1681px) {
+  .header_slider {
+    padding: 0 0 100px 0 ;
+  }
+}
+@media only screen and (min-width: 1500px){
+  .science_section .product-img3 {
+    clip-path: polygon(0 0, 0 100%, 40% 100%, 69% 0);
+  }
+  .system_section {
+    margin-top: 5em;
+  }
+}
+
+
+
+@media only screen and (max-width: 1440px) {
+  .header_slider .first-home-section {
+    background-position-x: right;
+    height: 40em;
+  }
+  .header_slider {
+    padding-bottom: 0px;
+  }
+ 
+}
+@media only screen and (max-width: 1280px) {
+  
+  .product-img3.slide {
+    height: 21em;
+  }
+  
+  .header_slider .first-home-section {
+    background-size: auto;
+  }
+  .callout-inset.system.treatment {
+    padding-right: 0px;
+  }
+  
+}
+@media only screen and (max-width: 1220px) and (min-width: 1200px) {
+  .header_slider {
+    padding-top: 0px;
+  }
+  .baseball-card__inset {
+    padding-left: 0px;
+  }
+  .system_section {
+    padding-top: 3em;
+  }
+  .system-accordion.accordion {
+    width: 70%;
+  }
+  .footer .copyright {
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .header_slider .first-home-section {
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .description_title {
+    max-width: 440px;
+  }
+   
+  .header_slider .first-home-section .uv-light {
+    right: -3%;
+    top: 70px;
+  }
+  .baseballcard__container {
+    bottom: 65px;
+  }
+
+  .baseball-card__inset .pricing .baseball-card__header {
+    font-size: 54px;
+    margin: 0;
+    padding-bottom: 0;
+  }
+  .header_slider {
+    padding: 0;
+  }
+  .system-accordion.accordion {
+    width: 75% ;
+  }
+  .system_section {
+    padding: 100px 0;
+  }
+}
+@media only screen and (max-width: 1185px) {
+  .product-img3.slide {
+    height: 22em;
+  }
+}
+@media only screen and (min-width: 1025px) and (max-width: 1090px) {
+  .header_slider .first-home-section {
+    height: 36em;
+    background-size: cover;
+  }
+  .description_title {
+    max-width: 400px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .system-accordion.accordion {
+    width: 80%;
+  }
+  .description_title {
+    max-width: 400px;
+    line-height: 1.8;
+}
+  .baseballcard__container {
+    padding: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .header_slider .first-home-section {
+    background-size: cover;
+    // .uv-light {
+    //   height: 70%;
+    // }
+  }
+  .before-after {
+    padding: 6em 0;
+  }
+  .callout-inset.doctor {
+    padding-left: 0;
+  }
+  .product-img3.slide {
+    height: 25em;
+  }
+  .before-after .effect-month {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .recommended-callout-wrapper {
+    clip-path: unset;
+  }
+  .doctor-second {
+    overflow: unset;
+    margin:9em 0 0 6em;
+  }
+  .before-after .effect-month {
+    grid-template-columns: auto auto;
+  }
+  .system-accordion.accordion {
+    width: 105%;
+    margin-top:3em;
+  }
+  .grid-item {
+    img {
+      width: 80%;
+    }
+  }
+  .before-after{
+    .content-after-before {
+      font-size: 20px;
+    } 
+  }
+  .product-img2 {
+    clip-path: polygon(32% 0%, 45% 68%, 78% 68%, 82% 100%, 100% 100%, 100% 0);
+    transform: scale(1.7);
+  }
+  .header_slider .first-home-section {
+    height: auto;
+    padding-bottom: 8em;
+    background-size: cover;
+    .content {
+      margin-left: 45px;
+      margin-top: 12em;
+    }
+  }
+  .endorsed-list {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .endorsed-list > img {
+    margin-top: 10px;
+  }
+
+  .header_slider .first-home-section {
+    .uv-light.pic {
+      left: 77%;
+      height: 33em;
+      top: 9em;
+      width: 17em;
+    }
+  }
+  .description {
+    width: 53%;
+  }
+  .before-after {
+    margin-top: 5em;
+  }
+  .baseball-card__inset {
+    padding: 0;
+    .pricing {
+      justify-content: center;
+    }
+    .btn1 {
+      width: 75%;
+    }
+  }
+  .baseballcard__container {
+    padding: 0;
+    bottom: 2em;
+    margin-bottom: 18px;
+  }
+  .content.heading > h1.treat {
+    font-size: 60px;
+    font-weight: 600;
+  }
+  .callout-inset h1.callout-title {
+    font-size: 46px;
+  }
+  .callout-inset.doctor {
+    margin-top:3em;
+  }
+  .row.doctor {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .doctor-first {
+    margin-right: 2em;
+    align-self: flex-end;
+  }
+  .science-section-block {
+    display: flex;
+    flex-direction: column;
+  }
+  .product-img3.slide {
+    height: 15em;
+    clip-path: polygon(0 0, 79% 0, 63% 70%, 30% 70%, 25% 100%, 0 100%);
+  }
+  .science_section .callout-inset {
+    padding: 0;
+    margin-top: 15em;
+    margin-left: 25%;
+  }
+  .science_section .content {
+    align-self: flex-end;
+  }
+  .row.science {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+  .callout-inset.system.treatment {
+    padding: 0;
+    text-align: center;
+  }
+  .logo-class {
+    img {
+      position: static;
+    }
+  }
+  .logo-main-row {
+    margin-top:6em;
+  }
+  .footer {
+    height: auto;
+    .container {
+      padding: 0;
+    }
+  }
+  .logo-main-row {
+    width: 95%;
+  }
+  .logo-class {
+    text-align: right;
+  }
+  .footer-detail {
+    position: static;
+    display: inline-block;
+    width: 68%;
+    color: #b5b5b2;
+  }
+  .footer-main-detail {
+    text-align: right;
+    margin-top: 6em;
+  }
+  .footer-condition {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin-right: 5%;
+  }
+  .copyright.footer {
+    width: 100%;
+    justify-content: space-between;
+    position: static;
+    font-size: 13px;
+    margin-top: 8em;
+  }
+  .first.one {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .second.two {
+    padding-bottom: 1em;
+  }
+  .third.three {
+    padding-bottom: 1em;
+  }
+  .fourth.four {
+    padding-bottom: 1em;
+  }
+  .footer .container {
+    padding: 0;
+    width: 100%;
+    max-width: 95%;
+  }
+}
+
+@media only screen  and (max-width: 768px) {
+  .system-accordion.accordion {
+    width: auto;
+  }
+  .grid-item {
+    img {
+      width: 90%;
+    }
+  }
+  .header_slider .first-home-section {
+    height: 56em;
+    .uv-light.pic {
+      left: 72%;
+      height: 36em;
+      top: 10em;
+      width: 19em;
+    }
+  }
+  .before-after {
+    margin-top:0;
+    .main-heading {
+      font-size: 2em;
+    }
+    .content-before {
+      color: #b5b5b2;
+      font-style: italic;
+    }
+  }
+
+  .baseballcard__container {
+    bottom: 3em;
+  }
+  .doctor_recommended_section {
+    margin-top: 5em;
+  }
+  .content-before {
+    width: 17em;
+    margin: 0 auto;
+    text-align: initial;
+    color: lightgray;
+    margin-bottom: 4em;
+  }
+  .grid-container.effect-month.view {
+    width: 80%;
+    margin: 0 auto;
+    color: gray;
+  }
+  .recommended-callout-wrapper {
+    margin-top: 0em;
+    .callout-inset.science {
+      padding: 0;
+      .callout-title {
+        font-size: 3em;
+      }
+    }
+  }
+  .callout-inset.doctor {
+    margin-top: 2em;
+    margin-left: 2em;
+    .callout-title.doctor {
+      font-size: 42px;
+    }
+    p {
+      color: #b5b5b2;
+      font-family: serif;
+      .play {
+        margin-top: 1em;
+      }
+    }
+  }
+
+  .product-img2 {
+    clip-path: polygon(32% 0%, 45% 68%, 78% 68%, 82% 100%, 100% 100%, 100% 0);
+  }
+  .product-img3.slide {
+    height: 12em;
+    clip-path: polygon(0 0, 79% 0, 63% 70%, 30% 70%, 25% 100%, 0 100%);
+    transform: scale(3);
+  }
+  .recommended-callout-wrapper.science {
+    margin-top: 35em;
+    width: 23em;
+    p {
+      color: #b5b5b2;
+    }
+  }
+  .row.science {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .callout-inset.system {
+      padding: 0;
+      p {
+        color: #b5b5b2;
+      }
+    }
+  }
+  .logo-image {
+    position: static;
+  }
+  .footer {
+    .container {
+      padding: 0;
+    }
+  }
+  .logo-main-row {
+    width: 100%;
+  }
+  .logo-class {
+    text-align: right;
+  }
+  .footer-detail {
+    position: static;
+    display: inline-block;
+    width: 68%;
+    color: #b5b5b2;
+  }
+  .footer-main-detail {
+    text-align: right;
+    margin-top: 6em;
+  }
+  .footer-condition {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+   
+  }
+  .copyright.footer {
+    width: 100%;
+    justify-content: space-between;
+    position: static;
+    font-size: 13px;
+    margin-top: 8em;
+  }
+  .first.one {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .second.two {
+    padding-bottom: 1em;
+  }
+  .third.three {
+    padding-bottom: 1em;
+  }
+  .fourth.four {
+    padding-bottom: 1em;
+  }
+  .clinic-text {
+    font-style: italic;
+  }
+  .email-form.last {
+    width: 118%;
+  }
+  .last-submit {
+    padding: 0px 46px;
+  }
+  .link-button {
+    width: 110%;
+  }
+  .content-treatment {
+    text-align: center;
+  }
+
+  // .logo-class {
+  //   float: right;
+  // }
+  // .content.heading {
+  //   .treat {
+  //     font-size:30px;
+  //   }
+  //   margin-top: 95px;
+  //   margin-left: 30px;
+  //   .description {
+  //     margin-top: 25px;
+  //     .p {
+  //       font-size: 10px;
+  //       margin: 0;
+  //     }
+  //   }
+  // }
+}
+
+@media only screen and (max-width: 767px) {
+  .callout-inset.doctor .callout-title.doctor {
+    font-size: 47px;
+}
+  .doctor-second {
+    margin:0;
+  }
+  .callout-inset.science {
+    margin: 0;
+  }
+  .header_slider .first-home-section {
+    height: 65em;
+  }
+  
+  .system-accordion.accordion {
+    width: auto;
+  }
+  .free_shipping_promo {
+    display: none;
+  }
+  .footer::after {
+    width: 0;
+  }
+  .endorsed {
+    display: none;
+  }
+  .mobile-endorsed {
+    display: block;
+  }
+  .treat {
+    display: inline;
+    padding-right: 13px;
+  }
+
+  .product-img2,
+  .product-img3.slide {
+    transform: scale(1);
+  }
+  .header_slider .first-home-section .uv-light.pic {
+    position: relative;
+    left: 10px;
+    top: 1em;
+    width: 17em;
+  }
+  .header_logo {
+    margin: 0px;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent !important;
+    background: transparent !important;
+  }
+  .header_slider .first-home-section {
+    display: flex;
+    flex-direction: column-reverse;
+    background-position-x: center;
+  }
+  .col-xs-12.col-sm-12.col-md-8.text-center.first-home-section::after {
+    content: "";
+    position: absolute;
+    clip-path: polygon(100% 0, 0% 40%, 0 100%, 100% 100%);
+    width: 100%;
+    background: #f6f6f6ff;
+    height: 39em;
+    bottom: -2px;
+  }
+  .header_slider .first-home-section {
+    .content.heading {
+      margin-left: 0;
+      text-align: center;
+      .header-quotes {
+        font-size: 25px;
+      }
+    }
+  }
+  .description {
+    width: 100%;
+  }
+  .header_slider .first-home-section .content .description p {
+    font-size: 14px;
+    font-style: italic;
+    margin:0 auto;
+  }
+  .baseball-card__inset .btn1 {
+    width: 65%;
+    font-size: 18px;
+    right: 20%;
+  }
+  .month {
+    padding-left: 11px;
+  }
+  .baseballcard__container {
+    bottom: 3em;
+    padding-left: 13em;
+  }
+  .pricing {
+    padding-left: 13%;
+  }
+  .cancel {
+    padding-left: 11px;
+  }
+  .navbar-fixed-top .container {
+    justify-content: flex-end;
+  }
+  .before-after {
+    margin-top:0;
+    .main-heading {
+      font-size: 3em;
+    }
+  }
+  .before-after {
+    .effect-month {
+      grid-template-columns: auto;
+    }
+  }
+  .row.doctor {
+    flex-direction: column-reverse;
+  }
+  .recommended-callout-wrapper.doctor {
+    margin:0;
+    .callout-inset.doctor {
+       margin-top:0;
+       margin-left:2em; 
+    }
+  }
+  .text-doctor {
+    width: 47%;
+    font-size: 17px;
+  }
+  .play {
+    font-size: 25px;
+    font-weight: 700;
+    padding: 21px 45px;
+    margin-top: 1em;
+  }
+  .product-img3.slide {
+    height: 23em;
+    width: 100%;
+  }
+  .recommended-callout-wrapper.science {
+    margin-top:0;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2em;
+    width: 100%;
+    .callout-inset.science {
+      width:34em;
+      p {
+        line-height: 1.5;
+      }
+      .play {
+        padding: 1em 2em;
+      }
+    }
+  }
+  .content-treatment {
+    margin: 0 auto;
+    line-height: 1.5;
+    padding-top: 1em;
+    font-size: 20px;
+    font-style: italic;
+  }
+  .callout-inset.system.treatment {
+    text-align: center;
+  }
+  .system_section .btn-link {
+    font-size: 24px;
+  }
+  .system-accordion.accordion {
+    margin-top: 3em;
+  }
+  .clinical_papers_section
+  {
+    padding: 0;
+    padding-top: 20px;
+    .clinical-title {
+      width: 75%;
+      padding-left: 3em;
+    }
+  } 
+  .system_section {
+    padding:100px 0;
+  }
+  .clinic-text {
+    font-style: italic;
+    color: #c6daec;
+    width: 84%;
+    padding-left: 2em;
+  }
+  .link-button {
+    width: 100%; 
+}
+  .email-form.last {
+    width:100%;
+    input {
+      width: 85%;
+      padding: 2em;  
+    }
+    .last-submit {
+      width: 40%;
+      height: auto;
+      padding: 13px;
+      font-size: 12px;
+      border-color:lightgray; 
+    }
+  }
+  .mobile-endorsed {
+    text-align: left;
+    margin-top: 2em;
+    font-size: 22px;
+    padding: 1em;
+    .mobile-endorsed-list {
+      margin-top: 1em;
+      flex-wrap: wrap;
+    }
+  }
+  .footer.mobile {
+    height: auto;
+  }
+  .copyright.footer  {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    padding-top: 0;
+    margin-top: 5em;
+  }
+  .system-btn {
+    max-width: 220px;
+    display: inline-block;
+    white-space: normal;
+  }
+  .mobile-endorsed-list {
+    justify-content: space-between;
+  }
+  .mobile-logo {
+    max-width: 100px;
+  }
+  
+  
+}
+
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .col-xs-12.col-sm-12.col-md-8.text-center.first-home-section::after {
+    height: 31em;
+  }
+  .before-after .main-heading {
+    font-size: 4em;
+  }
+  .before-after .effect-month div {
+    margin-top: 25px;
+  }
+  .recommended-callout-wrapper.doctor {
+    width:85%;
+  }
+  .callout-inset.science {
+    margin-top: 0;
+  }
+  .content-treatment {
+    width: 65%;
+  } 
+  .content-before {
+    width: 31em;
+  }
+  .footer::after {
+    width: auto;
+  }
+  .link-button {
+    width: 100%;
+}
+.recommended-callout-wrapper.science {
+  margin:0;
+}
+.science_section .content {
+   margin-left: 0; 
+}
+  .system-accordion.accordion {
+    width: 65%;
+  }
+  .product-img2,
+  .product-img3.slide {
+    transform: scale(1);
+  }
+  .free_shipping_promo {
+    display: none;
+  }
+  .header_slider .first-home-section {
+    .uv-light.pic {
+      left: 10%;
+      height: 27em;
+      top: 2em;
+      width: 15em;
+    }
+  }
+}
+@media only screen and (max-width: 500px) {
+  .content-before  {
+    margin-left:50px;
+  }
+  .before-after .content-after-before {
+    width: 100%;
+  }
+  .content-before {
+    margin:0;
+    width:100%;
+  }
+
+  .header_slider .first-home-section {
+    height: 50em;
+  }
+  .description_title {
+    max-width: 300px;
+  }
+  .system-accordion.accordion {
+    width: auto;
+  }
+  
+  .baseball-card__inset 
+  {
+    padding:0;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+  
+  }
+  .baseball-card__inset .pricing .baseball-card__header {
+    font-size: 2em;
+  }
+   
+  .date_value {
+    font-size: 12px;
+  }
+  .baseball-card__inset .btn1 {
+    width: 100%;
+    font-size: 8px;
+  }
+  .callout-inset.doctor {
+    padding-top: 0;
+  }
+  .link-button {
+    width: 100%;
+  }
+  .clinical-title {
+    padding-top: 2em;
+  }
+  .mobile-endorsed {
+    font-size: 14px;
+  }
+  .footer.mobile {
+    padding-right: 2em;
+  }
+
+  .content.heading > h1.treat {
+    font-size: 35px;
+  }
+  .header_slider .first-home-section {
+    padding-bottom: 5em;
+    .content.heading .header-quotes {
+      font-size: 15px;
+    }
+    
+  }
+  .system_section.system-btn {
+    max-width: 220px;
+    white-space: pre-line;
+    display: inline-block;
+  }
+   
+  .cancel {
+    padding: 0;
+  }
+  .description_title {
+    margin:0 auto;
+  }
+  .col-xs-12.col-sm-12.col-md-8.text-center.first-home-section::after {
+    height: 24em;
+  }
+  .baseballcard__container {
+    width:50%;
+    right: 18%;
+    left:auto;
+    padding: 0;
+  }
+  .header_slider .first-home-section .uv-light.pic {
+    transform: rotate(-9deg);
+    width:10em;
+    height: 22em;
+    top:1em;
+    left:20px;
+  }
+  .before-after .main-heading  {
+    font-size: 2.5em;
+  }
+  .before-after .content-before {
+    font-size: 11px;
+  }
+  .callout-inset.doctor .callout-title.doctor {
+    font-size: 25px;
+  }
+  .text-doctor {
+    width: 70%;
+    font-size: 13px;
+  }
+  .play {
+    font-size:17px;
+  }
+  .product-img3.slide {
+    height: 17em;
+  }
+
+  .recommended-callout-wrapper .callout-inset.science .callout-title {
+    font-size: 2em;
+    margin-left: 2em;
+  }
+  .science-contain {
+    font-size: 10px;
+    margin-left: 6em;
+  }
+  .system_section {
+    padding: 0;
+  }
+  .callout-inset h1.callout-title {
+    font-size: 2em;
+  }
+  .row.science .callout-inset.system p {
+    font-size: 10px;
+  }
+  .system_section .btn-link {
+    font-size: 18px;
+  }
+  .clinical_papers_section .clinical-title {
+    font-size: 23px;
+  }
+  .clinic-text {
+    font-size: 12px;
+  }
+  .email-form.last
+  {
+    display: block;
+    position: relative;
+    text-align: left;
+    input {
+      padding: 0 0 0 10px;
+      height: 40px;
+      font-size: 10px;
+      border-color: lightgray !important;
+    }
+    .last-submit {
+      position: absolute;
+      top: 30px;
+      right: 0;
+      z-index: 999;
+    }
+  } 
+  .footer-detail {
+    width: 80%;
+    font-size: 12px;
+  }
+  .footer-condition {
+    font-size: 14px;
+  }
+  .footer .copyright .first {
+    font-size: 14px;
+    text-align: right;
+  }
+  .mobile-endorsed-list {
+    justify-content: space-between
+  }
+  .mobile-logo {
+    max-width: 100px;
+  }
+  .before-after {
+    padding-bottom: 0;
+  }
+    
+  .doctor_recommended_section {
+    margin-top: 6em;
+  }
+  .content-after-before {
+    text-align: center;
+  }
+
+}
+@media only screen and (max-width: 350px) {
+  .baseballcard__container {
+    right: 12%;
+  }
+  .before-after .main-heading {
+    font-size: 2.1em;
+  }
+  .system-btn {
+    max-width: 150px;
+  }
+}
+
+.comment-text {
+  color:red;
+}
+

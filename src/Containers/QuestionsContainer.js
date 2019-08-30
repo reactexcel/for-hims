@@ -147,7 +147,7 @@ class QuestionsContainer extends Component {
           </div>
           <div className="clearfix" />
           <div className="visit_question_right">
-            <small className="gillin_title">{name} </small>
+            <small className="gillin_title"> {name?'':name} </small>
             {question.data().type === "checkbox" && (
               <small className="apply_title">* select all that apply *</small>
             )}

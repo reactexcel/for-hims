@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import noleuderm_logo from "../../assets/images/logo.png";
+import noleuderm_logo from "../../assets/images/logo-white.png";
 import Sidebar from "./Sidebar";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -78,23 +78,25 @@ class Header extends PureComponent {
         <div
           className="navbar navbar-default navbar-fixed-top"
           role="navigation"
+          style={{backgroundColor:window.location.hash ==="#/"?"transparent":"#22a7c7"}}
           ref={this.setHeaderRef}
         >
-          <div className="container">
+          <div className="container header">
             {role === ROLES.CUSTOMER && (
               <div className="cart_desktop">
                 <span onClick={() => this._openSidebar("right", "cart")}>
-                  Cart
+                  {/* Cart */}
                 </span>
               </div>
             )}
             <div className="header_logo">
               <Link to="/">
                 <img src={noleuderm_logo} title="hime" alt="hime" />
+                
               </Link>
             </div>
 
-            <div className="navbar-header">
+            <div className="navbar-header mobile">
               <button
                 type="button"
                 className="navbar-toggle"
@@ -111,19 +113,19 @@ class Header extends PureComponent {
 
             <div className="navbar-collapse collapse">
               <ul className="nav navbar-nav navbar-right navbar-items">
-                {role === ROLES.CUSTOMER && (
+                {/* {role === ROLES.CUSTOMER && ( */}
                   <>
-                    <li onClick={() => this._openSidebar("right", "shop")}>
+                    <li onClick={() => this._openSidebar("right", "shop")}> 
                       <Link to="#">Shop</Link>
                     </li>
                     <li
                       className="mobile_none"
                       onClick={() => this._openSidebar("right", "cart")}
                     >
-                      <Link to="#">Cart{addToCart && "(1)"} </Link>
+                      <Link to="#"><i className='fa fa-shopping-bag'></i>{addToCart && "(1)"} </Link>
                     </li>
                   </>
-                )}
+                {/* )} */}
 
                 {loginSuccess && auth ? (
                   <li onClick={() => this._openSidebar("right", "account")}>

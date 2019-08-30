@@ -1,7 +1,7 @@
 import { takeLatest } from "redux-saga/effects";
 import * as constants from "./constants";
 import { loginRequest, logout } from "./actions/login";
-import { signupRequest, createUserByAdminRequest } from "./actions/signup";
+import { signupRequest, createUserByAdminRequest,loginFromStartRequest } from "./actions/signup";
 import { forgotpswRequest, forgotpswReset } from "./actions/forgotpsw";
 import {
   addToCartRequest,
@@ -100,6 +100,7 @@ function* watchActions() {
     constants.FETCH_STATE_DOCTOR_REQUEST,
     fetchStateDoctorRequest
   );
+  yield takeLatest(constants.LOGIN_FROM_START_REQUEST, loginFromStartRequest);
 }
 export default function* rootSaga() {
   yield [watchActions()];

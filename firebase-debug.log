@@ -1,0 +1,13 @@
+[debug] [2019-08-29T05:43:51.948Z] ----------------------------------------------------------------------
+[debug] [2019-08-29T05:43:51.953Z] Command:       /usr/bin/node /usr/local/bin/firebase deploy --only hosting
+[debug] [2019-08-29T05:43:51.953Z] CLI Version:   7.1.1
+[debug] [2019-08-29T05:43:51.953Z] Platform:      linux
+[debug] [2019-08-29T05:43:51.953Z] Node Version:  v8.10.0
+[debug] [2019-08-29T05:43:51.953Z] Time:          Thu Aug 29 2019 11:13:51 GMT+0530 (IST)
+[debug] [2019-08-29T05:43:51.953Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-08-29T05:43:51.962Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-08-29T05:43:51.962Z] > authorizing via signed-in user
+[debug] [2019-08-29T05:43:51.962Z] [iam] checking project noleuderm-d2b6a for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-08-29T05:43:51.965Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/noleuderm-d2b6a:testIamPermissions  
+

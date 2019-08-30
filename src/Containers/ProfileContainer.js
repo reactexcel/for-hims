@@ -31,6 +31,7 @@ class ProfileContainer extends Component {
   };
 
   onAddNewPayment = data => {
+    
     const { uid, email } = this.props.user.data;
     this.props.addNewPaymentRequest({ uid, email, ...data });
   };

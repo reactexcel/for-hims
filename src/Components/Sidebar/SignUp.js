@@ -3,7 +3,7 @@ import { validateForm } from "../../utils/validate";
 import ErrorText from "../Generic/ErrorText";
 import Account from "./Account";
 import { connect } from "react-redux";
-import { signupRequest } from "../../actions";
+import { signupRequest,loginFromStartRequest } from "../../actions";
 
 /**UI component for Sign Up */
 class SignUp extends Component {
@@ -15,9 +15,9 @@ class SignUp extends Component {
       showLogin: false
     };
   }
-  static defaultProps = {
-    toggleRegister: () => {}
-  };
+  toggleRegister=()=>{
+    this.props.loginFromStartRequest("login")   
+  }
   componentDidUpdate(prevProps) {
     if (
       this.props.user.isSuccess &&
@@ -66,7 +66,7 @@ class SignUp extends Component {
           <div id="mySidenav3">
             <div className="login_form">
               <div className="register_box">
-                <h3>Welcome to hims!</h3>
+                <h3>Welcome to Noleuderm</h3>
                 <h5>Fill in your details to create an account</h5>
                 <form>
                   <input
@@ -106,9 +106,7 @@ class SignUp extends Component {
                     </a>
                     <br /> Already have an account?{" "}
                     <a
-                      onClick={() => {
-                        this.props.toggleRegister();
-                      }}
+                      onClick={this.toggleRegister}
                     >
                       Sign In
                     </a>
@@ -141,5 +139,5 @@ class SignUp extends Component {
 const mapStateToProps = ({ user }) => ({ user });
 export default connect(
   mapStateToProps,
-  { signupRequest }
+  { signupRequest ,loginFromStartRequest}
 )(SignUp);

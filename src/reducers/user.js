@@ -8,7 +8,9 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
-  data: {}
+  data: {},
+  isLoginFromStart:false,
+  sidebarContent:"signup"
 };
 
 const loginRequest = (state, action) =>
@@ -41,6 +43,14 @@ const loginError = (state, action) =>
 const resetMessage = (state, action) =>
   update(state, { message: { $set: "" } });
 
+  const loginFromStartRequest = (state, action) =>
+  { 
+    return(
+    update(state, {
+      isLoginFromStart: { $set: !state.isLoginFromStart },
+      sidebarContent:{$set:action.payload}
+  }))
+}
 export default handleActions(
   {
     [constants.LOGIN_REQUEST]: loginRequest,
@@ -51,7 +61,9 @@ export default handleActions(
     [constants.SIGNUP_SUCCESS]: loginSuccess,
     [constants.SIGNUP_ERROR]: loginError,
 
-    [constants.RESET_AUTH_MESSAGE]: resetMessage
+    [constants.RESET_AUTH_MESSAGE]: resetMessage,
+
+    [constants.LOGIN_FROM_START_SUCCESS]: loginFromStartRequest,
   },
   initialState
 );

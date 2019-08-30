@@ -76,7 +76,6 @@ async function payment(req, res) {
       });
     }
   } catch (err) {
-    console.log(err);
     send(res, 500, {
       error: err.message
     });
@@ -396,15 +395,12 @@ app.post("/emailsend", (req, res) => {
     })
   );
   const dest = req.body.to;
-
   const mailOptions = {
     from: "rahul.excel2011@gmail.com", // Something like: Jane Doe <janedoe@gmail.com>
     to: dest,
     subject: "Regarding appoinment", // email subject
-    html: `<p style="font-size: 16px;">A new appointment is booked in you area</p>
-            
-            <br />
-        ` // email content in HTML
+    html: req.body.message || "<div>message sent</div>"
+     // email content in HTML
   };
 
   // returning result

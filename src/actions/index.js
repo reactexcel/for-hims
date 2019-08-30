@@ -283,3 +283,17 @@ export const fetchStateDoctorSuccess = createAction(
 export const fetchStateDoctorError = createAction(
   constants.FETCH_STATE_DOCTOR_ERROR
 );
+
+// action for get order-id
+export const fetchOrderDetail = createAction(
+  constants.FETCH_ORDER_DETAIL 
+);
+
+//actions for manage login
+
+export const loginFromStartRequest = createAction(constants.LOGIN_FROM_START_REQUEST);
+export const loginFromStartSuccess = createAction(constants.LOGIN_FROM_START_SUCCESS);
+
+// action for area doctor
+export const getAreaDoctorRequest = createAction(constants.GET_AREA_DOCTOR_REQUEST);
+

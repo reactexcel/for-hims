@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import legitscript_logo from "../../assets/images/legitscript_logo.png";
 import bbb_logo from "../../assets/images/bbb_logo.png";
 import { Link } from "react-router-dom";
-
+import logo from "../../assets/images/logo-white.png"
 /**UI component for Footer of App */
 const Footer = memo(() => {
   /**Smooth Scroll Behaviour to top  */
@@ -12,134 +12,49 @@ const Footer = memo(() => {
     }
   };
 
-  return (
+  return ( 
     <>
-      <footer className="footer">
+      <footer className="footer mobile">
         <div className="container">
           <div className="row">
-            <div className="col-xs-12 col-sm-6 col-md-6">
-              <h4 className="pt2">Have a question?</h4>
-              <ul className="footer_ul_amrc">
-                <li>
-                  <Link to="/contact-us">Contact Us</Link>
-                </li>
-              </ul>
-
-              <h5>&nbsp; </h5>
-
-              <h4 className="pt2">Press inquiries?</h4>
-              <ul className="footer_ul_amrc">
-                <li>
-                  <a href="mailto:press@forhims.com">press@forhims.com</a>
-                </li>
-              </ul>
+          <div className='logo-main-row'>
+            <div className='logo-class'>
+            <img src={logo} alt="" className='logo-image' />
             </div>
-
-            <div className="col-xs-12 col-sm-2 col-md-2">
-              <h4 className="pt2">Shop</h4>
-
-              <ul className="footer_ul_amrc">
-                <li>
-                  <Link to="#">Hair</Link>
-                </li>
-                <li>
-                  <Link to="#">Skin</Link>
-                </li>
-                <li>
-                  <Link to="#">Sex</Link>
-                </li>
-                <li>
-                  <Link to="#">Mouth</Link>
-                </li>
-                <li>
-                  <Link to="#">Vitals</Link>
-                </li>
-                <li>
-                  <Link to="#">Merch</Link>
-                </li>
-              </ul>
+            <div className='footer-main-detail'>
+            <p className='footer-detail'>
+             Results may vary.Noleuderm is not a drug and is not intended to diagnose,treat,or prevent
+             any disease.Individual resul may vary and improvement is often seen within 4 week of use with
+             complete result after 16 to 20 days of continuous use .The information throughout the website is not
+             meant to substitute the advice of your physician or other medical professional,nor should it be 
+             used for diagnosing or treat health problem or disease, and it meant for information purposes only.
+             All packaging and labels should be read carefull.If any issue shall arise during the use of
+             Noleuderm you should stop using it and contact you physician .Statement and information regarding
+             cosmetic grade products are not evaluated by the Food and Drug Administration and are not intended 
+             to diagnose treat ,cure ,or prevent any disease.
+           </p>
             </div>
-
-            <div className="col-xs-12 col-sm-2 col-md-2">
-              <h4 className="pt2">Learn</h4>
-              <ul className="footer_ul_amrc">
-                <li>
-                  <Link to="#">Savoir Faire</Link>
-                </li>
-                <li>
-                  <Link to="#">The Science</Link>
-                </li>
-                <li>
-                  <Link to="#">Purpose</Link>
-                </li>
-                <li>
-                  <Link to="#">About Us</Link>
-                </li>
-                <li>
-                  <Link to="#">Reviews</Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="col-xs-12 col-sm-2 col-md-2">
-              <h4 className="pt2">Guides</h4>
-              <ul className="footer_ul_amrc">
-                <li>
-                  <Link to="#">Help</Link>
-                </li>
-                <li>
-                  <Link to="#">Treatment Plans</Link>
-                </li>
-              </ul>
-            </div>
+         
+           
           </div>
-        </div>
-
-        <div className="container logo_footer">
-          <div className="row">
-            <div className="col-xs-12 col-sm-6 col-md-6">
-              <Link to="#">
-                <img src={legitscript_logo} alt="LegitScript Logo" />
-              </Link>
-              &nbsp;
-              <Link to="#">
-                <img src={bbb_logo} alt="BBB logo" />
-              </Link>
+          {/* <div className = 'copyright-mobile '>
+            <div className="first">COPYRIGHT @2019.NOLEUDERM ALL RIGHTS RESERVED </div>
+            <div>
+              <div className="second">COPY RIGHT</div>
+              <div className="third">PRIVACY POLICY</div>
+              <div className="fourth">TERMS & CONDITION</div>
             </div>
-            <div className="col-xs-12 col-sm-6 col-md-6">
-              <ul className="social_icons">
-                <li>
-                  <Link to="#" className="fa fa-facebook" />
-                </li>
-                <li>
-                  <Link to="#" className="fa fa-twitter" />
-                </li>
-                <li>
-                  <Link to="#" className="fa fa-instagram" />
-                </li>
-              </ul>
-            </div>
-            <div className="col-xs-12 col-sm-12 col-md-12">
-              <h5 className="footer_message">
-                *all photos are models and not actual patients. <br />
-                If you are interested in a prescription product, Hims will
-                assist in setting up a visit for you with an independent
-                physician who will evaluate whether or not you are an
-                appropriate candidate for the prescription product and if
-                appropriate, may write you a prescription for the product which
-                you can fill at the pharmacy of your choice.
-              </h5>
-
-              <ul className="copyright_section">
-                <li>
-                  <Link to="#"> Terms & Conditions </Link>
-                </li>
-                <li>
-                  <Link to="#"> Privacy Policy </Link>
-                </li>
-                <li> Copyright 2018 HIMS. All rights reserved.</li>
-              </ul>
-            </div>
+          </div> */}
+           
+           <div className="copyright footer  ">
+             <div className="first one">COPYRIGHT @2019.NOLEUDERM ALL RIGHTS RESERVED </div>
+             <div className='footer-condition'>
+             <div className="second two">COPY RIGHT</div>
+             <div className="third three">PRIVACY POLICY</div>
+             <div className="fourth four">TERMS & CONDITION</div>
+             </div>
+             
+           </div>
           </div>
         </div>
       </footer>

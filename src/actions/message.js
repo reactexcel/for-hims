@@ -85,9 +85,7 @@ export function* fetchStateDoctorRequest(action) {
           return val.data();
         }
       }
-    });
-    console.log(response,'jjjjjjjjjjjjj');
-    
+    });    
       yield put(actions.fetchStateDoctorSuccess(response));
   
   } catch (e) {

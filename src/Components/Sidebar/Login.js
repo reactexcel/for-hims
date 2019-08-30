@@ -4,10 +4,9 @@ import ErrorText from "../Generic/ErrorText";
 import SignUp from "./SignUp";
 import ForgotPassword from "./ForgotPassword";
 import { connect } from "react-redux";
-import { loginRequest } from "../../actions";
+import { loginRequest,loginFromStartRequest,addToCartRequest } from "../../actions";
 import Account from "./Account";
 import FullCart from "./FullCart";
-
 /**UI component for Login of App */
 class Login extends Component {
   constructor(props) {
@@ -16,7 +15,6 @@ class Login extends Component {
       data: { email: "", password: "" },
       errors: {},
       showRegister: false,
-      showForgotPassword: false
     };
   }
   static defaultProps = {
@@ -48,11 +46,14 @@ class Login extends Component {
     if (!Object.keys(errors).length) {
       this.props.loginRequest({ ...this.state.data });
     }
-  };
-
+     this.props.addToCartRequest();
+  }
+  
   /**Toggles the Register UI component */
   toggleRegister = () => {
-    this.setState(prevState => ({ showRegister: !prevState.showRegister }));
+    const { isLoginFromStart} =this.props.user
+    const authType = !isLoginFromStart ? "signup" : "login" 
+    this.props.loginFromStartRequest(authType)
   };
 
   /**Toggles the Forgot Password UI component */
@@ -68,7 +69,7 @@ class Login extends Component {
       showRegister,
       showForgotPassword
     } = this.state;
-    const { isSuccess, isLoading, isError, message } = this.props.user;
+    const { isSuccess, isLoading, isError, message,isLoginFromStart } = this.props.user;
     if (isSuccess) {
       return this.props.addedProduct ? <FullCart /> : <Account />;
     }
@@ -80,7 +81,7 @@ class Login extends Component {
             <div>Hang tight</div>
             <div className="loader" />
           </div>
-        ) : showRegister ? (
+        ) : (isLoginFromStart) ? (
           <SignUp
             closeSidebar={this.props.closeSidebar}
             toggleRegister={this.toggleRegister}
@@ -139,7 +140,18 @@ class Login extends Component {
             >
               Login
             </button>
+            {/* <Sidebar
+          openSidebar={this.state.openSidebar}
+          side={"right"}
+          content={this.props.user.sidebarContent}
+          closeSidebar={() => {
+            this.setState({
+              openSidebar: false
+            });
+          }}
+        /> */}
           </div>
+         
         )}
       </>
     );
@@ -150,5 +162,5 @@ const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(
   mapStateToProps,
-  { loginRequest }
+  { loginRequest,loginFromStartRequest,addToCartRequest }
 )(Login);

@@ -25,7 +25,7 @@ class MyOrders extends Component {
   };
   /**To call getCustomerDetails on the basis of user roles */
   getCustomerDetails = e => {
-    const { role } = this.props;
+    const { role } = this.props;    
     if (role !== ROLES.CUSTOMER) {
       this.props.getCustomerDetails(e);
     }
