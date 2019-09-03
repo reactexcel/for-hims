@@ -66,7 +66,7 @@ class CustomerOrdersContainer extends Component {
     const order_id=this.props.match.params.uid
     const { doctorComment } = this.state;
     const { role } = this.props.userProfile.data;
-   let DOB=new Date(dateOfBirth *1000)
+    let DOB=new Date(dateOfBirth.seconds *1000)
     let status;
     if (action === "approve") {
       status = "Approved";
