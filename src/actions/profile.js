@@ -136,7 +136,7 @@ export function* updateAppointmentRequest(action) {
           ...data_detail
         });
         yield put(
-          actions.emailSendDoctorRequest({ to: "admin@noledurem.com", message })
+          actions.emailSendDoctorRequest({ to: "admin@noleuderm.com", message })
         );
       } else if (status === "Denied") {
          message = messageTemplate.messageTemplate({
@@ -152,7 +152,7 @@ export function* updateAppointmentRequest(action) {
         });        
 
         yield put(
-          actions.emailSendDoctorRequest({ to: "admin@noledurem.com", message })
+          actions.emailSendDoctorRequest({ to: "admin@noleuderm.com", message })
         );
       }
       yield put(

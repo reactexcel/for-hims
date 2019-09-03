@@ -1,7 +1,8 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const nodemailer = require("nodemailer");
-const smtpTransport =require("nodemailer-smtp-transport")
+const smtpTransport = require("nodemailer-smtp-transport");
+
 admin.initializeApp(functions.config().firebase);
 // const settings = { timestampsInSnapshots: true };
 // // admin.firestore(settings);
@@ -11,6 +12,8 @@ const app = express();
 const stripe = require("stripe")(functions.config().stripe.token);
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
+var inLineCss = require("nodemailer-juice");
+
 //
 async function payment(req, res) {
   const body = req.body;
@@ -324,7 +327,9 @@ function send(res, code, body) {
     body: JSON.stringify(body)
   });
 }
-
+// app.use(require('stylus').middleware(path.join(__dirname, 'functions')))
+// app.use(express.static(path.join(__dirname, 'functions')));
+// app.use(express.static("functions"));
 app.use(cors);
 app.post("/addNew", (req, res) => {
   // Catch any unexpected errors to prevent crashing
@@ -384,32 +389,109 @@ app.post("/emailsend", (req, res) => {
   // getting dest email by query string
   let transporter = nodemailer.createTransport(
     smtpTransport({
-      service:'gmail',
+      service: "gmail",
       host: "smtp.gmail.com",
       port: 465,
       secure: false,
       auth: {
-        user: "rahul.excel2011@gmail.com",
-        pass: "Lknh7Gdq"
+        user: "testhr69@gmail.com",
+        pass: "etech@123"
       }
     })
   );
+  transporter.use("compile", inLineCss());
+
   const dest = req.body.to;
   const mailOptions = {
-    from: "rahul.excel2011@gmail.com", // Something like: Jane Doe <janedoe@gmail.com>
+    from: "testhr69@gmail.com", // Something like: Jane Doe <janedoe@gmail.com>
     to: dest,
-    subject: "Regarding appoinment", // email subject
-    html: req.body.message || "<div>message sent</div>"
-     // email content in HTML
+    subject: "Regarding appointment", // email subject
+    html:
+      `
+      <style>
+        .container{
+          background-color:#f6f6f6;
+          font-family: sans-serif;
+        }
+        .head {
+          height: 100px;
+          background-color: #399cb7;
+          clip-path: polygon(50% 0%, 100% 0, 45% 100%, 0 100%, 0 0);
+        }
+        .head .logo {
+          padding: 30px 0 0 20px;
+        }
+        .foot {
+          background-color: black;
+          text-align: center;
+          height: 80px;
+        }
+        .foot .logo {
+          padding: 15px 0;
+          width: 150px;
+        }
+        .content {
+          width: 80%;
+          margin: 0 auto;
+        }
+        .block {
+          display: flex;
+          background-color: white;
+          border-bottom: 1px solid #eee;
+        }
+        .heading {
+          text-align: center;
+        }
+        .profile {
+          width: 33%;
+          border-right: 1px solid #eee;
+          padding: 0 20px 20px;
+        }
+        .details {
+          padding: 0 20px 20px 50px;
+        }
+        .details div {
+          color: #f15a22;
+        }
+        .details .status {
+          text-decoration: underline;
+        }
+        .btn-wrapper {
+          padding: 20px 0;
+          text-align: right;
+        }
+        a.btn1 {
+          display: inline-block;
+          text-decoration: underline;
+          border: 1px solid #f15a22;
+          padding: 15px 20px;
+          color: #f15a22;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        .pb {
+          padding-bottom: 20px;
+        }
+      </style>
+      <div class="container">
+        <div class="head" style="clip-path: polygon(50% 0%, 100% 0, 45% 100%, 0 100%, 0 0)">
+          <img class="logo" src= "https://firebasestorage.googleapis.com/v0/b/noleuderm-d2b6a.appspot.com/o/logo%2Flogo-white.png?alt=media&token=0c859df0-d871-40b4-8911-fc0391bdabf0" />
+        </div>
+        ${req.body.message}
+        <div class="foot">
+          <img class="logo" src= "https://firebasestorage.googleapis.com/v0/b/noleuderm-d2b6a.appspot.com/o/logo%2Flogo-white.png?alt=media&token=0c859df0-d871-40b4-8911-fc0391bdabf0" />
+        </div>
+      </div>` ||
+      "<div>message sent</div>"
+    // email content in HTML
   };
 
   // returning result
-  transporter.sendMail(mailOptions, (erro, info) => {    
+  transporter.sendMail(mailOptions, (erro, info) => {
     if (erro) {
       res.send(erro.toString());
-    }
-    else{
-    res.send("Sended");
+    } else {
+      res.send("Sended");
     }
   });
 });
