@@ -48,8 +48,7 @@ class Photos extends Component {
             </div>
             <div className="container">
               <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-2"> </div>
-                <div className="col-xs-12 col-sm-12 col-md-8">
+                <div className="col-xs-12 col-sm-12 col-md-12">
                   <div className="photos_taken">
                     {(isSuccess || isError) && message ? (
                       <h2 className="grew">{message}</h2>
@@ -75,17 +74,16 @@ class Photos extends Component {
                       </>
                     )}
                   </div>
+                  <div className="col-xs-12 col-sm-12 col-md-12 text-center mb-5"> 
+                  <Link to="/" className="btn btn-default link go_homepage mb-5">
+                          BACK TO HOME
+                      </Link>
+                  </div>
                   <p align="center">
-                    Powered by Hims <br />
                     <Link to="#" className="link">
                       Terms and Conditions
                     </Link>
                   </p>
-                </div>
-                <div className="col-xs-12 col-sm-12 col-md-2"> 
-                <Link to="/" className="link go_homepage">
-                        BACK TO HOME
-                    </Link>
                 </div>
               </div>
             </div>

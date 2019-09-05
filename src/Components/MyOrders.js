@@ -33,6 +33,9 @@ class MyOrders extends Component {
 
   render() {
     const { orders, role } = this.props;
+    orders.forEach((order)=> {
+      console.log(order.data(), "orders")
+    })
     return (
       <>
         <div className="orders_section">

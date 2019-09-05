@@ -23,35 +23,6 @@ const email=(props)=>
 
 /**UI component for Gender */
 class Gender extends Component {
-  componentDidMount(){
-    console.log(this.props.orders && this.props.orders.orderDetail,'@@@@@@@@@@@@@')
-
-    if(this.props.orders && this.props.orders.orderDetail ) {
-    const order_id = this.props.orders.orderDetail.order.id;
-    const user_mail = this.props.user.data.email;
-    const {areaDoctor}=this.props.orders
-    const  birthdate = new Date(this.props.userProfile.data.dateOfBirth.seconds *1000);
-    const status = this.props.orders.orderDetail.order.metadata.approvalStatus;
-    const x = email(this.props)
-    const data ={
-                  order_id,
-                  email:user_mail,
-                  DOB:birthdate,
-                  status:status,
-                }
-      //send email to admin on order placed
-     var message= emailTemplate.messageTemplate({sendTo:emailTemplate.ORDER_PLACED_ADMIN,...data})
-      this.props.emailSendDoctorRequest({to:"admin@noleuderm.com",message});
-      //send email to areea doctor on order placed
-      message= emailTemplate.messageTemplate({sendTo:emailTemplate.ORDER_PLACED_DOCTOR,...data})
-      this.props.emailSendDoctorRequest({to:areaDoctor.email,message});
-      //send email to user on order placed
-      message= emailTemplate.messageTemplate({sendTo:emailTemplate.ORDER_PLACED_PATIENT,...data})
-      this.props.emailSendDoctorRequest({to:user_mail,message});
-
-    }
-  }
-  
   render() {
     return (
       <div className="container">
