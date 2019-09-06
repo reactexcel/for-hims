@@ -21,7 +21,7 @@ export function* getAllOrdersRequest(action) {
       response = yield firebase
         .userOrders()
         .where("doctorId", "==", uid)
-        .where("metadata.approvalStatus", "==", "Waiting")
+        // .where("metadata.approvalStatus", "==", "Waiting")
         .get();
     } else if (role === ROLES.ADMIN) {
       response = yield firebase.userOrders().get();

@@ -170,8 +170,6 @@ class CustomerOrdersContainer extends Component {
     const { customerDetails, additionalInfo } = this.props;
     const { deny, doctorComment, error, approve } = this.state;
     const { doctorName } = this.props.history.location.state;
-    console.log(customerDetails, "customerDetails");
-    
     const {
       data: { role }
     } = this.props.userProfile;

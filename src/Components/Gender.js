@@ -6,20 +6,7 @@ import {
   emailSendDoctorRequest,
 } from "../actions";
 import * as emailTemplate from "../utils/messageTemplate"
-const email=(props)=>
-  `<div>
-       <div style="font-size:14px font-weight:'bold', margin-bottom:20px">
-            You have a new order to review!
-       </div> 
-       <div style ="font-size:14px,margin-bottom:10px">Profile</div>
-       <div>${props.user.data.email}</div>
-       <div>${new Date(props.userProfile.data.dateOfBirth.seconds *1000)}</div>
-       <div style="font-size:14px">Order No.</div>
-       <div>${props.orders.orderDetail.order.id}</div>
-       <div>Status</div>
-       <div>${props.orders.orderDetail.order.metadata.approvalStatus}</div>
-       <div>Review now <div>
-</div>`
+
 
 /**UI component for Gender */
 class Gender extends Component {
