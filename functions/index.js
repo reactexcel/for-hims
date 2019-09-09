@@ -120,28 +120,23 @@ async function charge(req, res) {
   const uid = body.uid;
   const orderId = body.orderId;
   const cardId = body.cardId;
-  console.log('3333333333333333333',body);
   try {
-    console.log('vvvvvvvvvvvvvvvv')
     const orderResponse = await admin
       .firestore()
       .collection("orders")
       .where("id", "==", orderId)
       .get();
-      console.log(orderResponse,'zzzzzzzzzzzzzzzzz');
       
     const response = await admin
       .firestore()
       .collection("users")
       .doc(uid)
       .get();
-      console.log(response,'xxxxxxxxxxxxxxxxxxx');
       
     if (response.exists) {
       const customerData = response.data();
       if (customerData.customerId) {
-        if (cardId !== 0) {
-          /*eslint-disable-line*/
+        if (cardId != 0) {          /*eslint-disable-line*/
           const updateCard = await stripe.customers.update(
             customerData.customerId,
             {
@@ -149,9 +144,7 @@ async function charge(req, res) {
             }
           );
         }
-        console.log(customerData, "customerDatassssssssssssssssssssss");
         if (customerData.approvalStatus === "Approved") {
-          console.log("test1111111111111111111");
           const charge = await stripe.orders.pay(orderId, {
             customer: customerData.customerId
           });
@@ -159,7 +152,6 @@ async function charge(req, res) {
             metadata: { approvalStatus: "Approved" }
           });
           const order = await stripe.orders.retrieve(orderId);
-          console.log(order)
           let doctorId;
           const doctor = await admin
             .firestore()
@@ -178,10 +170,9 @@ async function charge(req, res) {
               ...order,
               userId: uid,
               doctorId,
+              metadata: { approvalStatus: "Approved" }
               
             });
-            // metadata: { approvalStatus: "Approved" }
-            console.log(orderResponse, "orderResponse")
           send(res, 200, {
             message: "Success",
             charge: charge
@@ -192,7 +183,6 @@ async function charge(req, res) {
             charge: "You will be charged after approval by Doctor"
           });
         } else if (customerData.approvalStatus === "Denied") {
-          console.log("test222222222222222222");
 
           const orderResponse = await admin
             .firestore()
@@ -218,8 +208,6 @@ async function charge(req, res) {
       });
     }
   } catch (e) {
-    console.log(e,'eeeeeeeeeeeee');
-    
     send(res, 500, {
       error: e.message
     });
@@ -251,7 +239,6 @@ async function order(req, res) {
       ? "Waiting"
       : "Approved"
     : "Waiting";
-    console.log( "customerDatassssssssssssssssssssss");
 
   try {
     const order = await stripe.orders.create({
