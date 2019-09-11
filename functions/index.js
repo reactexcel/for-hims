@@ -417,6 +417,7 @@ app.post("/emailsend", (req, res) => {
           background-color:#f6f6f6;
           font-family: sans-serif;
           max-width: 600px;
+          margin: 0 auto;
         }
         .head {
           height: 100px;

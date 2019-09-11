@@ -71,13 +71,13 @@ class Cart extends Component {
                 <div className="cart_numbers">
                   <ul>
                     <li>
-                      Order Sub-total <span> $20.00 </span>
+                      Order Sub-total * <span> $20.00 </span>
                     </li>
                     <li>
                       Membership <span> $10.00 </span>
                     </li>
                     <li>
-                      Medical Fee <span> $5.00 </span>
+                      One-Time Medical Fee <span> $5.00 </span>
                     </li>
                     <li>
                       Promo Discount <span> -$5.00 </span>

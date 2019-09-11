@@ -13,6 +13,8 @@ export default class CustomerOrders extends Component {
       isLoading,
       data: { firstName, lastName, dateOfBirth, approvalStatus }
     } = this.props.customerDetails;
+    console.log(this.props.customerDetails);
+    
     const {
       isError,
       message,
@@ -67,10 +69,10 @@ export default class CustomerOrders extends Component {
             {this.props.renderQuestions()}
             {approvalStatus === "Waiting" && role === ROLES.DOCTOR && (
               <div className="review-customer_button">
-                <button data-action="approve" onClick={onActionClick}>
+                <button className="approve" data-action="approve" onClick={onActionClick}>
                   Approve
                 </button>
-                <button data-action="deny" onClick={onActionClick}>
+                <button className="deny" data-action="deny" onClick={onActionClick}>
                   Deny
                 </button>
               </div>

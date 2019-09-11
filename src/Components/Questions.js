@@ -66,7 +66,7 @@ class Questions extends Component {
                   </div>
                   <h1>&nbsp; </h1>
                   <p align="center">
-                    Powered by Hims <br />
+                    {/* Powered by Hims <br /> */}
                     <Link to="#" className="link">
                       Terms and Conditions
                     </Link>

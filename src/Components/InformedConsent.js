@@ -259,7 +259,8 @@ class InformedConsent extends Component {
               </p>
               <p>
                 <button
-                  className="consent_next_btn"
+                  className={`consent_next_btn ${data.hasOwnProperty("consent") &&
+                  data.consent.consentProvided ? "next": ""}`}
                   onClick={this.onProvidingConsent}
                 >
                   {data.hasOwnProperty("consent") &&
@@ -271,7 +272,7 @@ class InformedConsent extends Component {
                 </button>
               </p>
               <p align="center">
-                Powered by Hims <br />
+                {/* Powered by Hims <br /> */}
                 <Link to="#" className="link">
                   Terms and Conditions
                 </Link>

@@ -30,13 +30,13 @@ export function* updateProfileRequest(action) {
     const response = yield firebase.user(uid).get();
 
     if (response.exists && response.data().firstName) {
-      yield firebase.user(uid).update({ firstName, lastName, phone });
+      yield firebase.user(uid).update({ firstName, lastName, ...(phone && {phone}) });
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
     } else {
       yield firebase
         .user(uid)
-        .set({ firstName, lastName, phone, email }, { merge: true });
+        .set({ firstName, lastName,...(phone && {phone}), email }, { merge: true });
       const userData = yield firebase.user(uid).get();
       yield put(actions.updateProfileSuccess(userData.data()));
     }
@@ -139,6 +139,7 @@ export function* updateAppointmentRequest(action) {
           actions.emailSendDoctorRequest({ to: "admin@noleuderm.com", message })
         );
       } else if (status === "Denied") {
+        console.log(data_detail, "data_detail")
          message = messageTemplate.messageTemplate({
           sendTo: messageTemplate.ORDER_REJECTED_PATIENT,
           ...data_detail

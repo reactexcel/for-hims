@@ -44,11 +44,13 @@ class Gender extends Component {
                 </label>
               </div>
               <div className="clearfix" />
-              <div className="back-btn">
-                <Link to="/">Close Visit</Link>
-              </div>
-              <div className="confirm-gender" onClick={this.props.saveGender}>
-                Confirm
+              <div className="d-flex justify-content-between">
+                <div className="back-btn">
+                  <Link to="/">Close Visit</Link>
+                </div>
+                <div className="confirm-gender" onClick={this.props.saveGender}>
+                  Confirm
+                </div>
               </div>
             </div>
           </div>

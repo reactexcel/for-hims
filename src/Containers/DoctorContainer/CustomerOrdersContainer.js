@@ -70,7 +70,7 @@ class CustomerOrdersContainer extends Component {
     let status;
     if (action === "approve") {
       status = "Approved";
-      this.props.updateAppointmentRequest({ uid, status, role,email,order_id,DOB});
+      this.props.updateAppointmentRequest({ uid, status, role, email, order_id, DOB });
     } else if (action === "deny") {
       const error = validateMessage(this.state.doctorComment);
       this.setState({ error });
@@ -83,7 +83,7 @@ class CustomerOrdersContainer extends Component {
           uid:this.state.uid
         };
         status = "Denied";
-        this.props.updateAppointmentRequest({ uid, status, role,email,order_id,DOB });
+        this.props.updateAppointmentRequest({ uid, status, role, email, order_id, DOB, doctorComment });
         this.props.sendMessageRequest(messageSendCustomer);
       }
       this.setState({ doctorComment: "" });

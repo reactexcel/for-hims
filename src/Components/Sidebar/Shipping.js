@@ -4,7 +4,7 @@ import { shippingAddressFields as fields } from "../../constants/profile";
 import ProfileField from "../Generic/ProfileField";
 import ErrorText from "../Generic/ErrorText";
 import { usaStates } from "../../constants/profile";
-import { addShippingAddressRequest } from "../../actions";
+import { addShippingAddressRequest, updateProfileRequest } from "../../actions";
 import { connect } from "react-redux";
 
 /**UI component for Shipping Address form in FullCart */
@@ -43,9 +43,11 @@ class Shipping extends Component {
     }
     
     if (comman) {
-      const shippingAddress = this.props.addNew
+      const {firstName, lastName, ...shippingAddress} = this.props.addNew
         ? [...this.props.shippingAddress, values]
         : values;
+      
+      this.props.updateProfileRequest({ firstName, lastName, email: this.props.user.data.email , uid: this.props.user.data.uid });
       this.props.addShippingAddressRequest({
         shippingAddress,
         uid: this.props.user.data.uid
@@ -198,6 +200,6 @@ export default reduxForm({
 })(
   connect(
     mapStateToProps,
-    { addShippingAddressRequest }
+    { addShippingAddressRequest, updateProfileRequest }
   )(Shipping)
 );

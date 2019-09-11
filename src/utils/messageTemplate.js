@@ -149,6 +149,7 @@ export function messageTemplate(props) {
         <div >${props.order_id}</div> 
         <h2>Status</h2> 
         <div class="status">${props.status}</div>
+        <h4 style="padding-top: 20px">Comment - ${props.doctorComment}</h4>
       </div>
     </div>
     <div class="btn-wrapper">

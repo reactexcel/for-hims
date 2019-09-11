@@ -59,22 +59,26 @@ class MyOrders extends Component {
                       >
                           <ul className="tab_order">
                             <li className="orders1">
+                              <span className="small_title"> Customer Name </span>
+                              <span>{order.data().shipping ? order.data().shipping.name: "-"}</span>
+                            </li>
+                            <li className="orders2">
                               <span className="small_title"> Order No. </span>
                               <span>{order.id}</span>
                             </li>
-                            <li className="orders2">
+                            <li className="orders3">
                               <span className="small_title">Status</span>
                               <span className="link">
                                 {order.data().metadata.approvalStatus}
                               </span>
                             </li>
-                            <li className="orders3">
+                            <li className="orders4">
                               <span className="small_title">
                                 Tracking Number
                               </span>
                               <span>-</span>
                             </li>
-                            <li className="orders4">
+                            <li className="orders5">
                               <i className="fa fa-angle-right" />
                               {/* <i className="fa fa-angle-up" /> */}
                             </li>
