@@ -55,7 +55,7 @@ class Cart extends Component {
                       10 x 20 mg pills or as prescribed by the doctor. Billed
                       monthly
                     </h4>
-                    <h4> $30.00 </h4>
+                    <h4> $99.00/month </h4>
                     <div className="renewal-icon">
                       <span className="glyphicon glyphicon-refresh" />
                     </div>
@@ -71,22 +71,22 @@ class Cart extends Component {
                 <div className="cart_numbers">
                   <ul>
                     <li>
-                      Order Sub-total * <span> $20.00 </span>
+                      Order Sub-total * <span> $99.00 </span>
                     </li>
-                    <li>
+                    {/* <li>
                       Membership <span> $10.00 </span>
-                    </li>
+                    </li> */}
                     <li>
-                      One-Time Medical Fee <span> $5.00 </span>
+                      One-Time Medical Fee <span> $99.00 </span>
                     </li>
                     <li>
                       Promo Discount <span> -$5.00 </span>
                     </li>
                     <li className="total">
-                      Grand Total <span> $30.00 </span>
+                      Grand Total <span> $194.00 </span>
                     </li>
                     <li className="promo_code_btn">
-                      You save $5.00 with this promo code!
+                      Your monthly payment will be $99.00*
                     </li>
                   </ul>
                 </div>
