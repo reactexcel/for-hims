@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import pro_img1 from "../../assets/images/pro_img1.png";
+import pro_img2 from "../../assets/images/pro_img2.jpg";
 import emptycart from "../../assets/images/empty_cart.png";
 import { connect } from "react-redux";
 import { removeFromCartRequest } from "../../actions";
@@ -47,13 +48,12 @@ class Cart extends Component {
               <>
                 <div className="cart-details_product">
                   <div className="cart-details_product-image">
-                    <img src={pro_img1} alt="" />
+                    <img src={pro_img2} alt="" />
                   </div>
                   <div className="cart-details_product-details">
-                    <h4> Sildenafil </h4>
+                    <h4> Noleuderm Kit </h4>
                     <h4 className="description">
-                      10 x 20 mg pills or as prescribed by the doctor. Billed
-                      monthly
+                      nbUVB at-home lamp and skin soothing lotion.
                     </h4>
                     <h4> $99.00/month </h4>
                     <div className="renewal-icon">

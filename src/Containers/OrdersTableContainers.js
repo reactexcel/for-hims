@@ -12,7 +12,7 @@ import OrderTableDropDown from "../Components/OrderTableDropDown"
 import {usaStates} from "../constants/profile"
 import isEqual from "lodash/isEqual"
 const csvData = [
-  ["Order No.", "Doctor Name", "Doctor Email", "Status", "Amount", "Order Date"]
+  ["Order No.", "Doctor Name", "Doctor Email", "Status", "Amount", "Order Date", "State"]
 ];
 
 class OrdersTableContainers extends Component {
@@ -90,7 +90,8 @@ class OrdersTableContainers extends Component {
                     element.data().email,
                     element.data().metadata.approvalStatus,
                     element.data().amount,
-                    moment(element.data().created * 1000).format("LL")
+                    moment(element.data().created * 1000).format("LL"),
+                    element.data().shipping.address.state
                   ]);
                   return (
                     <OrderTableList

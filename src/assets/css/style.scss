@@ -1018,11 +1018,14 @@ ul.open_tab_order .small_title {
 
 .cart-details_product {
   position: relative;
+  background: #fbfbfb;
+  overflow: auto;
 }
 .cart-details_product-image {
   width: 40%;
   float: left;
-  background: rgba(240, 240, 240, .4);
+  background: #fbfbfb;
+  // background: rgba(240, 240, 240, .4);
 }
 .cart-details_product-details {
   background: #fff;

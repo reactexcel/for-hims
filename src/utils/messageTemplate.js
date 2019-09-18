@@ -14,7 +14,7 @@ export function messageTemplate(props) {
       return `
       <div class="content">
       <div class="heading">
-        <h1>New Order is placed and send for Doctor Approval</h1>
+        <h1>New order is placed and send for doctor approval</h1>
       </div>
       <div class="block">
         <div class="profile">
@@ -37,7 +37,7 @@ export function messageTemplate(props) {
       return `
       <div class="content">
       <div class="heading">
-        <h1>Order is Approved</h1>
+        <h1>Order is approved</h1>
       </div>
       <div class="block">
         <div class="profile"> 
@@ -60,7 +60,7 @@ export function messageTemplate(props) {
       return `
       <div class="content">
       <div class="heading">
-        <h1>Order is Rejected</h1>
+        <h1>Order is rejected</h1>
       </div> 
       <div class="block">
         <div class="profile">
@@ -83,7 +83,7 @@ export function messageTemplate(props) {
       return `
       <div class="content">
       <div class="heading">
-      <h1>Your order is in Review!</h1> 
+      <h1>Your order is in review!</h1> 
       <div class="pb">Your order has been placed and your prescription for the Noluederm Kit is currently in review.</div>
       <div class="pb">You will be notified within 72 hours once your prescription review is complete.</div>
     </div>
@@ -108,7 +108,7 @@ export function messageTemplate(props) {
       return `
       <div class="content">
         <div class="heading">
-          <h1 >Your order has been Approved!</h1> 
+          <h1 >Your order has been approved!</h1> 
           <div class="pb">You have successfully received a prescription for the Noleuderm Kit.</div>
           <div class="pb">Your order had been processed for shipping. You can review your order status by signing into
           your account.</div>
@@ -160,7 +160,7 @@ export function messageTemplate(props) {
       return `
       <div class="content">
       <div class="heading">
-        <h1>You have a new order to Review!</h1>
+        <h1>You have a new order to review!</h1>
       </div>
       <div class="block">
         <div class="profile">
