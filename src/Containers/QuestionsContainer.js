@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Questions from "../Components/Questions";
 import { connect } from "react-redux";
-import { uniqWith, isEqual, findIndex, sortBy } from "lodash";
+import { uniqWith, isEqual, findIndex, sortBy, cloneDeep } from "lodash";
 import { submitAnswersRequest } from "../actions";
 
 /**Parent Component for Questions */
@@ -58,7 +58,7 @@ class QuestionsContainer extends Component {
    * @param {string} quesType type of question, radio or checkbox
    */
   selectAnswer = (questionUid, questionId, choiceId, quesType) => {
-    const { answers } = this.state;
+    const answers = cloneDeep(this.state.answers);
     let answer;
     if (answers[0] !== undefined) {
       const existingQuestion =
@@ -126,6 +126,32 @@ class QuestionsContainer extends Component {
       }
     }
   };
+
+  setChildTextQuestions = (questionUid, childId,childFor) => {
+    const answers = cloneDeep(this.state.answers);
+console.log(childFor,'childfor')
+    // const existingQuestion =
+    //   findIndex(answers, { questionUid }) === -1 ? false : true;
+    const questionIndex = findIndex(answers, { questionUid });
+    const hasChildren = answers[questionIndex].hasOwnProperty("children");
+    if (hasChildren) {
+      const existingChild =
+        findIndex(answers[questionIndex].children, { childId }) === -1
+          ? false
+          : true;
+      if (!existingChild) {
+        answers[questionIndex].children.push({ childId, value: "",childFor });
+      } else {
+        return;
+      }
+    } else {
+      answers[questionIndex].children = [{ childId, value: "",childFor }];
+    }
+
+    this.setState({
+      answers
+    });
+  };
   /**Renders all the questions */
   renderQuestions = () => {
     const { data } = this.props.questions;
@@ -134,81 +160,136 @@ class QuestionsContainer extends Component {
     } = this.props.userProfile;
     const name = `${firstName} ${lastName}`;
     const { answers } = this.state;
+    let isSolution, selected, answerChoosed;
     if (data.length) {
       return data.map((question, index) => (
-        <div className="question-container" key={question.id}>
-          <div className="visit_question_left">
-            <div className="question-nomber">
-              {`${index + 1} of ${data.length}`}
+        <>
+          <div className="question-container" key={question.id}>
+            <div className="visit_question_left">
+              <div className="question-nomber">
+                {`${index + 1} of ${data.length}`}
+              </div>
+              <div className="question-text">
+                {`${index + 1}. ${question.data().title}`}
+              </div>
             </div>
-            <div className="question-text">
-              {`${index + 1}. ${question.data().title}`}
-            </div>
-          </div>
-          <div className="clearfix" />
-          <div className="visit_question_right">
-            <small className="gillin_title"> {name?'':name} </small>
-            {question.data().type === "checkbox" && (
-              <small className="apply_title">* select all that apply *</small>
-            )}
-            {question.data().type !== "text" && (
-              <ul className="tab_question">
-                {question.data().choices.map((choice, choiceIndex) => {
-                  let isSolution =
-                    answers[0] !== undefined
-                      ? findIndex(answers, value => {
-                          return value.questionUid === question.id;
-                        })
-                      : null;
-                  let selected =
-                    isSolution !== null && isSolution !== -1
-                      ? question.data().type === "radio"
-                        ? answers[isSolution].choiceId === choiceIndex
+            <div className="clearfix" />
+            <div className="visit_question_right">
+              <small className="gillin_title"> {name ? "" : name} </small>
+              {question.data().type === "checkbox" && (
+                <small className="apply_title">* select all that apply *</small>
+              )}
+              {question.data().type !== "text" && (
+                <ul className="tab_question">
+                  {question.data().choices.map((choice, choiceIndex) => {
+                    console.log(choice, choiceIndex, "sa");
+                    isSolution =
+                      answers[0] !== undefined
+                        ? findIndex(answers, value => {
+                            return value.questionUid === question.id;
+                          })
+                        : null;
+                    selected =
+                      isSolution !== null && isSolution !== -1
+                        ? question.data().type === "radio"
+                          ? answers[isSolution].choiceId === choiceIndex
+                            ? true
+                            : false
+                          : answers[isSolution].choiceId.includes(choiceIndex)
                           ? true
                           : false
-                        : answers[isSolution].choiceId.includes(choiceIndex)
-                        ? true
-                        : false
-                      : false;
-                  return (
-                    <li
-                      key={question.id + choiceIndex}
-                      onClick={() =>
-                        this.selectAnswer(
-                          question.id,
-                          question.data().id,
-                          choiceIndex,
-                          question.data().type
-                        )
+                        : false;
+                    answerChoosed =
+                      isSolution !== null &&
+                      isSolution !== -1 &&
+                      (question.data().type === "radio" ||
+                        question.data().type === "checkbox") &&
+                      answers[isSolution].choiceId;
+                    return (
+                      <li
+                        key={question.id + choiceIndex}
+                        onClick={() =>
+                          this.selectAnswer(
+                            question.id,
+                            question.data().id,
+                            choiceIndex,
+                            question.data().type
+                          )
+                        }
+                        className={selected ? "selected-answer" : ""}
+                      >
+                        {choice.label}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+              {question.data().type === "text" &&
+                this.state.textAnswers.length && (
+                  <div className="question_textarea">
+                    <textarea
+                      onFocus={() => {
+                        this.setTextQuestion(question.id, question.data().id);
+                      }}
+                      onChange={this.handleChange}
+                      name={question.id}
+                      value={
+                        this.state.textAnswers[
+                          findIndex(this.state.textAnswers, {
+                            questionUid: question.id
+                          })
+                        ].value
                       }
-                      className={selected ? "selected-answer" : ""}
-                    >
-                      {choice.label}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-            {question.data().type === "text" && this.state.textAnswers.length && (
-              <div className="question_textarea">
-                <textarea
-                  onFocus={() => {
-                    this.setTextQuestion(question.id, question.data().id);
-                  }}
-                  onChange={this.handleChange}
-                  name={question.id}
-                  value={
-                    this.state.textAnswers[
-                      findIndex(this.state.textAnswers, {
-                        questionUid: question.id
-                      })
-                    ].value
-                  }
-                />
-              </div>
-            )}
+                    />
+                  </div>
+                )}
+            </div>
           </div>
-        </div>
+          {Boolean(answerChoosed) &&
+            question.data().hasOwnProperty("children") &&
+            (question.data().type === "radio" ||
+              question.data().type === "checkbox") &&
+            question.data().children.map((element, childId) => {
+              console.log(
+                answerChoosed,
+                element.selected,
+                "sda",
+                element.child.type
+              );
+              return (
+                <>
+                  {element.child.type === "text" &&
+                    (question.data().type === "radio"
+                      ? element.selected === answerChoosed
+                      : answerChoosed.includes(element.selected)) && (
+                      <div
+                        className="question-container"
+                        key={element.child.title}
+                      >
+                        <div className="visit_question_left">
+                          <div className="question-text">
+                            {` ${element.child.title}`}
+                          </div>
+                        </div>
+                        {element.child.type === "text" && (
+                          <div className="question_textarea">
+                            <textarea
+                              onFocus={() => {
+                                this.setChildTextQuestions(
+                                  question.id,
+                                  childId + 1,
+                                  element.selected
+                                );
+                              }}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    )}
+                </>
+              );
+            })}
+        </>
       ));
     }
   };
