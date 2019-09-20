@@ -52,7 +52,7 @@ class QuestionsContainer extends Component {
           selectTypeAnswers.push({
             questionUid: question.id,
             questionId: question.data().id,
-            value: question.data().value
+            value: question.data().value || "Afghanistan"
           });
         }
       });
@@ -141,12 +141,6 @@ class QuestionsContainer extends Component {
     const answers = cloneDeep(this.state.answers);
     const questionIndex = findIndex(answers, { questionUid });
     if (questionIndex !== -1) {
-      console.log(
-        findIndex(answers[questionIndex].children, {
-          childId
-        }),
-        childId
-      );
       const childIndex = findIndex(answers[questionIndex].children, {
         childId
       });
@@ -361,14 +355,7 @@ class QuestionsContainer extends Component {
               };
               const ans =
                 question.data().type === "text" ? "textAnswers" : "answers";
-              console.log(
-                element.child.type,
-                condition(question.data().type),
-                question.data().type,
-                "condition",
-                answerChoosed,
-                element.selected
-              );
+
               return (
                 <>
                   {element.child.type === "text" &&
@@ -392,10 +379,17 @@ class QuestionsContainer extends Component {
                                     questionUid: question.id
                                   })
                                 ].children[
-                                  findIndex(this.state[ans].children, {
-                                    childId
-                                  })
-                                ]
+                                  findIndex(
+                                    this.state[ans][
+                                      findIndex(this.state[ans], {
+                                        questionUid: question.id
+                                      })
+                                    ].children,
+                                    {
+                                      childId: childId + 1
+                                    }
+                                  )
+                                ].value
                               }
                               onChange={event =>
                                 this.handleChildTextChange(event, ans)

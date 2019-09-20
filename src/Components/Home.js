@@ -31,7 +31,7 @@ class Home extends Component {
     for (let i in clonedState.accordion) {
       clonedState.accordion[i] = false;
     }
-    clonedState.accordion[e] = !this.state.accordion[e];    
+    clonedState.accordion[e] = !this.state.accordion[e];
     this.setState({
       ...clonedState
     });
@@ -41,7 +41,7 @@ class Home extends Component {
     this.setState(prevState => ({ showInfo: !prevState.showInfo }));
   render() {
     const { showInfo } = this.state;
-    const { onAddProduct, role, openLogin } = this.props;        
+    const { onAddProduct, role, openLogin } = this.props;
     return (
       <>
         <div className="header_slider">
@@ -51,25 +51,24 @@ class Home extends Component {
               <div className="col-xs-12 col-sm-12 col-md-8 text-center first-home-section pb-5 ">
                 <img src={uv_light} className="uv-light pic" />
                 <div className="content heading">
-                  <h1 className='treat'>TREAT </h1>
-                  <h1 className='treat'>VITILIGO</h1>
-                  <p className='header-quotes'>NATURALLY. EFFECTIVE. AT HOME.</p>
+                  <h1 className="treat">TREAT </h1>
+                  <h1 className="treat">VITILIGO</h1>
+                  <p className="header-quotes">
+                    NATURALLY. EFFECTIVE. AT HOME.
+                  </p>
                   <div className="description">
-                    <p className='description_title'>
+                    <p className="description_title">
                       Clinically Proven, Trusted Worldwide. Phototherapy is the
                       only FDA
-                    {/* </p>
-                    <p> */}
-                      {" "}
-                      cleared treatment for Vitiligo. The Noleuderm System
-                      couples a portable,
-                    {/* </p>
-                    <p> */}
-                      {" "}
-                      handheld phototherapy lamp with a specially formulated
-                      lotion in order to{" "}
-                    {/* </p> */}
-                    ensure an optimal healing process and results. </p>
+                      {/* </p>
+                    <p> */} cleared treatment for
+                      Vitiligo. The Noleuderm System couples a portable,
+                      {/* </p>
+                    <p> */} handheld phototherapy
+                      lamp with a specially formulated lotion in order to{" "}
+                      {/* </p> */}
+                      ensure an optimal healing process and results.{" "}
+                    </p>
                   </div>
                   <div className="endorsed">
                     <div>Endorsed By</div>
@@ -85,9 +84,10 @@ class Home extends Component {
                 <div className="baseballcard__container">
                   <div className="baseball-card__inset">
                     <div className="pricing">
-                      <h1 className="baseball-card__header">$49</h1>
-                      <div className='date_value'>
-                        <div className='month'
+                      <h1 className="baseball-card__header">$99</h1>
+                      <div className="date_value">
+                        <div
+                          className="month"
                           style={{
                             fontSize: "1em",
                             marginTop: "10px",
@@ -96,7 +96,8 @@ class Home extends Component {
                         >
                           MONTH
                         </div>
-                        <div className='cancel'
+                        <div
+                          className="cancel"
                           style={{
                             fontSize: "10px",
                             color: "#414142",
@@ -108,7 +109,15 @@ class Home extends Component {
                       </div>
                     </div>
                     {/* {(role === ROLES.CUSTOMER  || role === ROLES.DOCTOR)  && ( */}
-                    <Link to="#" className="btn1" onClick={this.props.user.auth ? onAddProduct : ()=> openLogin("signup")}>
+                    <Link
+                      to="#"
+                      className="btn1"
+                      onClick={
+                        this.props.user.auth
+                          ? onAddProduct
+                          : () => openLogin("signup")
+                      }
+                    >
                       START <i class="fa fa-arrow-right" />
                     </Link>
                     {/* )} */}
@@ -121,36 +130,32 @@ class Home extends Component {
         <div className="clearfix" />
         <div className="before-after">
           <div className="main-heading">BEFORE & AFTER</div>
-          <div className ='content-before px-3'>
-          <p className='content-after-before'>
-            The Noleuderm System uses the same phototherapy bulbs found in the
-            leading
-          
-          
-            {" "}
-            dermatology offices. Achieve in-office results in the comfort of
-            your own home.
-          </p>
+          <div className="content-before px-3">
+            <p className="content-after-before">
+              The Noleuderm System uses the same phototherapy bulbs found in the
+              leading dermatology offices. Achieve in-office results in the
+              comfort of your own home.
+            </p>
           </div>
-          
+
           <div class="grid-container effect-month view">
             <div className="grid-item ">
-              <img src={before_1} alt=""  />
+              <img src={before_1} alt="" />
               <div className="grid-item">2 months</div>
             </div>
             <div className="grid-item">
-              <img src={before_2} alt=""  />
+              <img src={before_2} alt="" />
               <div className="grid-item ">4 months</div>
             </div>
             <div className="grid-item">
-              <img src={before_3} alt=""  />
+              <img src={before_3} alt="" />
               <div className="grid-item  ">6 months</div>
             </div>
             <div className="grid-item">
-              <img src={before_4} alt=""  />
+              <img src={before_4} alt="" />
               <div className="grid-item  ">8 months</div>
             </div>
-            
+
             {/* <img src={before_1} alt="" className="grid-item" />
             <img src={before_2} alt="" className="grid-item" />
             <img src={before_3} alt="" className="grid-item" />
@@ -170,8 +175,11 @@ class Home extends Component {
               <div className="doctor-second col-xs-12 col-sm-12 col-md-6 content">
                 <div className="recommended-callout-wrapper doctor">
                   <div className="callout-inset doctor">
-                    <h1 className="callout-title doctor"> DOCTOR RECOMMENDED </h1>
-                    <p className='text-doctor'>
+                    <h1 className="callout-title doctor">
+                      {" "}
+                      DOCTOR RECOMMENDED{" "}
+                    </h1>
+                    <p className="text-doctor">
                       UV Phototherapy is the most widely recommended solution
                       for Vitiligo by doctors worldwide due to its clinical
                       validation, safety, and effectiveness.
@@ -208,7 +216,7 @@ class Home extends Component {
                 <div className="recommended-callout-wrapper science">
                   <div className="callout-inset science mr-4">
                     <h1 className="callout-title"> THE SCIENCE </h1>
-                    <p className ='science-contain'>
+                    <p className="science-contain">
                       The Noleuderm System relies on continued and concentrated
                       exposure of Vitiliginous areas to narrowband UV
                       Phototherapy via its portable handheld lamp coupled with
@@ -232,7 +240,7 @@ class Home extends Component {
                 <div className="callout-wrapper">
                   <div className="callout-inset system treatment">
                     <h1 className="callout-title"> THE SYSTEM </h1>
-                    <p className='content-treatment'>
+                    <p className="content-treatment">
                       Unlike other Vitiligo treatments found online, the
                       Noleuderm System is the only one to offer clinical
                       validation and doctor endorsement. The reason? UV
@@ -252,10 +260,20 @@ class Home extends Component {
                       variant="link"
                       eventKey="0"
                       onClick={() => this.handleClick(0)}
-                      className='link-button'
+                      className="link-button"
                     >
                       <>
-                       <span className={!this.state.accordion[0]?"open-left":"open-right"}><span>1</span></span> <span className='system-btn'>START SUBSCRIPTION </span><i class="fa fa-angle-down" />
+                        <span
+                          className={
+                            !this.state.accordion[0]
+                              ? "open-left"
+                              : "open-right"
+                          }
+                        >
+                          <span>1</span>
+                        </span>{" "}
+                        <span className="system-btn">START SUBSCRIPTION </span>
+                        <i class="fa fa-angle-down" />
                       </>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="0">
@@ -268,9 +286,17 @@ class Home extends Component {
                       variant="link"
                       eventKey="1"
                       onClick={() => this.handleClick(1)}
-                      className='link-button'
+                      className="link-button"
                     >
-                      <span className={!this.state.accordion[1]?"open-left":"open-right"}><span>2</span></span><span className='system-btn'>VIRTUAL APPOINTMENT</span> <i class="fa fa-angle-down" />
+                      <span
+                        className={
+                          !this.state.accordion[1] ? "open-left" : "open-right"
+                        }
+                      >
+                        <span>2</span>
+                      </span>
+                      <span className="system-btn">VIRTUAL APPOINTMENT</span>{" "}
+                      <i class="fa fa-angle-down" />
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="1">
                       <>asdasdasd</>
@@ -282,10 +308,23 @@ class Home extends Component {
                       variant="link"
                       eventKey="2"
                       onClick={() => this.handleClick(2)}
-                      className='link-button'
+                      className="link-button"
                     >
                       <>
-                      <span className={!this.state.accordion[2]?"open-left":"open-right"}><span>3</span></span> <span className='system-btn'> DOCTOR APPROVAL, DELIVERY </span><i class="fa fa-angle-down" />
+                        <span
+                          className={
+                            !this.state.accordion[2]
+                              ? "open-left"
+                              : "open-right"
+                          }
+                        >
+                          <span>3</span>
+                        </span>{" "}
+                        <span className="system-btn">
+                          {" "}
+                          DOCTOR APPROVAL, DELIVERY{" "}
+                        </span>
+                        <i class="fa fa-angle-down" />
                       </>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="2">
@@ -298,9 +337,26 @@ class Home extends Component {
                       variant="link"
                       eventKey="3"
                       onClick={() => this.handleClick(3)}
-                      className='link-button'
+                      className="link-button"
                     >
-                    <span className={!this.state.accordion[3]?"open-left":"open-right"}><span>4</span></span> <span className='system-btn'> CONTINUED USE & CHECK-UPS </span><i className={!this.state.accordion[3]?"fa fa-angle-down":"fa fa-angle-up"} />
+                      <span
+                        className={
+                          !this.state.accordion[3] ? "open-left" : "open-right"
+                        }
+                      >
+                        <span>4</span>
+                      </span>{" "}
+                      <span className="system-btn">
+                        {" "}
+                        CONTINUED USE & CHECK-UPS{" "}
+                      </span>
+                      <i
+                        className={
+                          !this.state.accordion[3]
+                            ? "fa fa-angle-down"
+                            : "fa fa-angle-up"
+                        }
+                      />
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="3">
                       <>
@@ -321,29 +377,34 @@ class Home extends Component {
         <div className="clinical_papers_section">
           <div className="container-fluid">
             <div className="row">
-            {/* <div className="callout-inset"> */}
+              {/* <div className="callout-inset"> */}
 
-            <div className="clinical-title">
-            DOWNLOAD SUPPORTING CLINICAL PAPERS
-            </div>
-            <p className='clinic-text'>
-            If you’re interested in learning more about the Noleuderm System and the supporting clinical
-             evidence demonstrating the effectiveness our at home UV Phototherapy, submit your email:
-            </p>
+              <div className="clinical-title">
+                DOWNLOAD SUPPORTING CLINICAL PAPERS
+              </div>
+              <p className="clinic-text">
+                If you’re interested in learning more about the Noleuderm System
+                and the supporting clinical evidence demonstrating the
+                effectiveness our at home UV Phototherapy, submit your email:
+              </p>
             </div>
             <div className="email-form last">
-            <input type="text" placeholder="email" className='email-content'/>
-            <button className='last-submit'>SUBMIT</button>
+              <input
+                type="text"
+                placeholder="email"
+                className="email-content"
+              />
+              <button className="last-submit">SUBMIT</button>
             </div>
+          </div>
+          <div className="mobile-endorsed">
+            <div>Endorsed By</div>
+            <div className="mobile-endorsed-list d-flex">
+              <img src={endo1} className="mobile-logo" />
+              <img src={endo2} className="mobile-logo" />
+              <img src={endo3} className="mobile-logo" />
             </div>
-            <div className="mobile-endorsed">
-                    <div>Endorsed By</div>
-                    <div className="mobile-endorsed-list d-flex">
-                      <img src={endo1} className='mobile-logo' />
-                      <img src={endo2} className='mobile-logo'/>
-                      <img src={endo3} className='mobile-logo' />
-                    </div>
-                  </div>
+          </div>
           {/* </div> */}
         </div>
       </>

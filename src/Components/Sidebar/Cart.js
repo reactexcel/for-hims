@@ -33,8 +33,7 @@ class Cart extends Component {
               <>
                 <div className="empty_cart">
                   <h3>Your cart is empty!</h3>
-                  <h5>Please enter your home shipping address</h5>
-                  <img src={emptycart} alt="" />
+                  <h5>Add Products to your Cart</h5>
                 </div>
                 <button
                   type="button"
