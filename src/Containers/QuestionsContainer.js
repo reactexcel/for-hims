@@ -56,8 +56,9 @@ class QuestionsContainer extends Component {
    * @param {number} questionId id of question
    * @param {number} choiceId choice index of answers
    * @param {string} quesType type of question, radio or checkbox
+   * @param {boolean | array} children
    */
-  selectAnswer = (questionUid, questionId, choiceId, quesType) => {
+  selectAnswer = (questionUid, questionId, choiceId, quesType, children) => {
     const answers = cloneDeep(this.state.answers);
     let answer;
     if (answers[0] !== undefined) {
@@ -79,14 +80,30 @@ class QuestionsContainer extends Component {
         answer = {
           questionUid,
           questionId,
-          choiceId: quesType === "checkbox" ? [choiceId] : choiceId
+          choiceId: quesType === "checkbox" ? [choiceId] : choiceId,
+          ...(children && {
+            children: children.map((child, childId) => ({
+              childId: childId + 1,
+              childFor: child.selected,
+              ...(child.child.type === "radio" && { choiceId: null }),
+              ...(child.child.type === "text" && { value: "" })
+            }))
+          })
         };
       }
     } else {
       answer = {
         questionUid,
         questionId,
-        choiceId: quesType === "checkbox" ? [choiceId] : choiceId
+        choiceId: quesType === "checkbox" ? [choiceId] : choiceId,
+        ...(children && {
+          children: children.map((child, childId) => ({
+            childId: childId + 1,
+            childFor: child.selected,
+            ...(child.child.type === "radio" && { choiceId: null }),
+            ...(child.child.type === "text" && { value: "" })
+          }))
+        })
       };
     }
     if (answer !== undefined) {
@@ -127,31 +144,25 @@ class QuestionsContainer extends Component {
     }
   };
 
-  setChildTextQuestions = (questionUid, childId,childFor) => {
+  handleChildTextChange = event => {
+    const {
+      target: { name, value }
+    } = event;
+    const [questionUid, childId] = name.split("-");
     const answers = cloneDeep(this.state.answers);
-console.log(childFor,'childfor')
-    // const existingQuestion =
-    //   findIndex(answers, { questionUid }) === -1 ? false : true;
-    const questionIndex = findIndex(answers, { questionUid });
-    const hasChildren = answers[questionIndex].hasOwnProperty("children");
-    if (hasChildren) {
-      const existingChild =
-        findIndex(answers[questionIndex].children, { childId }) === -1
-          ? false
-          : true;
-      if (!existingChild) {
-        answers[questionIndex].children.push({ childId, value: "",childFor });
-      } else {
-        return;
+    for (let i in answers) {
+      if (answers[i].questionUid === questionUid) {
+        for (let c in answers[i].children) {
+          if (answers[i].children[c].childId === Number(childId)) {
+            answers[i].children[c].value = value;
+            this.setState({ answers });
+            break;
+          }
+        }
       }
-    } else {
-      answers[questionIndex].children = [{ childId, value: "",childFor }];
     }
-
-    this.setState({
-      answers
-    });
   };
+
   /**Renders all the questions */
   renderQuestions = () => {
     const { data } = this.props.questions;
@@ -182,7 +193,6 @@ console.log(childFor,'childfor')
               {question.data().type !== "text" && (
                 <ul className="tab_question">
                   {question.data().choices.map((choice, choiceIndex) => {
-                    console.log(choice, choiceIndex, "sa");
                     isSolution =
                       answers[0] !== undefined
                         ? findIndex(answers, value => {
@@ -213,7 +223,9 @@ console.log(childFor,'childfor')
                             question.id,
                             question.data().id,
                             choiceIndex,
-                            question.data().type
+                            question.data().type,
+                            question.data().hasOwnProperty("children") &&
+                              question.data().children
                           )
                         }
                         className={selected ? "selected-answer" : ""}
@@ -250,12 +262,6 @@ console.log(childFor,'childfor')
             (question.data().type === "radio" ||
               question.data().type === "checkbox") &&
             question.data().children.map((element, childId) => {
-              console.log(
-                answerChoosed,
-                element.selected,
-                "sda",
-                element.child.type
-              );
               return (
                 <>
                   {element.child.type === "text" &&
@@ -274,13 +280,19 @@ console.log(childFor,'childfor')
                         {element.child.type === "text" && (
                           <div className="question_textarea">
                             <textarea
-                              onFocus={() => {
-                                this.setChildTextQuestions(
-                                  question.id,
-                                  childId + 1,
-                                  element.selected
-                                );
-                              }}
+                              name={`${question.id}-${childId + 1}`}
+                              value={
+                                this.state.answers[
+                                  findIndex(this.state.answers, {
+                                    questionUid: question.id
+                                  })
+                                ].children[
+                                  findIndex(this.state.answers.children, {
+                                    childId
+                                  })
+                                ]
+                              }
+                              onChange={this.handleChildTextChange}
                             />
                           </div>
                         )}
