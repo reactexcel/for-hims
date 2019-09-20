@@ -4495,7 +4495,7 @@ form.doctor_form {
       font-size: 23px;
     }
     .callout-inset {
-      padding: 300px 200px 300px 210px;
+      padding: 300px 220px 300px 210px;
     }
     .science-contain {
       font-size: 23px;
@@ -4537,15 +4537,18 @@ form.doctor_form {
     }
     .copyright {
       bottom: 70px;
-      width: calc(100% - 20px);
+      width: calc(100% - 30px);
       padding: 0 230px;
     }
     p {
-      right: 240px;
+      right: 245px;
     }
   }
   .baseballcard__container {
     margin-bottom: 70px;
+    .baseball-card__inset {
+      padding-right: 50px;
+    }
   }
   .product-img3 {
     // clip-path: polygon(0 0, 0 75%, 41% 75%, 69% 0);
