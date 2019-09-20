@@ -15,7 +15,7 @@ const Footer = memo(() => {
   return ( 
     <>
       <footer className="footer mobile">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
           <div className='logo-main-row'>
             <div className='logo-class'>
