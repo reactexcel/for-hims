@@ -25,7 +25,7 @@ class MyOrders extends Component {
   };
   /**To call getCustomerDetails on the basis of user roles */
   getCustomerDetails = e => {
-    const { role } = this.props;    
+    const { role } = this.props;
     if (role !== ROLES.CUSTOMER) {
       this.props.getCustomerDetails(e);
     }
@@ -33,9 +33,7 @@ class MyOrders extends Component {
 
   render() {
     const { orders, role } = this.props;
-    orders.forEach((order)=> {
-      console.log(order.data(), "orders")
-    })
+
     return (
       <>
         <div className="orders_section">
@@ -45,22 +43,28 @@ class MyOrders extends Component {
                 <div className="my-orders-section">
                   <h3 align="center"> {this.renderTitle()}</h3>
                   {orders.map(order => (
-                    
                     <Collapsible
-                    key={order.id}
-                    trigger={
-                      <button
-                      type="button"
-                      onClick={this.getCustomerDetails}
-                      data-userid={order.data().userId}
-                      data-orderid={order.id}
-                      data-cardid={order.data().cardId}
-                      data-doctor={order.data().doctorName}
-                      >
+                      key={order.id}
+                      trigger={
+                        <button
+                          type="button"
+                          onClick={this.getCustomerDetails}
+                          data-userid={order.data().userId}
+                          data-orderid={order.id}
+                          data-cardid={order.data().cardId}
+                          data-doctor={order.data().doctorName}
+                        >
                           <ul className="tab_order">
                             <li className="orders1">
-                              <span className="small_title"> Customer Name </span>
-                              <span>{order.data().shipping ? order.data().shipping.name: "-"}</span>
+                              <span className="small_title">
+                                {" "}
+                                Customer Name{" "}
+                              </span>
+                              <span>
+                                {order.data().shipping
+                                  ? order.data().shipping.name
+                                  : "-"}
+                              </span>
                             </li>
                             <li className="orders2">
                               <span className="small_title"> Order No. </span>

@@ -23,7 +23,6 @@ class CustomerOrdersContainer extends Component {
     };
   }
   componentDidMount() {
-    console.log(    this.props.history.location.state)
     if (this.props.history.location.state === undefined) {
       this.props.history.goBack();
     }
@@ -215,7 +214,7 @@ class CustomerOrdersContainer extends Component {
                       );
                   }
                 };
-         
+
                 let questionIndex =
                   answers[0] !== undefined
                     ? findIndex(answers, value => {
@@ -274,7 +273,7 @@ class CustomerOrdersContainer extends Component {
 
                                 return (
                                   <li
-                                    key={question.id + choice.label}
+                                    key={`${question.id}-${choice.label}`}
                                     className={`${
                                       childSelected ? "selected-answer" : ""
                                     } customer-answer`}
@@ -297,7 +296,9 @@ class CustomerOrdersContainer extends Component {
   render() {
     const { customerDetails, additionalInfo } = this.props;
     const { deny, doctorComment, error, approve } = this.state;
-    const { doctorName } = this.props.history.location.state;
+    const doctorName =
+      this.props.history.location.state !== undefined &&
+      this.props.history.location.state.doctorName;
     const {
       data: { role }
     } = this.props.userProfile;

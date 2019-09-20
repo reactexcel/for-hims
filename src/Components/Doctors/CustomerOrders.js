@@ -13,7 +13,6 @@ export default class CustomerOrders extends Component {
       isLoading,
       data: { firstName, lastName, dateOfBirth, approvalStatus }
     } = this.props.customerDetails;
-    console.log(this.props.customerDetails);
     
     const {
       isError,
