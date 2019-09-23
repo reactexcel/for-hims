@@ -112,7 +112,7 @@ class CustomerOrdersContainer extends Component {
     const { firstName, lastName } = this.props.customerDetails.data;
     const customerName = `${firstName} ${lastName}`;
     let isSolution, selected, answerChoosed;
-    if (data.length) {
+    if (data.length && answers && answers.length) {
       return data.map((question, index) => (
         <div className="question-container" key={question.id}>
           <div className="visit_question_left">

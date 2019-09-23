@@ -347,6 +347,34 @@ app.post("/addNew", (req, res) => {
   }
 });
 
+async function getProducts(req, res) {
+  const body = req.body;
+  const uid = body.uid;
+
+  try {
+    const response = await admin
+      .firestore()
+      .collection("products")
+      .get();
+    const products = response.data();
+    if (!products.length) {
+      send(res, 404, {
+        error: "No Cards found"
+      });
+    } else {
+      send(res, 200, {
+        message: "Success",
+        products
+      });
+    }
+  } catch (e) {
+    send(res, 500, {
+      error: e.message
+    });
+  }
+}
+
+
 app.post("/getAllCards", (req, res) => {
   try {
     getAllCards(req, res);
@@ -378,6 +406,17 @@ app.post("/createProduct", (req, res) => {
     });
   }
 });
+
+app.post("/getProducts", (req, res) => {
+  try {
+    getProducts(req, res);
+  } catch (e) {
+    send(res, 500, {
+      error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`
+    });
+  }
+});
+
 
 app.post("/calculateOrder", (req, res) => {
   try {

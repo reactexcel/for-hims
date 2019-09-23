@@ -12,7 +12,8 @@ class QuestionsContainer extends Component {
     this.state = {
       answers: [],
       textAnswers: [],
-      selectTypeAnswers: []
+      selectTypeAnswers: [],
+      currentQuestionIndex: 0
     };
   }
   componentDidMount() {
@@ -214,10 +215,12 @@ class QuestionsContainer extends Component {
       data: { firstName, lastName }
     } = this.props.userProfile;
     const name = `${firstName} ${lastName}`;
-    const { answers } = this.state;
+    const { answers, currentQuestionIndex } = this.state;
     let isSolution, selected, answerChoosed;
     if (data.length) {
-      return data.map((question, index) => (
+      const question = data[currentQuestionIndex],
+        index = currentQuestionIndex;
+      return (
         <>
           <div className="question-container" key={question.id}>
             <div className="visit_question_left">
@@ -454,8 +457,34 @@ class QuestionsContainer extends Component {
                 </>
               );
             })}
+          <div className="d-flex justify-content-end mb-5">
+            {currentQuestionIndex > 0 ? (
+              <button
+                className="btn btn-dark text-white"
+                onClick={() =>
+                  this.setState({
+                    currentQuestionIndex: currentQuestionIndex - 1
+                  })
+                }
+              >
+                PREVIOUS
+              </button>
+            ) : null}
+            {currentQuestionIndex < data.length - 1 ? (
+              <button
+                className="btn btn-dark text-white ml-2"
+                onClick={() =>
+                  this.setState({
+                    currentQuestionIndex: currentQuestionIndex + 1
+                  })
+                }
+              >
+                NEXT
+              </button>
+            ) : null}
+          </div>
         </>
-      ));
+      );
     }
   };
 

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import pro_img1 from "../../assets/images/pro_img1.png";
-import pro_img2 from "../../assets/images/pro_img2.jpg";
 import emptycart from "../../assets/images/empty_cart.png";
 import { connect } from "react-redux";
 import { removeFromCartRequest } from "../../actions";
+import product from "../../utils/product";
 
 /**UI component for Cart */
 class Cart extends Component {
@@ -47,14 +46,14 @@ class Cart extends Component {
               <>
                 <div className="cart-details_product">
                   <div className="cart-details_product-image">
-                    <img src={pro_img2} alt="" />
+                    <img src={product.image} alt={product.name} />
                   </div>
                   <div className="cart-details_product-details">
-                    <h4> Noleuderm Kit </h4>
+                    <h4> {product.name} </h4>
                     <h4 className="description">
-                      nbUVB at-home lamp and skin soothing lotion.
+                      {product.description}
                     </h4>
-                    <h4> $99.00/month </h4>
+                    <h4> ${product.price.toFixed(2)}/month </h4>
                     <div className="renewal-icon">
                       <span className="glyphicon glyphicon-refresh" />
                     </div>
@@ -82,7 +81,7 @@ class Cart extends Component {
                       Promo Discount <span> -$5.00 </span>
                     </li>
                     <li className="total">
-                      Grand Total <span> $194.00 </span>
+                      Grand Total <span> $193.00 </span>
                     </li>
                     <li className="promo_code_btn">
                       Your monthly payment will be $99.00*

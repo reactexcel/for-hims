@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import pro_img1 from "../../assets/images/pro_img1.png";
 import { withRouter } from "react-router-dom";
 import CartPaymentContainer from "./CartPaymentContainer";
 import ShippingAddress from "./ShippingAddress";
+import product from "../../utils/product";
 
 /**UI component for Confirming Order */
 class ConfirmOrder extends Component {
@@ -132,15 +132,14 @@ class ConfirmOrder extends Component {
                   <div className="cart_items ">
                     <div className="cart-details_product">
                       <div className="cart-details_product-image">
-                        <img src={pro_img1} alt="" />
+                        <img src={product.image} alt={product.name} />
                       </div>
                       <div className="cart-details_product-details">
-                        <h4> Sildenafil </h4>
+                        <h4> {product.name} </h4>
                         <h4 className="description">
-                          10 x 20 mg pills or as prescribed by the doctor.
-                          Billed monthly
+                          {product.description}
                         </h4>
-                        <h4> $30.00 </h4>
+                        <h4> ${product.price.toFixed(2)}/month </h4>
                         <div className="renewal-icon">
                           <span className="glyphicon glyphicon-refresh" />
                         </div>
@@ -153,19 +152,19 @@ class ConfirmOrder extends Component {
                     <div className="cart_numbers">
                       <ul>
                         <li>
-                          Order Sub-total * <span> $20.00 </span>
+                          Order Sub-total * <span> $99.00 </span>
                         </li>
-                        <li>
+                        {/* <li>
                           Membership <span> $10.00 </span>
-                        </li>
+                        </li> */}
                         <li>
-                          Medical Fee <span> $5.00 </span>
+                          One-Time Medical Fee <span> $99.00 </span>
                         </li>
                         <li>
                           Promo Discount <span> -$5.00 </span>
                         </li>
                         <li className="total">
-                          Grand Total <span> $30.00 </span>
+                          Grand Total <span> $193.00 </span>
                         </li>
                         <li className="promo_code_btn">
                           You save $5.00 with this promo code!

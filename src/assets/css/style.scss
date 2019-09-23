@@ -621,7 +621,7 @@ footer {
     bottom: 100px;
     font-weight: lighter;
     // width: 100%;
-    width: calc(100% - 300px);
+    width: calc(100% - 165px);
 
     // justify-content: space-between;
     .first {
@@ -3961,6 +3961,9 @@ form.doctor_form {
   }
   .navbar-default .navbar-toggle .icon-bar {
     background-color: #fff !important;
+  }
+  .navbar-default .navbar-collapse {
+    background: #fff;
   }
   .navbar-default .navbar-toggle {
     border-color: transparent !important;

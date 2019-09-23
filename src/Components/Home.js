@@ -20,6 +20,8 @@ import video_1 from "../assets/images/video-1.png";
 import video_2 from "../assets/images/the-science.png";
 import { Accordion, Button, Card } from "react-bootstrap";
 import cloneDeep from "lodash/cloneDeep";
+import product from "../utils/product";
+
 /**UI Component for Home page */
 class Home extends Component {
   constructor(props) {
@@ -84,7 +86,7 @@ class Home extends Component {
                 <div className="baseballcard__container">
                   <div className="baseball-card__inset">
                     <div className="pricing">
-                      <h1 className="baseball-card__header">$99</h1>
+                      <h1 className="baseball-card__header">${product.price} </h1>
                       <div className="date_value">
                         <div
                           className="month"
