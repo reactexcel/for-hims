@@ -220,6 +220,28 @@ class QuestionsContainer extends Component {
     if (data.length) {
       const question = data[currentQuestionIndex],
         index = currentQuestionIndex;
+      const answer = this.state.answers.length
+        ? this.state.answers[
+            findIndex(this.state.answers, {
+              questionUid: question.id
+            })
+          ]
+        : null;
+      const selectAnswer = this.state.selectTypeAnswers.length
+        ? this.state.selectTypeAnswers[
+            findIndex(this.state.selectTypeAnswers, {
+              questionUid: question.id
+            })
+          ]
+        : null;
+      const textAnswer = this.state.textAnswers.length
+        ? this.state.textAnswers[
+            findIndex(this.state.textAnswers, {
+              questionUid: question.id
+            })
+          ]
+        : null;
+
       return (
         <>
           <div className="question-container" key={question.id}>
@@ -472,6 +494,55 @@ class QuestionsContainer extends Component {
             ) : null}
             {currentQuestionIndex < data.length - 1 ? (
               <button
+                disabled={
+                  question.data().type === "text" &&
+                  this.state.textAnswers.length
+                    ? question.data().required &&
+                      textAnswer &&
+                      !textAnswer.value
+                    : question.data().type === "select" &&
+                      this.state.selectTypeAnswers.length
+                    ? question.data().required &&
+                      selectAnswer &&
+                      !selectAnswer.value
+                    : question.data().type === "radio"
+                    ? question.data().required &&
+                      (!answer ||
+                        (answer &&
+                          (!(answer.choiceId === 0 ? true : answer.choiceId) ||
+                            !(
+                              ((answer.choiceId === 0
+                                ? true
+                                : answer.choiceId) &&
+                                !answer.children) ||
+                              (answer.children &&
+                                answer.children[0] &&
+                                (answer.choiceId !==
+                                  answer.children[0].childFor ||
+                                  (answer.choiceId ===
+                                    answer.children[0].childFor &&
+                                    !answer.children[0].value)))
+                            ))))
+                    : question.data().type === "checkbox"
+                    ? question.data().required &&
+                      (!answer ||
+                        (answer &&
+                          (!answer.choiceId ||
+                            (answer.choiceId &&
+                              (!answer.choiceId.length ||
+                                !(
+                                  answer.choiceId.length &&
+                                  (!answer.children ||
+                                    (answer.children &&
+                                      answer.children.length &&
+                                      answer.children.every((v, i) =>
+                                        answer.choiceId.includes(v.childFor)
+                                          ? v.value
+                                          : true
+                                      )))
+                                ))))))
+                    : true
+                }
                 className="btn btn-dark text-white ml-2"
                 onClick={() =>
                   this.setState({
@@ -508,6 +579,7 @@ class QuestionsContainer extends Component {
     }
   };
   render() {
+    console.log(this.state);
     const { questions } = this.props;
     return (
       <div>

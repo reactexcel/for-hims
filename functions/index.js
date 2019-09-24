@@ -247,7 +247,7 @@ async function order(req, res) {
       items: [
         {
           type: "sku",
-          parent: "sku_EaAGvTgxtOgg8s",
+          parent: "sku_FrsIUbsDYaBemw",
           quantity: 1
         }
       ],
@@ -288,10 +288,9 @@ async function order(req, res) {
 async function createProduct(req, res) {
   try {
     const product = await stripe.products.create({
-      name: "Sildenafil",
+      name: "Noleuderm Kit",
       type: "good",
-      description: "Medicine for Erectile Dysfunction",
-      attributes: ["size"]
+      description: "nbUVB at-home lamp and skin soothing lotion.",
     });
     const response = await admin
       .firestore()
@@ -301,9 +300,8 @@ async function createProduct(req, res) {
     const sku = await stripe.skus.create({
       currency: "usd",
       inventory: { type: "finite", quantity: 500 },
-      price: 30000,
+      price: 99000,
       product: product.id,
-      attributes: { size: "20 tablets" }
     });
     const skuResponse = await admin
       .firestore()

@@ -8,6 +8,8 @@ export const ORDER_APPROVED_PATIENT = "orderApprovedPatient";
 export const ORDER_REJECTED_PATIENT = "orderRejectedPatient";
 export const ORDER_PLACED_DOCTOR = "orderPlacedDoctor";
 
+const URL = "https://kit.noleuderm.com";
+
 export function messageTemplate(props) {
   switch (props.sendTo) {
     case ORDER_PLACED_ADMIN:
@@ -30,7 +32,7 @@ export function messageTemplate(props) {
         </div>
       </div>
       <div class="btn-wrapper">
-        <a class="btn1" href="https://noleuderm-d2b6a.firebaseapp.com" target="blank">REVIEW NOW</a>
+        <a class="btn1" href=${URL} target="blank">REVIEW NOW</a>
       </div>
 </div>`;
     case ORDER_APPROVED_ADMIN:
@@ -53,7 +55,7 @@ export function messageTemplate(props) {
         </div>
       </div>
       <div class="btn-wrapper">
-        <a class="btn1" href="https://noleuderm-d2b6a.firebaseapp.com" target="blank">REVIEW NOW</a>
+        <a class="btn1" href=${URL} target="blank">REVIEW NOW</a>
       </div>
  </div>`;
     case ORDER_REJECTED_ADMIN:
@@ -76,7 +78,7 @@ export function messageTemplate(props) {
         </div>
       </div>
       <div class="btn-wrapper">
-        <a class="btn1" href="https://noleuderm-d2b6a.firebaseapp.com" target="blank">REVIEW NOW</a>
+        <a class="btn1" href=${URL} target="blank">REVIEW NOW</a>
       </div>
       </div>`;
     case ORDER_PLACED_PATIENT:
@@ -101,7 +103,7 @@ export function messageTemplate(props) {
       </div>
     </div>
     <div class="btn-wrapper">
-      <a class="btn1" href="https://noleuderm-d2b6a.firebaseapp.com" target="blank">REVIEW YOUR ORDER</a>
+      <a class="btn1" href=${URL} target="blank">REVIEW YOUR ORDER</a>
     </div>
       </div>`;
     case ORDER_APPROVED_PATIENT:
@@ -127,7 +129,7 @@ export function messageTemplate(props) {
           </div>
         </div>
         <div class="btn-wrapper">
-          <a class="btn1" href="https://noleuderm-d2b6a.firebaseapp.com" target="blank">REVIEW YOUR ORDER</a>
+          <a class="btn1" href=${URL} target="blank">REVIEW YOUR ORDER</a>
         </div>
       </div>`;
     case ORDER_REJECTED_PATIENT:
@@ -153,7 +155,7 @@ export function messageTemplate(props) {
       </div>
     </div>
     <div class="btn-wrapper">
-      <a class="btn1" href="https://noleuderm-d2b6a.firebaseapp.com" target="blank">REVIEW YOUR ORDER</a>  
+      <a class="btn1" href=${URL} target="blank">REVIEW YOUR ORDER</a>  
     </div>
       </div>`;
     case ORDER_PLACED_DOCTOR:
@@ -176,7 +178,7 @@ export function messageTemplate(props) {
         </div>
       </div>
       <div class="btn-wrapper">
-        <a class="btn1" href="https://noleuderm-d2b6a.firebaseapp.com" target="blank">REVIEW NOW</a>
+        <a class="btn1" href=${URL} target="blank">REVIEW NOW</a>
       </div>
       </div>`;
     default:

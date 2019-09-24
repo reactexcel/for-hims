@@ -12,7 +12,7 @@ class Photos extends Component {
         {isLoading ? (
           <div className="loader-container">
             <div className="login-loader">
-              <div>Uploaing your Photo...</div>
+              <div>Uploading your Photo...</div>
               <div>Hang tight</div>
               <div className="loader" />
             </div>

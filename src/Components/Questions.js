@@ -50,11 +50,11 @@ class Questions extends Component {
                 <div className="col-xs-12 col-sm-12 col-md-8">
                   <div className="question-detail">
                     {this.props.renderQuestions()}
-                    <p align="center">
+                    {/* <p align="center">
                       <Link to="/photos" className="consent_next_btn">
                         Continue
                       </Link>
-                    </p>
+                    </p> */}
                     <p align="center">
                       <button
                         onClick={this.props.submitAnswers}
